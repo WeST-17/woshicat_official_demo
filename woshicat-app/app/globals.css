@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: white;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+#overlay {
+  position:fixed;
+  left:0;
+  top:0;
+  width:100vw;
+  height:100vh;
+  display: none;
+  background-color:#000;
+  opacity:0.5;
+}
+
+.border-test {
+  border: 2px solid black;
+}
+
+/* Custom Menu button with transiton */
+.menu_btn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.menu_btn .line {
+  width: 23px;
+  height: 2px;
+  background-color: #78716c;
+  transform-origin: left;
+  transition: transform 0.5s ease, opacity 0.2s ease;
+}
+
+.menu_btn:hover .line{
+  background-color:#292524;
+}
+
+.menu_btn .middle_line {
+  /* Close Delay */
+  transition-delay: 0.3s;
+}
+
+.menu_btn.open-btn .middle_line {
+  opacity: 0;
+  /* Open Delay */
+  transition-delay: 0s;
+}
+
+.menu_btn.open-btn .top_line {
+  transform: rotate(45deg);
+}
+
+.menu_btn.open-btn .bottom_line {
+  transform: rotate(-45deg);
+}
+
+.menu-container {
+  position: absolute;
+  border-radius: 10px 0px 0px 10px;
+  top: 10px;
+  right: 0;
+  height: 95vh;
+  opacity: 1;
+  width: 0;
+  background-color: #fafaf9;
+  transition: width 0.2s ease-in-out, opacity 1s ease; /* Add transition property */
+}
+
+.menu-container.open-menu {
+  width: 24rem;
+  opacity: 1;
+  overscroll-behavior: hidden;
+}
+
+/* Shopify Buy Button Styling */
