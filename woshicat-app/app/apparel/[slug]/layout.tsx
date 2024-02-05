@@ -1,4 +1,5 @@
 import Transition from "@/app/components/transition"
+import { Suspense } from "react"
 
 export default function ItemLayout({
     children,
@@ -7,7 +8,9 @@ export default function ItemLayout({
   }) {
     return ( 
     <section className="flex justify-center">
+      <Suspense fallback={<div>Loading...</div>}>
         <Transition>{children}</Transition>
+      </Suspense>
     </section>
     )
 }

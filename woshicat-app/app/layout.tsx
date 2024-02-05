@@ -4,6 +4,7 @@ import { Sofia_Sans_Semi_Condensed } from 'next/font/google';
 import Transition from "./components/transition";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import { Suspense } from "react";
 
 const sofia_sans = Sofia_Sans_Semi_Condensed({
     weight: ['100', '200', '400'],
@@ -21,9 +22,11 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
     <html lang="en">
       
       <body className={sofia_sans.className}>
+        <Suspense fallback={<div>Loading...</div>}>
         <Header />
         <Transition>{children}</Transition>
         <Footer />
+        </Suspense>
       </body>
       
     </html>
