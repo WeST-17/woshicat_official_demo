@@ -1,4 +1,5 @@
 import { useNavigation } from "./useNavigation";
+import { Suspense } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
     const nav = useNavigation();
 
     return (
-      <>
+      <Suspense fallback={<div className="flex justify-self-center self-center h-[100vh]">Loading...</div>}>
         {links.map((link) => (
           <Link
             onClick={closeMenu}
@@ -34,7 +35,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           </Link>
           )
         )}
-      </>
+      </Suspense>
     )
 };
 
