@@ -81,7 +81,7 @@ export default function ProductCards() {
       {products.map((product) => (
         // Render each product item
         <div className='text-center' key={product.id}>
-          <div className='hover:opacity-75'>
+          <div className='hover:opacity-75 transition duration-300'>
               <Link href={`/apparel/${product.handle}`} passHref>
               {/* Render product details */}
               <img 
