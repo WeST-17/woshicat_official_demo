@@ -40,7 +40,7 @@ export default function ProductDetailPage() {
 
     return (
         <div className='flex justify-center text-center h-fit' key={item.id}>
-          <div className='hover:opacity-75 transition duration-300 w-1/3'>
+          <div className='hover:opacity-75 transition duration-300 lg:w-1/3'>
               <Link href={`/apparel/${item.handle}`} passHref>
               {/* Render product details */}
               <img 
