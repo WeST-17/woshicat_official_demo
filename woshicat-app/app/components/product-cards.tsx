@@ -9,6 +9,7 @@ export default function ProductCards() {
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
+
     const fetchData = async () => {
       try {
         const { products, error } = await getServerProductsProps();
@@ -22,7 +23,7 @@ export default function ProductCards() {
         setError(error);
       }
     };
-
+    console.log('ProductCards: useEffect - Fetching complete.');
     fetchData();
   }, []);
 
@@ -31,12 +32,12 @@ export default function ProductCards() {
   }
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 p-4 flex justify-center'>
+    <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 flex justify-center'>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
-        <div className='text-center bg-stone-100 rounded-md p-4' key={product.id}>
-          <div className=''>
+        <div className='text-center' key={product.id}>
+          <div className='hover:opacity-75'>
               <Link href={`/apparel/${product.handle}`} passHref>
               {/* Render product details */}
               <img 

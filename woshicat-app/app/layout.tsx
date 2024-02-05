@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Sofia_Sans_Semi_Condensed } from 'next/font/google';
 
+import Header from "./components/header";
+import Footer from "./components/footer";
+
 export const sofia_sans = Sofia_Sans_Semi_Condensed({
     weight: ['100', '200', '400'],
     subsets: ['latin-ext']
@@ -20,7 +23,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={sofia_sans.className}>{children}</body>
+      <body className={sofia_sans.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
