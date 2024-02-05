@@ -22,10 +22,12 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
     <html lang="en">
       
       <body className={sofia_sans.className}>
-        <Suspense fallback={<div>Loading...</div>}>
-        <Header />
-        <Transition>{children}</Transition>
-        <Footer />
+        <Suspense fallback={<div className="h-[100vh] flex justify-center">Loading...</div>}>
+          <Transition>
+            <Header />
+            {children}
+            <Footer />
+          </Transition>
         </Suspense>
       </body>
       
