@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Sofia_Sans_Semi_Condensed } from 'next/font/google';
-
+import Transition from "./components/transition";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
@@ -16,18 +16,16 @@ export const metadata: Metadata = {
   keywords: 'Apparel, Hoodies, T-shirts, Sweatshirts, Comfort, Quality',
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
+      
       <body className={sofia_sans.className}>
         <Header />
-        {children}
+        <Transition>{children}</Transition>
         <Footer />
       </body>
+      
     </html>
   );
 }

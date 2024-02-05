@@ -24,7 +24,7 @@ async function getProducts(client: Client): Promise<any[]> {
         altText: image?.altText || '',
         // Add other image properties as needed
       };
-
+    
       return {
         id: product.id,
         handle: product.handle,
@@ -40,7 +40,7 @@ async function getProducts(client: Client): Promise<any[]> {
     console.error('Error fetching products:', error);
     throw error;
   }
-}
+};
 
 export async function getProductByHandle(productHandle: string) {
   try {

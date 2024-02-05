@@ -8,7 +8,18 @@ export default function Navigation() {
     const menuBtnRef = useRef<HTMLDivElement>(null);
     const menuContainerRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
-
+    
+    const closeMenu = () => {
+        // Close the menu
+        if (menuBtnRef.current && menuContainerRef.current && overlayRef.current) {
+          menuBtnRef.current.classList.remove('open-btn');
+          menuContainerRef.current.classList.remove('open-menu');
+          overlayRef.current.classList.add('hidden');
+          setMenuOpen(false);
+          document.body.classList.remove('menu-open');
+        }
+    }
+    
     useEffect(() => {
         const menuBtn = menuBtnRef.current;
         const menuContainer = menuContainerRef.current;
@@ -43,7 +54,7 @@ export default function Navigation() {
                 </div>
                 <div className={`menu-container gap-2 pt-20 overflow-hidden grid grid-rows-6 ${openMenu ? 'open-menu' : ''}`} ref={menuContainerRef}>
                     <div onClick={() => { setTimeout(() => { setMenuOpen(false)}, 150) }}>
-                        <NavLinks />
+                        <NavLinks closeMenu={closeMenu} />
                     </div>
 
                     {/* Menu Footer */}

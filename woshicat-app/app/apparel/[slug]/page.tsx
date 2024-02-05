@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { getServerItemProps } from '@/app/action';
 import Link from 'next/link';
-import Header from '@/app/components/header';
 
 export default function ProductDetailPage() {
     const [item, setItem] = useState<any>([]);
@@ -32,16 +31,16 @@ export default function ProductDetailPage() {
     }, []);
 
     if (error) {
-        return <div>Error fetching products: {error.message}</div>;
+        return <div className='flex items-center h-[100vh]'>Error fetching products: {error.message}</div>;
     }
 
     if (!item || !item.image) {
-        return <div className='flex justify-center p-8'>Loading...</div>;
+        return <div className='flex justify-center items-center p-8 h-[100vh]'></div>;
     }
 
     return (
-        <div className='text-center' key={item.id}>
-          <div className='hover:opacity-75'>
+        <div className='flex justify-center text-center h-fit' key={item.id}>
+          <div className='hover:opacity-75 transition duration-300 w-1/3'>
               <Link href={`/apparel/${item.handle}`} passHref>
               {/* Render product details */}
               <img 
@@ -49,9 +48,14 @@ export default function ProductDetailPage() {
                 alt={item.image.altText}
                 className='rounded-md mb-3'
               />
-              <p>{item.name}</p>
-              <p>${item.price}</p>
+              <h3 className="mt-4 text-sm text-stone-700">{item.name}</h3>
+              <p className="mt-1 text-lg font-medium text-stone-900">${item.price}</p>
               </Link>
+              <button
+                className="rounded-md bg-stone-400 mt-2 p-2 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
+                >
+                Add to Cart
+              </button>
           </div>
         </div>
       );

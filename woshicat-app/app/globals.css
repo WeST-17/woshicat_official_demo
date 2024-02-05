@@ -87,4 +87,11 @@ body.menu-open {
   overscroll-behavior: hidden;
 }
 
-/* Shopify Buy Button Styling */
+.transition-screen {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.transition-screen.active {
+  opacity: 1;
+}

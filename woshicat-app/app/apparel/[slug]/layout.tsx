@@ -1,3 +1,4 @@
+import Transition from "@/app/components/transition"
 
 export default function ItemLayout({
     children,
@@ -5,8 +6,8 @@ export default function ItemLayout({
     children: React.ReactNode
   }) {
     return ( 
-    <section>
-        {children}
+    <section className="flex justify-center">
+        <Transition>{children}</Transition>
     </section>
     )
 }
