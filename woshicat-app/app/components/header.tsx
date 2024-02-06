@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Navigation from "./navbar";
 
-export default function Header() {
+const Header = () => {
     
     return (
         <header className="fixed top-0 flex self-start justify-end items-center h-[120px] w-full bg-transparent text-base text-stone-700 p-2 z-[1000]">
@@ -15,3 +15,5 @@ export default function Header() {
         </header>
     )
 }
+
+export default Header;

@@ -76,7 +76,7 @@ export default function ProductCards() {
   }
 
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 flex justify-center'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 flex justify-center'>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
