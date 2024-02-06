@@ -21,9 +21,17 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
 
         handleResize();
 
+        const resizeObserver = new ResizeObserver(handleResize);
+        if (contentRef.current) {
+            resizeObserver.observe(contentRef.current);
+        }
+
         window.addEventListener('resize', handleResize);
         return () => {
-            window.removeEventListener('resize', handleResize)
+            window.removeEventListener('resize', handleResize);
+            if (contentRef.current) {
+                resizeObserver.unobserve(contentRef.current);
+            }
         };
 
     }, [contentRef]);
@@ -51,9 +59,9 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
         <>
             <div style={{ height: contentHeight }}/>
             <motion.div 
-                className='w-screen fixed top-0' 
+                className='w-screen fixed top-0 transition-opacity duration-200 ease-in-out' 
                 ref={contentRef} 
-                style={{ y: isLoading ? 0 : yPos }}
+                style={{ y: isLoading ? 0 : yPos, opacity: isLoading ? 0 : 1 }}
             >
                 {children}
             </motion.div>

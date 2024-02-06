@@ -6,6 +6,7 @@ import Transition from "./components/transition";
 export default function Home() {
   
   return (
+    <>
     <Transition>
     <main className="flex justify-center w-full grid grid-cols-8">
       <div className="grid grid-rows-2 grid-flow-col col-span-8">
@@ -29,8 +30,9 @@ export default function Home() {
 
         </div>
       </div>
-      <TransitionSlide />
     </main>
     </Transition>
+    <TransitionSlide />
+    </>
   );
 }

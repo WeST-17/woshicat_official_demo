@@ -19,23 +19,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+  
   return (
-    <html lang="en">
-      
+    <html lang="en"> 
       <body className={sofia_sans.className}>
-        
-        <Suspense fallback={<div className="h-[100vh] flex justify-center">Loading...</div>}>
-
-          <Transition>
-            <Header />
-            {children}
-            <Footer />
-          </Transition>
-
-        </Suspense>
-        
+        <SmoothScroll>
+          <Header />
+            <Suspense fallback={<div className="h-[100vh] flex justify-center">Loading...</div>}>
+              {children}
+            </Suspense>
+          <Footer />
+        </SmoothScroll>
       </body>
-      
     </html>
   );
 }
