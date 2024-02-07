@@ -42,7 +42,7 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
         mass: 0.1,
         stiffness: 100,
         damping: 20,
-        restDelta: 0.01,
+        restDelta: 0.001,
     });
 
     useMotionValueEvent(smoothProgress, "change", (latest) => {

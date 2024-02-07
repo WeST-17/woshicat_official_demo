@@ -10,7 +10,10 @@ export default function ItemLayout({
   }) {
     return ( 
       <section className="flex justify-center pt-40 p-2">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={
+          <div className="h-[100vh] w-screen flex justify-center items-center">
+            <div>Loading...</div>
+          </div>}>
           <Transition>{children}</Transition>
         </Suspense>
         <TransitionSlide />

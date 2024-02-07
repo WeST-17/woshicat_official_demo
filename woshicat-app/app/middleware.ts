@@ -1,42 +1,54 @@
-import { NextRequest, NextResponse } from 'next/server'
- 
-export function middleware(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
-  const cspHeader = `
-    default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    style-src 'self' 'nonce-${nonce}';
-    img-src 'self' blob: data:;
-    font-src 'self';
-    object-src 'none';
-    base-uri 'self';
-    form-action 'self';
-    frame-ancestors 'none';
-    block-all-mixed-content;
-    upgrade-insecure-requests;
-`
-  // Replace newline characters and spaces
-  const contentSecurityPolicyHeaderValue = cspHeader
+// middleware.ts
+import { headers } from 'next/headers';
+import { NextRequest, NextResponse } from 'next/server';
+
+export default function setCSPHeader(
+    request: NextRequest
+) {
+    // Generate a nonce for this request
+    const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
+
+    // Modify CSP header to include the nonce
+    const cspHeader = `
+        default-src 'self';
+        script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${
+            process.env.NODE_ENV === "production" ? "" : `'unsafe-eval'`
+          };
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' blob: data:;
+        frame-src 'self' blob: data:;
+        media-src 'self' data:;
+        font-src 'self';
+        object-src 'none';
+        base-uri 'self';
+        form-action 'self';
+        frame-ancestors 'none';
+        block-all-mixed-content;
+        upgrade-insecure-requests;
+    `
+
+    // Replace newline characters and spaces
+    const contentSecurityPolicyHeaderValue = cspHeader
     .replace(/\s{2,}/g, ' ')
     .trim()
- 
-  const requestHeaders = new Headers(request.headers)
-  requestHeaders.set('x-nonce', nonce)
- 
-  requestHeaders.set(
+
+    const requestHeaders = new Headers(request.headers)
+    requestHeaders.append('x-nonce', nonce)
+
+    requestHeaders.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
-  )
- 
-  const response = NextResponse.next({
+    )
+
+    const response = NextResponse.next({
     request: {
-      headers: requestHeaders,
+        headers: requestHeaders,
     },
-  })
-  response.headers.set(
+    })
+    response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
-  )
- 
-  return response
+    )
+
+    return response
 }

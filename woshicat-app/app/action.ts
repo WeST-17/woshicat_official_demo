@@ -1,9 +1,20 @@
 "use server"
 
 import Client from 'shopify-buy';
+/*
+import {createStorefrontApiClient} from '@shopify/storefront-api-client';
+*/
 
 const shopify_domain = process.env.SHOPIFY_STORE_DOMAIN;
 const shopify_token = process.env.SHOPIFY_TOKEN;
+
+/*
+const storefront = createStorefrontApiClient({
+  storeDomain: process.env.STOREFRONT_DOMAIN!,
+  apiVersion: '2024-01',
+  publicAccessToken: shopify_token,
+})
+*/
 
 const client = Client.buildClient({
   domain: shopify_domain!,
@@ -42,7 +53,7 @@ async function getProducts(client: Client): Promise<any[]> {
   }
 };
 
-export async function getProductByHandle(productHandle: string) {
+async function getProductByHandle(productHandle: string) {
   try {
     const item = await client.product.fetchByHandle(productHandle);
     const image = item.images[0];
@@ -64,6 +75,10 @@ export async function getProductByHandle(productHandle: string) {
     throw error;
   }
 }
+
+async function createCart() {
+
+} 
 
 export async function getServerProductsProps(): Promise<{ products?: any[]; error?: any }> {
   try {
