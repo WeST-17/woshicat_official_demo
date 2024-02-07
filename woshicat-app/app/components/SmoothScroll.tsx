@@ -1,6 +1,7 @@
 'use client';
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
+import LoadingScreen from './loadingScreen';
 
 const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ 
     children, 
@@ -59,10 +60,11 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
         <>
             <div style={{ height: contentHeight }}/>
             <motion.div 
-                className='w-screen fixed top-0 transition-opacity duration-200 ease-in-out' 
+                className='w-screen fixed top-0' 
                 ref={contentRef} 
-                style={{ y: isLoading ? 0 : yPos}}
+                style={{ y: isLoading ? 0 : yPos }}
             >
+                <LoadingScreen isLoading={isLoading} />
                 {children}
             </motion.div>
         </>

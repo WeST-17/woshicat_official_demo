@@ -113,3 +113,14 @@ body.menu-open {
   background-color: #78716c;
   z-index: 1001;
 }
+
+.loading-screen {
+  opacity: 1;
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-out, transform 0.3s ease-in-out;
+}
