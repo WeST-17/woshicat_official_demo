@@ -61,7 +61,7 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
             <motion.div 
                 className='w-screen fixed top-0 transition-opacity duration-200 ease-in-out' 
                 ref={contentRef} 
-                style={{ y: isLoading ? 0 : yPos, opacity: isLoading ? 0 : 1 }}
+                style={{ y: isLoading ? 0 : yPos}}
             >
                 {children}
             </motion.div>
