@@ -64,7 +64,6 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
                 ref={contentRef} 
                 style={{ y: isLoading ? 0 : yPos }}
             >
-                <LoadingScreen isLoading={isLoading} />
                 {children}
             </motion.div>
         </>
