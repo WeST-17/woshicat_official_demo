@@ -25,12 +25,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
       <body className={sofia_sans.className}>
         <SmoothScroll>
           <Header />
-            <Suspense fallback={
-              <div className="h-[100vh] w-screen flex justify-center items-center">
-                <div>Loading...</div>
-              </div>}>
-              {children}
-            </Suspense>
+            {children}
           <Footer />
         </SmoothScroll>
       </body>

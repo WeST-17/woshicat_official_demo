@@ -1,5 +1,4 @@
 import Transition from "@/app/components/transition";
-import SmoothScroll from "@/app/components/SmoothScroll";
 import { Suspense } from "react";
 import TransitionSlide from "@/app/components/transitionWipe";
 
