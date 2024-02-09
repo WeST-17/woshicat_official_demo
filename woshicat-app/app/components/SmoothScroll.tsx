@@ -1,12 +1,11 @@
 'use client';
 import { motion, useMotionValueEvent, useScroll, useSpring, useTransform } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
-import LoadingScreen from './loading';
 
 const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({ 
     children, 
 }) => {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const contentRef = useRef<HTMLDivElement>(null);
     const [contentHeight, setContentHeight] = useState(0);
@@ -43,7 +42,7 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
         mass: 0.1,
         stiffness: 100,
         damping: 20,
-        restDelta: 0.001,
+        restDelta: 0.0005,
     });
 
     useMotionValueEvent(smoothProgress, "change", (latest) => {
@@ -62,7 +61,7 @@ const SmoothScroll: React.FC<{ children: React.ReactNode }> = ({
             <motion.div 
                 className='w-screen fixed top-0 transition transition-opacity duration-1000' 
                 ref={contentRef} 
-                style={{ y: isLoading ? 0 : yPos, opacity: isLoading ? 0.25 : 1 }}
+                style={{ y: isLoading ? 0 : yPos, opacity: isLoading ? 0.8 : 1 }}
             >
                 
                 {children}

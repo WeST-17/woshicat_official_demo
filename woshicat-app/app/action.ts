@@ -1,20 +1,12 @@
 "use server"
 
+import { cookies } from 'next/headers';
 import Client from 'shopify-buy';
-/*
-import {createStorefrontApiClient} from '@shopify/storefront-api-client';
-*/
+
 
 const shopify_domain = process.env.SHOPIFY_STORE_DOMAIN;
 const shopify_token = process.env.SHOPIFY_TOKEN;
 
-/*
-const storefront = createStorefrontApiClient({
-  storeDomain: process.env.STOREFRONT_DOMAIN!,
-  apiVersion: '2024-01',
-  publicAccessToken: shopify_token,
-})
-*/
 
 const client = Client.buildClient({
   domain: shopify_domain!,
@@ -55,19 +47,31 @@ async function getProducts(client: Client): Promise<any[]> {
 
 async function getProductByHandle(productHandle: string) {
   try {
+    // Images and Video function: Could just add the video directly to website instead of through shopify?
+
     const item = await client.product.fetchByHandle(productHandle);
-    const image = item.images[0];
-    const itemImage = {
-      url: image?.src || '',
-      altText: image?.altText || '',
+    // Map each image to an object containing URL and altText
+    const images = item.images.map(image => ({
+      url: image.src || '',
+      altText: image.altText || ''
       // Add other image properties as needed
-    };
+    }));   
+
+    // Map each variant to an object containing its details
+    const variants = item.variants.map(variant => ({
+      id: variant.id,
+      title: variant.title,
+      price: variant.price.amount,
+      // Add other variant properties as needed
+    }));
+
     return {
       id: item.id,
       handle: item.handle,
       name: item.title,
       price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
-      image: itemImage,
+      variants: variants,
+      image: images,
       // add more properties as needed
     };
   } catch (error) {
@@ -76,9 +80,6 @@ async function getProductByHandle(productHandle: string) {
   }
 }
 
-async function createCart() {
-
-} 
 
 export async function getServerProductsProps(): Promise<{ products?: any[]; error?: any }> {
   try {
@@ -92,6 +93,7 @@ export async function getServerProductsProps(): Promise<{ products?: any[]; erro
 
 export async function getServerItemProps({ params }: any) {
   const productHandle = params?.handle as string;
+
   try {
     const item = await getProductByHandle(productHandle);
     return { item };

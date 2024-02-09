@@ -3,6 +3,8 @@ import ProductCards from "./components/product-cards";
 import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
 import { Suspense } from "react";
+import LoadingScreen from "./components/loading";
+
 
 export default function Home() {
   
@@ -20,11 +22,8 @@ export default function Home() {
           />
         </div>
       </div>
-      <div className="grid grid-rows-2 grid-flow-col col-span-8 mb-8">
-        <Suspense fallback={
-              <div className="h-[100vh] w-screen flex justify-center items-center">
-                <div>Loading...</div>
-              </div>}>
+      <div className="grid grid-rows-3 grid-flow-col col-span-8 mb-8">
+        <Suspense fallback={<LoadingScreen />}>
         <div className="flex justify-center h-fit w-full col-span-8 row-start-1 row-end-3 row-span-2">
           <ProductCards />
         </div>
