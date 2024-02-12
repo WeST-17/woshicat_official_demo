@@ -63,20 +63,23 @@ async function getProductByHandle(productHandle: string) {
       values: option.values,
     }))
 
-    const sizeArrayLength = options[0].values.length;
+    const sizes: string[] = [];
+    const colors: string[] = [];
 
-    const sizes = [];
-
-    for (let i = 0; i < sizeArrayLength; i++) {
-      sizes.push(item.options[0].values[i].value)
-    };
-
-    const colorArrayLength = options[1].values.length;
-
-    const colors = [];
-
-    for (let i = 0; i < colorArrayLength; i++) {
-      colors.push(item.options[1].values[i].value)
+    // Iterate over the options
+    for (const option of options) {
+      // Check if the option is for size
+      if (option.name.toLowerCase() === 'size') {
+          // Iterate over the values and add them to the sizes array
+          for (const value of option.values as unknown as { value: string }[]) {
+              sizes.push(value.value);
+          }
+      } else if (option.name.toLowerCase() === 'color') {
+          // Iterate over the values and add them to the colors array
+          for (const value of option.values as unknown as { value: string }[]) {
+              colors.push(value.value);
+          }
+      }
     }
 
     // Map each variant to an object containing its details
@@ -92,7 +95,7 @@ async function getProductByHandle(productHandle: string) {
       handle: item.handle,
       name: item.title,
       size: sizes,
-      color: colors,
+      color: colors, // contains sizes in the first slots, colors in the last slots [ XS, S, ..., Black, Off-white]
       price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
       variants: variants,
       image: images,
