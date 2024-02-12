@@ -9,7 +9,7 @@ interface NavLinkProps {
 
 const links = [
   { name: 'Home', href: '/'},
-  { name: 'Apparel', href: 'apparel'}
+  { name: 'Apparel', href:'/apparel'}
 ]
 
 const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {

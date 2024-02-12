@@ -5,6 +5,7 @@
 html {
   overflow: scroll;
   scroll-behavior: smooth;
+  
 }
 
 ::-webkit-scrollbar {
@@ -15,7 +16,7 @@ html {
 
 body {
   background-color: white;
-
+  text-rendering: auto;
 }
 
 body.menu-open {

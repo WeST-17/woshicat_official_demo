@@ -1,5 +1,6 @@
 "use server"
 
+import { color } from 'framer-motion';
 import { cookies } from 'next/headers';
 import Client from 'shopify-buy';
 
@@ -27,7 +28,6 @@ async function getProducts(client: Client): Promise<any[]> {
         altText: image?.altText || '',
         // Add other image properties as needed
       };
-    
       return {
         id: product.id,
         handle: product.handle,
@@ -52,10 +52,32 @@ async function getProductByHandle(productHandle: string) {
     const item = await client.product.fetchByHandle(productHandle);
     // Map each image to an object containing URL and altText
     const images = item.images.map(image => ({
-      url: image.src || '',
+      url: image?.src || '',
       altText: image.altText || ''
       // Add other image properties as needed
     }));   
+
+    const options = item.options.map(option => ({
+      id: option.id,
+      name: option.name,
+      values: option.values,
+    }))
+
+    const sizeArrayLength = options[0].values.length;
+
+    const sizes = [];
+
+    for (let i = 0; i < sizeArrayLength; i++) {
+      sizes.push(item.options[0].values[i].value)
+    };
+
+    const colorArrayLength = options[1].values.length;
+
+    const colors = [];
+
+    for (let i = 0; i < colorArrayLength; i++) {
+      colors.push(item.options[1].values[i].value)
+    }
 
     // Map each variant to an object containing its details
     const variants = item.variants.map(variant => ({
@@ -69,6 +91,8 @@ async function getProductByHandle(productHandle: string) {
       id: item.id,
       handle: item.handle,
       name: item.title,
+      size: sizes,
+      color: colors,
       price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
       variants: variants,
       image: images,

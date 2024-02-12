@@ -6,7 +6,7 @@ const Header = () => {
     
     return (
         <header className="fixed top-0 flex self-start justify-end items-center h-[120px] w-full bg-transparent text-base text-stone-700 p-2 z-[1000]">
-            <Link href={'/'} className="border-test p-4 me-auto text-4xl">
+            <Link href={'/'} className="border-test p-4 me-auto text-4xl bg-white">
             {/* Logo Placeholder */}
             WS
             </Link>

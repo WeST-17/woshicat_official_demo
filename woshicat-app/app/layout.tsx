@@ -5,6 +5,8 @@ import { Sofia_Sans_Semi_Condensed } from 'next/font/google';
 import Header from "./components/header";
 import Footer from "./components/footer";
 import SmoothScroll from "./components/SmoothScroll";
+import Transition from "./components/transition";
+import TransitionSlide from "./components/transitionWipe";
 
 const sofia_sans = Sofia_Sans_Semi_Condensed({
     weight: ['100', '200', '400'],
@@ -22,11 +24,12 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
   return (
     <html lang="en"> 
       <body className={sofia_sans.className}>
-        <Header />
-
+          <Header />
+            <Transition>
             {children}
+            </Transition>
           <Footer />
-
+        <TransitionSlide />
       </body>
     </html>
   );

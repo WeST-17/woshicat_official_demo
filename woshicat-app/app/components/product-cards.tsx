@@ -38,13 +38,13 @@ export default function ProductCards() {
       {products.map((product) => (
         // Render each product item
         <div className='text-center' key={product.id}>
-          <div className='hover:opacity-75 transition duration-300'>
+          <div>
               <Link href={`/apparel/${product.handle}`} passHref>
               {/* Render product details */}
               <img 
                 src={product.image.url} 
                 alt={product.image.altText}
-                className='rounded-md mb-2 p-4 border-test'
+                className='rounded-md mb-2 p-4 hover:opacity-75 transition duration-300 border-test'
               />
               <div className='border-test p-4 rounded-md flex'>
                 <h3 className="text-lg text-stone-700 me-auto">{product.name}</h3>
