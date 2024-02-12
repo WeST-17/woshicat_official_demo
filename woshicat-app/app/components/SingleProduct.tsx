@@ -68,51 +68,41 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </div>
                 
                     {/* Apparel Colors */}
-                    <div className='ms-8 my-2 flex items-center text-xl'>Color</div>
-                    <div className='ms-8 flex items-center'>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-20 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.color[0]}
-                        </button>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-20 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.color[1]}
-                        </button>
-                    </div>
+                    {item.color.length > 0 && (
+                        <>
+                            <div className='ms-8 my-2 flex items-center text-xl'>Color</div>
+                            <div className='ms-8 flex items-center'>
+                            {item.color.map((color: string, index: number) => (
+                                <button
+                                    key={index}
+                                    className="rounded-md bg-stone-400 me-2 p-2 w-20 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
+                                >
+                                    {color}
+                                </button>
+                            ))}
+                            </div>
+                        </>
+                    )}
 
-                    <div className='ms-8 mt-10 my-2 flex items-center text-xl'>Size</div>
-                    {/* Apparel Sizing: XS, SM, MD, LG, XL */}
-                    <div className='ms-8 my-4 flex items-center'>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.size[0]}
-                        </button>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.size[1]}
-                        </button>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.size[2]}
-                        </button>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.size[3]}
-                        </button>
-                        <button
-                        className="rounded-md bg-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        >
-                        {item.size[4]}
-                        </button>   
-                    </div>
+                    {item.size.length > 0 && (
+                        <>
+                            <div className='ms-8 mt-10 my-2 flex items-center text-xl'>Size</div>
+                            {/* Apparel Sizing: XS, SM, MD, LG, XL */}
+                            <div className='ms-8 my-4 flex items-center'>
+                                {item.size.map((sizing: string, index: number) => (
+                                    <button
+                                        key={index}
+                                        className="rounded-md bg-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
+                                    >
+                                        {sizing}
+                                    </button>
+                                ))}
+                            </div>
+                        </>
+                    )}
 
-                    {/* Product Description */}
+
+                    {/* Product Description: Need to make components for product description and add to cart button */}
                     <div className='ms-8 my-10 flex items-center text-xl'>
                         <p>100% Cotton yada yada yada. Embroidered cat design, designed in-house. Product Description wahoo! Meow.</p>
                     </div>

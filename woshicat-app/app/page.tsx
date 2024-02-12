@@ -23,7 +23,7 @@ export default function Home() {
         </div>
       </div>
       <div className="grid grid-rows-3 grid-flow-col col-span-8 mb-8">
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<LoadingScreen />}>
         <div className="flex justify-center h-fit w-full p-1 col-span-8 row-start-1 row-end-3 row-span-2">
           <ProductCards />
         </div>
