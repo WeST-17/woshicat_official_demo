@@ -4,7 +4,6 @@ import "./globals.css";
 import { Sofia_Sans_Semi_Condensed } from 'next/font/google';
 import Header from "./components/header";
 import Footer from "./components/footer";
-import SmoothScroll from "./components/SmoothScroll";
 import Transition from "./components/transition";
 import TransitionSlide from "./components/transitionWipe";
 
@@ -22,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
   return (
-    <html lang="en"> 
+    <html lang="en">
       <body className={sofia_sans.className}>
           <Header />
             <Transition>

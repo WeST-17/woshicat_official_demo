@@ -53,14 +53,20 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         </div>
         <div className='h-fit text-lg' key={item.id}>
             <div className='flex justify-center grid lg:grid-cols-3 lg:p-16'>
-                <div className='lg:col-span-2'>
-                {/* Render product details */}
-                <img 
-                src={item.image[0].url} 
-                alt={item.image[0].altText}
-                className='rounded-md mb-3'
-                />
-                </div>
+                {/* Apparel Images */}
+                {item.image.length > 0 && (
+                    <div className='lg:col-span-2'>
+                        {/* Render product details */} {/* Add a carousel for images inside current div */}
+                        {item.image.map((image: {url: string, altText: string}, index: number) => (
+                            <img
+                                key={index}
+                                src={image.url}
+                                alt={image.altText}
+                            />
+                        ))}
+                    </div>
+                )}
+                    
                 <div className='lg:col-span-1 self-center h-fit w-full'>
                     <div className='w-full'>
                         <h3 className="m-8 text-4xl font-bold text-stone-700">{item.name}</h3>
