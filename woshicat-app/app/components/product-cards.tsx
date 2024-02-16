@@ -40,8 +40,6 @@ export default function ProductCards() {
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
-        <Suspense fallback={<LoadingScreen />}>
-        <Transition> {/* Could change to have products transition in on scroll */}
         <div className='text-center' key={product.id}>
           <div>
               <Link href={`/apparel/${product.handle}`} passHref>
@@ -58,8 +56,6 @@ export default function ProductCards() {
               </Link>
           </div>
         </div>
-        </Transition>
-        </Suspense>
       ))}
     </div>
   );
