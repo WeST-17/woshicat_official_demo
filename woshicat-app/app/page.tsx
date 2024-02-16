@@ -32,7 +32,8 @@ export default function Home() {
       {/* */}
       <div className="grid grid-rows-2 grid-flow-col col-span-8">
         <div className="flex justify-center h-fit w-full col-span-8 row-start-1 row-end-3 row-span-2">
-
+        {/* Create another component for brand/product information on home page */}
+        {/* Add Framer motion or Typescript/CSS animation to have component fade in when user scrolls down page */}
         </div>
       </div>
     </main>

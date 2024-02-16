@@ -2,7 +2,10 @@
 // ProductCards.tsx
 import React, { useEffect, useState } from 'react';
 import { getServerProductsProps } from '../action';
+import { Suspense } from 'react';
 import Link from 'next/link';
+import LoadingScreen from './loading';
+import Transition from './transition';
 
 
 export default function ProductCards() {
@@ -37,6 +40,8 @@ export default function ProductCards() {
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
+        <Suspense fallback={<LoadingScreen />}>
+        <Transition> {/* Could change to have products transition in on scroll */}
         <div className='text-center' key={product.id}>
           <div>
               <Link href={`/apparel/${product.handle}`} passHref>
@@ -44,17 +49,18 @@ export default function ProductCards() {
               <img 
                 src={product.image.url} 
                 alt={product.image.altText}
-                className='rounded-md mb-2 p-4 hover:opacity-75 transition duration-300 border-test'
+                className='rounded-md mb-2 hover:opacity-75 transition duration-300'
               />
-              <div className='border-test p-4 rounded-md flex'>
-                <h3 className="text-lg text-stone-700 me-auto">{product.name}</h3>
-                <p className="text-lg font-medium text-stone-900 ms-auto">${product.price}</p>
+              <div className='p-4 border-test rounded-md flex w-3/4 mx-auto'>
+                <h3 className="text-normal text-stone-700 me-auto">{product.name}</h3>
+                <p className="text-normal font-medium text-stone-900">${product.price}</p>
               </div>
               </Link>
           </div>
         </div>
+        </Transition>
+        </Suspense>
       ))}
-      
     </div>
   );
 }

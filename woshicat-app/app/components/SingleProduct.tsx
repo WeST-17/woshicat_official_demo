@@ -5,6 +5,7 @@ import { getServerItemProps } from '@/app/action';
 import Link from 'next/link';
 import Image from 'next/image';
 import LoadingScreen from './loading';
+import ImgHolder from './heroImageInsert';
 
 interface Handle {
     handle: string
@@ -44,19 +45,19 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     return (
         <Suspense fallback={<LoadingScreen />}>
         <div className="flex justify-center items-center h-[100vh] w-full bg-stone-200 mb-8">
-            {/*
-            <Image 
-            src='/next.svg'
-            alt='placeholder image'
-            fill={true}
-            />*/}
+            {/* Insert hero image for each product. Upload directly as part of code base in Vercel */}
+            <ImgHolder 
+                imgSrc='/vercel.svg'
+                altText='placeholder image for now'
+            />
         </div>
         <div className='h-fit text-lg' key={item.id}>
             <div className='flex justify-center grid lg:grid-cols-3 lg:p-16'>
                 {/* Apparel Images */}
                 {item.image.length > 0 && (
                     <div className='lg:col-span-2'>
-                        {/* Render product details */} {/* Add a carousel for images inside current div */}
+                        {/* Render product details */}
+                        {/* Add a carousel for images inside current div */}
                         {item.image.map((image: {url: string, altText: string}, index: number) => (
                             <img
                                 key={index}

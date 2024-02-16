@@ -1,6 +1,5 @@
 "use server"
 
-import { color } from 'framer-motion';
 import { cookies } from 'next/headers';
 import Client from 'shopify-buy';
 

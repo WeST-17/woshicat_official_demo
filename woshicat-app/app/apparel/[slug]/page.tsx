@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation';
 import SingleProductCard from '@/app/components/SingleProduct';
 
 export default function ProductDetailPage() {
-    const pathname = usePathname();
-    const handle = pathname.replace('/apparel/', '') // You can replace with any handle really
+    const pathname = usePathname(); // get pathname: '/apparel/[handle]
+    const handle = pathname.replace('/apparel/', '') // get handle from pathname
 
     return (
       <div>
