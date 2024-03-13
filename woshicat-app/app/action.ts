@@ -3,10 +3,8 @@
 import { cookies } from 'next/headers';
 import Client from 'shopify-buy';
 
-
 const shopify_domain = process.env.SHOPIFY_STORE_DOMAIN;
 const shopify_token = process.env.SHOPIFY_TOKEN;
-
 
 const client = Client.buildClient({
   domain: shopify_domain!,
@@ -80,13 +78,14 @@ async function getProductByHandle(productHandle: string) {
           }
       }
     }
-
+    
     // Map each variant to an object containing its details
     const variants = item.variants.map(variant => ({
       id: variant.id,
       title: variant.title,
       price: variant.price.amount,
-      // Add other variant properties as needed
+      available: (variant as any).available, 
+      // TS doesn't see available as a field for ProductVariant. Can use 'variant as any' to bypass!
     }));
 
     return {
@@ -94,11 +93,12 @@ async function getProductByHandle(productHandle: string) {
       handle: item.handle,
       name: item.title,
       size: sizes,
-      color: colors, // contains sizes in the first slots, colors in the last slots [ XS, S, ..., Black, Off-white]
+      color: colors,
       price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
       variants: variants,
       image: images,
-      // add more properties as needed
+      available: (item as any).available, // same for item.available
+      description: item.description, // item description, update in shopify product listing
     };
   } catch (error) {
     console.error('Error fetching products:', error);
