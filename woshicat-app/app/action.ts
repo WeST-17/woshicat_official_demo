@@ -1,7 +1,8 @@
 "use server"
 
-import { cookies } from 'next/headers';
 import Client from 'shopify-buy';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 const shopify_domain = process.env.SHOPIFY_STORE_DOMAIN;
 const shopify_token = process.env.SHOPIFY_TOKEN;
@@ -15,7 +16,7 @@ const client = Client.buildClient({
 async function getProducts(client: Client): Promise<any[]> {
   try {
     const products = await client.product.fetchAll();
-
+    
     // Extract necessary information from each product
     const serializedProducts = products.map((product) => {
       const image = product.images[0];
@@ -41,6 +42,57 @@ async function getProducts(client: Client): Promise<any[]> {
     throw error;
   }
 };
+
+async function getCollectionID(collectionName: string): Promise<any> {
+  try {
+    const collection = await client.collection.fetchAllWithProducts();
+    // Extract necessary information from each product
+    const collectionID = collection.filter(collection => {
+    // Condition to filter products, e.g., filter by a specific collection
+    return collection.handle === collectionName; // Replace with your condition
+  }).map((groupCollection) => {
+      return groupCollection.id;
+  });
+  
+  return collectionID[0];
+
+} catch (error) {
+  console.error('Error fetching collection:', error);
+  throw error;
+}
+}
+
+async function getCollection(collectionName: string) {
+  try {
+    const collectionID = await getCollectionID(collectionName);
+    const collectionItems = await client.collection.fetchWithProducts(collectionID);
+    // Extract necessary information from each product
+    const serializedProducts = collectionItems.products.map((product) => {
+      const image = product.images[0];
+
+      const plainImage = {
+        url: image?.src || '',
+        altText: image?.altText || '',
+        // Add other image properties as needed
+      };
+
+      return {
+        id: product.id,
+        handle: product.handle,
+        name: product.title,
+        image: plainImage,
+        collection: collectionName,
+        // add more properties as needed
+      };
+    });
+
+    return serializedProducts;
+  } catch (error) {
+    console.error('Error fetching collection:', error);
+    console.log(collectionName)
+    throw error;
+  }
+}
 
 async function getProductByHandle(productHandle: string) {
   try {
@@ -106,6 +158,25 @@ async function getProductByHandle(productHandle: string) {
   }
 }
 
+export async function getProductsByID(productID: string) {
+  try {
+    const item = await client.product.fetch(productID);
+    return {
+      id: item.id,
+      handle: item.handle,
+      name: item.title,
+      price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
+      image: item.images[0],
+      variantImage: item.variants[0]?.image?.src || null,
+      available: (item as any).available, // same for item.available
+      description: item.description, // item description, update in shopify product listing
+    };
+  } catch (error) {
+    console.error('Error fetching product by ID');
+    throw error;
+  }
+    
+}
 
 export async function getServerProductsProps(): Promise<{ products?: any[]; error?: any }> {
   try {
@@ -113,6 +184,17 @@ export async function getServerProductsProps(): Promise<{ products?: any[]; erro
     return { products };
   } catch (error) {
     console.error('Error fetching products:', error);
+    return { error };
+  }
+}
+
+export async function getServerCollectionProps(collection: string): Promise<{ products?: any; error?: any}> {
+  try {
+    const products = await getCollection(collection);
+    return { products };
+  } catch (error) {
+    console.error('Error fetching collection items:', error);
+
     return { error };
   }
 }
@@ -127,4 +209,142 @@ export async function getServerItemProps({ params }: any) {
     console.error('Error fetching product by handle: ', error);
     return { error };
   }
+}
+
+// Cart functions: //
+
+async function findLineItemCart(variantID: string) {
+  const checkoutID = cookies().get('checkoutID');
+  if (!checkoutID) {
+    throw new Error('Checkout not found');
+  }
+
+  const checkout = await client.checkout.fetch(checkoutID.value);
+  const lineItems = checkout.lineItems.filter((item: any) => item.variantId === variantID);
+  return lineItems.length > 0 ? lineItems[0] : null; // Return the line item if found, otherwise return null
+}
+
+
+export async function decrementQuantity(variantID: string) {
+  const lineItem = await findLineItemCart(variantID);
+  if (lineItem && lineItem.quantity > 1) {
+    const updatedQuantity = lineItem?.quantity - 1;
+    updateQuantityinCart(variantID, updatedQuantity);
+  }
+};
+
+export async function incrementQuantity(variantID: string) {
+  const lineItem = await findLineItemCart(variantID);
+  if (lineItem) {
+    const updatedQuantity = lineItem?.quantity + 1;
+    updateQuantityinCart(variantID, updatedQuantity);
+  }
+};
+
+export async function updateQuantityinCart(variantID: string, quantity: number) {
+  const checkoutID = cookies().get('checkoutID');
+  if (!checkoutID) {
+    throw new Error('Checkout ID not found');
+  }
+  const lineItemsToUpdate = [
+		{ id: variantID, 
+      quantity: quantity },
+	]
+  
+  await client.checkout.updateLineItems(checkoutID.value, lineItemsToUpdate);
+}
+
+async function createCheckout(variantID: string, quantityProduct: number) {
+  const checkout = await client.checkout.create();
+  const checkoutID = checkout.id;
+  await client.checkout.addLineItems(checkoutID, [{variantId: variantID, quantity: quantityProduct}]);
+  cookies().set('checkoutID', checkoutID);
+  console.log("checkout created and cookie set");
+}
+
+// Updating cart function. Gets checkout ID from cookie that's set in createCheckout
+export async function addToCart(productVariantID: string, quantity: number) {
+  const checkoutID = cookies().get('checkoutID');
+  try {
+    if(!checkoutID) {
+      await createCheckout(productVariantID, quantity);
+    }
+    else {
+      await client.checkout.addLineItems(checkoutID.value, [{variantId: productVariantID, quantity: quantity}]);
+      console.log("Your cart has been updated.");
+      // console.log(productVariantID);
+    }
+  } catch (error) {
+    console.error("An error occurred while adding to the cart:", error);
+    return {error};
+  }
+}
+
+export async function removeItemCart(productVariantID: string) {
+  const checkoutID = cookies().get('checkoutID');
+  if(!checkoutID) {
+    console.log('Nothing here...')
+    return;
+  }
+  try {
+    await client.checkout.removeLineItems(checkoutID.value, [productVariantID]);
+    console.log("Line item removed");
+  } catch (error) {
+    console.error("Error removing line item:", error);
+  }
+}
+
+export async function displayCart() {
+  const checkoutID = cookies().get('checkoutID');
+  
+  if (!checkoutID) {
+    console.log("nothing here...");
+    return [];
+  }
+  
+  try {
+    const checkout = await client.checkout.fetch(checkoutID.value);
+    if (!checkout || !checkout.lineItems || checkout.lineItems.length === 0) {
+      console.log('Cart is empty');
+      return [];
+    }
+    
+    const cartItems = checkout.lineItems
+      .filter((item: any) => item.quantity > 0)
+      .map((item: any) => ({
+        title: item.title,
+        cartItemID: item.id,
+        variantID: item.variant.id,
+        size: item.variant.selectedOptions[0].value,
+        color: item.variant.selectedOptions[1].value,
+        variantTitle: item.variant.title,
+        quantity: item.quantity,
+        price: item.variant.price.amount,
+        currency: item.variant.price.currencyCode,
+        image: item.variant.image?.src || item.image?.src,
+      }));
+
+    return cartItems;
+  } catch (error) {
+    console.error("Error displaying cart:", error);
+    return [];
+  }
+}
+
+
+
+export async function FinalCheckout() {
+  const checkoutID = cookies().get('checkoutID');
+  const shopifyCheckout = await client.checkout.fetch(checkoutID!.value);
+  if (shopifyCheckout.webUrl) {
+    return shopifyCheckout.webUrl;
+  }
+  
+  // try {
+  //   const shopifyCheckout = await client.checkout.fetch(checkoutID!.value);
+  //   return shopifyCheckout.webUrl;
+    
+  // } catch (error) {
+  //   console.log('oops, just testing rn...')
+  // }
 }

@@ -15,9 +15,9 @@ export default function setCSPHeader(
             process.env.NODE_ENV === "production" ? "" : `'unsafe-eval'`
           };
         style-src 'self' 'unsafe-inline';
-        img-src 'self' cdn.shopify.com blob: data:;
+        img-src 'self' cdn.shopify.com cdn.discord.com blob: data:;
         frame-src 'self' cdn.shopify.com blob: data:;
-        media-src 'self' cdn.shopify.com data:;
+        media-src 'self' cdn.shopify.com cdn.disocrd.com data:;
         font-src 'self';
         object-src 'none';
         base-uri 'self';

@@ -1,33 +1,35 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
-import { Sofia_Sans_Semi_Condensed } from 'next/font/google';
+import { Changa } from 'next/font/google';
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Transition from "./components/transition";
 import TransitionSlide from "./components/transitionWipe";
+import { CartProvider } from "./components/cart/cartContext";
 
-const sofia_sans = Sofia_Sans_Semi_Condensed({
-    weight: ['100', '200', '400'],
+const changa = Changa({
+    weight: ['300', '400', '600'],
     subsets: ['latin-ext']
 })
 
 export const metadata: Metadata = {
   title: "Wo Shi Cat",
   description: "Wo Shi Cat Apparel Site",
-  keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'Comfort', 'Quality', 'cat', 'loungewear',]
+  keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'Comfort', 'Quality', 'cat', 'loungewear', 'chinese', 'japanese', 'asian', 'anime', 'subway', 'japan', 'work culture', 'hustle', 'tired']
 };
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
 
   return (
     <html lang="en">
-      <body className={sofia_sans.className}>
+      <body className={changa.className}>
+          <CartProvider>
           <Header />
             <Transition>
             {children}
             </Transition>
           <Footer />
+          </CartProvider>
         <TransitionSlide />
       </body>
     </html>

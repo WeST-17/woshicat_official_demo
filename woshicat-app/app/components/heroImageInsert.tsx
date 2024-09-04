@@ -12,7 +12,9 @@ const ImgHolder: React.FC<imgHolderProp> = ({ imgSrc, altText }) => {
         <Image
             src={imgSrc}
             alt={altText}
-            fill={true}
+            width={300}
+            height={300}
+            className="z-[2]"
         />
     )
 }

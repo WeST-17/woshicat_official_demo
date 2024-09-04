@@ -9,7 +9,9 @@ interface NavLinkProps {
 
 const links = [
   { name: 'Home', href: '/'},
-  { name: 'Apparel', href:'/apparel'}
+  { name: 'Collections', href:'/collections'},
+  { name: 'Brand', href:'/brand'},
+  { name: "Yoyo's Story", href:'/yoyo_story'},
 ]
 
 const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
@@ -24,10 +26,10 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             href={link.href}
             passHref={true}
             className={clsx(
-              'flex h-[48px] w-full items-center justify-end text-end p-4 rounded-sm bg-gray-50 text-2xl mt-1 hover:bg-stone-300 transition duration-500 ease-in-out',
+              'flex h-[32px] w-full items-center justify-center text-end p-4 rounded-sm text-md hover:text-stone-900 transition duration-500 ease-in-out',
               {
-                'text-stone-700 bg-stone-200': pathname === link.href,
-                'bg-stone-50': pathname != link.href
+                'text-stone-800': pathname === link.href,
+                'text-stone-400': pathname != link.href
               },
             )}
           >

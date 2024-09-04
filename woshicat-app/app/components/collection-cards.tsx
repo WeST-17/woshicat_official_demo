@@ -1,10 +1,15 @@
 'use client'
-// ProductCards.tsx
-import React, { useEffect, useState } from 'react';
-import { getServerProductsProps } from '../action';
+// CollectionCards.tsx
+import React, { Suspense, useEffect, useState } from 'react';
+import { getServerCollectionProps } from '../action';
 import Link from 'next/link';
+import LoadingScreen from './loading';
 
-const ProductCards = () => {
+interface CollectionType {
+    collection: string
+}
+
+function CollectionCards({ collection }: CollectionType) {
   const [products, setProducts] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   
@@ -12,7 +17,7 @@ const ProductCards = () => {
 
     const fetchData = async () => {
       try {
-        const { products, error } = await getServerProductsProps();
+        const { products, error } = await getServerCollectionProps(collection);
         if (error) {
           setError(error);
         } else {
@@ -27,18 +32,27 @@ const ProductCards = () => {
     fetchData();
   }, []);
 
-  if (error) {
-    return <div className='flex h-[100vh]'>Error fetching products: {error.message}</div>;
+  if (error != null) {
+    return <div className='flex h-[100vh] mt-64'>Something happened on our end!</div>;
   }
   
+  let collectionAdjust;
+  if (collection === 'apparel') {
+    collectionAdjust = 'shirts';
+  } else {
+    collectionAdjust = collection;
+  }
+
   return (
-    <div className='grid grid-cols-1 p-20 lg:p-32 md:grid-cols-2 gap-8 flex justify-center'>
+    <>
+    <Suspense fallback={<LoadingScreen />}>
+    <div className='grid grid-cols-1 lg:p-32 p-20 md:grid-cols-2 gap-4 flex justify-center'>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
         <div className='text-center' key={product.id}>
           <div>
-              <Link href={`/collections/${product.collection}/${product.handle}`} passHref>
+              <Link href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
               {/* Render product details */}
               <img 
                 src={product.image.url} 
@@ -47,14 +61,15 @@ const ProductCards = () => {
               />
               <div className='flex w-full mx-auto text-start'>
                 <div className="text-sm text-stone-700 me-auto">{product.name}</div>
-                <div className="text-sm font-medium text-stone-900 ms-auto">${product.price}</div>
               </div>
               </Link>
           </div>
         </div>
       ))}
     </div>
+    </Suspense>
+    </>
   );
 }
 
-export default ProductCards;
+export default CollectionCards;

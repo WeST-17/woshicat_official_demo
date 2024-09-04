@@ -1,27 +1,23 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Suspense } from 'react';
 import { addToCart, displayCart, getServerItemProps } from '@/app/action';
 import LoadingScreen from './loading';
 import ImgHolder from './heroImageInsert';
 import { Carousel } from "@material-tailwind/react";
-import type { CarouselProps } from "@material-tailwind/react";
 import ProductDescription from './product-description';
 import Image from 'next/image';
 import { useCart } from './cart/cartContext';
 
 interface Handle {
-    handle: string
+    handle: string,
 }
 
-const SingleProductCard: React.FC<Handle> = ({ handle }) => {
+const AccessoryCard: React.FC<Handle> = ({ handle }) => {
     const { setCartOpen, setCartUpdated } = useCart();
     const [item, setItem] = useState<any>([]);
     const [error, setError] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
-
-    const [selectedColor, setSelectedColor] = useState<string | null>(null);
-    const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
     // Product fetching
     useEffect(() => {
@@ -42,44 +38,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
         fetchData();
     }, []);
-    
-// --------------------------------------------------------------------------------------------------------------------------
 
-    // Size and color selection and add to cart by variant:
-    const handleColorSelection = (color: string) => {
-        setSelectedColor(color);
-    }
-
-    const handleSizeSelection = (size: string) => {
-        setSelectedSize(size)
-    }
-
-    const isSizeAvailable = (size: string) => {
-        if (!selectedColor) return false;
-        const variant = item.variants.find((variant: { title: string; }) => variant.title === `${size} / ${selectedColor}` || variant.title === `${selectedColor} / ${size}`);
-        // console.log(variant, size);
-        return variant ? variant.available : false;
-    }
-
-    // Return selected variant to add to cart
-    const selectVariantByID = useMemo(() => {
-        
-        if (!selectedColor && !selectedSize) return null;
-
-        const selectedVariant = item.variants.find(
-            (variant: { title: string; }) => variant.title === `${selectedSize} / ${selectedColor}`
-        );
-
-        return selectedVariant ? selectedVariant.id : null;
-
-    },[selectedSize, selectedColor, item.variants]);
 
 // --------------------------------------------------------------------------------------------------------------------------
 
-    const addItemToCart = async () => {
+    const addItemToCart = async (productID: string) => {
         setIsLoading(true);
-        const selectedVariant = selectVariantByID;
-        await addToCart(selectedVariant, 1);
+        await addToCart(productID, 1);
         await displayCart();
         setCartUpdated(true);
         setIsLoading(false);
@@ -154,52 +119,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         <h3 className="m-8 text-4xl font-bold text-black">{item.name}</h3>
                         <p className="m-8 text-lg font-medium text-stone-900">${item.price}</p>
                     </div>
-                
-                    {/* Apparel Colors */}
-                    {item.color?.length > 0 && (
-                        <>
-                            <div className='ms-8 my-2 flex items-center text-xl'>Color</div>
-                            <div className='ms-8 flex items-center'>
-                            {item.color.map((color: string, index: number) => (
-                                <button
-                                    key={index}
-                                    className={`bg-${color} rounded-full border-2 border-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-sm hover:bg-stone-300 transition duration-300 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
-                                        selectedColor === color ? 'text-black' : ''
-                                    }`}
-                                    onClick={() => handleColorSelection(color)}
-                                >
-                                    
-                                </button>
-                            ))}
-                            </div>
-                        </>
-                    )}
-                
-                    {item.size?.length > 0 && (
-                        <>
-                            <div className='ms-8 mt-10 my-2 flex items-center text-xl'>Size</div>
-                            {/* Apparel Sizing: SM, MD, LG, XL */}
-                            <div className='ms-8 my-4 flex items-center'>
-                                {item.size.map((sizing: string, index: number) => (
-                                    <button
-                                        key={index}
-                                        className={`rounded-full border-2 border-stone-300 me-1 p-2 w-10 h-10 text-sm font-semibold shadow-sm 
-                                        ${
-                                            !isSizeAvailable(sizing) ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-stone-200 hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600'
-                                        } ${
-                                            selectedSize === sizing ? 'bg-stone-500 text-white' : ''
-                                        }`
-                                        }
-                                        disabled={!isSizeAvailable(sizing)}
-                                        onClick={() => handleSizeSelection(sizing)}
-                                    >
-                                        {sizing}
-                                    </button>
-                                ))}
-                            </div>
-                        </>
-                    )}
-
 
                     {/* Product Description: Need to make components for product description and add to cart button */}
                     <div className='ms-8 my-10 flex items-center text-xl'>
@@ -208,13 +127,11 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     <button
                         className="rounded-full flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 ms-8 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
                         disabled={
-                            item.variants && item.variants.length === 0 
-                            ? (!selectedSize || !selectedColor) 
-                            : !selectedSize || !selectedColor
+                            !item.available
                         }
                         onClick={(e) => {
                             e.preventDefault();
-                            addItemToCart();
+                            addItemToCart(item.id);
                         }}
                         >
                         <div className='col-span-6 flex justify-center items-center min-h-full'>
@@ -230,4 +147,4 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     );
 }
 
-export default SingleProductCard;
+export default AccessoryCard;
