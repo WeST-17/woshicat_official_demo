@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
     <main className="flex justify-center w-screen grid grid-cols-8">
       <div className="grid col-span-8 mt-32 mb-8">
         <div className="flex justify-center w-full col-span-8 ">
-          <div className="flex w-1/2">
+          <div className="flex w-1/2 ">
             Last updated: September 24, 2024
             <br></br><br></br>
             This Privacy Policy describes how WoShi Cat (the &lsquo;Site&rsquo;, &lsquo;we&rsquo;, &lsquo;us&rsquo;, or &lsquo;our&rsquo;) collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from woshicat.com (the &lsquo;Site&rsquo;) or otherwise communicate with us regarding the Site (collectively, the &lsquo;Services&rsquo;). For purposes of this Privacy Policy, &lsquo;you&rsquo; and &lsquo;your&rsquo; means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.
