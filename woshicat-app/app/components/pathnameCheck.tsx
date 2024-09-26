@@ -1,6 +1,7 @@
 'use client';
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import ComingSoon from "../coming-soon/page";
 
 const comingSoonPath = '/coming-soon';
 
@@ -16,6 +17,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     if (pathname !== comingSoonPath) {
         return (
         <>
+        <ComingSoon />
         </>
         );
     }
