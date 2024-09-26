@@ -1,7 +1,6 @@
 
 import React from "react";
 
-
 export default function PrivacyPolicy() {
   
   return (
@@ -12,13 +11,13 @@ export default function PrivacyPolicy() {
           <div className="flex w-1/2">
             Last updated: September 24, 2024
             <br></br><br></br>
-            This Privacy Policy describes how WoShi Cat (the "Site", "we", "us", or "our") collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from woshicat.com (the "Site") or otherwise communicate with us regarding the Site (collectively, the "Services"). For purposes of this Privacy Policy, "you" and "your" means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.
+            This Privacy Policy describes how WoShi Cat (the &quot;Site&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from woshicat.com (the &quot;Site&quot;) or otherwise communicate with us regarding the Site (collectively, the &quot;Services&quot;). For purposes of this Privacy Policy, &quot;you&quot; and &quot;your&quot; means you as the user of the Services, whether you are a customer, website visitor, or another individual whose information we have collected pursuant to this Privacy Policy.
             <br></br><br></br>
             Please read this Privacy Policy carefully. By using and accessing any of the Services, you agree to the collection, use, and disclosure of your information as described in this Privacy Policy. If you do not agree to this Privacy Policy, please do not use or access any of the Services.
             <br></br><br></br>
             Changes to This Privacy Policy
             <br></br><br></br>
-            We may update this Privacy Policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised Privacy Policy on the Site, update the "Last updated" date and take any other steps required by applicable law.
+            We may update this Privacy Policy from time to time, including to reflect changes to our practices or for other operational, legal, or regulatory reasons. We will post the revised Privacy Policy on the Site, update the &quot;Last updated&quot; date and take any other steps required by applicable law.
             <br></br><br></br>
             How We Collect and Use Your Personal Information
             <br></br><br></br>
@@ -28,7 +27,7 @@ export default function PrivacyPolicy() {
             <br></br><br></br>
             What Personal Information We Collect
             <br></br><br></br>
-            The types of personal information we obtain about you depends on how you interact with our Site and use our Services. When we use the term "personal information", we are referring to information that identifies, relates to, describes or can be associated with you. The following sections describe the categories and specific types of personal information we collect.
+            The types of personal information we obtain about you depends on how you interact with our Site and use our Services. When we use the term &quot;personal information&quot;, we are referring to information that identifies, relates to, describes or can be associated with you. The following sections describe the categories and specific types of personal information we collect.
             <br></br><br></br>
             Information We Collect Directly from You
             <br></br><br></br>
@@ -43,7 +42,7 @@ export default function PrivacyPolicy() {
             <br></br><br></br>
             Information We Collect about Your Usage
             <br></br><br></br>
-            We may also automatically collect certain information about your interaction with the Services ("Usage Data"). To do this, we may use cookies, pixels and similar technologies ("Cookies"). Usage Data may include information about how you access and use our Site and your account, including device information, browser information, information about your network connection, your IP address and other information regarding your interaction with the Services.
+            We may also automatically collect certain information about your interaction with the Services (&quot;Usage Data&quot;). To do this, we may use cookies, pixels and similar technologies (&quot;Cookies&quot;). Usage Data may include information about how you access and use our Site and your account, including device information, browser information, information about your network connection, your IP address and other information regarding your interaction with the Services.
             <br></br><br></br>
             Information We Obtain from Third Parties
             <br></br><br></br>
@@ -78,7 +77,7 @@ export default function PrivacyPolicy() {
             With our affiliates or otherwise within our corporate group, in our legitimate interests to run a successful business.
             In connection with a business transaction such as a merger or bankruptcy, to comply with any applicable legal obligations (including to respond to subpoenas, search warrants and similar requests), to enforce any applicable terms of service, and to protect or defend the Services, our rights, and the rights of our users or others.
             <br></br><br></br>
-            We have in the past 12 months disclosed the following categories of personal information and sensitive personal information about users for the purposes set out above in "How we Collect and Use your Personal Information" and "How we Disclose Personal Information":
+            We have in the past 12 months disclosed the following categories of personal information and sensitive personal information about users for the purposes set out above in &quot;How we Collect and Use your Personal Information&quot; and &quot;How we Disclose Personal Information&quot;:
             <br></br><br></br>
             Category	Categories of Recipients
             <br></br><br></br>
@@ -146,8 +145,6 @@ export default function PrivacyPolicy() {
             Contact
             <br></br><br></br>
             Should you have any questions about our privacy practices or this Privacy Policy, or if you would like to exercise any of the rights available to you, please call or email us at help@woshicat.com.
-
-
           </div>
         </div>
       </div>
