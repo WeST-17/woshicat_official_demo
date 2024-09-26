@@ -18,6 +18,7 @@ body {
   background-color: transparent;
   color: black;
   text-rendering: auto;
+  font-weight: lighter;
 }
 
 #overlay {
@@ -156,7 +157,7 @@ body {
   border-top: 2px solid #fff;
   width: 28px;
   height: 28px;
-  animation: spin 1s linear infinite;
+  animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {

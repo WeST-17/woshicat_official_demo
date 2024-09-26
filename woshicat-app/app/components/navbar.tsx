@@ -44,11 +44,11 @@ export default function Navigation() {
 
     return (
         <>
-        {/* <div className="hidden md:flex gap-2">
+        <div className="hidden md:flex gap-2">
             <NavLinks closeMenu={closeMenu}/>
-        </div> */}
+        </div>
         
-        <div className="">
+        <div className="md:hidden">
             <div className={`bg-black/50 z-0 fixed left-0 top-0 w-[100vw] h-[100vh] ${openMenu ? '' : 'hidden overflow-hidden'}`} ref={overlayRef}></div>
             <div className="flex flex-col-reverse z-[100]">
                 <div className={`scale-[0.7] menu_btn ${openMenu ? 'open-btn' : ''}`} ref={menuBtnRef}>
@@ -67,8 +67,8 @@ export default function Navigation() {
                     </div>
                     <div className="w-full flex justify-end self-end row-start-6"> 
                         {/* Social Media */}
-                        <div className='p-2 flex text-sm text-stone-400'>
-                            <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://instagram.com' target='_blank'>Instagram</Link></div>
+                        <div className='p-2 mb-8 flex text-sm text-stone-400'>
+                            <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://instagram.com/woshicatofficial' target='_blank'>Instagram</Link></div>
                             <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://tiktok.com' target='_blank'>TikTok</Link></div>
                             <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://youtube.com' target='_blank'>YouTube</Link></div>
                         </div>

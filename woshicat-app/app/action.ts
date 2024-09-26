@@ -2,7 +2,6 @@
 
 import Client from 'shopify-buy';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 const shopify_domain = process.env.SHOPIFY_STORE_DOMAIN;
 const shopify_token = process.env.SHOPIFY_TOKEN;
@@ -16,6 +15,7 @@ const client = Client.buildClient({
 async function getProducts(client: Client): Promise<any[]> {
   try {
     const products = await client.product.fetchAll();
+    console.log(products[0].collections)
     
     // Extract necessary information from each product
     const serializedProducts = products.map((product) => {
@@ -32,6 +32,8 @@ async function getProducts(client: Client): Promise<any[]> {
         name: product.title,
         price: product.variants[0]?.price.amount || 0, // Adjust this based on your product structure
         image: plainImage,
+        collection: product.collections,
+        // may need to add collection tag for a general products page somehow...
         // add more properties as needed
       };
     });
@@ -69,6 +71,7 @@ async function getCollection(collectionName: string) {
     // Extract necessary information from each product
     const serializedProducts = collectionItems.products.map((product) => {
       const image = product.images[0];
+      const image2 = product.images[2];
 
       const plainImage = {
         url: image?.src || '',
@@ -76,12 +79,19 @@ async function getCollection(collectionName: string) {
         // Add other image properties as needed
       };
 
+      const plainImage2 = {
+        url: image2?.src || '',
+        altText: image2?.altText || '',
+      }
+
       return {
         id: product.id,
         handle: product.handle,
         name: product.title,
         image: plainImage,
+        image2: plainImage2,
         collection: collectionName,
+        price: product.variants[0].price.amount,
         // add more properties as needed
       };
     });
@@ -215,12 +225,12 @@ export async function getServerItemProps({ params }: any) {
 
 async function findLineItemCart(variantID: string) {
   const checkoutID = cookies().get('checkoutID');
-  if (!checkoutID) {
+  if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     throw new Error('Checkout not found');
   }
 
   const checkout = await client.checkout.fetch(checkoutID.value);
-  const lineItems = checkout.lineItems.filter((item: any) => item.variantId === variantID);
+  const lineItems = checkout.lineItems.filter((item: any) => item.id === variantID);
   return lineItems.length > 0 ? lineItems[0] : null; // Return the line item if found, otherwise return null
 }
 
@@ -243,7 +253,7 @@ export async function incrementQuantity(variantID: string) {
 
 export async function updateQuantityinCart(variantID: string, quantity: number) {
   const checkoutID = cookies().get('checkoutID');
-  if (!checkoutID) {
+  if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     throw new Error('Checkout ID not found');
   }
   const lineItemsToUpdate = [
@@ -252,6 +262,7 @@ export async function updateQuantityinCart(variantID: string, quantity: number) 
 	]
   
   await client.checkout.updateLineItems(checkoutID.value, lineItemsToUpdate);
+  
 }
 
 async function createCheckout(variantID: string, quantityProduct: number) {
@@ -262,11 +273,18 @@ async function createCheckout(variantID: string, quantityProduct: number) {
   console.log("checkout created and cookie set");
 }
 
+// Function to validate if the checkout session is still active
+async function validateCheckout(checkoutID: string) {
+  const shopifyCheckout = await client.checkout.fetch(checkoutID);
+  // Check if the checkout session is completed or invalid
+  return shopifyCheckout && !shopifyCheckout.completedAt;
+}
+
 // Updating cart function. Gets checkout ID from cookie that's set in createCheckout
 export async function addToCart(productVariantID: string, quantity: number) {
   const checkoutID = cookies().get('checkoutID');
   try {
-    if(!checkoutID) {
+    if(!checkoutID || !(await validateCheckout(checkoutID.value))) {
       await createCheckout(productVariantID, quantity);
     }
     else {
@@ -282,7 +300,7 @@ export async function addToCart(productVariantID: string, quantity: number) {
 
 export async function removeItemCart(productVariantID: string) {
   const checkoutID = cookies().get('checkoutID');
-  if(!checkoutID) {
+  if(!checkoutID || !(await validateCheckout(checkoutID.value))) {
     console.log('Nothing here...')
     return;
   }
@@ -297,7 +315,7 @@ export async function removeItemCart(productVariantID: string) {
 export async function displayCart() {
   const checkoutID = cookies().get('checkoutID');
   
-  if (!checkoutID) {
+  if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     console.log("nothing here...");
     return [];
   }
@@ -311,18 +329,22 @@ export async function displayCart() {
     
     const cartItems = checkout.lineItems
       .filter((item: any) => item.quantity > 0)
-      .map((item: any) => ({
-        title: item.title,
-        cartItemID: item.id,
-        variantID: item.variant.id,
-        size: item.variant.selectedOptions[0].value,
-        color: item.variant.selectedOptions[1].value,
-        variantTitle: item.variant.title,
-        quantity: item.quantity,
-        price: item.variant.price.amount,
-        currency: item.variant.price.currencyCode,
-        image: item.variant.image?.src || item.image?.src,
-      }));
+      .map((item: any) => {
+        const hasVariants = item.variant && item.variant.selectedOptions && item.variant.selectedOptions.length > 0;
+        
+        return {
+          title: item.title,
+          cartItemID: item.id,
+          variantID: item.variant?.id || null,
+          size: hasVariants ? item.variant.selectedOptions[0]?.value : 'N/A',
+          color: hasVariants ? item.variant.selectedOptions[1]?.value : 'N/A',
+          variantTitle: item.variant?.title || 'Default',
+          quantity: item.quantity,
+          price: item.variant?.price?.amount || item.price?.amount,
+          currency: item.variant?.price?.currencyCode || item.price?.currencyCode,
+          image: item.variant?.image?.src || item.image?.src,
+        };
+      });
 
     return cartItems;
   } catch (error) {
@@ -336,15 +358,8 @@ export async function displayCart() {
 export async function FinalCheckout() {
   const checkoutID = cookies().get('checkoutID');
   const shopifyCheckout = await client.checkout.fetch(checkoutID!.value);
+  
   if (shopifyCheckout.webUrl) {
     return shopifyCheckout.webUrl;
   }
-  
-  // try {
-  //   const shopifyCheckout = await client.checkout.fetch(checkoutID!.value);
-  //   return shopifyCheckout.webUrl;
-    
-  // } catch (error) {
-  //   console.log('oops, just testing rn...')
-  // }
 }

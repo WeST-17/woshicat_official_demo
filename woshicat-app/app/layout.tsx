@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import Transition from "./components/transition";
 import TransitionSlide from "./components/transitionWipe";
 import { CartProvider } from "./components/cart/cartContext";
+import LayoutWrapper from "./components/pathnameCheck";
 
 const changa = Changa({
     weight: ['300', '400', '600'],
@@ -23,13 +24,15 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
   return (
     <html lang="en">
       <body className={changa.className}>
-          <CartProvider>
-          <Header />
-            <Transition>
-            {children}
-            </Transition>
-          <Footer />
-          </CartProvider>
+          <LayoutWrapper>
+            <CartProvider>
+            <Header />
+              <Transition>
+              {children}
+              </Transition>
+            <Footer />
+            </CartProvider>
+          </LayoutWrapper>
         <TransitionSlide />
       </body>
     </html>

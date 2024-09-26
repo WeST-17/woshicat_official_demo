@@ -12,6 +12,15 @@ interface CollectionType {
 function CollectionCards({ collection }: CollectionType) {
   const [products, setProducts] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
+  const [productHover, setProductHover] = useState<string | null>(null);
+
+  const handleMouseEnter = (name: string) => {
+    setProductHover(name);
+  };
+
+  const handleMouseLeave = () => {
+    setProductHover(null);
+  };
   
   useEffect(() => {
 
@@ -46,24 +55,31 @@ function CollectionCards({ collection }: CollectionType) {
   return (
     <>
     <Suspense fallback={<LoadingScreen />}>
-    <div className='grid grid-cols-1 lg:p-32 p-20 md:grid-cols-2 gap-4 flex justify-center'>
+    <div className='grid grid-cols-1 p-2 w-screen md:grid-cols-2 flex justify-center'>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
-        <div className='text-center' key={product.id}>
-          <div>
-              <Link href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
+        <div className='text-center' 
+          key={product.name}
+          onMouseEnter={() => handleMouseEnter(product.name)}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className='flex justify-center'>
+              <Link className='w-full flex justify-center' href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
               {/* Render product details */}
-              <img 
-                src={product.image.url} 
-                alt={product.image.altText}
-                className='rounded-md mb-2'
-              />
-              <div className='flex w-full mx-auto text-start'>
-                <div className="text-sm text-stone-700 me-auto">{product.name}</div>
+              <div>
+                <img 
+                  src={productHover === product.name ? product.image2.url : product.image.url} 
+                  alt={product.image.altText}
+                  className='h-[600px] object-cover'
+                />
               </div>
               </Link>
           </div>
+            <div className='flex w-full p-2 text-lg'>
+              <div className="text-stone-700 me-auto">{product.name}</div>
+              <div className="text-stone-700 ms-auto">${product.price}</div>
+            </div>
         </div>
       ))}
     </div>

@@ -4,7 +4,7 @@ import { Suspense } from 'react';
 import { addToCart, displayCart, getServerItemProps } from '@/app/action';
 import LoadingScreen from './loading';
 import ImgHolder from './heroImageInsert';
-import { Carousel } from "@material-tailwind/react";
+import { Carousel, IconButton } from "@material-tailwind/react";
 import ProductDescription from './product-description';
 import Image from 'next/image';
 import { useCart } from './cart/cartContext';
@@ -82,20 +82,69 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                         {/* Add a carousel for images inside current div */}
                         <Carousel
                                 className="flex overflow-hidden"
+                                prevArrow={({ handlePrev }) => (
+                                    <IconButton
+                                        variant="text"
+                                        color="black"
+                                        size="md"
+                                        onClick={handlePrev}
+                                        className="!absolute top-2/4 left-3 -translate-y-2/4 rounded-full" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={2}
+                                        stroke="currentColor"
+                                        className="h-4 w-4"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          d="M10.5 19.5L3 12l7.5-7.5"
+                                        />
+                                      </svg>
+                                    </IconButton>
+                                  )}
+                                  nextArrow={({ handleNext }) => (
+                                    <IconButton
+                                      variant="text"
+                                      color="black"
+                                      size="md"
+                                      onClick={handleNext}
+                                      className="!absolute top-2/4 !right-3 -translate-y-2/4 rounded-full"
+                                      placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}
+                                    >
+                                      <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth={2}
+                                        stroke="currentColor"
+                                        className="h-4 w-4"
+                                      >
+                                        <path
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          d="M13.5 4.5L21 12l-7.5 7.5"
+                                        />
+                                      </svg>
+                                    </IconButton>
+                                )}
                                 placeholder={undefined}
                                 navigation={({ setActiveIndex, activeIndex, length }) => (
                                     <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
                                         {new Array(length).fill("").map((_, i) => (
                                             <span
                                                 key={i}
-                                                className={`block h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-24 mb-20" : "w-24 mb-20 opacity-50"}`}
+                                                className={`block h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-12 mb-8" : "w-12 mb-8 opacity-25"}`}
                                                 onClick={() => setActiveIndex(i)}
                                             >
                                                 <Image
                                                     key={i}
                                                     src={item.image[i].url}
                                                     alt={item.image[i].altText}
-                                                    className={`${activeIndex === i ? "border-2 border-stone-400" : "border-2 border-transparent"}`}
+                                                    className={`aspect-square object-cover`}
                                                     width={100} height={1}
                                                 />
                                             </span>
@@ -127,11 +176,11 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                     <button
                         className="rounded-full flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 ms-8 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
                         disabled={
-                            !item.available
+                            item.available === false
                         }
                         onClick={(e) => {
                             e.preventDefault();
-                            addItemToCart(item.id);
+                            addItemToCart(item.variants[0].id);
                         }}
                         >
                         <div className='col-span-6 flex justify-center items-center min-h-full'>

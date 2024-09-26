@@ -7,7 +7,7 @@ interface Description {
 const ProductDescription: React.FC<Description> = ({ description }) => {
     return (
         <>
-            <p>
+            <p className="pe-4">
                 {description}
             </p>
         </>

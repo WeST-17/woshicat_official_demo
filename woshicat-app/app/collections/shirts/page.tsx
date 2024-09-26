@@ -6,18 +6,19 @@ const Collections = () => {
   
   return (
     <>
-    <main className="flex justify-center w-full grid grid-cols-8">
-      <div className="grid grid-rows-3 grid-flow-col col-span-8 mt-8 mb-8">
-        <div className="flex justify-center h-fit w-full p-1 col-span-8 row-start-1 row-end-3 row-span-2" id='products'>
-          <CollectionCards collection={'apparel'}/> {/* adjust based on page layout finalizing. Currently works when using 'apparel' as the collection. Maybe just gotta wait for shopify to update... */}
-        </div>
-      </div>
+    <main className="flex justify-center w-screen grid grid-cols-8">
       {/* */}
-      <div className="grid grid-rows-2 grid-flow-col col-span-8">
-        <div className="flex justify-center h-fit w-full col-span-8 row-start-1 row-end-3 row-span-2">
-
+      <div className="col-span-8 mt-20 flex justify-start">
+        <div className="flex justify-start m-12 h-fit w-full text-6xl">
+          Shirts
         </div>
       </div>
+      <div className="grid grid-rows-1 grid-flow-col col-span-8">
+        <div className="flex justify-start h-fit w-full" id='products'>
+          <CollectionCards collection={'shirts'}/>
+        </div>
+      </div>
+      
     </main>
     </>
   );

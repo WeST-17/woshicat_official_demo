@@ -4,8 +4,7 @@ import { Suspense } from 'react';
 import { addToCart, displayCart, getServerItemProps } from '@/app/action';
 import LoadingScreen from './loading';
 import ImgHolder from './heroImageInsert';
-import { Carousel } from "@material-tailwind/react";
-import type { CarouselProps } from "@material-tailwind/react";
+import { Carousel, IconButton } from "@material-tailwind/react";
 import ProductDescription from './product-description';
 import Image from 'next/image';
 import { useCart } from './cart/cartContext';
@@ -98,51 +97,107 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
 // --------------------------------------------------------------------------------------------------------------------------
 
+    // Color adjust for off-white
+
+// --------------------------------------------------------------------------------------------------------------------------
+
     return (
         <>
         <Suspense fallback={<LoadingScreen />}>
-        <div className="flex justify-center items-center h-[100vh] w-full bg-stone-200 mb-8">
+        <div className="relative flex justify-center items-center h-[100vh] w-full bg-stone-200">
             {/* Insert hero image for each product. Upload directly as part of code base in Vercel i.e., /[handle] */}
+            <div className='absolute object-cover w-screen h-screen bg-black/25 z-[100] flex items-center justify-center'>
+                <h1 className='text-[#FAF9F6] text-7xl'>{item.name}</h1>
+            </div>
             <ImgHolder 
-                imgSrc={`/media/${handle}.png`}
+                imgSrc={item.image[0].url}
                 altText={`Image of the ${handle}`}
             />
         </div>
-        <div className='h-fit text-lg' key={item.id}>
-            <div className='flex justify-center grid lg:grid-cols-3 lg:p-12'>
+        <div className='h-fit text-lg mb-8' key={item.id}>
+            <div className='flex justify-center grid lg:grid-cols-2 lg:p-4'>
                 {/* Apparel Images */}
                 {item.image.length > 0 && (
-                    <div className='lg:col-span-2 md:p-32 p-12'>
+                    <div className='relative lg:col-span-1 md:p-24 p-12'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <Carousel
-                                className="flex overflow-hidden"
-                                placeholder={undefined}
-                                navigation={({ setActiveIndex, activeIndex, length }) => (
-                                    <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-                                        {new Array(length).fill("").map((_, i) => (
-                                            <span
-                                                key={i}
-                                                className={`block h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-24 mb-20" : "w-24 mb-20 opacity-50"}`}
-                                                onClick={() => setActiveIndex(i)}
-                                            >
-                                                <Image
+                            prevArrow={({ handlePrev }) => (
+                                <IconButton
+                                    variant="text"
+                                    color="black"
+                                    size="md"
+                                    onClick={handlePrev}
+                                    className="!absolute top-2/4 left-3 -translate-y-2/4 rounded-full" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={2}
+                                    stroke="currentColor"
+                                    className="h-4 w-4"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M10.5 19.5L3 12l7.5-7.5"
+                                    />
+                                  </svg>
+                                </IconButton>
+                              )}
+                              nextArrow={({ handleNext }) => (
+                                <IconButton
+                                  variant="text"
+                                  color="black"
+                                  size="md"
+                                  onClick={handleNext}
+                                  className="!absolute top-2/4 !right-3 -translate-y-2/4 rounded-full"
+                                  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}
+                                >
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={2}
+                                    stroke="currentColor"
+                                    className="h-4 w-4"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M13.5 4.5L21 12l-7.5 7.5"
+                                    />
+                                  </svg>
+                                </IconButton>
+                            )}
+                            className="flex overflow-hidden"
+                            placeholder={undefined}
+                            navigation={({ setActiveIndex, activeIndex, length }) => (
+                                <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+                                    {new Array(length).fill("").map((_, i) => (
+                                        <span
+                                            key={i}
+                                            className={`block flex justify-center items-center h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-12 mb-8" : "w-12 mb-8 opacity-25"}`}
+                                            onClick={() => setActiveIndex(i)}
+                                        >
+                                            <Image
                                                     key={i}
                                                     src={item.image[i].url}
                                                     alt={item.image[i].altText}
-                                                    className={`${activeIndex === i ? "border-2 border-stone-400" : "border-2 border-transparent"}`}
+                                                    className={`aspect-square object-cover`}
                                                     width={100} height={1}
                                                 />
-                                            </span>
-                                        ))}
-                                    </div>
-                                )} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}                        >
+                                        </span>
+                                    ))}
+                                </div>
+                            )} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} >
                             {item.image.map((image: {url: string, altText: string}, index: number) => (
                                 <img
                                     key={index}
                                     src={image.url}
                                     alt={image.altText}
-                                    className='mx-auto snap-center pointer-events-none'
+                                    className='mx-auto snap-center pointer-events-none object-contain h-full'
                                 />
                             ))}
                         </Carousel>
@@ -160,24 +215,32 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         <>
                             <div className='ms-8 my-2 flex items-center text-xl'>Color</div>
                             <div className='ms-8 flex items-center'>
-                            {item.color.map((color: string, index: number) => (
+                            {item.color.map((color: string, index: number) => {
+                                let colorAdjust: string;
+                                if (color === 'Off-white') {
+                                    colorAdjust = '#FAF9F6'
+                                } else {
+                                    colorAdjust = color;
+                                }
+                                return (
                                 <button
                                     key={index}
-                                    className={`bg-${color} rounded-full border-2 border-stone-400 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-sm hover:bg-stone-300 transition duration-300 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
-                                        selectedColor === color ? 'text-black' : ''
+                                    style={{ backgroundColor: colorAdjust }}
+                                    className={`rounded-full border-2 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-sm hover:bg-stone-300 transition duration-300 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
+                                        selectedColor === color ? 'border-stone-700' : 'border-stone-300'
                                     }`}
                                     onClick={() => handleColorSelection(color)}
                                 >
                                     
                                 </button>
-                            ))}
+                            )})}
                             </div>
                         </>
                     )}
                 
                     {item.size?.length > 0 && (
                         <>
-                            <div className='ms-8 mt-10 my-2 flex items-center text-xl'>Size</div>
+                            <div className='ms-8 mt-4 my-2 flex items-center text-xl'>Size</div>
                             {/* Apparel Sizing: SM, MD, LG, XL */}
                             <div className='ms-8 my-4 flex items-center'>
                                 {item.size.map((sizing: string, index: number) => (

@@ -10,7 +10,7 @@ export default function TransitionSlide() {
             animate={{ opacity:0, transition: { duration: 1, ease: "circOut" } }}
             exit={{ opacity: 1, transition: { duration: 1, ease: "circIn" } }}
             style={{ originX: isPresent ? 0 : 1 }}
-            className="privacy-screen hidden"
+            className="privacy-screen pointer-events-none"
         />
         </>
     )

@@ -9,55 +9,50 @@ export default function Collections() {
   return (
     <>
     <main className="flex justify-center w-full grid grid-cols-8">
-      <div className="grid grid-rows-3 grid-flow-col col-span-8 mt-32 mb-8">
-        <div className="flex justify-center h-fit w-full col-span-8 row-start-1 row-end-3 row-span-2">
-          <div className="col-span-8 flex gap-8">
-          <Suspense fallback={<LoadingScreen />}>
-          <div className="flex justify-center w-screen col-span-8 row-start-1 row-end-3 row-span-2">
-            <div className="relative col-span-3 flex justify-center items-center">
-              <Link href={'/collections/shirts/'}>
-              <Image
-                src={'/media/the-videographer-snowboard.png'}
-                width={400}
-                height={400}
-                alt={'Shirts'}
-              />
-              </Link>
-              <div className="absolute bottom-0">shirts</div>
-            </div>
-            <div className="relative col-span-3 flex justify-center items-center">
-              <Link href={'/collections/accessories/'}>
-              <Image
-                src={'/media/the-videographer-snowboard.png'}
-                width={400}
-                height={400}
-                alt={'Accessories'}
-              />
-              </Link>
-              <div className="absolute bottom-0">accessories</div>
-            </div>
-            <div className="relative col-span-3 flex justify-center items-center">
-              <Link href={'/collections/stickers/'}>
-              <Image
-                src={'/media/the-videographer-snowboard.png'}
-                width={400}
-                height={400}
-                alt={'Stickers'}
-              />
-              </Link>
-              <div className="absolute bottom-0">stickers</div>
-            </div>
-            </div>
-          </Suspense>
+      <div className="col-span-8 mt-[100px]">
+        <div className="flex justify-center">
+          <div className="">
+            <Suspense fallback={<LoadingScreen />}>
+              <div className="flex justify-center grid grid-cols-2 w-[100vw] h-[100vh]">
+                <div className="w-full relative flex justify-center items-center">
+                  <Link href={'/collections/shirts/'}>
+                    <Image
+                      src={'/media/collection_page_covers/s_k_pointnlook.jpg'}
+                      fill={true}
+                      alt={'Shirts'}
+                      className="object-cover"
+                    />
+                  
+                    <div className="absolute bottom-0 left-0 p-3 font-thin text-6xl text-white">Shirts</div>
+                  </Link>
+                </div>
+                <div className="relative flex justify-center items-center bg-black/50">
+                  <Link href={'/collections/accessories/'}>
+                    <Image
+                      src={'/media/yoyo_yellow_sticker.png'}
+                      width={400}
+                      height={400}
+                      alt={'Accessories'}
+                      className="object-cover"
+                    />
+                    
+                    <div className="absolute bottom-0 left-0 p-3 font-thin text-white text-6xl w-full">Accessories</div>
+                  </Link>
+                </div>
+                
+              </div>
+            </Suspense>
+          </div>
+        </div>
+        {/* Next spot for additions */}
+        {/* */}
+        <div className="p-8 col-span-8">
+          <div className="flex justify-center h-fit w-full col-span-8">
+            testing stuff here!
           </div>
         </div>
       </div>
-      {/* */}
-      <div className="grid grid-rows-2 grid-flow-col col-span-8">
-        <div className="flex justify-center h-fit w-full col-span-8 row-start-1 row-end-3 row-span-2">
-
-        </div>
-      </div>
+      
     </main>
     </>
   );
