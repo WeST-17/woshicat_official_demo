@@ -165,6 +165,18 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+.collapse-item {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: height 1s ease-in-out, opacity 0.05s ease;
+}
+
+.collapse-item.open {
+  height: fit-content;
+  opacity: 1;
+}
+
 @media screen and (min-width: 1024px) {
   .menu-container {
     position: absolute;

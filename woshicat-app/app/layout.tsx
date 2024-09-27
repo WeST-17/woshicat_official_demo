@@ -23,7 +23,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
-      <body className={changa.className}>
+      <body className={`${changa.className} text-stone-700`}>
           <LayoutWrapper>
             <CartProvider>
             <Header />

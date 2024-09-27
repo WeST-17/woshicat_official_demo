@@ -38,7 +38,7 @@ const EmailList = () => {
                   >
                   Submit!
                 </button>
-                <div className={`absolute top-12 right-0 z-[999] text-red-600 text-sm ${!isEmailValid ? '' : 'hidden'}`}>Yoyo Says: Use a valid email pls...</div>
+                <div className={`absolute top-12 left-10 z-[999] text-red-600 text-sm ${!isEmailValid ? '' : 'hidden'}`}>Yoyo Says: Use a valid email please...</div>
             </div>    
           </div>
         </>
