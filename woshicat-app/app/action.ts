@@ -353,8 +353,6 @@ export async function displayCart() {
   }
 }
 
-
-
 export async function FinalCheckout() {
   const checkoutID = cookies().get('checkoutID');
   const shopifyCheckout = await client.checkout.fetch(checkoutID!.value);
@@ -362,4 +360,9 @@ export async function FinalCheckout() {
   if (shopifyCheckout.webUrl) {
     return shopifyCheckout.webUrl;
   }
+}
+
+export async function FetchPrivacyPolicy() {
+  const policies = await client.shop.fetchPolicies();
+  return policies;
 }

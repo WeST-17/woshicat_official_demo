@@ -7,7 +7,7 @@ export default function ComingSoon() {
   
   return (
     <>
-    <div className="absolute top-0 z-[2000] flex justify-center items-center w-full h-screen grid grid-cols-8 bg-white">
+    <div className="absolute top-0 z-[2000] flex justify-center items-center w-full h-screen grid grid-cols-8 bg-stone-100">
       <div className="col-span-8 grid-flow-col flex flex-col justify-center items-center h-full gap-8">
         <Image
           src={'/logo/Logo Red Version.png'}
