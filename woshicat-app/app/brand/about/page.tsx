@@ -14,7 +14,7 @@ export default function BrandAbout() {
         </div>
         {/* FAQ */}
         {FAQ.map((question) => (
-          <div className="flex flex-col justify-start w-full h-fit">
+          <div className="flex flex-col justify-start w-full h-fit" key={question.link}>
             <h2 className="text-2xl" id={question.link}>{question.q}</h2>
             <p>
               {question.a}
