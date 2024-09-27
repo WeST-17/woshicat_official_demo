@@ -15,13 +15,15 @@ export default function ComingSoon() {
           fill={true}
           className="pointer-events-none object-cover"
         />
-        <Image
-          src={'/logo/Logo Red Version.png'}
-          alt={'WoShi Cat Stamp Logo'}
-          width={200}
-          height={1}
-          className="pointer-events-none z-[1000]"
-        />
+        <Link href='https://www.woshicat.com' className="z-[1000]">
+          <Image
+            src={'/logo/Logo Red Version.png'}
+            alt={'WoShi Cat Stamp Logo'}
+            width={200}
+            height={1}
+            className="pointer-events-none"
+          />
+        </Link>
         <div className="z-[1000] text-center rounded-md hover:text-stone-900 transition duration-300 p-2 mb-8">
             <Link href='https://instagram.com/woshicatofficial' target='_blank'>
                 <Image 
