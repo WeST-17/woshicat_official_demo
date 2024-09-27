@@ -14,8 +14,8 @@ const changa = Changa({
 })
 
 export const metadata: Metadata = {
-  title: "Wo Shi Cat",
-  description: "Wo Shi Cat Apparel Site",
+  title: "WoShi Cat",
+  description: "WoShi Cat Apparel Site",
   keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'Comfort', 'Quality', 'cat', 'loungewear', 'chinese', 'japanese', 'asian', 'anime', 'subway', 'japan', 'work culture', 'hustle', 'tired']
 };
 
