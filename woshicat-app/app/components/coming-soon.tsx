@@ -1,10 +1,19 @@
 'use client';
 import Link from "next/link";
 import Image from "next/image";
-import EmailList from "../components/emailList/emailList";
+import EmailList from "./emailList/emailList";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function ComingSoon() {
-  
+  const pathname = usePathname();
+    useEffect(() => {
+        // If the current path is not the coming soon page, redirect
+        if (pathname !== '/') {
+            window.location.href = '/'; // Redirects to the coming soon page
+        }
+    }, [pathname]); // Only re-run the effect if the pathname changes
+
   return (
     <>
     <div className="absolute top-0 z-[2000] flex justify-center items-center w-full h-screen grid grid-cols-8 bg-stone-100">

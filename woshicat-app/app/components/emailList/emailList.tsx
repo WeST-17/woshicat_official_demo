@@ -27,7 +27,7 @@ const EmailList = () => {
           <div className="relative w-fit text-center flex justify-center items-center gap-8">
             <label>WoShi Cat Newsletter!</label>
             <div className="flex justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
-                <input id='email' name='email' type='email' autoComplete="email" placeholder="general@woshicat.com"
+                <input id='email' name='email' type='email' autoComplete="email" placeholder="help@woshicat.com"
                 className="flex w-48 lg:w-72 text-center border-0 py-1.5 pe-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 onChange={handleEmailChange} required/>
                 <button

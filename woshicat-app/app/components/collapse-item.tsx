@@ -1,10 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { FAQ } from './textLists/data';
 
-const Collapse = () => {
+const Collapse = ({ children, }: Readonly<{ children: React.ReactNode; }>) => {
     const [openItem, setItemOpen] = useState(false);
     
     const toggleItem = () => {
@@ -13,21 +11,11 @@ const Collapse = () => {
 
     return (
         <>
-            <button onClick={toggleItem} className='text-md flex justify-start'>
-                {openItem ? '- Collapse' : '+ Expand'}
+            <button onClick={toggleItem} className='text-lg flex justify-end -translate-y-5'>
+                {openItem ? '-' : '+'}
             </button>
             <div className={`collapse-item flex flex-col justify-start w-full h-fit ${openItem ? 'open': ''}`}>
-              {FAQ.map((question) => (
-                <Link 
-                    href={`#${question.link}`} 
-                    key={question.link} 
-                    className="hover:text-stone-400 transition duration-150"
-                >
-                    {question.q}
-                </Link>
-              ))}
-              
-              
+              {children}
             </div>
         </>
     )
