@@ -42,7 +42,7 @@ function CollectionCards({ collection }: CollectionType) {
   }, []);
 
   if (error != null) {
-    return <div className='flex h-[100vh] mt-64'>Something happened on our end!</div>;
+    return <div className='flex justify-center w-[100vw] h-[50vh] mt-64'>Something happened on our end!</div>;
   }
   
   let collectionAdjust;
@@ -52,10 +52,12 @@ function CollectionCards({ collection }: CollectionType) {
     collectionAdjust = collection;
   }
 
+  console.log(products)
+
   return (
     <>
     <Suspense fallback={<LoadingScreen />}>
-    <div className='grid grid-cols-1 p-2 w-screen md:grid-cols-2 flex justify-center'>
+    <div className='grid grid-cols-1 w-screen md:grid-cols-3 flex justify-center gap-8'>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
@@ -64,22 +66,22 @@ function CollectionCards({ collection }: CollectionType) {
           onMouseEnter={() => handleMouseEnter(product.name)}
           onMouseLeave={handleMouseLeave}
         >
-          <div className='flex justify-center'>
-              <Link className='w-full flex justify-center' href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
-              {/* Render product details */}
-              <div>
-                <img 
-                  src={productHover === product.name ? product.image2.url : product.image.url} 
-                  alt={product.image.altText}
-                  className='h-[600px] object-cover'
-                />
-              </div>
-              </Link>
-          </div>
-            <div className='flex w-full p-2 text-lg'>
-              <div className="text-stone-700 me-auto">{product.name}</div>
-              <div className="text-stone-700 ms-auto">${product.price}</div>
+          <div className='flex justify-center overflow-hidden'>
+            <Link className='w-full flex justify-center bg-white' href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
+            {/* Render product details */}
+            <div>
+              <img 
+                src={productHover === product.name ? product.image2.url || product.image.url : product.image.url} 
+                alt={product.image.altText}
+                className='object-cover aspect-square'
+              />
             </div>
+            </Link>
+          </div>
+          <div className='flex w-full p-2 text-lg'>
+            <div className="text-stone-700 me-auto">{product.name}</div>
+            <div className="text-stone-700 ms-auto">${product.price}</div>
+          </div>
         </div>
       ))}
     </div>

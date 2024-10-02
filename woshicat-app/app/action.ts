@@ -30,7 +30,7 @@ async function getProducts(client: Client): Promise<any[]> {
         id: product.id,
         handle: product.handle,
         name: product.title,
-        price: product.variants[0]?.price.amount || 0, // Adjust this based on your product structure
+        price: Number(product.variants[0]?.price.amount).toFixed(2) || 0, // Adjust this based on your product structure
         image: plainImage,
         collection: product.collections,
         // may need to add collection tag for a general products page somehow...
@@ -55,13 +55,13 @@ async function getCollectionID(collectionName: string): Promise<any> {
   }).map((groupCollection) => {
       return groupCollection.id;
   });
-  
+
   return collectionID[0];
 
-} catch (error) {
-  console.error('Error fetching collection:', error);
-  throw error;
-}
+  } catch (error) {
+    console.error('Error fetching collection:', error);
+    throw error;
+  }
 }
 
 async function getCollection(collectionName: string) {
@@ -72,6 +72,7 @@ async function getCollection(collectionName: string) {
     const serializedProducts = collectionItems.products.map((product) => {
       const image = product.images[0];
       const image2 = product.images[2];
+      // console.log("Product Type: ",product.productType)
 
       const plainImage = {
         url: image?.src || '',
@@ -91,7 +92,7 @@ async function getCollection(collectionName: string) {
         image: plainImage,
         image2: plainImage2,
         collection: collectionName,
-        price: product.variants[0].price.amount,
+        price: Number(product.variants[0].price.amount).toFixed(2),
         // add more properties as needed
       };
     });
@@ -99,7 +100,6 @@ async function getCollection(collectionName: string) {
     return serializedProducts;
   } catch (error) {
     console.error('Error fetching collection:', error);
-    console.log(collectionName)
     throw error;
   }
 }
@@ -145,7 +145,7 @@ async function getProductByHandle(productHandle: string) {
     const variants = item.variants.map(variant => ({
       id: variant.id,
       title: variant.title,
-      price: variant.price.amount,
+      price: Number(variant.price.amount).toFixed(2),
       available: (variant as any).available, 
       // TS doesn't see available as a field for ProductVariant. Can use 'variant as any' to bypass!
     }));
@@ -156,7 +156,7 @@ async function getProductByHandle(productHandle: string) {
       name: item.title,
       size: sizes,
       color: colors,
-      price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
+      price: Number(item.variants[0]?.price.amount).toFixed(2) || 0, // Adjust this based on your product structure
       variants: variants,
       image: images,
       available: (item as any).available, // same for item.available
@@ -171,11 +171,12 @@ async function getProductByHandle(productHandle: string) {
 export async function getProductsByID(productID: string) {
   try {
     const item = await client.product.fetch(productID);
+    
     return {
       id: item.id,
       handle: item.handle,
       name: item.title,
-      price: item.variants[0]?.price.amount || 0, // Adjust this based on your product structure
+      price: Number(item.variants[0]?.price.amount).toFixed(2) || 0, // Adjust this based on your product structure
       image: item.images[0],
       variantImage: item.variants[0]?.image?.src || null,
       available: (item as any).available, // same for item.available
@@ -326,12 +327,12 @@ export async function displayCart() {
       console.log('Cart is empty');
       return [];
     }
-    
+
     const cartItems = checkout.lineItems
       .filter((item: any) => item.quantity > 0)
       .map((item: any) => {
         const hasVariants = item.variant && item.variant.selectedOptions && item.variant.selectedOptions.length > 0;
-        
+
         return {
           title: item.title,
           cartItemID: item.id,
@@ -340,9 +341,10 @@ export async function displayCart() {
           color: hasVariants ? item.variant.selectedOptions[1]?.value : 'N/A',
           variantTitle: item.variant?.title || 'Default',
           quantity: item.quantity,
-          price: item.variant?.price?.amount || item.price?.amount,
+          price: Number(item.variant?.price?.amount).toFixed(2) || Number(item.price?.amount).toFixed(2),
           currency: item.variant?.price?.currencyCode || item.price?.currencyCode,
           image: item.variant?.image?.src || item.image?.src,
+          
         };
       });
 

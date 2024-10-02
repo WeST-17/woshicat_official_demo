@@ -14,8 +14,11 @@ const changa = Changa({
 })
 
 export const metadata: Metadata = {
-  title: "WoShi Cat",
-  description: "WoShi Cat Apparel Site",
+  title: {
+    template: '%s | WoShi Cat',
+    default: 'WoShi Cat'
+  },
+  description: "WoShi Cat",
   keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'Comfort', 'Quality', 'cat', 'loungewear', 'chinese', 'japanese', 'asian', 'anime', 'subway', 'japan', 'work culture', 'hustle', 'tired']
 };
 
@@ -27,6 +30,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
           <LayoutWrapper>
             <CartProvider>
             <Header />
+            <div className="w-screen mt-[70px]"/>
               <Transition>
               {children}
               </Transition>

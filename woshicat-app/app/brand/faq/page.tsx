@@ -17,7 +17,7 @@ export default function BrandFAQ() {
           {FAQ.map((question) => (
             <div className="flex flex-col justify-start w-full h-fit border-b-2" key={question.link}>
               <h2 className="text-xl" id={question.link}>{question.q}</h2>
-              <Collapse>
+              <Collapse classProp="-translate-y-5">
                 <p className="p-2">
                   {question.a}
                 </p>

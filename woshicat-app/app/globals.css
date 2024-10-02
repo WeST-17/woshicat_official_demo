@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  background-color: transparent;
+  background-color: #FAF9F6;
   color: black;
   text-rendering: auto;
   font-weight: lighter;
@@ -166,15 +166,21 @@ body {
 }
 
 .collapse-item {
-  height: 0;
+  max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: height 1s ease-in-out, opacity 0.05s ease;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
 }
 
 .collapse-item.open {
-  height: fit-content;
+  max-height: 1000px;
   opacity: 1;
+}
+
+.button-hover:hover .shop-item-button {
+  background-color: white;
+  color: black;
+  transition: color 0.15s ease, background-color 0.3s ease;
 }
 
 @media screen and (min-width: 1024px) {

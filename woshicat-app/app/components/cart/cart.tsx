@@ -3,10 +3,22 @@ import Link from "next/link";
 import { FinalCheckout } from "@/app/action";
 import { useCart } from './cartContext';
 import QuantityAdjuster from "./cartItemModify";
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
+
+interface CartItem {
+    cartItemID: string;
+    title: string;
+    price: string;
+    quantity: number;
+    image: string;
+    variantTitle?: string;
+    size?: string;
+    color?: string;
+  }
 
 const Cart: React.FC = () => {
-    const { cartOpen, setCartOpen, setCartUpdated, cartItems, cartItemsLoading, setCartItemsLoading } = useCart();
+    const { cartOpen, setCartOpen, setCartUpdated, cartItemsLoading, setCartItemsLoading } = useCart();
+    const { cartItems }: { cartItems: CartItem[] } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
     function formHandle(title: string) {
@@ -15,7 +27,6 @@ const Cart: React.FC = () => {
     }
 
     const openCart = () => {
-        setCartItemsLoading(true);
         setCartOpen(true);
         // Fetch cart items when the cart is opened
         setCartUpdated(true);
@@ -27,10 +38,19 @@ const Cart: React.FC = () => {
             setCartOpen(false);
         }
     }
-
+    
+    // const cartSubtotal = cartItems.reduce((total, item) => {
+    //     console.log(total, "total price before")
+    //     const itemPrice = parseFloat(item.price); // Convert price string to float
+    //     const itemQuantity = item.quantity; // Get the quantity of the item
+    //     const totalPrice = total + itemPrice * itemQuantity; // Accumulate subtotal
+    //     console.log(totalPrice)
+    //     return totalPrice
+    //   }, 0);
+    
     const checkout = async () => {
         const checkoutUrl = await FinalCheckout();
-        if (checkoutUrl) {
+        if (checkoutUrl && cartItems.length > 0) {
             window.location.href = checkoutUrl;
         } else {
             console.log("Cart, not cart. Noodles, not noodles...")
@@ -56,16 +76,17 @@ const Cart: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
-                    <h2 className="relative text-lg font-medium m-4 mb-8">Nice Cart</h2>
+                    <h2 className="relative text-lg font-medium m-10 mb-8">Nice Cart</h2>
                     {/* Cart content */}
                         {cartItems.length > 0 ? (
                         <div className="cart-items gap-2">
                             {cartItems.map((item: any) => {
-                                const handle = formHandle(item.title)
+                                const handle = formHandle(item.title);
+                                
                                 return (
-                                <div key={item.cartItemID} className="cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
+                                <div key={item.cartItemID} className="relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
                                     
-                                    <Link href={`/collections/${handle}`} passHref>
+                                    <Link href={`/`} className="pointer-events-none" passHref>
                                         <img
                                         src={item.image}
                                         alt={item.variantTitle}
@@ -89,20 +110,26 @@ const Cart: React.FC = () => {
                                 </div>
                             )})}
                         </div>
-                        ) : !cartItemsLoading ? (
+                        ) : !cartItemsLoading && cartItems.length > 0 ? (
                             <div className="w-full h-24 flex justify-center items-center">
                                 <div className="loader"></div>
                             </div>
                           ) : (
-                            <p className="text-sm font-thin text-gray-500 p-3">Your cart is empty.</p>
+                            <p className="text-sm font-thin text-gray-500 text-start ms-10">Your cart is empty.</p>
                           )}
                     
-                    <button onClick={closeCart} className="absolute top-8 right-4 p-2 bg-stone-500 text-white font-thin rounded-md">
-                        Close
+                    <button onClick={closeCart} className="absolute top-8 right-4 py-1 px-2 text-stone-400 font-thin">
+                        <div className="w-8 h-8 flex justify-center items-center relative hover:bg-black/25 transition duration-300">
+                            <span className="absolute top-0 flex bg-stone-500 w-8 h-[1px] rotate-45 translate-y-4"></span>
+                            <span className="absolute top-0 flex bg-stone-500 w-8 h-[1px] -rotate-45 translate-y-4"></span>
+                        </div>
                     </button>
                     {/* Centered Checkout Button */}
-                    <div className="flex justify-center items-center mt-12">
-                        <button onClick={checkout} className="px-4 py-2 bg-black text-white font-thin rounded-md w-80">Checkout</button>
+                    <div className="w-full absolute bottom-0 flex flex-col items-center justify-end p-8 gap-4">
+                        {/* Not working correctly... <div className="flex justify-end items-center w-80 text-xl">
+                            <p className="text-2xl">Subtotal: ${Number(cartSubtotal).toFixed(2)}</p>
+                        </div> */}
+                        <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-80 mx-auto ${cartItems.length <= 0 ? 'hidden' : 'bg-black'}`}>Checkout</button>
                     </div>
                     
                 </div>

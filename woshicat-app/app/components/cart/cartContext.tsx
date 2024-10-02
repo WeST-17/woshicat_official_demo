@@ -25,15 +25,17 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     const fetchCartItems = async () => {
+        setCartItemsLoading(true);
         const items = await displayCart();
         setCart(items);
         setCartUpdated(false); // Reset cartUpdated after fetching
+        setCartItemsLoading(false);
     };
     
     if (cartUpdated === true) {
         fetchCartItems();
     }
-}, [cartUpdated, setCart, setCartUpdated]);
+  }, [cartUpdated]);
 
   return (
     <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading }}>

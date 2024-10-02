@@ -1,21 +1,27 @@
 import React from "react";
 import Image from "next/image";
 
-interface imgHolderProp {
-    imgSrc: string,
-    altText: string,
+interface CoverHeaderProp {
+    src: string,
+    alt: string,
+    header: string,
 }
 
 /* May want to add width and height props */
-const ImgHolder: React.FC<imgHolderProp> = ({ imgSrc, altText }) => {
+const CoverHeader: React.FC<CoverHeaderProp> = ({ src, alt, header }) => {
     return (
-        <Image
-            src={imgSrc}
-            alt={altText}
-            fill={true}
-            className="z-[2] object-cover"
-        />
+        <>
+            <div className="bg-black/25 absolute left-0 text-7xl text-white w-full h-full text-center flex items-center z-[999]">
+                <h1 className="p-4">{header}</h1>
+            </div>
+            <Image
+                src={src}
+                alt={alt}
+                fill={true}
+                className="object-cover"
+            />
+        </>
     )
 }
 
-export default ImgHolder;
+export default CoverHeader;

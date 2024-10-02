@@ -11,22 +11,27 @@ interface NavLinkProps {
 const links = [
   { name: 'Home', href: '/' },
   { 
-    name: 'Collections', 
+    name: 'Shop Collections', 
     href: '/collections', 
     subLinks: [
-      { name: 'Shirts', href: '/collections/shirts' },
-      { name: 'Accessories', href: '/collections/accessories' }
+      { name: 'Metro Daydreams', href: '/collections/metro-daydreams'},
     ]
+  },
+  { name: 'Lookbook', 
+    href: '/lookbook',
+    subLinks: [
+      {name: 'Metro Daydreams', href: '/lookbook/metro-daydreams'}
+    ],
   },
   { 
     name: 'Brand', 
     href: '/brand',
-    subLinks : [
+    subLinks: [
       { name: 'About', href: '/brand/about'},
       { name: 'FAQ', href: '/brand/faq'},
     ]
   },
-  { name: "Yoyo's Story", href: '/story' },
+  { name: "Yoyo & Friends", href: '/yoyo-friends' },
 ];
 
 
@@ -34,8 +39,15 @@ interface NavLinkProps {
   closeMenu: () => void;
 }
 
+function removeAfterFirstSlash(url: string) {
+  const parts = url.split('/');
+  return parts.slice(0, 2).join('/'); // Keep only the first part
+}
+
 const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
   const pathname = usePathname();
+  const parentPath = removeAfterFirstSlash(pathname);
+
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
 
   const handleMouseEnter = (name: string) => {
@@ -60,10 +72,10 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             href={link.href}
             passHref={true}
             className={clsx(
-              'flex h-[32px] max-md:w-full w-fit items-center justify-end text-end p-2 rounded-sm text-sm hover:text-stone-900 transition duration-150 ease-in-out',
+              'flex h-[32px] max-md:w-full w-fit items-center justify-start text-end p-2 rounded-sm text-sm hover:text-stone-900 transition duration-150 ease-in-out',
               {
-                'text-black': pathname === link.href,
-                'text-stone-500': pathname !== link.href,
+                'text-black': parentPath === link.href,
+                'text-stone-400': parentPath !== link.href,
               }
             )}
           >
@@ -73,7 +85,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute w-28 me-3 text-sm right-0 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
+              "absolute w-40 text-sm md:right-0 right-4/5 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,
@@ -85,7 +97,10 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
                 key={subLink.name}
                 href={subLink.href}
                 passHref={true}
-                className="block px-2 py-2 text-stone-400 hover:text-black transition duration-150"
+                className={clsx(
+                  'block px-2 py-2 text-stone-400 hover:text-black transition duration-150',
+                  
+                )}
                 onClick={closeMenu}
               >
                 {subLink.name}
