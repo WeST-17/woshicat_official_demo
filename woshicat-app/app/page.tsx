@@ -49,20 +49,21 @@ const Home = () => {
           
         </Link>
       </div>
-      <div className="relative col-span-9 md:col-span-6 overflow-hidden max-md:aspect-square mx-1"> {/* Remember to change back to square when we have more collections! */}
+      <div className="button-hover relative col-span-9 md:col-span-6 overflow-hidden max-md:aspect-square mx-1"> {/* Remember to change back to square when we have more collections! */}
         <Link href={'/collections/metro-daydreams/'}>
-          <div className="button-hover">
+          <div className="">
               <Image
                 src={'/media/collection_page_covers/s_k_pointnlook.JPG'}
                 fill={true}
                 alt={'Metro DayDreams Collection'}
                 className="object-cover"
               />
-            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/25 w-4/5">
-                <h2 className="text-xl md:text-4xl ">Metro Daydreams</h2>
-                <ShopNowButton />
-              </div>
+            
           </div>
+          <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/25 w-4/5 md:w-3/5">
+              <h2 className="text-xl md:text-4xl ">Metro Daydreams</h2>
+              <ShopNowButton />
+            </div>
         </Link>
       </div>
       {/* Next segment */}
