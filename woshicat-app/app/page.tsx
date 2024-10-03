@@ -3,25 +3,19 @@
 import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import EmailList from "./components/emailList/emailList";
 import ShopNowButton from "./components/ShopNowButton";
 
 
-export default function Home() {
-  const [visited, setVisited] = useState(false);
-  
-  useEffect(() => {
-      
-  }, []);
+const Home = () => {
   
   return (
     <>
     <Transition>
     <main className="relative flex justify-center w-screen grid grid-cols-9">
       <div className="col-span-9 w-full h-fit flex justify-center items-center bg-orange-100">
-        <p className="m-1 font-thin">Free shipping on orders over $70!</p>
+        <p className="m-1 font-thin max-sm:text-sm">Free shipping and sticker on orders over $70!</p>
       </div>
       <div className="grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[100vh] w-full overflow-hidden">
@@ -46,18 +40,16 @@ export default function Home() {
         </div>
       </div>
       
-      <div className="relative col-span-9 md:col-span-3 aspect-square overflow-hidden mx-2">
-        {/* <Link href={'/collections/metro-daydreams/'}> */}
-          <div className="button-hover">
-          <video className="object-cover -translate-y-20" autoPlay={true} muted loop preload="none">
+      <div className="relative col-span-9 md:col-span-3 aspect-square overflow-hidden mx-1 flex items-end">
+        <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
+          <video className="object-cover" autoPlay={true} muted loop preload="none">
             <source src="/media/video/WoShi_Insta_Train_Post.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-            
-          </div>
-        {/* </Link> */}
+          
+        </Link>
       </div>
-      <div className="relative col-span-9 md:col-span-3 aspect-square mx-2">
+      <div className="relative col-span-9 md:col-span-6 overflow-hidden max-md:aspect-square mx-1"> {/* Remember to change back to square when we have more collections! */}
         <Link href={'/collections/metro-daydreams/'}>
           <div className="button-hover">
               <Image
@@ -67,32 +59,17 @@ export default function Home() {
                 className="object-cover"
               />
             <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/25 w-4/5">
-                <h2 className="md:text-4xl ">Metro Daydreams</h2>
+                <h2 className="text-xl md:text-4xl ">Metro Daydreams</h2>
                 <ShopNowButton />
               </div>
           </div>
         </Link>
       </div>
-      <div className="relative col-span-9 md:col-span-3 aspect-square mx-2">
-        <Link href={'/collections/woshi-cat/'}>
-          <div className="button-hover">
-              <Image
-                src={'/media/graphics/WoShi_Coming_Soon.png'}
-                fill={true}
-                alt={'The WoShi Cat Collection'}
-                className="object-cover"
-              />
-            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/25 w-4/5">
-                <h2 className="md:text-4xl ">WoShi Cat Collection</h2>
-                <ShopNowButton />
-              </div>
-          </div>
-        </Link>
-      </div>
+      {/* Next segment */}
       
       {/* */}
-      <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-full p-8">
-        {/*<EmailList />*/}
+      <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-fit pt-8">
+        <EmailList />
         
       </div>
       
@@ -102,3 +79,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

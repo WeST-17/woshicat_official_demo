@@ -291,7 +291,7 @@ export async function addToCart(productVariantID: string, quantity: number) {
     else {
       await client.checkout.addLineItems(checkoutID.value, [{variantId: productVariantID, quantity: quantity}]);
       console.log("Your cart has been updated.");
-      // console.log(productVariantID);
+      console.log(productVariantID);
     }
   } catch (error) {
     console.error("An error occurred while adding to the cart:", error);
@@ -327,7 +327,7 @@ export async function displayCart() {
       console.log('Cart is empty');
       return [];
     }
-
+    
     const cartItems = checkout.lineItems
       .filter((item: any) => item.quantity > 0)
       .map((item: any) => {

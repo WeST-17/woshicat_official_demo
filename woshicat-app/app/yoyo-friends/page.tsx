@@ -1,20 +1,16 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ComingSoonInsert from "../components/coming-soon-insert";
 
-const Collections = () => {
+const Yoyo = () => {
   
   return (
     <>
-    <main className="flex justify-center w-full grid grid-cols-8 mx-auto">
+    <main className="flex justify-center w-screen grid grid-cols-8">
       {/* */}
-      <div className="flex col-span-8 p-8 gap-4">
-        <Image
-          src={'/media/graphics/WoShi_Coming_Soon.png'}
-          alt={'web series strip!'}
-          width={300}
-          height={1}
-        />
+      <div className="flex col-span-8 gap-4">
+        <ComingSoonInsert />
         
       </div>
       
@@ -23,4 +19,4 @@ const Collections = () => {
   );
 }
 
-export default Collections;
+export default Yoyo;

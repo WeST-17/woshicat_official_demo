@@ -13,7 +13,7 @@ interface Handle {
 }
 
 const AccessoryCard: React.FC<Handle> = ({ handle }) => {
-    const { setCartOpen, setCartUpdated } = useCart();
+    const { setCartOpen, setCartUpdated, setCartItemsLoading } = useCart();
     const [item, setItem] = useState<any>([]);
     const [error, setError] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -43,11 +43,13 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
 
     const addItemToCart = async (productID: string) => {
         setIsLoading(true);
+        setCartItemsLoading(true);
         await addToCart(productID, 1);
-        await displayCart();
         setCartUpdated(true);
+        await displayCart();
         setIsLoading(false);
         setCartOpen(true);
+        setCartItemsLoading(false);
     }
 // --------------------------------------------------------------------------------------------------------------------------
 
@@ -77,7 +79,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover'
             />
         </div>
-        <div className='h-fit text-lg' key={item.id}>
+        <div className='h-fit w-full text-lg p-5' key={item.id}>
             <div className='flex justify-center grid lg:grid-cols-2'>
                 {/* Apparel Images */}
                 {item.image.length > 0 && (
@@ -86,53 +88,22 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                         {/* Add a carousel for images inside current div */}
                         <Carousel
                             prevArrow={({ handlePrev }) => (
-                                <IconButton
-                                    variant="text"
+                                <button
                                     color="black"
-                                    size="md"
                                     onClick={handlePrev}
-                                    className="!absolute top-2/4 left-3 -translate-y-2/4 rounded-full" placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}
+                                    className="absolute top-2/4 left-3 -translate-y-2/4 rounded-full p-6 hover:bg-black/20 transition duration-200"
                                 >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                    stroke="currentColor"
-                                    className="h-4 w-4"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      d="M10.5 19.5L3 12l7.5-7.5"
-                                    />
-                                  </svg>
-                                </IconButton>
+                                  <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={8} height={1}/>
+                                </button>
                               )}
                               nextArrow={({ handleNext }) => (
-                                <IconButton
-                                  variant="text"
-                                  color="black"
-                                  size="md"
-                                  onClick={handleNext}
-                                  className="!absolute top-2/4 !right-3 -translate-y-2/4 rounded-full"
-                                  placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}
+                                <button
+                                    color="black"
+                                    onClick={handleNext}
+                                    className="absolute top-2/4 right-3 -translate-y-2/4 rounded-full p-6 hover:bg-black/20 transition duration-200"
                                 >
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    strokeWidth={2}
-                                    stroke="currentColor"
-                                    className="h-4 w-4"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      d="M13.5 4.5L21 12l-7.5 7.5"
-                                    />
-                                  </svg>
-                                </IconButton>
+                                  <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={8} height={1}/>
+                                </button>
                             )}
                             className="flex overflow-hidden"
                             placeholder={undefined}

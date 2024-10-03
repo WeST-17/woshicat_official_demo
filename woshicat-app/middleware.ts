@@ -10,13 +10,13 @@ export default function setCSPHeader(
     // Modify CSP header to include the nonce
     const cspHeader = `
         default-src 'self';
-        script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${
-            process.env.NODE_ENV === "production" ? "" : `'unsafe-eval'`
+        script-src 'self' 'nonce-${nonce}' ${
+            process.env.NODE_ENV === "production" ? `'unsafe-inline' 'unsafe-eval' https://www.woshicat.com` : `'unsafe-eval'`
           };
         style-src 'self' 'unsafe-inline';
-        img-src 'self' cdn.shopify.com instagram.com cdninstagram.com blob: data:;
-        frame-src 'self' cdn.shopify.com blob: data:;
-        media-src 'self' cdn.shopify.com data:;
+        img-src 'self' *.shopify.com cdn.shopify.com blob: data:;
+        frame-src 'self' *.shopify.com cdn.shopify.com blob: data:;
+        media-src 'self' *.shopify.com cdn.shopify.com data:;
         font-src 'self';
         object-src 'none';
         base-uri 'self';
@@ -47,7 +47,10 @@ export default function setCSPHeader(
     response.headers.set(
     'Content-Security-Policy',
     contentSecurityPolicyHeaderValue
-    )
+    );
+
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    response.headers.set('X-Content-Type-Options', 'nosniff');
 
     return response
-}
+};

@@ -11,7 +11,7 @@ interface CoverHeaderProp {
 const CoverHeader: React.FC<CoverHeaderProp> = ({ src, alt, header }) => {
     return (
         <>
-            <div className="bg-black/25 absolute left-0 text-7xl text-white w-full h-full text-center flex items-center z-[999]">
+            <div className="bg-black/25 absolute left-0 text-4xl md:text-7xl text-white w-full h-full text-center flex items-center z-[999]">
                 <h1 className="p-4">{header}</h1>
             </div>
             <Image

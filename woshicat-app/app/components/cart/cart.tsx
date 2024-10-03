@@ -3,22 +3,11 @@ import Link from "next/link";
 import { FinalCheckout } from "@/app/action";
 import { useCart } from './cartContext';
 import QuantityAdjuster from "./cartItemModify";
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
-interface CartItem {
-    cartItemID: string;
-    title: string;
-    price: string;
-    quantity: number;
-    image: string;
-    variantTitle?: string;
-    size?: string;
-    color?: string;
-  }
 
 const Cart: React.FC = () => {
-    const { cartOpen, setCartOpen, setCartUpdated, cartItemsLoading, setCartItemsLoading } = useCart();
-    const { cartItems }: { cartItems: CartItem[] } = useCart();
+    const { cartOpen, setCartOpen, setCartUpdated, cartItemsLoading, setCartItemsLoading, cartItems } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
     function formHandle(title: string) {
@@ -27,9 +16,9 @@ const Cart: React.FC = () => {
     }
 
     const openCart = () => {
-        setCartOpen(true);
-        // Fetch cart items when the cart is opened
+        setCartItemsLoading(true);
         setCartUpdated(true);
+        setCartOpen(true);
         setCartItemsLoading(false);
     }
 
@@ -38,15 +27,7 @@ const Cart: React.FC = () => {
             setCartOpen(false);
         }
     }
-    
-    // const cartSubtotal = cartItems.reduce((total, item) => {
-    //     console.log(total, "total price before")
-    //     const itemPrice = parseFloat(item.price); // Convert price string to float
-    //     const itemQuantity = item.quantity; // Get the quantity of the item
-    //     const totalPrice = total + itemPrice * itemQuantity; // Accumulate subtotal
-    //     console.log(totalPrice)
-    //     return totalPrice
-    //   }, 0);
+
     
     const checkout = async () => {
         const checkoutUrl = await FinalCheckout();
@@ -62,7 +43,7 @@ const Cart: React.FC = () => {
     return (
         <>
             {/* Button to Open Cart */}
-            <button onClick={openCart} className={`cart_btn flex items-center justify-center text-xl pe-4`}>
+            <button onClick={openCart} className={`cart_btn flex items-center justify-center text-xl me-4`}>
                 {'[cart]'}
             </button>
 
@@ -86,7 +67,7 @@ const Cart: React.FC = () => {
                                 return (
                                 <div key={item.cartItemID} className="relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
                                     
-                                    <Link href={`/`} className="pointer-events-none" passHref>
+                                    <Link href={`/`} aria-disabled={true} className="pointer-events-none" passHref>
                                         <img
                                         src={item.image}
                                         alt={item.variantTitle}
@@ -126,10 +107,10 @@ const Cart: React.FC = () => {
                     </button>
                     {/* Centered Checkout Button */}
                     <div className="w-full absolute bottom-0 flex flex-col items-center justify-end p-8 gap-4">
-                        {/* Not working correctly... <div className="flex justify-end items-center w-80 text-xl">
+                        {/* <div className="flex justify-end items-center w-80 text-xl">
                             <p className="text-2xl">Subtotal: ${Number(cartSubtotal).toFixed(2)}</p>
                         </div> */}
-                        <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-80 mx-auto ${cartItems.length <= 0 ? 'hidden' : 'bg-black'}`}>Checkout</button>
+                        <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-80 mx-auto ${cartItems.length <= 0 ? 'bg-black/50' : 'bg-black'}`}>Checkout</button>
                     </div>
                     
                 </div>

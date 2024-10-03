@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Footer = () => {
     return (
-        <footer className="relative col-span-8 grid-cols-8 self-end items-center justify-center min-h-[250px] bg-stone-50 text-base text-stone-700">
+        <footer className="relative grid-cols-8 self-end items-center justify-center min-h-[250px] bg-stone-50 text-base text-stone-700">
             <div className="col-span-8 p-8">
                 <div className="border-t border-stone-400 mb-3"/>
                 {/* Social Media */}
@@ -19,27 +19,17 @@ const Footer = () => {
                             />
                         </Link>
                     </div>
-                    <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
-                        <Link href='https://tiktok.com/woshicatofficial' target='_blank'>
-                            <Image 
-                                src={'/logo/tiktok-brands-solid.svg'}
-                                alt={'TikTok'}
-                                className="text-stone-700 hover:scale-[1.05] transition duration-300"
-                                width={20}
-                                height={20}
-                            />
-                        </Link>
-                    </div>
+                    
                 </div>
             </div>
-            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm">
-                <Link href={'/privacy'}>Privacy Policy</Link>
-                <Link href={'/terms_of_service'}>Terms of Service</Link>
-                <Link href={'/faq'}>FAQ</Link>
-                <Link href={'/faq#contact'}>Contact Us</Link>
+            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400">
+                <Link href={'/privacy-policy'} className="hover:text-black transition duration-250">Privacy Policy</Link>
+                <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
+                <Link href={'/brand/faq'} className="hover:text-black transition duration-250">FAQ</Link>
+                <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
             </div>
             <div className="mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8">
-                &copy; WoShi Cat, 2024
+                WoShi Cat, LLC - 2024
             </div>
         </footer>
     )

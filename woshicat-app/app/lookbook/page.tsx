@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const Collections = () => {
+const Lookbook = () => {
   
   return (
     <>
@@ -31,4 +31,4 @@ const Collections = () => {
   );
 }
 
-export default Collections;
+export default Lookbook;

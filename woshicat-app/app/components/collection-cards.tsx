@@ -57,7 +57,7 @@ function CollectionCards({ collection }: CollectionType) {
   return (
     <>
     <Suspense fallback={<LoadingScreen />}>
-    <div className='grid grid-cols-1 w-screen md:grid-cols-3 flex justify-center gap-8'>
+    <div className='grid grid-cols-1 w-screen md:grid-cols-3 flex justify-center gap-2'>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item

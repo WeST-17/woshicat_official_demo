@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { incrementQuantity, decrementQuantity, removeItemCart } from '@/app/action';
 import { useCart } from './cartContext';
+import Image from 'next/image';
 
 interface QuantityAdjusterProps {
   lineItemID: string;
@@ -82,9 +83,16 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initial
       </button>
       <button
         onClick={handleDeleteItem}
-        className="px-2 py-1 text-black hover:scale-[1.05] transition duration-300"
+        className="absolute flex flex-col justify-center items-center right-0 bottom-0 text-black hover:bg-stone-400/25 transition duration-300 text-xs px-2 py-1 m-5 rounded-md"
       >
-        {'[trash]'}
+        <Image
+          src={'/icons/Woshi Trash.png'}
+          alt={'trashcan icon, yoyo trash'}
+          width={35}
+          height={1}
+          className=''
+        />
+        Remove
       </button>
     </div>
   );

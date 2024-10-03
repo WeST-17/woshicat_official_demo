@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import Image from "next/image";
 
 const EmailList = () => {
 
@@ -24,23 +25,24 @@ const EmailList = () => {
 
     return (
         <>
-          <div className="relative w-fit text-center flex justify-center items-center gap-8">
-            <label>WoShi Cat Newsletter!</label>
+          <form className="relative w-[320px] h-[120px] md:w-full text-start flex flex-col justify-start items-center gap-2">
+            <div className="text-2xl">WoShi Cat Newsletter!</div>
             <div className="flex justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
                 <input id='email' name='email' type='email' autoComplete="email" placeholder="help@woshicat.com"
-                className="flex w-48 lg:w-72 text-center border-0 py-1.5 pe-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+                className="flex w-full md:w-96 text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
                 onChange={handleEmailChange} required/>
                 <button
                   type="submit"
-                  className="m-1 rounded-md bg-stone-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
+                  className={`m-1 rounded-md w-10 h-10 flex justify-center items-center aspect-square text-sm font-semibold text-white shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${!isEmailValid || email === '' ? 'bg-stone-200' : 'bg-stone-400 hover:bg-stone-500'}`}
                   onClick={joinNewsLetter}
-                  disabled={!isEmailValid}
+                  disabled={!isEmailValid || email === ''}
                   >
-                  Submit!
+                  <Image src={'/icons/paper-plane-regular.svg'} alt={'submit'} width={15} height={15}/>
                 </button>
-                <div className={`absolute top-12 left-10 z-[999] text-red-600 text-sm ${!isEmailValid ? '' : 'hidden'}`}>Yoyo Says: Use a valid email please...</div>
-            </div>    
-          </div>
+                
+            </div> 
+            <div className={`z-[999] text-red-600 text-sm ${!isEmailValid ? '' : 'hidden'}`}>Yoyo Says: Use a valid email please...</div> 
+          </form>
         </>
     )
 }
