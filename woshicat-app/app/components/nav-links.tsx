@@ -25,7 +25,7 @@ const links = [
   },
   { 
     name: 'Brand', 
-    href: '/brand',
+    href: '/brand/about',
     subLinks: [
       { name: 'About', href: '/brand/about'},
       { name: 'FAQ', href: '/brand/faq'},

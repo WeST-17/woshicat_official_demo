@@ -12,9 +12,7 @@ export default function setCSPHeader(
     // Modify CSP header to include the nonce
     const cspHeader = `
         default-src 'self';
-        script-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${
-            process.env.NODE_ENV === "production" ? "" : `'unsafe-eval'`
-          };
+        script-src 'self' 'nonce-${nonce}' 'unsafe-eval';
         style-src 'self' 'unsafe-inline';
         img-src 'self' cdn.shopify.com instagram.com cdninstagram.com blob: data:;
         frame-src 'self' cdn.shopify.com blob: data:;
