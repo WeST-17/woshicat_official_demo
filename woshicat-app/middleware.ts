@@ -11,7 +11,7 @@ export default function setCSPHeader(
     const cspHeader = `
         default-src 'self';
         script-src 'self' 'nonce-${nonce}' 'unsafe-eval' ${
-            process.env.NODE_ENV === "production" ? `'https://www.woshicat.com` : `https://localhost:3000`
+            process.env.NODE_ENV === "production" ? `https://www.woshicat.com` : `https://localhost:3000`
           };
         style-src 'self' 'unsafe-inline';
         img-src 'self' *.shopify.com cdn.shopify.com blob: data:;
