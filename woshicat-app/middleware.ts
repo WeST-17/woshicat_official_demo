@@ -10,9 +10,7 @@ export default function setCSPHeader(
     // Modify CSP header to include the nonce
     const cspHeader = `
         default-src 'self';
-        script-src 'self' 'nonce-${nonce}' 'unsafe-eval' 'unsafe-inline' ${
-            process.env.NODE_ENV === "production" ? `https://www.woshicat.com` : `https://localhost:3000`
-          };
+        script-src 'self' https: http: 'unsafe-inline' ${process.env.NODE_ENV === 'production' ? '' : `'unsafe-eval'`};
         style-src 'self' 'unsafe-inline';
         img-src 'self' *.shopify.com cdn.shopify.com blob: data:;
         frame-src 'self' *.shopify.com cdn.shopify.com blob: data:;
