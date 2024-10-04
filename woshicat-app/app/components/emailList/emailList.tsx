@@ -21,7 +21,7 @@ const EmailList = () => {
   };
 
   const joinNewsletter = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent form submission
+    // e.preventDefault(); // Prevent form submission
 
     if (isEmailValid && email !== '') {
       AddEmailSubscriber(email);
@@ -61,7 +61,6 @@ const EmailList = () => {
       </div>
       <form
         className="relative w-[320px] h-[150px] md:w-full text-start flex flex-col justify-start items-center"
-        onSubmit={joinNewsletter}
       >
         <div className="text-2xl flex justify-center items-center gap-3">
           <h1>WoShi Cat Newsletter!</h1> 
@@ -83,7 +82,7 @@ const EmailList = () => {
             required
           />
           <button
-            type="submit"
+            type="button"
             className={`m-1 rounded-md w-10 h-10 flex justify-center items-center aspect-square text-sm font-semibold text-white shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
               !isEmailValid || email === '' ? 'bg-stone-200' : 'bg-stone-400 hover:bg-stone-500'
             }`}
