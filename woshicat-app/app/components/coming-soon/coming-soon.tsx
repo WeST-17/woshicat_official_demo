@@ -45,7 +45,7 @@ export default function ComingSoon() {
             </Link>
         </div>
         <div className="z-[100] px-6 py-2 max-sm:mx-1 w-fit h-fit rounded-md flex justify-center items-center">
-          <EmailList />
+          <p className="bg-black/50 text-white px-2 py-1 rounded-sm">Coming Soon! Follow us on Instagram for updates!</p>
         </div>
       </div>
     </div>
