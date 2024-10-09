@@ -71,7 +71,7 @@ async function getCollection(collectionName: string) {
     // Extract necessary information from each product
     const serializedProducts = collectionItems.products.map((product) => {
       const image = product.images[0];
-      const image2 = product.images[2];
+      const image2 = product.images[7] ? product.images[7] : product.images[3];
       // console.log("Product Type: ",product.productType)
 
       const plainImage = {
@@ -84,7 +84,7 @@ async function getCollection(collectionName: string) {
         url: image2?.src || '',
         altText: image2?.altText || '',
       }
-
+      // console.log('available: ', product.availableForSale)
       return {
         id: product.id,
         handle: product.handle,
@@ -93,6 +93,7 @@ async function getCollection(collectionName: string) {
         image2: plainImage2,
         collection: collectionName,
         price: Number(product.variants[0].price.amount).toFixed(2),
+        available: !!product.availableForSale,
         // add more properties as needed
       };
     });
@@ -223,6 +224,18 @@ export async function getServerItemProps({ params }: any) {
 }
 
 // Cart functions: //
+
+export async function getItemQuantityCart(variantID: string) {
+  const checkoutID = cookies().get('checkoutID');
+  if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
+    throw new Error('Checkout not found');
+  }
+
+  const checkout = await client.checkout.fetch(checkoutID.value);
+  const lineItems = checkout.lineItems.filter((item: any) => item.id === variantID);
+  
+  return lineItems.length > 0 ? lineItems[0].quantity : 0; // Return the line item if found, otherwise return null
+}
 
 async function findLineItemCart(variantID: string) {
   const checkoutID = cookies().get('checkoutID');
@@ -365,6 +378,6 @@ export async function FinalCheckout() {
 }
 
 export async function FetchPrivacyPolicy() {
-  const policies = await client.shop.fetchPolicies();
-  return policies;
+  const privacy = (await client.shop.fetchPolicies()).privacyPolicy?.body!;
+  return privacy;
 }

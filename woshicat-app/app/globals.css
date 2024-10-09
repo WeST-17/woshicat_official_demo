@@ -160,9 +160,36 @@ body {
   animation: spin 1s ease-in-out infinite;
 }
 
+.loader-screen {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 2px solid #CD000A;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s ease-in-out infinite;
+}
+
+.loader-item-change {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 2px solid #a8a29e;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s ease-in-out infinite;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+
+.fade-in.show {
+  opacity: 1;
 }
 
 .collapse-item {

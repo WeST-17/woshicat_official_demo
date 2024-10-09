@@ -19,9 +19,6 @@ const links = [
   },
   { name: 'Lookbook', 
     href: '/lookbook',
-    subLinks: [
-      {name: 'Metro Daydreams', href: '/lookbook/metro-daydreams'}
-    ],
   },
   { 
     name: 'Brand', 

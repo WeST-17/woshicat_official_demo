@@ -1,9 +1,8 @@
 'use client'
 // CollectionCards.tsx
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getServerCollectionProps } from '../action';
 import Link from 'next/link';
-import LoadingScreen from './loading';
 
 interface CollectionType {
     collection: string
@@ -12,20 +11,13 @@ interface CollectionType {
 function CollectionCards({ collection }: CollectionType) {
   const [products, setProducts] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
-  const [productHover, setProductHover] = useState<string | null>(null);
-
-  const handleMouseEnter = (name: string) => {
-    setProductHover(name);
-  };
-
-  const handleMouseLeave = () => {
-    setProductHover(null);
-  };
+  const [loading, setLoading] = useState<boolean>(true);
   
   useEffect(() => {
 
     const fetchData = async () => {
       try {
+        setLoading(true);
         const { products, error } = await getServerCollectionProps(collection);
         if (error) {
           setError(error);
@@ -35,11 +27,22 @@ function CollectionCards({ collection }: CollectionType) {
       } catch (error) {
         console.error('Error fetching server component props:', error);
         setError(error);
+      } finally {
+        setLoading(false);
       }
+      
     };
     console.log('Products Gallery loaded.');
     fetchData();
-  }, []);
+  }, [collection]);
+
+  if (loading) {
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <div className="loader-screen" /> {/* Replace with actual loading spinner */}
+      </div>
+    );
+  }
 
   if (error != null) {
     return <div className='flex justify-center w-[100vw] h-[50vh] mt-64'>Something happened on our end!</div>;
@@ -52,28 +55,33 @@ function CollectionCards({ collection }: CollectionType) {
     collectionAdjust = collection;
   }
 
-  console.log(products)
-
   return (
     <>
-    <Suspense fallback={<LoadingScreen />}>
-    <div className='grid grid-cols-1 w-screen md:grid-cols-3 flex justify-center gap-2'>
+    <div className={`grid grid-cols-1 w-full mx-1 mx-auto md:grid-cols-3 flex justify-center gap-2 fade-in ${!loading ? 'show' : ''}`}>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
-        <div className='text-center' 
+        <div className='relative text-center' 
           key={product.name}
-          onMouseEnter={() => handleMouseEnter(product.name)}
-          onMouseLeave={handleMouseLeave}
         >
+          <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+          
           <div className='flex justify-center overflow-hidden'>
             <Link className='w-full flex justify-center bg-white' href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
             {/* Render product details */}
-            <div>
+            <div className='relative w-full'>
+              {/* Default product image */}
               <img 
-                src={productHover === product.name ? product.image2.url || product.image.url : product.image.url} 
-                alt={product.image.altText}
-                className='object-cover aspect-square'
+                src={product.image.url} 
+                alt={product.image.altText} 
+                className='object-cover aspect-square transition-opacity duration-500 ease-in-out hover:opacity-0'
+              />
+              
+              {/* Hover image */}
+              <img 
+                src={product.image2.url} 
+                alt={product.image2.altText} 
+                className='absolute top-0 left-0 w-full h-full object-cover aspect-square opacity-0 transition-opacity duration-125 ease-in-out hover:opacity-100'
               />
             </div>
             </Link>
@@ -85,7 +93,6 @@ function CollectionCards({ collection }: CollectionType) {
         </div>
       ))}
     </div>
-    </Suspense>
     </>
   );
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FinalCheckout } from "@/app/action";
 import { useCart } from './cartContext';
 import QuantityAdjuster from "./cartItemModify";
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 
 
 const Cart: React.FC = () => {
@@ -57,7 +57,7 @@ const Cart: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
-                    <h2 className="relative text-lg font-medium m-10 mb-8">Nice Cart</h2>
+                    <h2 className="relative text-2xl font-medium m-10 mb-8">Nice Cart</h2>
                     {/* Cart content */}
                         {cartItems.length > 0 ? (
                         <div className="cart-items gap-2">
@@ -67,13 +67,13 @@ const Cart: React.FC = () => {
                                 return (
                                 <div key={item.cartItemID} className="relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
                                     
-                                    <Link href={`/`} aria-disabled={true} className="pointer-events-none" passHref>
+                                    <div className="pointer-events-none">
                                         <img
                                         src={item.image}
                                         alt={item.variantTitle}
                                         className="w-24 h-24 object-cover rounded-md mr-4"
                                         />
-                                    </Link>
+                                    </div>
                                     <div>
                                     <h3 className="text-lg font-thin mb-2">{item.title}</h3>
                                     {item.size && item.size !== 'Default Title' && item.color && item.color !== 'N/A' && (
@@ -110,7 +110,7 @@ const Cart: React.FC = () => {
                         {/* <div className="flex justify-end items-center w-80 text-xl">
                             <p className="text-2xl">Subtotal: ${Number(cartSubtotal).toFixed(2)}</p>
                         </div> */}
-                        <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-80 mx-auto ${cartItems.length <= 0 ? 'bg-black/50' : 'bg-black'}`}>Checkout</button>
+                        <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-80 mx-auto ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
                     </div>
                     
                 </div>

@@ -9,46 +9,57 @@ const Collections = () => {
   
   return (
     <>
-    <main className="w-screen grid grid-cols-9">
-      <div className="relative col-span-9 h-96">
+    <main className="w-screen grid grid-cols-9 gap-1">
+      <div className="relative col-span-9 h-fit md:h-96 overflow-hidden">
         <CoverHeader
-          src={'/media/collection_page_covers/s_k_pointnlook.JPG'} 
+          src={'/media/collections-page/1.jpg'} 
           alt={'models pointing out and wearing woshi cat shirts'}
           header={'Collections'}
+          additional="lg:-translate-y-36 xl:-translate-y-60"
         />
         
       </div>
-      <div className="col-span-9 md:text-xl font-thin flex justify-center items-center text-center my-9">
-        <div className="p-8 md:w-1/2 border-b border-t">Find out in-house collections here! Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge: A Salary Cat in a human world.
+      <div className="w-full mx-auto col-span-9 grid grid-cols-9">
+        <div className="col-span-9 md:text-xl font-thin flex justify-center items-center text-center my-9">
+          <div className="my-4 pt-8 md:w-1/2 border-b border-t">
+            <h2 className="text-2xl">Designed in-house. Yoyo&apos;s happy you&apos;re here!</h2>
+            <Image 
+              src={'/media/graphics/Yoyo happy.png'}
+              alt={'Yoyo the cat smiling slightly'}
+              width={200}
+              height={1}
+              className="mx-auto pointer-events-none"
+            />
+          </div>
+        </div>
+        <div className="w-full mx-auto col-span-9 grid grid-cols-9 p-1">
+          <div className="relative md:col-span-6 col-span-9 max-md:aspect-square"> {/* Change to square potentially when we have more collections */}
+            <Link href={'/collections/metro-daydreams/'} >
+              <div className="button-hover overflow-hidden">
+                  <Image
+                    src={'/media/collections-page/2.jpg'}
+                    fill={true}
+                    alt={'Metro DayDreams Collection'}
+                    className="object-cover object-[50%_42%]"
+                  />
+                <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5">
+                    <h2 className="md:text-4xl ">Metro Daydreams</h2>
+                    <ShopNowButton />
+                  </div>
+              </div>
+            </Link>
+          </div>
+          <div className="relative col-span-9 md:col-span-3 aspect-square">
+            <Image
+              src={'/media/collections-page/3.jpg'}
+              fill={true}
+              alt={'Metro DayDreams Collection'}
+              className="object-cover"
+            />
+          </div>
+          {/* Next section */}
         </div>
       </div>
-      
-      <div className="relative col-span-6 mx-1">
-        <Link href={'/collections/metro-daydreams/'}>
-          <div className="button-hover">
-              <Image
-                src={'/media/collection_page_covers/s_k_pointnlook.JPG'}
-                fill={true}
-                alt={'Metro DayDreams Collection'}
-                className="object-cover"
-              />
-            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/25 w-4/5">
-                <h2 className="md:text-4xl ">Metro Daydreams</h2>
-                <ShopNowButton />
-              </div>
-          </div>
-        </Link>
-      </div>
-      <div className="relative col-span-9 md:col-span-3 aspect-square mx-1">
-        <Image
-          src={'/media/collection_page_covers/s_k_pointnlook.JPG'}
-          fill={true}
-          alt={'Metro DayDreams Collection'}
-          className="object-cover"
-        />
-      </div>
-       {/* Next section */}
-      
     </main>
     </>
   );

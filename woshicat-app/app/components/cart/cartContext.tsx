@@ -9,10 +9,23 @@ interface CartContextType {
   setCartOpen: React.Dispatch<React.SetStateAction<boolean>>;
   cartUpdated: boolean;
   setCartUpdated: React.Dispatch<React.SetStateAction<boolean>>;
-  cartItems: [];
-  setCart: React.Dispatch<React.SetStateAction<[]>>;
+  cartItems: CartItems[];
+  setCart: React.Dispatch<React.SetStateAction<CartItems[]>>;
   cartItemsLoading: boolean;
   setCartItemsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface CartItems {
+  title: any;
+  cartItemID: any;
+  variantID: any;
+  size: any;
+  color: any;
+  variantTitle: any;
+  quantity: any;
+  price: string;
+  currency: any;
+  image: any;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -20,7 +33,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cartOpen, setCartOpen] = useState(false);
   const [cartUpdated, setCartUpdated] = useState(false);
-  const [cartItems, setCart] = useState<any>([]);
+  const [cartItems, setCart] = useState<CartItems[]>([]);
   const [cartItemsLoading, setCartItemsLoading] = useState(false);
 
   useEffect(() => {
@@ -32,9 +45,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setCartItemsLoading(false);
     };
     
-    if (cartUpdated === true) {
-        fetchCartItems();
-    }
+    fetchCartItems();
   }, [cartUpdated]);
 
   return (

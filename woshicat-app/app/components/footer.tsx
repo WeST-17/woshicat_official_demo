@@ -4,7 +4,7 @@ import Image from "next/image";
 const Footer = () => {
     return (
         <footer className="relative grid-cols-8 self-end items-center justify-center min-h-[250px] bg-stone-50 text-base text-stone-700">
-            <div className="col-span-8 p-8">
+            <div className="col-span-8 p-4">
                 <div className="border-t border-stone-400 mb-3"/>
                 {/* Social Media */}
                 <div className='flex text-sm text-stone-400 justify-center items-center'>
@@ -12,7 +12,7 @@ const Footer = () => {
                         <Link href='https://instagram.com/woshicatofficial' target='_blank'>
                             <Image 
                                 src={'/logo/instagram-brands-solid.svg'}
-                                alt={'Instagram'}
+                                alt={'Instagram - WoShi Cat Official!'}
                                 className="text-stone-700 hover:scale-[1.05] transition duration-300"
                                 width={25}
                                 height={25}

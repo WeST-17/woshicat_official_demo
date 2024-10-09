@@ -20,7 +20,7 @@ const Collapse: React.FC<CollapseProps> = ({ children, plus, minus, classProp}) 
         <>
             <button 
                 onClick={toggleItem} 
-                className={`text-md flex justify-end ${classProp}`}
+                className={`text-md flex ${classProp}`}
             >
                 {openItem ? minus || ' - ' : plus || ' + '}
             </button>
