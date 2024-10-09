@@ -4,7 +4,7 @@ import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
 import Link from "next/link";
-// import EmailList from "./components/emailList/emailList";
+//import EmailList from "./components/emailList/emailList";
 import ShopNowButton from "./components/ShopNowButton";
 
 
