@@ -27,7 +27,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
   return (
     <html lang="en">
       <body className={`${changa.className} text-stone-700`}>
-        {/* Remember to remove layout wrapper oct 12, 2024... */}
+        {/* Remember to remove layout wrapper oct 12, 2024 */}
           <LayoutWrapper>
             <CartProvider>
             <Header />
