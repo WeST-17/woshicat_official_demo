@@ -1,7 +1,6 @@
 'use client';
 import Link from "next/link";
 import Image from "next/image";
-import EmailList from "../emailList/emailList";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
