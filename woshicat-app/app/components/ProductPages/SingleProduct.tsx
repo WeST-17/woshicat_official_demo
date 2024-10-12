@@ -182,7 +182,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                     key={index}
                                     src={image.url}
                                     alt={image.altText}
-                                    className='mx-auto snap-center pb-8 pointer-events-none aspect-[4/5] object-contain h-full'
+                                    className='mx-auto snap-center pb-8 pointer-events-none max-sm:aspect-square aspect-[4/5] object-contain'
                                 />
                             ))}
                         </Carousel>

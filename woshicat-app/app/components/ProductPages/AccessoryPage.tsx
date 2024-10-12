@@ -142,7 +142,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                                     key={index}
                                     src={image.url}
                                     alt={image.altText}
-                                    className='mx-auto snap-center pb-8 pointer-events-none aspect-[4/5] object-contain h-full'
+                                    className='mx-auto snap-center pb-8 pointer-events-none aspect-[4/5] max-sm:aspect-square object-contain'
                                 />
                             ))}
                         </Carousel>
