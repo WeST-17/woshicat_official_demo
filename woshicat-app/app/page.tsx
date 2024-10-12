@@ -20,7 +20,7 @@ const Home = () => {
       <div className="relative grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">
           {/* Upload and replace video link */}
-          <video className="w-[100vw] object-cover min-h-full" autoPlay loop muted playsInline={false} data-v-f518367b="" preload="metadata"><source src="/media/video/Z06_1930.MP4" type="video/mp4" data-v-f518367b="" /></video> 
+          <video className="w-[100vw] object-cover min-h-full" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/video/Z06_1930.MP4" type="video/mp4" data-v-f518367b="" /></video> 
         </div>
         <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>
       </div>
@@ -75,7 +75,7 @@ const Home = () => {
         <div className="button-hover relative col-span-9 md:col-span-6 overflow-hidden md:aspect-[2/1] aspect-square"> {/* Remember to change back to square when we have more collections! */}
           <Link href={'/collections/metro-daydreams/'}>
             <div className="">
-              <video className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={false} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> 
+              <video className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> 
               
             </div>
             <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 md:w-3/5 z-[100]">
