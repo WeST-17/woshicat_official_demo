@@ -77,7 +77,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
 
     return (
         <>
-        <div className={`relative flex justify-center items-center h-[80vh] w-full bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
+        <div className={`relative flex justify-center items-center h-[50vh] md:h-[80vh] w-full bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product. Upload directly as part of code base in Vercel i.e., /[handle] */}
             <div className='absolute object-cover w-screen h-full bg-black/45 z-[100] flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-7xl'>{item.name}</h1>
