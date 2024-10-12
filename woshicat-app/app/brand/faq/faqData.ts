@@ -1,7 +1,7 @@
 export const FAQ = [
     { 
         q: 'What breed of cat is Yoyo?',
-        a: 'A British Shorthair',
+        a: 'A British Shorthair.',
         link: 'yoyo'
     },
     { 
