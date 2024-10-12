@@ -62,7 +62,7 @@ function CollectionCards({ collection }: CollectionType) {
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
-        <FadeInImage>
+        <FadeInImage key={product.name}>
         <div className='relative text-center' 
           key={product.name}
         >
