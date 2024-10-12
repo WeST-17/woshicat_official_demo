@@ -17,6 +17,7 @@
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "@material-tailwind/react": "^2.1.9",
+    "cloudinary": "^2.5.1",
     "clsx": "^2.1.0",
     "dotenv": "^16.4.1",
     "framer-motion": "^11.0.3",

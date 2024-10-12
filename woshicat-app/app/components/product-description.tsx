@@ -23,7 +23,7 @@ const ProductDescription: React.FC<Description> = ({ description }) => {
                 <Collapse plus={'Product Details +'} minus={'Product Details -'} classProp='w-full text-stone-500 pb-1 hover:text-black transition duration-200 text-lg'>
                     {updateDesc.slice(1).map((val: string) => (
                         <>
-                            {val !== " " ? <p className="text-md">{val}</p> : <br></br>}
+                            {val !== " " ? <p className="">{val}</p> : <br></br>}
                         </>
                     ))}
                 </Collapse>

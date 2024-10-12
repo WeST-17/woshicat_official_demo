@@ -86,14 +86,15 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                 src={item.image[3] ? item.image[3].url : item.image[0].url}
                 alt={`Image of the ${handle}`}
                 fill={true}
+                priority
                 className='object-cover'
             />
         </div>
         <div className='h-full w-full xl:w-3/4 mx-auto text-lg p-5' key={item.id}>
             <div className='flex justify-center items-start grid lg:grid-cols-2 gap-8'>
-                {/* Apparel Images */}
+                {/* Accessory Images */}
                 {item.image.length > 0 && (
-                    <div className='relative lg:col-span-1 aspect-square'>
+                    <div className='relative lg:col-span-1 bg-white rounded-md'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <Carousel
@@ -101,7 +102,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                                 <button
                                     color="black"
                                     onClick={handlePrev}
-                                    className="absolute top-2/4 left-3 -translate-y-2/4 rounded-full p-6 hover:bg-black/20 transition duration-200"
+                                    className="absolute top-2/4 left-3 -translate-y-2/4 rounded-md p-3 hover:bg-black/20 transition duration-200"
                                 >
                                   <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={8} height={1}/>
                                 </button>
@@ -110,19 +111,19 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                                 <button
                                     color="black"
                                     onClick={handleNext}
-                                    className="absolute top-2/4 right-3 -translate-y-2/4 rounded-full p-6 hover:bg-black/20 transition duration-200"
+                                    className="absolute top-2/4 right-3 -translate-y-2/4 rounded-md p-3 hover:bg-black/20 transition duration-200"
                                 >
                                   <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={8} height={1}/>
                                 </button>
                             )}
-                            className="flex overflow-hidden"
+                            className="flex"
                             placeholder={undefined}
                             navigation={({ setActiveIndex, activeIndex, length }) => (
                                 <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
                                     {new Array(length).fill("").map((_, i) => (
                                         <span
                                             key={i}
-                                            className={`block flex justify-center items-center h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-12 mb-8" : "w-12 mb-8 opacity-25"}`}
+                                            className={`block flex justify-center items-center h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-12 mb-4" : "w-12 mb-4 opacity-25"}`}
                                             onClick={() => setActiveIndex(i)}
                                         >
                                             <Image
@@ -141,7 +142,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                                     key={index}
                                     src={image.url}
                                     alt={image.altText}
-                                    className='mx-auto snap-center pointer-events-none object-contain h-full aspect-square bg-white'
+                                    className='mx-auto snap-center pb-8 pointer-events-none aspect-[4/5] object-contain h-full'
                                 />
                             ))}
                         </Carousel>

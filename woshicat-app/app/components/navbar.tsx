@@ -1,6 +1,7 @@
 'use client';
 import NavLinks from "./nav-links";
 import Link from "next/link";
+import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
 
 export default function Navigation() {
@@ -62,15 +63,23 @@ export default function Navigation() {
                     </div>
 
                     {/* Menu Footer */}
-                    <div className="w-full flex justify-end self-end row-start-4 row-end-5">
+                    {/* <div className="w-full flex justify-end self-end row-start-4 row-end-5">
                         <div className="pe-2 text-end text-base w-full"></div>
-                    </div>
-                    <div className="w-full flex justify-end self-end row-start-6"> 
+                    </div> */}
+                    <div className="w-full flex justify-start self-end row-start-6"> 
                         {/* Social Media */}
                         <div className='p-2 mb-8 flex text-sm text-stone-400'>
-                            <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://instagram.com/woshicatofficial' target='_blank'>Instagram</Link></div>
-                            <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://tiktok.com' target='_blank'>TikTok</Link></div>
-                            <div className="text-end rounded-md hover:text-stone-900 transition duration-300 p-2"><Link href='https://youtube.com' target='_blank'>YouTube</Link></div>
+                            <div className="text-start rounded-md hover:text-stone-900 transition duration-300 p-2">
+                            <Link href='https://instagram.com/woshicatofficial' target='_blank'>
+                                <Image 
+                                    src={'/logo/instagram-brands-solid.svg'}
+                                    alt={'Instagram - WoShi Cat Official!'}
+                                    className="text-stone-700 hover:scale-[1.05] transition duration-300"
+                                    width={20}
+                                    height={20}
+                                />
+                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

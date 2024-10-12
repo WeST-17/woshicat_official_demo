@@ -76,7 +76,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
               }
             )}
           >
-            <p className="block">{link.name}</p>
+            <p className="block max-md:text-lg">{link.name}</p>
           </Link>
 
           {/* Always render dropdown */}
@@ -100,7 +100,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
                 )}
                 onClick={closeMenu}
               >
-                {subLink.name}
+                <p className="block max-md:text-lg">{subLink.name}</p>
               </Link>
             ))}
           </div>

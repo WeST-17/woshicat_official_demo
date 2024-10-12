@@ -1,22 +1,18 @@
+'use client';
 import Transition from "@/app/components/transition";
-import { Suspense } from "react";
 import TransitionSlide from "@/app/components/transitionWipe";
-import LoadingScreen from "@/app/components/loading";
 
-export default function ApparelLayout({
+export default function LookbookLayout({
     children,
   }: {
     children: React.ReactNode
   }) {
     return ( 
       <section className="flex justify-center">
-        <Suspense fallback={
-          <div className="h-[100vh] w-screen flex justify-center items-center">
-            <LoadingScreen />
-          </div>}>
-          <Transition>{children}</Transition>
-        </Suspense>
+          <Transition>
+            {children}
+          </Transition>
         <TransitionSlide />
       </section>
     )
-}
+};

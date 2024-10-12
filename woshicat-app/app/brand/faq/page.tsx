@@ -1,6 +1,6 @@
 'use client';
 import Collapse from "@/app/components/collapse-item";
-import { FAQ } from "@/app/components/textLists/faqData";
+import { FAQ } from "@/app/brand/faq/faqData";
 
 const BrandFAQ = () => {
   
@@ -17,7 +17,7 @@ const BrandFAQ = () => {
             <div className="flex flex-col justify-start w-full h-fit border-b-2 hover:border-[#CD000A] transition duration-250" key={question.link}>
               <h2 className="text-xl" id={question.link}>{question.q}</h2>
               <Collapse classProp="-translate-y-5 justify-end">
-                <p className="p-2">
+                <p className="mb-2">
                   {question.a}
                 </p>
               </Collapse>

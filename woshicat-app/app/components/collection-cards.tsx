@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { getServerCollectionProps } from '../action';
 import Link from 'next/link';
+import FadeInImage from './animationComps/FadeInImages';
 
 interface CollectionType {
     collection: string
@@ -61,6 +62,7 @@ function CollectionCards({ collection }: CollectionType) {
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
+        <FadeInImage>
         <div className='relative text-center' 
           key={product.name}
         >
@@ -91,6 +93,7 @@ function CollectionCards({ collection }: CollectionType) {
             <div className="text-stone-700 ms-auto">${product.price}</div>
           </div>
         </div>
+      </FadeInImage>
       ))}
     </div>
     </>

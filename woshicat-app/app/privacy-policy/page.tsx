@@ -1,5 +1,5 @@
 'use client';
-import { privacyDoc } from "../components/textLists/privacyData";
+import { privacyDoc } from "./privacyData";
 
 const PrivacyPolicy = () => {
   return (

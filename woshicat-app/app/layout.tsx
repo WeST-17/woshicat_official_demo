@@ -27,7 +27,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
   return (
     <html lang="en">
       <body className={`${changa.className} text-stone-700`}>
-          <LayoutWrapper>
+          {/* <LayoutWrapper> */}
             <CartProvider>
             <Header />
             <div className="w-screen mt-[70px]"/>
@@ -36,7 +36,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
               </Transition>
             <Footer />
             </CartProvider>
-          </LayoutWrapper>
+          {/* </LayoutWrapper> */}
         <TransitionSlide />
       </body>
     </html>

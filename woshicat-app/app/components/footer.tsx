@@ -9,11 +9,11 @@ const Footer = () => {
                 {/* Social Media */}
                 <div className='flex text-sm text-stone-400 justify-center items-center'>
                     <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
-                        <Link href='https://instagram.com/woshicatofficial' target='_blank'>
+                        <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-2">
                             <Image 
                                 src={'/logo/instagram-brands-solid.svg'}
                                 alt={'Instagram - WoShi Cat Official!'}
-                                className="text-stone-700 hover:scale-[1.05] transition duration-300"
+                                className="opacity-50 hover:opacity-100 transition duration-300"
                                 width={25}
                                 height={25}
                             />
