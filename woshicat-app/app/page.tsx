@@ -39,7 +39,7 @@ const Home = () => {
         <div className="col-span-9 w-screen md:text-xl font-thin flex flex-col justify-center items-center text-center mb-8">
           <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
           <div className="p-3 md:w-1/2">
-          {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge: A salarycat in a human world.`}
+          {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
           </div>
         </div>
       </section>
