@@ -34,12 +34,12 @@ export async function getImagesCloudinary(tag: string): Promise<CloudinaryImage[
             width: resource.width,
             height: resource.height,
             signed_url, // Return the signed URL
-            name: resource.display_name,
+            d_name: resource.display_name,
             quality: 100,
           };
         });
-        // console.log(cloudinaryPass)
-        return cloudinaryPass;
+        // console.log(cloudinaryPass.sort())
+        return cloudinaryPass.sort((a, b) => (a['public_id'] > b['public_id'] ? 1 : -1));
       } catch (error) {
         console.error('Error fetching Cloudinary images:', error);
         return { error: 'Error fetching images' };

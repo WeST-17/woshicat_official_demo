@@ -15,7 +15,7 @@ const Home = () => {
     <Transition>
     <main className="relative flex justify-center w-screen grid grid-cols-9">
       <div className="col-span-9 w-full h-fit flex justify-center items-center bg-orange-100">
-        <p className="m-1 font-thin max-sm:text-sm">Free shipping and sticker on orders over $70!</p>
+        <p className="m-1 font-thin max-sm:text-sm">Free shipping and one random sticker on orders over $70!</p>
       </div>
       <div className="relative grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">
