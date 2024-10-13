@@ -18,7 +18,7 @@ const About = () => {
           />
         </div>
         <div className="flex h-full justify-start items-start flex-col p-8 gap-1">
-          <div className="flex items-end gap-3">
+          <div className="flex max-md:flex-col max-md:items-start items-end gap-3">
             <h1 className="text-4xl font-bold">{`WoShi Cat:`}</h1>
             <h1 className="text-4xl">{`What's beyond the cycle?`}</h1>
           </div>
