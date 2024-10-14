@@ -1,13 +1,14 @@
 import React from "react";
 import Image from "next/image";
+import AboutImage from "@/app/components/imageHolderAbout/ImageHolderAbout";
 
 const About = () => {
   
   return (
     <>
-    <main className="flex justify-center w-screen">
+    <main className="flex flex-col justify-center w-screen gap-4">
       {/* */}
-      <div className="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative flex justify-center items-center overflow-hidden">
           <Image 
             src={'/media/graphics/WoShi_Coming_Soon.png'}
@@ -35,6 +36,47 @@ const About = () => {
           </section>
         </div>
       </div>
+      {/* <div className="grid grid-cols-2 md:grid-cols-3 p-3 gap-2 lg:w-3/4 mx-auto">
+        <div className="col-span-2 md:col-span-3 text-center text-4xl">Meet the team!</div>
+        <AboutImage 
+          imgSrc={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
+          altSrc={''}
+          nickname="Alvin"
+          dayJob='Engineering Analyst'
+          bio={'Owner and Founder'}
+        />
+        <AboutImage 
+          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
+          altSrc={''}
+          nickname="Eliza"
+          dayJob="Production Assistant"
+          bio={'Co-Founder and Marketing Coordinator'}
+        />
+        <AboutImage 
+          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
+          altSrc={''}
+          nickname="Wes"
+          dayJob="Advisor at a Glasses Shop"
+          bio={'Web Developer and IT Coordinator'}
+        />
+        <AboutImage 
+          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
+          altSrc={''}
+          nickname="Han"
+          dayJob="Chemist"
+          bio={'Creative Director, Editor'}
+        />
+        <AboutImage 
+          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
+          altSrc={''}
+          nickname="Stag"
+          bio={'Lead Designer, Editor'}
+          dayJob="People Operations"
+          social='ig @zetonakai'
+          url='https://www.instagram.com/zetonakai'
+        />
+        
+      </div> */}
     </main>
     </>
   );
