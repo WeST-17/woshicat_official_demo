@@ -1,9 +1,10 @@
 'use client';
-import Link from "next/link";
+// import Link from "next/link";
 import { FinalCheckout } from "@/app/action";
 import { useCart } from './cartContext';
 import QuantityAdjuster from "./cartItemModify";
 import React, { useRef } from 'react';
+import Image from "next/image";
 
 
 const Cart: React.FC = () => {
@@ -43,8 +44,14 @@ const Cart: React.FC = () => {
     return (
         <>
             {/* Button to Open Cart */}
-            <button onClick={openCart} className={`cart_btn flex items-center justify-center text-xl me-4`}>
-                {'[cart]'}
+            <button onClick={openCart} className={`cart_btn flex items-center justify-end text-xl`}>
+                <Image
+                    src={'/icons/Shopping_Cart_Yoyo.png'}
+                    alt={'Yoyo pushing a shoppping cart'}
+                    width={120}
+                    height={1}
+                    className="mx-3 hover:translate-x-2 border-b-2 border-transparent hover:border-stone-400 transition-all duration-300 ease-in-out"
+                />
             </button>
 
             {/* Cart Modal (Always Rendered) */}
@@ -71,7 +78,7 @@ const Cart: React.FC = () => {
                                         <img
                                         src={item.image}
                                         alt={item.variantTitle}
-                                        className="w-24 h-24 object-cover rounded-md mr-4"
+                                        className="w-24 h-24 object-cover object-bottom rounded-md mr-4"
                                         />
                                     </div>
                                     <div>

@@ -12,7 +12,7 @@ const LookbookSlug = () => {
   const [error, setError] = useState<any>(null);
   const [pageLoad, setPageLoading] = useState<boolean>(false);
 
-  // const [selectedImage, setSelectedImage] = useState<string | null>(null); add to allow for image expand
+  // const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   // const handleImageClick = (imageUrl: string) => {
   //   setSelectedImage(imageUrl);
@@ -76,7 +76,6 @@ const LookbookSlug = () => {
               className={`object-cover aspect-[3/4]`}
             />
         </FadeInImage>
-        
         </>
         ))}
         

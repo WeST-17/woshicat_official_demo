@@ -15,24 +15,33 @@ const client = Client.buildClient({
 async function getProducts(client: Client): Promise<any[]> {
   try {
     const products = await client.product.fetchAll();
-    console.log(products[0].collections)
     
     // Extract necessary information from each product
     const serializedProducts = products.map((product) => {
       const image = product.images[0];
+      const image2 = product.images[7] ? product.images[7] : product.images[3]; 
 
       const plainImage = {
         url: image?.src || '',
         altText: image?.altText || '',
         // Add other image properties as needed
       };
+
+      const plainImage2 = {
+        url: image2?.src || '',
+        altText: image2?.altText || '',
+        // Add other image properties as needed
+      };
+
       return {
         id: product.id,
         handle: product.handle,
         name: product.title,
         price: Number(product.variants[0]?.price.amount).toFixed(2) || 0, // Adjust this based on your product structure
         image: plainImage,
-        collection: product.collections,
+        image2: plainImage2,
+        collection: product.productType,
+        
         // may need to add collection tag for a general products page somehow...
         // add more properties as needed
       };
@@ -345,7 +354,6 @@ export async function displayCart() {
       .filter((item: any) => item.quantity > 0)
       .map((item: any) => {
         const hasVariants = item.variant && item.variant.selectedOptions && item.variant.selectedOptions.length > 0;
-
         return {
           title: item.title,
           cartItemID: item.id,
@@ -357,7 +365,6 @@ export async function displayCart() {
           price: Number(item.variant?.price?.amount).toFixed(2) || Number(item.price?.amount).toFixed(2),
           currency: item.variant?.price?.currencyCode || item.price?.currencyCode,
           image: item.variant?.image?.src || item.image?.src,
-          
         };
       });
 
