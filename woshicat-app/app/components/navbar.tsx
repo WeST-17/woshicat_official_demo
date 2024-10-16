@@ -57,7 +57,7 @@ export default function Navigation() {
                     <span className='line middle_line rounded-md'></span>
                     <span className='line bottom_line rounded-md'></span>
                 </div>
-                <div className={`menu-container gap-2 pt-32 overflow-hidden grid grid-rows-6 ${openMenu ? 'open-menu' : ''}`} ref={menuContainerRef}>
+                <div className={`menu-container pt-32 overflow-hidden flex flex-col ${openMenu ? 'open-menu' : ''}`} ref={menuContainerRef}>
                     <div onClick={() => { setTimeout(() => { setMenuOpen(false)}, 150) }}>
                         <NavLinks closeMenu={closeMenu} />
                     </div>
@@ -66,18 +66,19 @@ export default function Navigation() {
                     {/* <div className="w-full flex justify-end self-end row-start-4 row-end-5">
                         <div className="pe-2 text-end text-base w-full"></div>
                     </div> */}
-                    <div className="w-full flex justify-start self-end row-start-6"> 
+                    <div className="w-full flex justify-start"> 
                         {/* Social Media */}
-                        <div className='p-2 mb-8 flex text-sm text-stone-400'>
-                            <div className="text-start rounded-md hover:text-stone-900 transition duration-300 p-2">
-                            <Link href='https://instagram.com/woshicatofficial' target='_blank'>
+                        <div className='p-1 flex text-sm text-stone-400'>
+                            <div className="text-start rounded-md hover:text-stone-900 transition duration-300 p-1">
+                            <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-1">
                                 <Image 
                                     src={'/logo/instagram-brands-solid.svg'}
                                     alt={'Instagram - WoShi Cat Official!'}
-                                    className="text-stone-700 hover:scale-[1.05] transition duration-300"
+                                    className="text-stone-700"
                                     width={20}
                                     height={20}
                                 />
+                                @woshicatofficial
                             </Link>
                             </div>
                         </div>
