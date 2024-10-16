@@ -50,7 +50,14 @@ const Cart: React.FC = () => {
                     alt={'Yoyo pushing a shoppping cart'}
                     width={120}
                     height={1}
-                    className="mx-3 hover:translate-x-2 border-b-2 border-transparent hover:border-stone-400 transition-all duration-300 ease-in-out"
+                    className={`hover:translate-x-2 border-b-2 border-transparent hover:border-stone-400 transition-all duration-300 ease-in-out ${cartItems.length > 0 ? '' : 'hidden'}`}
+                />
+                <Image
+                    src={'/icons/Shopping_Cart_Empty.png'}
+                    alt={'Yoyo pushing a shoppping cart'}
+                    width={120}
+                    height={1}
+                    className={`hover:translate-x-2 border-b-2 border-transparent hover:border-stone-400 transition-all duration-300 ease-in-out ${cartItems.length > 0 ? 'hidden' : ''}`}
                 />
             </button>
 
