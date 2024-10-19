@@ -11,7 +11,7 @@ const Collections = () => {
   return (
     <>
     <main className="w-screen grid grid-cols-9 gap-1">
-      <div className="relative col-span-9 h-96 overflow-hidden">
+      <div className="relative col-span-9 h-fit md:h-96 overflow-hidden">
         <CoverHeader
           src={'/media/collections-page/1.jpg'} 
           alt={'models pointing out and wearing woshi cat shirts'}
