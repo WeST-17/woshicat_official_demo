@@ -83,7 +83,7 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, dateID, 
                 alt={`Image ${index + 1}`} 
                 width={image.width} 
                 height={1} 
-                className={`aspect-square`}
+                className={`aspect-square pointer-events-none`}
                 priority
                 />
                 </FadeInImage>
