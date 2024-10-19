@@ -4,18 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import CoverHeader from "../components/heroImageInsert";
 import ShopNowButton from "../components/ShopNowButton";
+import collectionsList from "./collections";
 
 const Collections = () => {
   
   return (
     <>
     <main className="w-screen grid grid-cols-9 gap-1">
-      <div className="relative col-span-9 h-fit md:h-96 overflow-hidden">
+      <div className="relative col-span-9 h-96 overflow-hidden">
         <CoverHeader
           src={'/media/collections-page/1.jpg'} 
           alt={'models pointing out and wearing woshi cat shirts'}
           header={'Collections'}
-          additional="lg:-translate-y-36 xl:-translate-y-60"
+          additional="object-cover inset-0 w-full lg:-translate-y-36 xl:-translate-y-60"
         />
         
       </div>
@@ -33,7 +34,8 @@ const Collections = () => {
           </div>
         </div>
         <div className="w-full mx-auto col-span-9 grid grid-cols-9">
-          <div className="relative md:col-span-6 col-span-9 max-md:aspect-square"> {/* Change to square potentially when we have more collections */}
+          {/* Begin section */}
+          <div className="relative md:col-span-6 col-span-9 max-md:aspect-square"> {/* Feature Collection, add square ones at the bottom for older collections */}
             <Link href={'/collections/metro-daydreams/'} >
               <div className="button-hover overflow-hidden">
                   <Image
@@ -57,7 +59,31 @@ const Collections = () => {
               className="object-cover"
             />
           </div>
-          {/* Next section */}
+          {/* End section */}
+          {/* All other shown collections */}
+          {/* <div className="col-span-9 my-6 p-4 text-4xl md:text-7xl">
+            {`Shop Collections`}
+          </div>
+          {collectionsList.length > 0 && collectionsList.map((collection) => (
+            <>
+              <div className="relative md:col-span-3 col-span-9 aspect-square" key={collection.title}>
+                <Link href={`/collections/${collection.link}/`} >
+                  <div className="button-hover overflow-hidden">
+                      <Image
+                        src={collection.coverSrc}
+                        fill={true}
+                        alt={collection.coverAlt}
+                        className="object-cover object-[50%_1%]"
+                      />
+                    <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5">
+                        <h2 className="md:text-4xl ">{collection.title}</h2>
+                        <ShopNowButton />
+                      </div>
+                  </div>
+                </Link>
+              </div>
+            </>
+          ))} */}
         </div>
       </div>
     </main>

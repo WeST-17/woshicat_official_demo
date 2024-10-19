@@ -3,18 +3,18 @@
 import CollectionCards from "@/app/components/collection-cards";
 import CoverHeader from "@/app/components/heroImageInsert";
 
-const Collections = () => {
+const MetroDaydreams = () => {
   
   return (
     <>
     <main className="flex justify-center w-screen grid grid-cols-8">
       {/* */}
-      <div className="col-span-8 relative h-fit md:h-96 mb-8 overflow-hidden">
+      <div className="col-span-8 relative h-96 mb-8 overflow-hidden">
         <CoverHeader
-          src={'/media/metro-daydreams-landing/s_k_pointnlook.JPG'} 
-          alt={'models pointing out and wearing woshi cat shirts'}
+          src={'/media/graphics/Metro Header.png'} 
+          alt={'metro daydreams header'}
           header={'Metro Daydreams'}
-          additional="lg:-translate-y-28"
+          additional="object-cover inset-0 h-full w-full"
         />
         
       </div>
@@ -29,4 +29,4 @@ const Collections = () => {
   );
 }
 
-export default Collections;
+export default MetroDaydreams;
