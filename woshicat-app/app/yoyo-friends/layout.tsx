@@ -2,7 +2,7 @@ import Transition from "@/app/components/transition";
 import { Suspense } from "react";
 import TransitionSlide from "@/app/components/transitionWipe";
 
-export default function ApparelLayout({
+export default function ComicLayout({
     children,
   }: {
     children: React.ReactNode
@@ -11,7 +11,7 @@ export default function ApparelLayout({
       <section className="flex justify-center">
         <Suspense fallback={
           <div className="h-[100vh] w-screen flex justify-center items-center">
-            <div>Loading...</div>
+            <div className="loader-screen"></div>
           </div>}>
           <Transition>{children}</Transition>
         </Suspense>

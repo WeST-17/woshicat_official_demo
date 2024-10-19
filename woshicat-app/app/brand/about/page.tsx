@@ -9,13 +9,14 @@ const About = () => {
     <main className="flex flex-col justify-center w-screen gap-4">
       {/* */}
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative flex justify-center items-center overflow-hidden">
+        <div className="flex justify-center items-center overflow-hidden">
           <Image 
             src={'/media/graphics/WoShi_Coming_Soon.png'}
             alt={'Yoyo looking at a calendar, WoShi Cat graphic'}
             width={1000}
             height={1}
             className='object-cover'
+            priority
           />
         </div>
         <div className="flex h-full justify-start items-start flex-col p-8 gap-1">

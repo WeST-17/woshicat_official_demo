@@ -1,22 +1,34 @@
+'use client';
 import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import ComingSoonInsert from "../components/coming-soon-insert";
+import ComicHolder from "../components/comic-episodes/ComicEpisodeHolder";
+import ComicEps from "./comic";
 
-const Yoyo = () => {
+const YoyoComic = () => {
   
   return (
     <>
     <main className="flex justify-center w-screen grid grid-cols-8">
       {/* */}
-      <div className="flex col-span-8 gap-4">
-        <ComingSoonInsert />
-        
+      <div className="flex flex-col col-span-8 gap-4">
+        {ComicEps.map((episode) => (
+          <ComicHolder 
+            title={episode.title}
+            date={episode.date}
+            folder={episode.folder}
+            link={episode.link}
+            dateID={episode.dateID}
+            nextDate={episode.nextDate}
+            prevDate={episode.prevDate}
+            key={episode.dateID}
+          />
+        ))}
+
       </div>
+      
       
     </main>
     </>
   );
 }
 
-export default Yoyo;
+export default YoyoComic;

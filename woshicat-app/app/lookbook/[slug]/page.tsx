@@ -11,16 +11,6 @@ const LookbookSlug = () => {
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<any>(null);
   const [pageLoad, setPageLoading] = useState<boolean>(false);
-
-  // const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  
-  // const handleImageClick = (imageUrl: string) => {
-  //   setSelectedImage(imageUrl);
-  // };
-
-  // const closeModal = () => {
-  //   setSelectedImage(null);
-  // };
   
   useEffect(() => {
     setPageLoading(true);
