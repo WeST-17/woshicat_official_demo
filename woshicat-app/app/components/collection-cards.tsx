@@ -76,7 +76,7 @@ function CollectionCards({ collection }: CollectionType) {
               <img 
                 src={product.image.url} 
                 alt={product.image.altText} 
-                className='object-cover aspect-square transition-opacity duration-500 ease-in-out hover:opacity-0'
+                className='object-cover object-bottom aspect-square transition-opacity duration-500 ease-in-out hover:opacity-0'
               />
               
               {/* Hover image */}
