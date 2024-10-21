@@ -79,7 +79,7 @@ const Home = () => {
               
             </div>
             <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
-              <h2 className="text-xl md:text-4xl ">Metro Daydreams</h2>
+              <h2 className="text-3xl ">Metro Daydreams</h2>
               <ShopNowButton />
             </div>
             <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>

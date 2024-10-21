@@ -45,7 +45,7 @@ const Collections = () => {
                     className="object-cover object-[50%_1%]"
                   />
                 <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5">
-                    <h2 className="md:text-4xl ">Metro Daydreams</h2>
+                    <h2 className="text-3xl">Metro Daydreams</h2>
                     <ShopNowButton />
                   </div>
               </div>
@@ -61,8 +61,8 @@ const Collections = () => {
           </div>
           {/* End section */}
           {/* All other shown collections */}
-          {/* <div className="col-span-9 my-6 p-4 text-4xl md:text-7xl">
-            {`Shop Collections`}
+          {/* <div className="col-span-9 my-6 p-4 text-3xl">
+            {`Shop All Collections`}
           </div>
           {collectionsList.length > 0 && collectionsList.map((collection) => (
             <>
@@ -76,7 +76,7 @@ const Collections = () => {
                         className="object-cover object-[50%_1%]"
                       />
                     <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5">
-                        <h2 className="md:text-4xl ">{collection.title}</h2>
+                        <h2 className="text-3xl ">{collection.title}</h2>
                         <ShopNowButton />
                       </div>
                   </div>

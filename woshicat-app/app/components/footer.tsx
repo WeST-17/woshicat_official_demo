@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Footer = () => {
     return (
-        <footer className="relative grid-cols-8 self-end items-center justify-center min-h-[250px] bg-stone-50 text-base text-stone-700">
+        <footer className="relative grid-cols-8 self-end items-center justify-center h-[200px] bg-stone-50 text-base text-stone-700">
             <div className="col-span-8 p-4">
                 <div className="border-t border-stone-400 mb-3"/>
                 {/* Social Media */}

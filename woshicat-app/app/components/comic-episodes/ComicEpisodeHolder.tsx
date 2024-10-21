@@ -4,21 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { getImagesCloudinary } from "@/app/components/animationComps/cloudinary";
 import FadeInImage from "../animationComps/FadeInImages";
+import ComicEps from "@/app/yoyo-friends/comic";
 
 interface ComicSource {
     title: string;
     date: string;
     folder: string;
     link?: string;
-    dateID: string;
-    nextDate?: string;
-    prevDate?: string;
+    epID: string;
+    nextID?: string;
+    prevID?: string;
 }
 
-const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, dateID, nextDate, prevDate}) => {
+const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, nextID, prevID}) => {
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<any>(null);
-  const [pageLoad, setPageLoading] = useState<boolean>(false);
+  const [pageLoad, setPageLoading] = useState<boolean>(false);  
   
   useEffect(() => {
     setPageLoading(true);
@@ -54,22 +55,23 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, dateID, 
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 mx-auto w-full gap-2 mt-8" id={dateID}>
+    <div className="w-screen">
+      <div className="grid grid-cols-2 md:grid-cols-4 mx-auto w-full gap-2" id={epID}>
         <Link 
             href={link!}
             target="_blank"
-            className="relative w-fit h-full col-span-2 md:col-span-4 flex flex-col justify-center items-center px-3 gap-1"
+            className="relative w-fit h-full col-span-2 md:col-span-4 flex flex-col justify-center items-center px-3 gap-1 text-stone-500 hover:text-black transition-all duration-300"
         >
             <h2 className="text-4xl w-full text-start">{title}</h2>
             <p className="text-lg w-full text-start">{date}</p>
         </Link>
         <div className="col-span-2 md:col-span-4 w-fit flex px-3 gap-3">
-            <Link href={`#${prevDate}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${prevDate ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
+            <Link href={`/yoyo-friends/${prevID}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${prevID ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
                 <Image src={'/icons/caret-left-solid.svg'} alt={'previous arrow'} width={8} height={1}/>
-                {prevDate}
+                
             </Link>
-            <Link href={`#${nextDate}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${nextDate ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
-                {nextDate}
+            <Link href={`/yoyo-friends/${nextID}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${nextID ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
+                
                 <Image src={'/icons/caret-right-solid.svg'} alt={'next arrow'} width={8} height={1}/>
             </Link>
 
@@ -91,6 +93,7 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, dateID, 
             ))}
         
       </div>
+    </div>
     </>
   );
 }

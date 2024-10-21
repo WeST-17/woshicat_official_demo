@@ -6,7 +6,7 @@ import { getImagesCloudinary } from "@/app/components/animationComps/cloudinary"
 import FadeInImage from "@/app/components/animationComps/FadeInImages";
 
 const LookbookSlug = () => {
-  const pathname = usePathname(); // get pathname: '/apparel/[handle]
+  const pathname = usePathname(); // get pathname: '/lookbook/[handle]
   const folder = pathname.replace('/lookbook/', ''); // get handle from pathname for folder
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<any>(null);
