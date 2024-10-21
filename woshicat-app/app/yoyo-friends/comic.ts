@@ -5,7 +5,7 @@ const ComicEps = [
         folder: 'comic-e1-oct-2024',
         link: 'https://www.instagram.com/p/DBRM4iMJFga/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
         epID: 'ep-1-weekday-mournings',
-        nextID: 'ep-2-distracted',
+        nextID: '',
         prevID: '',
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1729219442/E1P1_xkvds0.png'
     },
