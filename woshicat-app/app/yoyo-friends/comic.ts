@@ -1,7 +1,7 @@
 const ComicEps = [
     {
         title: `Ep.1 Weekday Mournings - Yoyo`,
-        date: 'October 18, 2024',
+        date: 'Oct 18, 2024',
         folder: 'comic-e1-oct-2024',
         link: 'https://www.instagram.com/p/DBRM4iMJFga/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
         epID: 'ep-1-weekday-mournings',

@@ -42,7 +42,7 @@ const YoyoComic = () => {
                 className="w-16"
               />
               <h2 className="text-sm lg:text-lg">{episode.title}</h2>
-              <p className="text-end absolute right-0 text-sm">{episode.date}</p>
+              <p className="text-end absolute right-0 text-xs">{episode.date}</p>
             </Link>
           ))}
           
