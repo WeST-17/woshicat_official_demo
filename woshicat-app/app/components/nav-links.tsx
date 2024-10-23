@@ -21,11 +21,11 @@ const links = [
     href: '/lookbook',
   },
   { 
-    name: 'Brand', 
-    href: '/brand/about',
+    name: 'About', 
+    href: '/about/brand',
     subLinks: [
-      { name: 'About', href: '/brand/about'},
-      { name: 'FAQ', href: '/brand/faq'},
+      { name: 'Brand', href: '/about/brand'},
+      { name: 'FAQ', href: '/about/faq'},
     ]
   },
   { name: "Yoyo & Friends", href: '/yoyo-friends' },

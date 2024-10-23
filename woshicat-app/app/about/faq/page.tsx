@@ -1,6 +1,6 @@
 'use client';
 import Collapse from "@/app/components/collapse-item";
-import { FAQ } from "@/app/brand/faq/faqData";
+import { FAQ } from "@/app/about/faq/faqData";
 
 const BrandFAQ = () => {
   

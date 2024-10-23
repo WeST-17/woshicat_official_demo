@@ -25,7 +25,7 @@ const Footer = () => {
             <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400">
                 <Link href={'/privacy-policy'} className="hover:text-black transition duration-250">Privacy Policy</Link>
                 <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
-                <Link href={'/brand/faq'} className="hover:text-black transition duration-250">FAQ</Link>
+                <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
                 <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
             </div>
             <div className="mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8">
