@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { getImagesCloudinary } from "@/app/components/animationComps/cloudinary";
 import FadeInImage from "@/app/components/animationComps/FadeInImages";
+import Loader from "@/app/components/LoadingScreen";
 
 const LookbookSlug = () => {
   const pathname = usePathname(); // get pathname: '/lookbook/[handle]
@@ -34,9 +35,7 @@ const LookbookSlug = () => {
 
   if (pageLoad) {
     return (
-    <div className="w-full h-[100vh] flex justify-center items-center">
-        <div className="loader-screen" />
-    </div>
+    <Loader/>
     );
   }
 

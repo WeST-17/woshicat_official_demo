@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getServerCollectionProps } from '../action';
 import Link from 'next/link';
 import FadeInImage from './animationComps/FadeInImages';
+import Loader from './LoadingScreen';
 
 interface CollectionType {
     collection: string
@@ -39,9 +40,7 @@ function CollectionCards({ collection }: CollectionType) {
 
   if (loading) {
     return (
-      <div className="w-full h-[100vh] flex justify-center items-center">
-        <div className="loader-screen" /> {/* Replace with actual loading spinner */}
-      </div>
+      <Loader />
     );
   }
 

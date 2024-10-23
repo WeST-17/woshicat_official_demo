@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
                 {`Need answers to some questions you have? Send us an email at help@woshicat.com. You can also refer to our FAQ`} <Link href={'/brand/faq'} className="font-bold hover:text-[#CD000A] transition duration-300">here.</Link>
               </p>
               <p>
-                {`Returns must be initiated by contacting us through our email. Returns are only accepted for unworn and unwashed items within 30 days of delivery.`}
+                {`Returns must be initiated by contacting us through our email. Returns are only accepted for unworn and unwashed items within 30 days of delivery. The customer is responsible for return shipment costs.`}
               </p>
               <p>
                 {`

@@ -16,7 +16,7 @@ export const FAQ = [
     },
     { 
         q: 'What is your return policy?',
-        a: 'We offer a 30-day return policy for unworn, unwashed items. To initiate a return, please email help@woshicat.com for assistance.',
+        a: 'We offer a 30-day return policy for unworn, unwashed items. The customer is responsible for return shipment costs. To initiate a return, please email help@woshicat.com for assistance.',
         link: 'return-policy'
     },
     { 

@@ -45,7 +45,7 @@ const YoyoComic = () => {
               <p className="text-end absolute right-0 text-xs">{episode.date}</p>
             </Link>
           ))}
-          
+          {/* Think about including pagination when number of comics gets over 10-15, code example in notes in testing */}
         </div>
         
       </div>

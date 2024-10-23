@@ -5,6 +5,8 @@ import { Carousel } from "@material-tailwind/react";
 import ProductDescription from '../product-description';
 import Image from 'next/image';
 import { useCart } from '../cart/cartContext';
+import Loader from '../LoadingScreen';
+import LoadingIcon from '../loading';
 
 interface Handle {
     handle: string,
@@ -59,9 +61,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     if (pageLoad) {
         return (
-        <div className="w-full h-[100vh] flex justify-center items-center">
-            <div className="loader-screen" /> 
-        </div>
+        <Loader/>
         );
     }
     // Error handling
@@ -188,7 +188,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                         }}
                         >
                         <div className='col-span-6 flex justify-center items-center min-h-full'>
-                            {isLoading ? <div className="loader"></div> : 'Add to Cart'}
+                            {isLoading ? <LoadingIcon /> : 'Add to Cart'}
                         </div>
                     </button>
                     </div>
