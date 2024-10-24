@@ -11,7 +11,7 @@ const ComicEps = [
     },
     {
         title: `Ep.2 Packed Like a Can of Sardines - Yoyo`,
-        date: 'October 24, 2024',
+        date: 'Oct 24, 2024',
         folder: 'comic-e2-oct-2024',
         link: 'https://www.instagram.com/p/DBhYJ8ByDwg/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
         epID: 'ep-2-packed-sardines',
