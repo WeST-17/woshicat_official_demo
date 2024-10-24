@@ -56,16 +56,16 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
   return (
     <>
     <div className="w-screen">
-      <div className="grid grid-cols-1 md:grid-cols-4 mx-auto w-full h-fit gap-2" id={epID}>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:w-1/2 mx-auto w-full h-fit gap-2" id={epID}>
         <Link 
             href={link!}
             target="_blank"
-            className="relative w-fit h-full md:col-span-4 flex flex-col justify-center items-center px-3 gap-1 text-stone-500 hover:text-black transition-all duration-300"
+            className="relative w-fit h-full md:col-span-2 flex flex-col justify-center items-center px-3 gap-1 text-stone-500 hover:text-black transition-all duration-300"
         >
             <h2 className="text-4xl w-full text-start">{title}</h2>
             <p className="text-lg w-full text-start">{date}</p>
         </Link>
-        <div className="md:col-span-4 w-fit flex px-3 gap-3">
+        <div className="md:col-span-2 w-fit flex px-3 gap-3">
             <Link href={`/yoyo-friends/${prevID}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${prevID ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
                 <Image src={'/icons/caret-left-solid.svg'} alt={'previous arrow'} width={8} height={1}/>
                 
