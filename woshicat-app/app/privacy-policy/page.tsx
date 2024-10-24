@@ -1,4 +1,5 @@
 'use client';
+import TransitionSlide from "../components/transitionWipe";
 import { privacyDoc } from "./privacyData";
 
 const PrivacyPolicy = () => {
@@ -24,6 +25,7 @@ const PrivacyPolicy = () => {
           
         </div>
       </main>
+      <TransitionSlide/>
     </>
   );
 }

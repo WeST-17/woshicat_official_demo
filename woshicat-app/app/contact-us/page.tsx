@@ -1,7 +1,9 @@
 'use client';
 import Link from "next/link";
+import TransitionSlide from "../components/transitionWipe";
+import Transition from "../components/transition";
 
-const PrivacyPolicy = () => {
+const Contact = () => {
   return (
     <>
       <main className="w-screen h-fit flex justify-center">
@@ -32,8 +34,9 @@ const PrivacyPolicy = () => {
             </div>
         </div>
       </main>
+      <TransitionSlide />
     </>
   );
 }
 
-export default PrivacyPolicy;
+export default Contact;

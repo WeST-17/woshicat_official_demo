@@ -1,6 +1,7 @@
 'use client';
 import Collapse from "@/app/components/collapse-item";
 import { FAQ } from "@/app/about/faq/faqData";
+import TransitionSlide from "@/app/components/transitionWipe";
 
 const BrandFAQ = () => {
   
@@ -26,6 +27,7 @@ const BrandFAQ = () => {
           
         </div>
       </main>
+      <TransitionSlide />
     </>
   );
 }
