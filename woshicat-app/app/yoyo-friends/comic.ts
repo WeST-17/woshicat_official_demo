@@ -37,7 +37,7 @@ const ComicEps = [
         epID: 'ep-4-halloween-pt1',
         nextID: '',
         prevID: 'ep-3-distracted',
-        thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730174115/e3p4_bttdgm.png'
+        thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730339651/e4p4_emxrjp.png'
     },
 ];
 
