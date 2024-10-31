@@ -25,8 +25,18 @@ const ComicEps = [
         folder: 'comic-e3-oct-2024',
         link: 'https://www.instagram.com/p/DBrPpqquf0c/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
         epID: 'ep-3-distracted',
-        nextID: '',
+        nextID: 'ep-4-halloween-pt1',
         prevID: 'ep-2-packed-sardines',
+        thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730174115/e3p4_bttdgm.png'
+    },
+    {
+        title: `Ep.4 Halloween Part 1 - Yoyo`,
+        date: 'Oct 30, 2024',
+        folder: 'comic-e4-halloween-pt1-2024',
+        link: 'https://www.instagram.com/p/DBwYLVVJUlk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+        epID: 'ep-4-halloween-pt1',
+        nextID: '',
+        prevID: 'ep-3-distracted',
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730174115/e3p4_bttdgm.png'
     },
 ];
