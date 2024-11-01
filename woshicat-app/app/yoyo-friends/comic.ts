@@ -25,7 +25,7 @@ const ComicEps = [
         folder: 'comic-e3-oct-2024',
         link: 'https://www.instagram.com/p/DBrPpqquf0c/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
         epID: 'ep-3-distracted',
-        nextID: 'ep-4-halloween-pt1',
+        nextID: 'ep-4-halloween2024-pt1',
         prevID: 'ep-2-packed-sardines',
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730174115/e3p4_bttdgm.png'
     },
@@ -34,10 +34,20 @@ const ComicEps = [
         date: 'Oct 30, 2024',
         folder: 'comic-e4-halloween-pt1-2024',
         link: 'https://www.instagram.com/p/DBwYLVVJUlk/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
-        epID: 'ep-4-halloween-pt1',
-        nextID: '',
+        epID: 'ep-4-halloween2024-pt1',
+        nextID: 'ep-5-halloween2024-pt2',
         prevID: 'ep-3-distracted',
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730339651/e4p4_emxrjp.png'
+    },
+    {
+        title: `Ep.5 Yoyo's Shenanigans Halloween Part 2 - Yoyo`,
+        date: 'Oct 31, 2024',
+        folder: 'comic-e5-halloween2024-pt2',
+        link: 'https://www.instagram.com/p/DBz3TLNPpkA/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
+        epID: 'ep-5-halloween2024-pt2',
+        nextID: '',
+        prevID: 'ep-4-halloween2024-pt1',
+        thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730424738/e5p1_vzrgvw.png'
     },
 ];
 

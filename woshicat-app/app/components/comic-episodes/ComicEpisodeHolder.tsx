@@ -65,14 +65,14 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
             <h2 className="text-4xl w-full text-start">{title}</h2>
             <p className="text-lg w-full text-start">{date}</p>
         </Link>
-        <div className="md:col-span-2 w-fit flex px-3 gap-3">
+        <div className="md:col-span-2 w-fit flex px-3 gap-3 py-1">
             <Link href={`/yoyo-friends/${prevID}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${prevID ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
-                <Image src={'/icons/caret-left-solid.svg'} alt={'previous arrow'} width={8} height={1}/>
+                <Image src={'/icons/caret-left-solid.svg'} alt={'previous arrow'} width={10} height={1}/>
                 
             </Link>
             <Link href={`/yoyo-friends/${nextID}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${nextID ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
                 
-                <Image src={'/icons/caret-right-solid.svg'} alt={'next arrow'} width={8} height={1}/>
+                <Image src={'/icons/caret-right-solid.svg'} alt={'next arrow'} width={10} height={1}/>
             </Link>
 
         </div>
