@@ -6,6 +6,7 @@ import Transition from "./components/transition";
 import Link from "next/link";
 //import EmailList from "./components/emailList/emailList"; need to figure this out, is in woshicatv3.zip
 import ShopNowButton from "./components/ShopNowButton";
+import EmailList from "./components/email-list/EmailList";
 
 
 const Home = () => {
@@ -89,7 +90,7 @@ const Home = () => {
       </div>  
       {/* */}
       <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-fit pt-8">
-        {/* <EmailList /> */}
+        <EmailList />
         
       </div>
       

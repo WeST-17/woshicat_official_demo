@@ -14,18 +14,7 @@ const YoyoComic = () => {
         <h1 className="text-4xl pt-4">{`Yoyo & Friends!`}</h1>
         <div className="flex flex-col gap-2">
           <h2 className="text-lg">{`Follow Yoyo and his friends as they tackle their corporate jobs and life head on!`}</h2>
-            {/* <Link
-              href={`/yoyo-friends/ep-1-weekday-mournings`}
-              className="flex items-center gap-2 border-2 border-transparent w-fit px-2 py-1 rounded-lg bg-stone-400 text-white hover:bg-stone-700 transition-all duration-250 ease-in-out"
-            >
-              {`Episode 1`} 
-              <Image 
-                src={'/icons/paper-plane-regular.svg'} 
-                alt={'right arrow for first episode'} 
-                width={15} height={1}
-                className="w-3"
-              />
-            </Link> */}
+            
         </div>
         <div className="w-full flex flex-col">
           {ComicEps.toReversed().map((episode) => (
