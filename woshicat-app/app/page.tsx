@@ -4,9 +4,8 @@ import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
 import Link from "next/link";
-//import EmailList from "./components/emailList/emailList"; need to figure this out, is in woshicatv3.zip
 import ShopNowButton from "./components/ShopNowButton";
-import EmailList from "./components/email-list/EmailList";
+// import EmailList from "./components/email-list/EmailList";
 
 
 const Home = () => {
@@ -90,7 +89,16 @@ const Home = () => {
       </div>  
       {/* */}
       <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-fit pt-8">
-        <EmailList />
+        {/* <EmailList /> */}
+        <Link href="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs" target="_blank" className="w-fit mx-auto flex justify-center items-center gap-2">
+          <p className="">Subscribe to our newsletter here!</p>
+          <Image 
+          src={'/media/graphics/Yoyo happy.png'}
+          alt={'Yoyo is slightly smiling...'}
+          width={50}
+          height={1}
+          />
+        </Link>
         
       </div>
       

@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <footer className="relative grid-cols-8 self-end items-center justify-center h-[200px] bg-stone-50 text-base text-stone-700">
             <div className="col-span-8 p-4">
-                <div className="border-t border-stone-400 mb-3"/>
+                <div className="border-t border-stone-400"/>
                 {/* Social Media */}
                 <div className='flex text-sm text-stone-400 justify-center items-center'>
                     <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
@@ -22,6 +22,7 @@ const Footer = () => {
                     
                 </div>
             </div>
+            
             <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400">
                 <Link href={'/privacy-policy'} className="hover:text-black transition duration-250">Privacy Policy</Link>
                 <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
