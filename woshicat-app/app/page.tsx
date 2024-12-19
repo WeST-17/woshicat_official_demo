@@ -5,17 +5,24 @@ import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
 import Link from "next/link";
 import ShopNowButton from "./components/ShopNowButton";
+import AutoCarousel from "./components/autoCarousel";
 // import EmailList from "./components/email-list/EmailList";
 
 
+const homeBanner = [
+  `Free shipping and one random sticker on orders over $70!`,
+  `Please expect potential shipping delays during the holiday season. Check your tracking information for updates.`,
+];
+
 const Home = () => {
-  
+
   return (
     <>
     <Transition>
     <main className="relative flex justify-center w-screen grid grid-cols-9">
-      <div className="col-span-9 w-full h-fit flex justify-center items-center bg-orange-100">
-        <p className="m-1 font-thin max-sm:text-sm">Free shipping and one random sticker on orders over $70!</p>
+      <div className="text-center col-span-9 w-full h-fit flex-col justify-center items-center">
+        {/* <p className="m-1 font-thin max-sm:text-sm">Free shipping and one random sticker on orders over $70!</p> */}
+        <AutoCarousel messages={homeBanner}/>
       </div>
       <div className="relative grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">
