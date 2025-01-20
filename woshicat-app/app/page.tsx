@@ -11,7 +11,7 @@ import AutoCarousel from "./components/autoCarousel";
 
 const homeBanner = [
   `Free shipping and one random sticker on orders over $70!`,
-  `Please expect potential shipping delays during the holiday season. Check your tracking information for updates.`,
+  `Get 10% off your order with the code YOYO10`,
 ];
 
 const Home = () => {
@@ -21,7 +21,6 @@ const Home = () => {
     <Transition>
     <main className="relative flex justify-center w-screen grid grid-cols-9">
       <div className="text-center col-span-9 w-full h-fit flex-col justify-center items-center">
-        {/* <p className="m-1 font-thin max-sm:text-sm">Free shipping and one random sticker on orders over $70!</p> */}
         <AutoCarousel messages={homeBanner}/>
       </div>
       <div className="relative grid grid-flow-col col-span-9">

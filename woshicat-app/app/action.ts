@@ -235,7 +235,7 @@ export async function getServerItemProps({ params }: any) {
 // Cart functions: //
 
 export async function getItemQuantityCart(variantID: string) {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     throw new Error('Checkout not found');
   }
@@ -247,7 +247,7 @@ export async function getItemQuantityCart(variantID: string) {
 }
 
 async function findLineItemCart(variantID: string) {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     throw new Error('Checkout not found');
   }
@@ -275,7 +275,7 @@ export async function incrementQuantity(variantID: string) {
 };
 
 export async function updateQuantityinCart(variantID: string, quantity: number) {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     throw new Error('Checkout ID not found');
   }
@@ -292,7 +292,7 @@ async function createCheckout(variantID: string, quantityProduct: number) {
   const checkout = await client.checkout.create();
   const checkoutID = checkout.id;
   await client.checkout.addLineItems(checkoutID, [{variantId: variantID, quantity: quantityProduct}]);
-  cookies().set('checkoutID', checkoutID);
+  (await cookies()).set('checkoutID', checkoutID);
   console.log("checkout created and cookie set");
 }
 
@@ -305,7 +305,7 @@ async function validateCheckout(checkoutID: string) {
 
 // Updating cart function. Gets checkout ID from cookie that's set in createCheckout
 export async function addToCart(productVariantID: string, quantity: number) {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   try {
     if(!checkoutID || !(await validateCheckout(checkoutID.value))) {
       await createCheckout(productVariantID, quantity);
@@ -322,7 +322,7 @@ export async function addToCart(productVariantID: string, quantity: number) {
 }
 
 export async function removeItemCart(productVariantID: string) {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   if(!checkoutID || !(await validateCheckout(checkoutID.value))) {
     console.log('Nothing here...')
     return;
@@ -336,7 +336,7 @@ export async function removeItemCart(productVariantID: string) {
 }
 
 export async function displayCart() {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   
   if (!checkoutID || !(await validateCheckout(checkoutID.value))) {
     console.log("nothing here...");
@@ -376,7 +376,7 @@ export async function displayCart() {
 }
 
 export async function FinalCheckout() {
-  const checkoutID = cookies().get('checkoutID');
+  const checkoutID = (await cookies()).get('checkoutID');
   const shopifyCheckout = await client.checkout.fetch(checkoutID!.value);
   
   if (shopifyCheckout.webUrl) {
