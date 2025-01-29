@@ -81,7 +81,7 @@ const About = () => {
           </button>
           <button className="" onClick={(e) => openCarousel(e, 2)}>
             <Image
-              src='/peoples/Wes cat.png'
+              src='/peoples/Wes Cat.png'
               alt={`Wes' cat persona`}
               width={300}
               height={1}
