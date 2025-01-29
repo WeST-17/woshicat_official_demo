@@ -55,7 +55,7 @@ const About = () => {
       </div>
 
       <section className="w-full flex justify-center items-center">
-        <h1 className="text-4xl w-fit font-bold">{`~Get to Know the Team!~`}</h1>
+        <h1 className="text-4xl w-full font-bold">{`~Get to Know the Team!~`}</h1>
       </section>
       <section className="w-full flex flex-col justify-center items-center gap-2">
         <div className="w-full flex max-md:flex-col items-center justify-center gap-2" id="row-1">
