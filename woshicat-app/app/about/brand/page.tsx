@@ -54,7 +54,7 @@ const About = () => {
         </div>
       </div>
 
-      <section className="w-full flex justify-center items-center">
+      {/* <section className="w-full flex justify-center items-center">
         <h1 className="text-4xl w-full font-bold">{`~Get to Know the Team!~`}</h1>
       </section>
       <section className="w-full flex flex-col justify-center items-center gap-2">
@@ -123,7 +123,7 @@ const About = () => {
             <p className="m-2">Kameel</p>
           </button>
         </div>
-      </section>
+      </section> */}
 
       
 
