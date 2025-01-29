@@ -9,7 +9,7 @@ const ProductDetailPage = () => {
     const pathname = usePathname(); // get pathname: '/apparel/[handle]
     const handle = pathname.replace('/collections/lunar-new-year/', ''); // get handle from pathname
 
-    const isAccessory: boolean = handle.includes('sticker');
+    const isAccessory: boolean = handle.includes('sticker') || handle.includes('pin') || handle.includes('bundle');
     
     return (
       <div>

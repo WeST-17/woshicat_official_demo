@@ -50,6 +50,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
     }
 
     const addItemToCart = async (productID: string) => {
+        console.log(productID)
         setIsLoading(true);
         setCartItemsLoading(true);
         await addToCart(productID, quantity);

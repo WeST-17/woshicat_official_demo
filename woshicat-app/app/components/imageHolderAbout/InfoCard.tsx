@@ -10,7 +10,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ description, classAdd }) => {
     return (
         <>
-            <section className={`h-1/2 lg:h-[500px] lg:text-xl p-3 flex justify-center items-center text-black bg-white/90 ${classAdd}`}>
+            <section className={`lg:h-[500px] lg:text-xl flex justify-center items-center text-black bg-white/90 ${classAdd}`}>
                 {description[0]}
                 <br/>
                 <br/>
