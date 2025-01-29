@@ -151,7 +151,7 @@ const About = () => {
           </div>
           <div className="w-full flex justify-center items-center">
             <Image
-              src='/peoples/Wes cat.png'
+              src='/peoples/Wes Cat.png'
               alt={`Wes' cat persona`}
               width={300}
               height={1}
