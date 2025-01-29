@@ -1,55 +1,78 @@
 'use client';
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Card from "@/app/components/imageHolderAbout/InfoCard";
+import about_descriptions from "../textData/aboutDescriptions";
 
-interface ImgSource {
-    imgSrc: string;
-    altSrc: string;
-    nickname: string;
-    bio: string;
-    dayJob?: string;
-    social?: string;
-    url?: string;
+interface AboutProps {
+    children: React.ReactNode,
+    passedIndex: number,
+    classAdd: string,
 }
 
-const AboutImage: React.FC<ImgSource> = ({imgSrc, altSrc, nickname, bio, dayJob, social, url}) => {
+const AboutCarousel: React.FC<AboutProps> = ({ children, classAdd, passedIndex }) => {
+    const [current, setCurrent] = useState(passedIndex);
+    const childLength = React.Children.count(children);
+
+    // Sync `current` with `passedIndex`
+    useEffect(() => {
+        setCurrent(passedIndex);
+
+        return (() => {
+            console.log('component reset');
+        })
+    }, [passedIndex]);
+
+    const personNext = () => {
+        setCurrent(current === childLength - 1 ? 0 : current + 1);
+    };
+
+    const personPrev = () => {
+        setCurrent(current === 0 ? childLength - 1 : current - 1);
+    }
+
     return (
         <>
-        <div className="flex flex-col justify-center items-center w-full aspect-square pb-3 mb-3">
-            <div className="relative w-full mb-1">
-                <img 
-                    src={imgSrc}
-                    alt={altSrc}
-                    width={1000}
+        <div className={`fixed inset-0 w-screen h-full bg-stone-900/70 z-[2001] flex items-center ${classAdd}`}/>
+        <div className={`flex fixed inset-0 justify-center items-center w-full h-screen z-[2002] ${classAdd}`}>
+            <button className="absolute left-0 m-2 flex justify-center items-center h-20 w-20 z-[2003]" onClick={personPrev}>
+                <Image 
+                    src={'/icons/caret-left-solid-white.svg'}
+                    alt='left arrow'
+                    width={20}
                     height={1}
-                    className='object-cover aspect-square'
+                    
                 />
-                {url ? (
-                    <Link href={url} className={`w-full`}>
-                        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-25 hover:opacity-0 transition-opacity duration-125 ease-in-out"/>
-                    </Link>
-                ) : (
-                    <>
-                        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-25 hover:opacity-0 transition-opacity duration-125 ease-in-out"/>
-                    </>
-                )}
+            </button>
+            <div className="flex w-5/6 h-screen justify-center items-center">
+                
+                <div className="bg-white rounded-md relative w-full flex max-md:flex-col justify-center items-center gap-3 max-lg:p-8 max-lg:m-10">
+                    {
+                        React.Children.toArray(children).map((child, index) => (
+                                <>
+                                <div key={index} className={`z-[2004] w-1/2 h-1/2 flex justify-center items-center transition-all duration-300 text-white rounded-sm pointer-events-none ${index === current ? 'opacity-100 sway' : 'opacity-0 hidden'}`}>
+                                    {child}
+                                </div>
+                                <Card description={about_descriptions[index]} classAdd={`max-lg:text-sm aspect-square rounded-sm transition-all duration-300 w-1/2 max-md:w-full max-md:h-1/4 ${index === current ? 'opacity-100' : 'opacity-0 hidden'}`}/>
+                                </>
+                            )
+                        )
+                    }
+                </div>
                 
             </div>
-            <div className="w-full h-40 md:h-32 border-b-2 border-stone-400 ">
-                <h2 className="flex items-center w-full text-lg">{nickname}</h2>
-                <p className="w-full flex items-center">
-                    {bio}
-                </p>
-                {dayJob && (
-                    <p className="w-full flex items-center text-sm">Day Job: {dayJob}</p>
-                )}
-                {social && (
-                    <p className="w-full flex items-center hover:text-[#CD000A] transition duration-200 ease-in-out text-sm">{social}</p>
-                )}
-            </div>
+            <button className="flex h-20 w-20 justify-center items-center z-[2003] absolute right-0 m-2" onClick={personNext}>
+                <Image
+                    src={'/icons/caret-right-solid-white.svg'}
+                    alt='right arrow'
+                    width={20}
+                    height={1}
+                    
+                />
+            </button>
         </div>
         </>
     )
 }
 
-export default AboutImage;
+export default AboutCarousel;

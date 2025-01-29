@@ -27,6 +27,24 @@ const LookbookHome = () => {
         </div>
         </FadeInImage>
         </section>
+
+        {/* <section id='item-2'>
+        <FadeInImage>
+        <div className='col-span-1 aspect-square flex flex-col justify-center items-center gap-2'>
+          <Link href={'/lookbook/lunar-new-year-2025'} className='relative'>
+            <Image 
+              src={'/media/lookbook grid/MD_Cover_Lookbook.jpeg'} // change image src to lunar new year pic
+              alt={''}
+              width={1000}
+              height={1}
+              className='object-cover aspect-square w-full h-full'
+            />
+            <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 hover:opacity-25 transition duration-300'/>
+          </Link>
+          <p className='w-full text-start text-xl px-2'>2025 - Lunar New Year</p>
+        </div>
+        </FadeInImage>
+        </section> */}
       </div>
     );
 }

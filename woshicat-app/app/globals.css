@@ -230,8 +230,37 @@ body {
   animation: fadeInContainer 0.5s linear forwards;
 }
 
+@keyframes sway {
+  0% { transform: rotate(6deg)}
+  5% { transform: rotate(8deg); }
+  30% { transform: rotate(-4deg); }
+  60% { transform: rotate(2deg)}
+  100% { transform: rotate(0deg); }
+}
+
+.sway {
+  animation: sway 2.4s;
+  animation-timing-function: ease-in-out;
+  -webkit-transform-origin: top;
+  -moz-transform-origin: top;
+  transform-origin: top;
+}
+
+.sway-3s {
+  animation: sway 3s;
+  animation-timing-function: ease-in-out;
+  -webkit-transform-origin: top;
+  -moz-transform-origin: top;
+  transform-origin: top;
+}
+
 @keyframes fadeInContainer {
   to { opacity: 1; }
+}
+
+button:hover {
+  opacity: 75%;
+  transition-duration: 250ms;
 }
 
 @media screen and (min-width: 1024px) {

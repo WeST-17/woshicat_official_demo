@@ -15,6 +15,7 @@ const links = [
     href: '/collections', 
     subLinks: [
       { name: 'Metro Daydreams', href: '/collections/metro-daydreams'},
+      { name: 'Lunar New Year', href: '/collections/lunar-new-year'},
     ]
   },
   { name: 'Lookbook', 

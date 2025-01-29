@@ -1,21 +1,37 @@
-import React from "react";
+'use client';
+import React, { useState } from "react";
 import Image from "next/image";
-import AboutImage from "@/app/components/imageHolderAbout/ImageHolderAbout";
+import AboutCarousel from "@/app/components/imageHolderAbout/ImageHolderAbout";
 
 const About = () => {
+  const [active, setActive] = useState(false);
+  const [picIndex, setPicIndex] = useState(0);
+
+  const openCarousel = (_e: any, key: number) => {
+    setPicIndex(key);
+    setTimeout(() => {
+      setActive(true);
+    }, 150)
+    
+  }
+
+  const closeCarousel = () => {
+    setActive(false);
+    setPicIndex(0);
+  }
   
   return (
     <>
-    <main className="flex flex-col justify-center w-screen gap-4">
+    <main className="relative flex flex-col justify-center w-screen gap-4">
       {/* */}
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-8">
         <div className="flex justify-center items-center overflow-hidden">
           <Image 
             src={'/media/graphics/WoShi_Coming_Soon.png'}
             alt={'Yoyo looking at a calendar, WoShi Cat graphic'}
             width={1000}
             height={1}
-            className='object-cover'
+            className='object-cover h-full'
             priority
           />
         </div>
@@ -37,47 +53,138 @@ const About = () => {
           </section>
         </div>
       </div>
-      {/* <div className="grid grid-cols-2 md:grid-cols-3 p-3 gap-2 lg:w-3/4 mx-auto">
-        <div className="col-span-2 md:col-span-3 text-center text-4xl">Meet the team!</div>
-        <AboutImage 
-          imgSrc={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
-          altSrc={''}
-          nickname="Alvin"
-          dayJob='Engineering Analyst'
-          bio={'Owner and Founder'}
-        />
-        <AboutImage 
-          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
-          altSrc={''}
-          nickname="Eliza"
-          dayJob="Production Assistant"
-          bio={'Co-Founder and Marketing Coordinator'}
-        />
-        <AboutImage 
-          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
-          altSrc={''}
-          nickname="Wes"
-          dayJob="Advisor at a Glasses Shop"
-          bio={'Web Developer and IT Coordinator'}
-        />
-        <AboutImage 
-          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
-          altSrc={''}
-          nickname="Han"
-          dayJob="Chemist"
-          bio={'Creative Director, Editor'}
-        />
-        <AboutImage 
-          imgSrc={'/media/graphics/WoShi_Coming_Soon.png'}
-          altSrc={''}
-          nickname="Stag"
-          bio={'Lead Designer, Editor'}
-          dayJob="People Operations"
-          social='ig @zetonakai'
-          url='https://www.instagram.com/zetonakai'
-        />
-        
-      </div> */}
+
+      <section className="w-full flex justify-center items-center">
+        <h1 className="text-4xl w-fit font-bold">{`~Get to Know the Team!~`}</h1>
+      </section>
+      <section className="w-full flex flex-col justify-center items-center gap-2">
+        <div className="w-full flex max-md:flex-col items-center justify-center gap-2" id="row-1">
+          <button className="" onClick={(e) => openCarousel(e, 0)}>
+            <Image
+              src='/peoples/alvin cat.png'
+              alt={`Alvin's cat persona`}
+              width={300}
+              height={1}
+              className="rounded-sm"
+            />
+            <p className="m-2">Alvin</p>
+          </button>
+          <button className="" onClick={(e) => openCarousel(e, 1)}>
+            <Image
+              src='/peoples/Eliza cat.png'
+              alt={`Eliza's cat persona`}
+              width={300}
+              height={1}
+              className="rounded-sm"
+            />
+            <p className="m-2">Eliza</p>
+          </button>
+          <button className="" onClick={(e) => openCarousel(e, 2)}>
+            <Image
+              src='/peoples/Wes cat.png'
+              alt={`Wes' cat persona`}
+              width={300}
+              height={1}
+              className="rounded-sm"
+            />
+            <p className="m-2">Wes</p>
+          </button>
+        </div>
+
+        <div className="w-full flex items-center justify-center gap-2 max-md:flex-col" id="row-2">
+          <button className="" onClick={(e) => openCarousel(e, 3)}>
+            <Image
+              src='/peoples/han cat.png'
+              alt={`Han's cat persona`}
+              width={300}
+              height={1}
+              className="rounded-sm"
+            />
+            <p className="m-2">Han</p>
+          </button>
+          <button className="" onClick={(e) => openCarousel(e, 4)}>
+            <Image
+              src='/peoples/Stag cat.png'
+              alt={`Stag's cat persona`}
+              width={300}
+              height={1}
+              className="rounded-sm"
+            />
+            <p className="m-2">Stag</p>
+          </button>
+          <button className="" onClick={(e) => openCarousel(e, 5)}>
+            <Image
+              src='/peoples/kameel cat.png'
+              alt={`Kameel's cat persona`}
+              width={300}
+              height={1}
+              className="rounded-sm"
+            />
+            <p className="m-2">Kameel</p>
+          </button>
+        </div>
+      </section>
+
+      
+
+      {active && (
+        <>
+        <button className={`fixed z-[2005] bg-black/80 m-3 rounded-md top-0 right-0 text-white h-12 w-20 ${active ? '' : 'hidden'}`} onClick={closeCarousel}>
+          close
+        </button>
+        <AboutCarousel classAdd={`transition-opacity duration-250 ${active ? '' : 'opacity-0'}`} passedIndex={picIndex}>
+          <div className="w-full flex justify-center items-center">
+            <Image
+              src='/peoples/alvin cat.png'
+              alt={`Alvin's cat persona`}
+              width={300}
+              height={1}
+            />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <Image
+              src='/peoples/Eliza cat.png'
+              alt={`Eliza's cat persona`}
+              width={300}
+              height={1}
+            />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <Image
+              src='/peoples/Wes cat.png'
+              alt={`Wes' cat persona`}
+              width={300}
+              height={1}
+            />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <Image
+              src='/peoples/han cat.png'
+              alt={`Han's cat persona`}
+              width={300}
+              height={1}
+            />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <Image
+              src='/peoples/Stag cat.png'
+              alt={`Stag's cat persona`}
+              width={300}
+              height={1}
+            />
+          </div>
+          <div className="w-full flex justify-center items-center">
+            <Image
+              src='/peoples/kameel cat.png'
+              alt={`Kameel's cat persona`}
+              width={300}
+              height={1}
+            />
+          </div>
+        </AboutCarousel>
+        </>
+      )}
+
     </main>
     </>
   );

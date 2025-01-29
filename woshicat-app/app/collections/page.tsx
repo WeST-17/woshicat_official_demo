@@ -33,9 +33,9 @@ const Collections = () => {
             <h2 className="text-2xl">Designed in-house. Yoyo&apos;s happy you&apos;re here!</h2>
           </div>
         </div>
-        <div className="w-full mx-auto col-span-9 grid grid-cols-9">
+        <div className="w-full mx-auto col-span-9 grid grid-cols-9 md:p-2">
           {/* Begin section */}
-          <div className="relative md:col-span-6 col-span-9 max-md:aspect-square"> {/* Feature Collection, add square ones at the bottom for older collections */}
+          <div className="relative md:col-span-3 col-span-9 aspect-square"> {/* Feature Collection, add square ones at the bottom for older collections */}
             <Link href={'/collections/metro-daydreams/'} >
               <div className="button-hover overflow-hidden">
                   <Image
@@ -46,6 +46,22 @@ const Collections = () => {
                   />
                 <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5">
                     <h2 className="text-3xl">Metro Daydreams</h2>
+                    <ShopNowButton />
+                  </div>
+              </div>
+            </Link>
+          </div>
+          <div className="relative md:col-span-3 col-span-9 aspect-square"> {/* Feature Collection, add square ones at the bottom for older collections */}
+            <Link href={'/collections/lunar-new-year/'} >
+              <div className="button-hover overflow-hidden">
+                  <Image
+                    src={'/media/collections-page/uniq bag pin.jpeg'}
+                    fill={true}
+                    alt={'Lunar New Year 2025 Collection'}
+                    className="object-cover"
+                  />
+                <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5">
+                    <h2 className="text-3xl">{`Lunar New Year [2025]`}</h2>
                     <ShopNowButton />
                   </div>
               </div>
