@@ -45,9 +45,19 @@ const ComicEps = [
         folder: 'comic-e5-halloween2024-pt2',
         link: 'https://www.instagram.com/p/DBz3TLNPpkA/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==',
         epID: 'ep-5-halloween2024-pt2',
-        nextID: '',
+        nextID: 'ep-6-feb-2025',
         prevID: 'ep-4-halloween2024-pt1',
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730424738/e5p1_vzrgvw.png'
+    },
+    {
+        title: `Ep.6 New Year Resolutions - Yoyo`,
+        date: 'Feb 1, 2025',
+        folder: 'comic-e6-feb-2025',
+        link: 'https://www.instagram.com/woshicatofficial',
+        epID: 'ep-6-feb-2025',
+        nextID: '',
+        prevID: 'ep-5-halloween2024-pt2',
+        thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1738289984/E6P5_xo477e.png'
     },
 ];
 

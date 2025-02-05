@@ -29,9 +29,9 @@ const Home = () => {
       <div className="relative grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">
           {/* Upload and replace video link */}
-          <video className="w-[100vw] object-cover min-h-full" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/video/Z06_1930.MP4" type="video/mp4" data-v-f518367b="" /></video> 
+          <video className="w-[100vw] object-cover min-h-full" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video 2.mov" type="video/mp4" data-v-f518367b="" /></video> 
         </div>
-        <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>
+        <div className="absolute bottom-0 left-0 font-thin text-white w-full h-full"/>
       </div>
       
       <section className="w-screen">

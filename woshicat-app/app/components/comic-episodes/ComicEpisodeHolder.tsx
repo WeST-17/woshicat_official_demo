@@ -77,7 +77,7 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
 
         </div>
         
-        {images.map((image: any, index: number) => (
+        {images && images.map((image: any, index: number) => (
             <>
                 <FadeInImage key={index}>
                 <Image 
