@@ -10,7 +10,7 @@ import AutoCarousel from "./components/autoCarousel";
 
 
 const homeBanner = [
-  `Free shipping and one random sticker on orders over $70!`,
+  `Free shipping and one random sticker on orders over $50!`,
   `Get 10% off your order with the code YOYO10`,
   `Get our new 2025 Lunar New Year collection!`,
 ];
