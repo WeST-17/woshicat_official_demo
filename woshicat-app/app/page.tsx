@@ -6,7 +6,7 @@ import Transition from "./components/transition";
 import Link from "next/link";
 import ShopNowButton from "./components/ShopNowButton";
 import AutoCarousel from "./components/autoCarousel";
-// import EmailList from "./components/email-list/EmailList";
+import EmailList from "./email-list/EmailList";
 
 
 const homeBanner = [
@@ -116,8 +116,8 @@ const Home = () => {
 
       {/* */}
       <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-fit pt-8">
-        {/* <EmailList /> */}
-        <Link href="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs" target="_blank" className="w-fit mx-auto flex justify-center items-center gap-2">
+        <EmailList />
+        {/* <Link href="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs" target="_blank" className="w-fit mx-auto flex justify-center items-center gap-2">
           <p className="">Subscribe to our newsletter here!</p>
           <Image 
           src={'/media/graphics/Yoyo happy.png'}
@@ -125,7 +125,7 @@ const Home = () => {
           width={50}
           height={1}
           />
-        </Link>
+        </Link> */}
         
       </div>
       
