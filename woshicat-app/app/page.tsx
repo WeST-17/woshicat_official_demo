@@ -57,8 +57,23 @@ const Home = () => {
         <div className="button-hover relative col-span-9 md:col-span-9 overflow-hidden md:aspect-[3/1] aspect-square"> {/* Remember to change back to square when we have more collections! */}
           <Link href={'/collections/lunar-new-year/'}>
             <div className="">
-              {/* <video className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> */}
-              <Image className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" src={'/media/LNY2025/dome of light.jpg'} alt={'photo of guy in the Taiwan Dome of Light'} fill={true}/>
+              {/* <video 
+                className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline={true} 
+                data-v-f518367b="" 
+                preload="metadata"
+              >
+                <source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" />
+              </video> */}
+              <Image 
+                className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+                src={'/media/LNY2025/dome of light.jpg'} 
+                alt={'photo of guy in the Taiwan Dome of Light'} 
+                fill={true}
+              />
               
             </div>
             <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
@@ -114,18 +129,9 @@ const Home = () => {
         </div>
       </div>  
 
-      {/* */}
+      {/* Email subscription list! */}
       <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-fit pt-8">
         <EmailList />
-        {/* <Link href="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs" target="_blank" className="w-fit mx-auto flex justify-center items-center gap-2">
-          <p className="">Subscribe to our newsletter here!</p>
-          <Image 
-          src={'/media/graphics/Yoyo happy.png'}
-          alt={'Yoyo is slightly smiling...'}
-          width={50}
-          height={1}
-          />
-        </Link> */}
         
       </div>
       

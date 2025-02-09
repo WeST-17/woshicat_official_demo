@@ -57,24 +57,25 @@ const EmailList = () => {
         </div>
       </div>
       <form
-        className="relative w-[320px] h-[150px] md:w-full text-start flex flex-col justify-start items-center"
+        className="relative w-[320px] h-[150px] text-start flex flex-col justify-start items-center"
       >
         <div className="text-2xl flex justify-center items-center gap-3">
           <h1>WoShi Cat Newsletter!</h1> 
           <Image 
-          src={'/media/graphics/Yoyo happy.png'}
-          alt={'Yoyo is slightly smiling...'}
-          width={50}
-          height={1}
-        /></div>
-        <div className="flex justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
+            src={'/media/graphics/Yoyo happy.png'}
+            alt={'Yoyo is slightly smiling...'}
+            width={50}
+            height={1}
+          />
+        </div>
+        <div className="flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
             placeholder="shop@woshicat.com"
-            className="flex w-full md:w-80 text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+            className="flex w-full text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
             onChange={handleEmailChange}
             required
           />
