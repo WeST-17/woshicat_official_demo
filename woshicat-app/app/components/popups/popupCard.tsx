@@ -33,8 +33,8 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, imgAlt, promoDesc, cod
 
     return (
         <>
-        <div className={`absolute top-0 right-0 w-screen h-screen bg-black/50 ${popup ? '' : 'hidden'}`} />
-        <div className={`transition-opacity duration-500 fixed inset-y-40 w-full h-1/2 lg:h-[500px] flex justify-center items-center z-[1000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
+        <div className={`z-[2000] fixed top-0 right-0 w-screen h-screen bg-black/50 ${popup ? '' : 'hidden'}`} />
+        <div className={`transition-opacity duration-500 fixed inset-y-40 2xl:inset-y-1/3 w-full h-1/2 lg:h-[500px] flex justify-center items-center z-[2000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
             <div className="relative w-4/5 md:w-[600px] flex justify-center items-center h-full bg-white z-[1001] text-white shadow-xl">
             <Link 
                 href={PromoLink || ''}
@@ -53,13 +53,13 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, imgAlt, promoDesc, cod
             </Link>
             
             <div
-                className='overflow-hidden relative w-full h-full flex flex-col justify-center items-center z-[1004]'
+                className='overflow-hidden relative w-full h-full flex flex-col justify-center items-center z-[2004]'
             >
                 { PromoLink && (
                 <>
                     <Link 
                         href={PromoLink} 
-                        className="text-white lg:text-stone-600 text-xl xl:text-3xl z-[1006] text-center w-full p-2"
+                        className="text-white lg:text-stone-600 text-xl xl:text-3xl z-[2006] text-center w-full p-2"
                         onClick={closeConfirmation}
                     >
                         <p className='lg:hover:text-black transition-all duration-250'>{promoDesc}</p>
@@ -79,7 +79,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, imgAlt, promoDesc, cod
                 
             </div>
             
-            <button onClick={closeConfirmation} className="text-white lg:text-black absolute top-0 right-0 m-4 z-[1005]">close</button>
+            <button onClick={closeConfirmation} className="text-white lg:text-black absolute top-0 right-0 m-4 z-[2005]">close</button>
             </div>
         </div>
         </>
