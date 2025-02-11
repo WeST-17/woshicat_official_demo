@@ -9,10 +9,11 @@ interface PopupProps {
     imgSrc: string,
     imgAlt?: string,
     promoDesc?: string,
-    code?: string;
+    code?: string,
+    extra?: string
 }
 
-const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, imgAlt, promoDesc, code }) => {
+const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, imgAlt, promoDesc, code, extra }) => {
     const [popup, setPopup] = useState<boolean>(false);
 
     const closeConfirmation = () => {
@@ -32,7 +33,8 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, imgAlt, promoDesc, cod
 
     return (
         <>
-        <div className={`transition-opacity duration-500 fixed inset-y-40 w-full flex justify-center items-center z-[1000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
+        <div className={`absolute top-0 right-0 w-screen h-screen bg-black/50 ${popup ? '' : 'hidden'}`} />
+        <div className={`transition-opacity duration-500 fixed inset-y-40 w-full h-1/2 lg:h-[500px] flex justify-center items-center z-[1000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
             <div className="relative w-4/5 md:w-[600px] flex justify-center items-center h-full bg-white z-[1001] text-white shadow-xl">
             <Link 
                 href={PromoLink || ''}

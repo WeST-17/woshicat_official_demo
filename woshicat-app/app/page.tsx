@@ -135,6 +135,7 @@ const Home = () => {
         <EmailList />
         
       </div>
+
       <Popup PromoLink="/collections/metro-daydreams" imgSrc="/media/homepage/woshi-hermanpark-05.jpg" imgAlt="Two people sitting on a window ledge in a park" promoDesc="Buy one Metro Daydreams shirt, get one 50% off at checkout with code:" code="YOYOLOVE"/>
     </main>
     </Transition>
