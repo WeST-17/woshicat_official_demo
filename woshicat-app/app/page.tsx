@@ -1,4 +1,5 @@
 'use client';
+import { useState } from "react";
 
 import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
@@ -17,6 +18,7 @@ const homeBanner = [
 ];
 
 const Home = () => {
+  const [promo, setPromo] = useState<boolean>(false);
 
   return (
     <>
@@ -136,7 +138,7 @@ const Home = () => {
         
       </div>
 
-      <Popup PromoLink="/collections/metro-daydreams" imgSrc="/media/homepage/woshi-hermanpark-05.jpg" imgAlt="Two people sitting on a window ledge in a park" promoDesc="Buy one Metro Daydreams shirt, get one 50% off at checkout with code:" code="YOYOLOVE"/>
+      {promo && (<Popup PromoLink="/collections/metro-daydreams" imgSrc="/media/homepage/woshi-hermanpark-05.jpg" imgAlt="Two people sitting on a window ledge in a park" promoDesc="Buy one Metro Daydreams shirt, get one 50% off at checkout with code:" code="YOYOLOVE"/>)}
     </main>
     </Transition>
     <TransitionSlide />
