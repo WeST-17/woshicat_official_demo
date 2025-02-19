@@ -57,7 +57,7 @@ function CollectionCards({ collection }: CollectionType) {
 
   return (
     <>
-    <div className={`grid grid-cols-1 w-full mx-1 mx-auto md:grid-cols-3 flex justify-center gap-2 fade-in ${!loading ? 'show' : ''}`}>
+    <div className={`grid grid-cols-1 w-full mx-1 mx-auto md:grid-cols-3 gap-2 fade-in ${!loading ? 'show' : ''}`}>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
@@ -67,29 +67,29 @@ function CollectionCards({ collection }: CollectionType) {
         >
           <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
           
-          <div className='flex justify-center overflow-hidden'>
+          <div className='bg-white flex justify-center overflow-hidden'>
             <Link className='w-full flex justify-center bg-white' href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
             {/* Render product details */}
-            <div className='relative w-full'>
+            <div className='relative aspect-square flex justify-center items-center'>
               {/* Default product image */}
               <img 
                 src={product.image.url} 
                 alt={product.image.altText} 
-                className='object-cover object-bottom aspect-square transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
+                className='object-fit h-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
               />
               
               {/* Hover image */}
               <img 
                 src={product.image2.url} 
                 alt={product.image2.altText} 
-                className='max-sm:hidden absolute top-0 left-0 w-full h-full object-cover aspect-square opacity-0 transition-opacity duration-125 ease-in-out sm:hover:opacity-100'
+                className='max-sm:hidden absolute top-0 left-0 object-fit h-full opacity-0 transition-opacity duration-125 ease-in-out sm:hover:opacity-100'
               />
             </div>
             </Link>
           </div>
-          <div className='flex w-full p-2 text-lg'>
-            <div className="text-stone-700 me-auto">{product.name}</div>
-            <div className="text-stone-700 ms-auto">${product.price}</div>
+          <div className='flex w-full p-2 text-xs'>
+            <div className="text-stone-700 me-auto lg:text-lg">{product.name}</div>
+            <div className="text-stone-700 ms-auto lg:text-lg">${product.price}</div>
           </div>
         </div>
       </FadeInImage>

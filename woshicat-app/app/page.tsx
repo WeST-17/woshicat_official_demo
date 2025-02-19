@@ -132,13 +132,16 @@ const Home = () => {
         </div>
       </div>  
 
-      {/* Email subscription list! */}
-      <div className="col-span-9 flex justify-center items-center bg-stone-50 min-h-fit pt-8">
-        <EmailList />
-        
-      </div>
-
-      {promo && (<Popup PromoLink="/collections/metro-daydreams" imgSrc="/media/homepage/woshi-hermanpark-05.jpg" imgAlt="Two people sitting on a window ledge in a park" promoDesc="Buy one Metro Daydreams shirt, get one 50% off at checkout with code:" code="YOYOLOVE"/>)}
+      {promo && 
+        (
+        <Popup 
+          PromoLink="" 
+          imgSrc="/media/homepage/woshi-hermanpark-05.jpg" 
+          imgAlt="Two people sitting on a window ledge in a park" 
+          promoDesc="Add description here" 
+          code="Add Promo Here"/>
+        )
+      }
     </main>
     </Transition>
     <TransitionSlide />

@@ -1,10 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import EmailList from "../email-list/EmailList";
 
 const Footer = () => {
     return (
         <footer className="relative grid-cols-8 self-end items-center justify-center h-[200px] bg-stone-50 text-base text-stone-700">
             <div className="col-span-8 p-4">
+                {/* Email subscription list! */}
+                <div className="flex w-full justify-center items-center bg-stone-50 min-h-fit pt-8">
+                    <EmailList />
+                    
+                </div>
                 <div className="border-t border-stone-400"/>
                 {/* Social Media */}
                 <div className='flex text-sm text-stone-400 justify-center items-center'>
