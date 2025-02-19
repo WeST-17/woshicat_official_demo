@@ -75,14 +75,14 @@ function CollectionCards({ collection }: CollectionType) {
               <img 
                 src={product.image.url} 
                 alt={product.image.altText} 
-                className='object-fit h-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
+                className='object-contain h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
               />
               
               {/* Hover image */}
               <img 
                 src={product.image2.url} 
                 alt={product.image2.altText} 
-                className='max-sm:hidden absolute top-0 left-0 object-fit h-full opacity-0 transition-opacity duration-125 ease-in-out sm:hover:opacity-100'
+                className='max-sm:hidden absolute top-0 left-0 object-contain w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100'
               />
             </div>
             </Link>
