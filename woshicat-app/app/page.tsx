@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <>
     <Transition>
-    <main className="relative flex justify-center w-screen grid grid-cols-9">
+    <main className="relative flex justify-center w-full grid grid-cols-9">
       <div className="text-center col-span-9 w-full h-fit flex-col justify-center items-center">
         <Link href="https://woshicat.com/collections/lunar-new-year/" target="_blank" className="w-full">
           <AutoCarousel messages={homeBanner}/>
@@ -96,7 +96,7 @@ const Home = () => {
         <div className="button-hover relative col-span-9 md:col-span-3 overflow-hidden aspect-square"> {/* Remember to change back to square when we have more collections! */}
           <Link href={'/collections/metro-daydreams/'}>
             <div className="">
-              <video className="aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> 
+              <video className="aspect-square object-cover h-full w-full absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> 
               
             </div>
             <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">

@@ -88,8 +88,8 @@ function CollectionCards({ collection }: CollectionType) {
             </Link>
           </div>
           <div className='flex w-full p-2 text-xs'>
-            <div className="text-stone-700 me-auto lg:text-lg">{product.name}</div>
-            <div className="text-stone-700 ms-auto lg:text-lg">${product.price}</div>
+            <div className="text-stone-700 me-auto lg:text-sm">{product.name}</div>
+            <div className="text-stone-700 ms-auto lg:text-sm">${product.price}</div>
           </div>
         </div>
       </FadeInImage>
