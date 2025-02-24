@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+import Loader from "./LoadingScreen";
 
 export default function Transition({
   children
@@ -9,12 +9,11 @@ export default function Transition({
 }) {
 
   return (
-    <motion.div
-      initial={{ opacity: 0}}
-      animate={{ opacity: 1 }}
-      transition={{ ease: 'easeInOut', duration: 0.5 }}
-    >
+    <>
+      <div className="bg-white absolute top-0 w-full h-full justify-center items-center pointer-events-none fadeout">
+        <Loader />
+      </div>
       {children}
-    </motion.div>
+    </>
   )
 }

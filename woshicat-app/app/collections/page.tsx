@@ -13,10 +13,10 @@ const Collections = () => {
     <main className="w-screen grid grid-cols-9 gap-1">
       <div className="relative col-span-9 h-fit md:h-96 overflow-hidden">
         <CoverHeader
-          src={'/media/collections-page/1.jpg'} 
+          src={'/media/collections-page/sk1.jpg'} 
           alt={'models pointing out and wearing woshi cat shirts'}
           header={'Collections'}
-          additional="object-cover inset-0 w-full lg:-translate-y-36 xl:-translate-y-60"
+          additional="object-cover inset-0 w-full object-[50%_40%]"
         />
         
       </div>

@@ -26,7 +26,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
-      <body className={`${changa.className} text-stone-700 w-screen mx-auto`}>
+      <body className={`${changa.className} text-stone-700 w-full mx-auto`}>
           {/* <LayoutWrapper> */}
             <CartProvider>
             <Header />

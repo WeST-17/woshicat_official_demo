@@ -1,9 +1,16 @@
 'use client';
+import Image from "next/image";
 
 const Loader = () => {
     return (
-        <div className="w-full h-[100vh] flex justify-center items-center">
-            <div className="loader-screen" /> {/* Replace with actual loader */}
+        <div className="w-full h-[100vh] flex flex-col justify-center items-center">
+            <Image
+                src="/loading_assets/Yoyo Walk Cycle 2.gif"
+                alt="Yoyo walk cycle"
+                width={500}
+                height={1}
+                unoptimized={true}
+            />
         </div>
     )
 }

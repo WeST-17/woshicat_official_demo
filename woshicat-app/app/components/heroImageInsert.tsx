@@ -20,9 +20,8 @@ const CoverHeader: React.FC<CoverHeaderProp> = ({ src, alt, header, additional }
             <Image
                 src={src}
                 alt={alt}
-                width={1920}
-                height={1}
-                className={`${additional}`}
+                fill={true}
+                className={`${additional} object-fit w-full h-full`}
             />
         </>
     )

@@ -54,80 +54,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* <section className="w-full flex justify-center items-center">
-        <h1 className="text-4xl w-full font-bold text-center">{`~Get to Know the Team!~`}</h1>
-      </section>
-      <section className="w-full flex flex-col justify-center items-center gap-2">
-        <div className="w-full flex max-md:flex-col items-center justify-center gap-2" id="row-1">
-          <button className="" onClick={(e) => openCarousel(e, 0)}>
-            <Image
-              src='/peoples/alvin cat.png'
-              alt={`Alvin's cat persona`}
-              width={300}
-              height={1}
-              className="rounded-sm"
-            />
-            <p className="m-2">Alvin</p>
-          </button>
-          <button className="" onClick={(e) => openCarousel(e, 1)}>
-            <Image
-              src='/peoples/Eliza cat.png'
-              alt={`Eliza's cat persona`}
-              width={300}
-              height={1}
-              className="rounded-sm"
-            />
-            <p className="m-2">Eliza</p>
-          </button>
-          <button className="" onClick={(e) => openCarousel(e, 2)}>
-            <Image
-              src='/peoples/Wes Cat.png'
-              alt={`Wes' cat persona`}
-              width={300}
-              height={1}
-              className="rounded-sm"
-            />
-            <p className="m-2">Wes</p>
-          </button>
-        </div>
-
-        <div className="w-full flex items-center justify-center gap-2 max-md:flex-col" id="row-2">
-          <button className="" onClick={(e) => openCarousel(e, 3)}>
-            <Image
-              src='/peoples/han cat.png'
-              alt={`Han's cat persona`}
-              width={300}
-              height={1}
-              className="rounded-sm"
-            />
-            <p className="m-2">Han</p>
-          </button>
-          <button className="" onClick={(e) => openCarousel(e, 4)}>
-            <Image
-              src='/peoples/Stag cat.png'
-              alt={`Stag's cat persona`}
-              width={300}
-              height={1}
-              className="rounded-sm"
-            />
-            <p className="m-2">Stag</p>
-          </button>
-          <button className="" onClick={(e) => openCarousel(e, 5)}>
-            <Image
-              src='/peoples/kameel cat.png'
-              alt={`Kameel's cat persona`}
-              width={300}
-              height={1}
-              className="rounded-sm"
-            />
-            <p className="m-2">Kameel</p>
-          </button>
-        </div>
-      </section> */}
-
-      
-
-      {active && (
+      {/* {active && (
         <>
         <button className={`fixed z-[2005] bg-black/80 m-3 rounded-md top-0 right-0 text-white h-12 w-20 ${active ? '' : 'hidden'}`} onClick={closeCarousel}>
           close
@@ -183,7 +110,7 @@ const About = () => {
           </div>
         </AboutCarousel>
         </>
-      )}
+      )} */}
 
     </main>
     </>

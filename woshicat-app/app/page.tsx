@@ -7,7 +7,6 @@ import Transition from "./components/transition";
 import Link from "next/link";
 import ShopNowButton from "./components/ShopNowButton";
 import AutoCarousel from "./components/autoCarousel";
-import EmailList from "./email-list/EmailList";
 import Popup from "./components/popups/popupCard";
 
 
@@ -32,12 +31,22 @@ const Home = () => {
       <div className="relative grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">
           {/* Upload and replace video link */}
-          <video className="w-[100vw] object-cover min-h-full" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video 2.mov" type="video/mp4" data-v-f518367b="" /></video> 
+          <video 
+            className="w-full object-cover h-full" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline={true} 
+            data-v-f518367b="" 
+            preload="metadata"
+          >
+              <source src="/media/homepage/Woshi Homepage Video 2.mov" type="video/mp4" data-v-f518367b="" />
+          </video> 
         </div>
         <div className="absolute bottom-0 left-0 font-thin text-white w-full h-full"/>
       </div>
       
-      <section className="w-screen">
+      <section className="w-full">
         <div className="col-span-9 w-screen h-fit flex justify-center items-center text-center">
           <div className="w-1/2 h-fit flex justify-center items-center">
             <Image
@@ -55,22 +64,11 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="w-full mx-auto col-span-9 grid grid-cols-9 mb-6 md:p-2">
+      <div className="w-full col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 p-2">
         {/* Change to Lunar New Year 2025 */}
-        <div className="button-hover relative col-span-9 md:col-span-9 overflow-hidden md:aspect-[3/1] aspect-square"> {/* Remember to change back to square when we have more collections! */}
+        <div className="button-hover relative col-span-9 md:col-span-6 overflow-hidden md:aspect-[2/1] aspect-square"> {/* Remember to change back to square when we have more collections! */}
           <Link href={'/collections/lunar-new-year/'}>
             <div className="">
-              {/* <video 
-                className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-                autoPlay 
-                loop 
-                muted 
-                playsInline={true} 
-                data-v-f518367b="" 
-                preload="metadata"
-              >
-                <source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" />
-              </video> */}
               <Image 
                 className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
                 src={'/media/LNY2025/dome of light.jpg'} 
@@ -87,26 +85,7 @@ const Home = () => {
           </Link>
         </div>
         
-      </div>
-
-      {/* Rest of the Collections */}
-      <Link href="/collections" className="w-full col-span-9 text-3xl font-normal p-8">{`Yoyo's Collection List`}</Link>
-      <div className="w-full mx-auto col-span-9 grid grid-cols-9 mb-3 md:p-2">
-        {/* Metro Daydreams */}
-        <div className="button-hover relative col-span-9 md:col-span-3 overflow-hidden aspect-square"> {/* Remember to change back to square when we have more collections! */}
-          <Link href={'/collections/metro-daydreams/'}>
-            <div className="">
-              <video className="aspect-square object-cover h-full w-full absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> 
-              
-            </div>
-            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
-              <h2 className="text-3xl ">Metro Daydreams</h2>
-              <ShopNowButton />
-            </div>
-            <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>
-          </Link>
-        </div>
-        <div className="relative col-span-9 md:col-span-3 aspect-square overflow-hidden flex items-end">
+        <div className="relative col-span-9 md:col-span-3 aspect-square h-full overflow-hidden flex items-end">
           <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
             <Image
               src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
@@ -128,6 +107,45 @@ const Home = () => {
               />
               
             </div>
+          </Link>
+        </div>
+      </div>
+
+      {/* Rest of the Collections */}
+      <Link href="/collections" className="w-full col-span-9 text-3xl font-normal p-8">{`Yoyo's Collection List`}</Link>
+      <div className="w-full mx-auto col-span-9 grid grid-cols-9 mb-3 p-2 gap-2">
+        {/* Metro Daydreams */}
+        <div className="h-full button-hover relative col-span-9 md:col-span-3 overflow-hidden aspect-square"> {/* Remember to change back to square when we have more collections! */}
+          <Link href={'/collections/metro-daydreams/'}>
+            <div className="">
+              <video className="aspect-square object-cover h-full w-full absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video> 
+              
+            </div>
+            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
+              <h2 className="text-3xl ">Metro Daydreams</h2>
+              <ShopNowButton />
+            </div>
+            <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>
+          </Link>
+        </div>
+
+        {/* Lunar New Year 2025 */}
+        <div className="h-full button-hover relative col-span-9 md:col-span-3 overflow-hidden aspect-square"> {/* Remember to change back to square when we have more collections! */}
+          <Link href={'/collections/lunar-new-year/'}>
+            <div className="">
+              <Image 
+                className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+                src={'/media/collections-page/uniq bag pin.jpeg'} 
+                alt={'photo of guy in the Taiwan Dome of Light'} 
+                fill={true}
+              />
+              
+            </div>
+            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
+              <h2 className="text-3xl ">Lunar New Year - 2025</h2>
+              <ShopNowButton />
+            </div>
+            <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>
           </Link>
         </div>
       </div>  

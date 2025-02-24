@@ -21,7 +21,6 @@ body {
   color: black;
   text-rendering: auto;
   font-weight: lighter;
-  width: 75%;
 }
 
 #overlay {
@@ -37,6 +36,22 @@ body {
 
 .border-test {
   border: 2px solid black;
+}
+
+@keyframes FadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    display: hidden;
+  }
+}
+
+.fadeout {
+  animation: FadeOut 1.3s forwards;
+  
 }
 
 /* Custom Menu button with transiton */
