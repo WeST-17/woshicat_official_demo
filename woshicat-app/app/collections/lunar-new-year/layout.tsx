@@ -11,7 +11,7 @@ export default function ApparelLayout({
     return ( 
       <section className="flex justify-center">
         <Suspense 
-          fallback={<Loader/>}
+          fallback={<div className="loader"/>}
         >
           <Transition>{children}</Transition>
         </Suspense>

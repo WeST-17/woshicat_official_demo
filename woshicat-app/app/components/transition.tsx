@@ -11,9 +11,11 @@ export default function Transition({
   return (
     <>
       <div className="bg-white absolute top-0 w-full h-full justify-center items-center pointer-events-none fadeout">
-        <Loader />
+        
       </div>
-      {children}
+      <div className="w-full h-full">
+        {children}
+      </div>
     </>
   )
 }

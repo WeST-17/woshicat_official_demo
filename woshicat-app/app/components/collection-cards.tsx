@@ -40,7 +40,7 @@ function CollectionCards({ collection }: CollectionType) {
 
   if (loading) {
     return (
-      <Loader />
+      <div className='loader'/>
     );
   }
 
