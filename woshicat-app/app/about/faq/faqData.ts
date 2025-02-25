@@ -46,7 +46,7 @@ export const FAQ = [
     },
     { 
         q: 'Do you offer free shipping?',
-        a: 'We offer free standard shipping on orders over $70 USD.',
+        a: 'We offer free standard shipping on orders over $50 USD.',
         link: 'free-shipping'
     },
     { 
