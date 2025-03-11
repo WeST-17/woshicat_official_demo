@@ -13,7 +13,7 @@ interface QuantityAdjusterProps {
 const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initialQuantity, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const [itemQuantLoad, setItemQuantLoad] = useState<boolean>(false);
-  const { setCartUpdated, setCartItemsLoading, cartItems, } = useCart();
+  const { setCartUpdated, setCartItemsLoading } = useCart();
 
   useEffect(() => {
     setItemQuantLoad(true);
@@ -75,7 +75,6 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initial
   };
 
   const handleDeleteItem = async () => {
-    setCartItemsLoading(true);
     setItemQuantLoad(true);
     try {
       if (quantity >= 1) {
@@ -87,7 +86,6 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initial
       }
       setCartUpdated(true);
       setItemQuantLoad(false);
-      setCartItemsLoading(false);
     } catch (error) {
       console.error('Error decrementing quantity or removing item:', error);
     }

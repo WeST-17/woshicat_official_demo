@@ -13,6 +13,8 @@ interface CartContextType {
   setCart: React.Dispatch<React.SetStateAction<CartItems[]>>;
   cartItemsLoading: boolean;
   setCartItemsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  cartTotal: number;
+  setCartTotal: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface CartItems {
@@ -35,21 +37,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cartUpdated, setCartUpdated] = useState(false);
   const [cartItems, setCart] = useState<CartItems[]>([]);
   const [cartItemsLoading, setCartItemsLoading] = useState(false);
-
+  const [cartTotal, setCartTotal] = useState<number>(0);
+  
   useEffect(() => {
     const fetchCartItems = async () => {
         setCartItemsLoading(true);
         const items = await displayCart();
         setCart(items);
-        setCartUpdated(false); // Reset cartUpdated after fetching
         setCartItemsLoading(false);
+        setCartUpdated(false); // Reset cartUpdated after fetching
     };
-    
+
     fetchCartItems();
   }, [cartUpdated]);
 
   return (
-    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading }}>
+    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal }}>
       {children}
     </CartContext.Provider>
   );

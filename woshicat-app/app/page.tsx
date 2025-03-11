@@ -19,6 +19,7 @@ const homeBanner = [
 
 const Home = () => {
   const [promo, setPromo] = useState<boolean>(false);
+  // setPromo(true);
 
   return (
     <>
@@ -88,8 +89,8 @@ const Home = () => {
               fill={true}
               className="object-cover"
             />
-            <div className="absolute top-0 right-0 w-full text-white h-full flex justify-end items-center p-8 bg-black/50 hover:bg-black/80 text-3xl md:text-xl transition duration-300 gap-4">
-              <div className="flex flex-col text-end">
+            <div className="absolute top-0 right-0 w-full text-white h-full flex flex-col justify-center items-center p-8 bg-black/50 hover:bg-black/80 text-3xl md:text-xl transition duration-300 gap-4">
+              <div className="flex flex-col text-center">
                 <p>follow us for updates</p>
                 <p>@woshicatofficial</p>
               </div>

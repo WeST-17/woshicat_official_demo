@@ -14,6 +14,7 @@ const Footer = () => {
                 <div className="border-t border-stone-400"/>
                 {/* Social Media */}
                 <div className='flex text-sm text-stone-400 justify-center items-center'>
+                    {/* Instagram */}
                     <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
                         <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-2">
                             <Image 
@@ -25,7 +26,30 @@ const Footer = () => {
                             />
                         </Link>
                     </div>
-                    
+                    {/* YouTube */}
+                    <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
+                        <Link href='https://youtube.com/@woshicat_official' target='_blank' className="flex justify-center items-center gap-2">
+                            <Image 
+                                src={'/logo/youtube-brands.svg'}
+                                alt={'Instagram - WoShi Cat Official!'}
+                                className="opacity-50 hover:opacity-100 transition duration-300"
+                                width={30}
+                                height={30}
+                            />
+                        </Link>
+                    </div>
+                     {/* TikTok */}
+                     <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
+                        <Link href='https://www.tiktok.com/@woshicatofficial' target='_blank' className="flex justify-center items-center gap-2">
+                            <Image 
+                                src={'/logo/tiktok-brands-solid.svg'}
+                                alt={'Instagram - WoShi Cat Official!'}
+                                className="opacity-50 hover:opacity-100 transition duration-300"
+                                width={20}
+                                height={20}
+                            />
+                        </Link>
+                    </div>
                 </div>
             </div>
             
