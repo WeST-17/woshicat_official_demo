@@ -105,9 +105,9 @@ const Cart: React.FC = () => {
                                     />
                                 </div>
                                 <div>
-                                <h3 className="text-lg font-thin mb-2">{item.title}</h3>
+                                <h3 className="text-md font-thin mb-2">{item.title}</h3>
                                 {item.size && item.size !== 'Default Title' && item.color && item.color !== 'N/A' && (
-                                    <p className="text-md font-thin">{item.size} \ {item.color}</p>
+                                    <p className="text-sm font-thin">{item.size} \ {item.color}</p>
                                 )}
                                 {/* Quantity adjuster component */}
                                 <QuantityAdjuster
