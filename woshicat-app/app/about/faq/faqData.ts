@@ -21,7 +21,7 @@ export const FAQ = [
     },
     { 
         q: 'How long does shipping take?',
-        a: 'Shipping times vary based on your location and the shipping method selected at checkout. Order processing and preparation can take 1-3 business days. Generally, standard shipping takes 3-7 business days through USPS.',
+        a: 'Shipping times vary based on your location and the shipping method selected at checkout. Order processing and preparation can take 1-3 business days. Generally, standard shipping takes 3-7 business days through USPS. Shipping times to Canada will vary.',
         link: 'shipping'
     },
     { 
@@ -31,7 +31,7 @@ export const FAQ = [
     },
     { 
         q: 'Do you offer international shipping?',
-        a: 'We currently do not support international shipping but are looking to add that option in the future!',
+        a: 'We currently ship within the United States and to Canada! We hope to add more countries for international shipping in the future!',
         link: 'shipping-international'
     },
     { 
@@ -46,7 +46,7 @@ export const FAQ = [
     },
     { 
         q: 'Do you offer free shipping?',
-        a: 'We offer free standard shipping on orders over $50 USD.',
+        a: 'We offer free standard shipping on orders over $50 USD within the United States. Free shipping is not available for Canadian orders.',
         link: 'free-shipping'
     },
     { 
