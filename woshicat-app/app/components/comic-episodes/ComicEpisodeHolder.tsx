@@ -58,7 +58,7 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
     <div className="w-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:w-1/2 mx-auto w-full h-fit gap-2" id={epID}>
         <Link 
-            href={link!}
+            href={link || 'https://woshicat.com/collections'}
             target="_blank"
             className="relative w-fit h-full md:col-span-2 flex flex-col justify-center items-center px-3 gap-1 text-stone-500 hover:text-black transition-all duration-300"
         >

@@ -171,6 +171,7 @@ async function getProductByHandle(productHandle: string) {
       image: images,
       available: (item as any).available, // same for item.available
       description: item.description, // item description, update in shopify product listing
+      collection: item.productType
     };
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -191,6 +192,8 @@ export async function getProductsByID(productID: string) {
       variantImage: item.variants[0]?.image?.src || null,
       available: (item as any).available, // same for item.available
       description: item.description, // item description, update in shopify product listing
+      collection: item.productType,
+      
     };
   } catch (error) {
     console.error('Error fetching product by ID');
@@ -354,17 +357,19 @@ export async function displayCart() {
       .filter((item: any) => item.quantity > 0)
       .map((item: any) => {
         const hasVariants = item.variant && item.variant.selectedOptions && item.variant.selectedOptions.length > 0;
+
         return {
           title: item.title,
           cartItemID: item.id,
           variantID: item.variant?.id || null,
           size: hasVariants ? item.variant.selectedOptions[0]?.value : 'N/A',
           color: hasVariants ? item.variant.selectedOptions[1]?.value : 'N/A',
-          variantTitle: item.variant?.title || 'Default',
+          variantTitle: item.variant?.title || item.title,
           quantity: item.quantity,
           price: Number(item.variant?.price?.amount).toFixed(2) || Number(item.price?.amount).toFixed(2),
           currency: item.variant?.price?.currencyCode || item.price?.currencyCode,
           image: item.variant?.image?.src || item.image?.src,
+          
         };
       });
 

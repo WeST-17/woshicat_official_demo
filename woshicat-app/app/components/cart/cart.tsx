@@ -5,6 +5,7 @@ import { useCart } from './cartContext';
 import QuantityAdjuster from "./cartItemModify";
 import React, { useRef, useEffect } from 'react';
 import Image from "next/image";
+import Link from "next/link";
 
 
 const Cart: React.FC = () => {
@@ -97,13 +98,13 @@ const Cart: React.FC = () => {
                             return (
                             <div key={item.cartItemID} className="relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
                                 
-                                <div className="pointer-events-none">
+                                <Link href={``} className="">
                                     <img
                                     src={item.image}
                                     alt={item.variantTitle}
                                     className="w-24 h-24 object-cover object-bottom rounded-md mr-4"
                                     />
-                                </div>
+                                </Link>
                                 <div>
                                 <h3 className="text-md font-thin mb-2">{item.title}</h3>
                                 {item.size && item.size !== 'Default Title' && item.color && item.color !== 'N/A' && (
