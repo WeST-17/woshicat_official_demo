@@ -14,7 +14,6 @@ import TwoOneRect from "./components/bento-layout/two-one-rect";
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
   `Get 10% off your order with the code YOYO10`,
-  `Get our new 2025 Lunar New Year collection!`,
 ];
 
 const Home = () => {
@@ -26,7 +25,7 @@ const Home = () => {
     <Transition>
     <main className="relative flex justify-center w-full grid grid-cols-9">
       <div className="text-center col-span-9 w-full h-fit flex-col justify-center items-center">
-        <Link href="https://woshicat.com/collections/lunar-new-year/" target="_blank" className="w-full">
+        <Link href="https://woshicat.com/collections/" target="_blank" className="w-full">
           <AutoCarousel messages={homeBanner}/>
         </Link>
       </div>
