@@ -31,7 +31,7 @@ export const FAQ = [
     },
     { 
         q: 'Do you offer international shipping?',
-        a: 'We currently ship within the United States and to Canada! We hope to add more countries for international shipping in the future!',
+        a: 'We currently only ship within the United States! We hope to add more countries for international shipping in the future!',
         link: 'shipping-international'
     },
     { 
@@ -46,7 +46,7 @@ export const FAQ = [
     },
     { 
         q: 'Do you offer free shipping?',
-        a: 'We offer free standard shipping on orders over $50 USD within the United States. Free shipping is not available for Canadian orders.',
+        a: 'We offer free standard shipping on orders over $50 USD within the United States.',
         link: 'free-shipping'
     },
     { 

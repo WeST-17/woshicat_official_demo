@@ -138,10 +138,10 @@ const Home = () => {
       {promo && 
         (
         <Popup 
-          PromoLink="" 
+          PromoLink="Add link here" 
           imgSrc="/media/homepage/woshi-hermanpark-05.jpg" 
-          imgAlt="Two people sitting on a window ledge in a park" 
-          promoDesc="Add description here" 
+          imgAlt="Two people sitting on a window ledge in a park, on page has a description of a promotion or event." 
+          promoDesc={`We'll be at St. Edward's University April 14, 2025 for their AAPI Celebration! Meet us there!`} 
           code="Add Promo Here"/>
         )
       }
