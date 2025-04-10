@@ -12,10 +12,15 @@ const Cart: React.FC = () => {
     const { cartOpen, setCartOpen, setCartUpdated, cartItemsLoading, setCartItemsLoading, cartItems, cartTotal, setCartTotal } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
-    function formHandle(title: string) {
-        const handle = title.split(' ').join('-');
-        return handle;
-    }
+    // function formHandle(title: string) {
+    //     const handle = title.split(' ').join('-');
+    //     return handle;
+    // }
+
+    const currFormat = new Intl.NumberFormat('default', {
+        style: 'currency',
+        currency: 'USD',
+    });
 
     useEffect(() => {
         const calcTotal = async () => {
@@ -98,7 +103,7 @@ const Cart: React.FC = () => {
                             return (
                             <div key={item.cartItemID} className="relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
                                 
-                                <Link href={``} className="">
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="">
                                     <img
                                     src={item.image}
                                     alt={item.variantTitle}
@@ -142,7 +147,7 @@ const Cart: React.FC = () => {
                         </div>
                         <div className="flex w-1/5 justify-center items-center text-xl me-4 mb-2">
                             {/* <div className={`text-2xl ${cartItemsLoading ? 'loader': 'hidden'}`} /> */}
-                            <p className={`text-2xl ${!cartItemsLoading ? '': 'text-loader'}`}>${Number(cartTotal).toFixed(2)}</p>
+                            <p className={`text-2xl ${!cartItemsLoading ? '': 'text-loader'}`}>{currFormat.format(Number(cartTotal))}</p>
                         </div>
                     </div>
                 </div>

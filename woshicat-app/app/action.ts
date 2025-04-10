@@ -79,9 +79,9 @@ async function getCollection(collectionName: string) {
     const collectionItems = await client.collection.fetchWithProducts(collectionID);
     // Extract necessary information from each product
     const serializedProducts = collectionItems.products.map((product) => {
+      const imagesLength = product.images.length - 1;
       const image = product.images[0];
-      const image2 = product.images[7] ? product.images[7] : product.images[3];
-      // console.log("Product Type: ",product.productType)
+      const image2 = product.images[7] ? product.images[7] : product.images[imagesLength];
 
       const plainImage = {
         url: image?.src || '',
@@ -192,6 +192,23 @@ export async function getProductsByID(productID: string) {
       variantImage: item.variants[0]?.image?.src || null,
       available: (item as any).available, // same for item.available
       description: item.description, // item description, update in shopify product listing
+      collection: item.productType,
+      
+    };
+  } catch (error) {
+    console.error('Error fetching product by ID');
+    throw error;
+  }
+    
+}
+
+export async function getItemCollectionByID(productID: string) {
+  try {
+    const item = await client.product.fetch(productID);
+    
+    return {
+      id: item.id,
+      handle: item.handle,
       collection: item.productType,
       
     };
@@ -353,11 +370,12 @@ export async function displayCart() {
       return [];
     }
     
-    const cartItems = checkout.lineItems
+    const cartItems = await Promise.all(checkout.lineItems
       .filter((item: any) => item.quantity > 0)
-      .map((item: any) => {
+      .map(async (item: any) => {
         const hasVariants = item.variant && item.variant.selectedOptions && item.variant.selectedOptions.length > 0;
-
+        const itemCollection = await getItemCollectionByID(item.variant.product.id);
+        
         return {
           title: item.title,
           cartItemID: item.id,
@@ -369,9 +387,10 @@ export async function displayCart() {
           price: Number(item.variant?.price?.amount).toFixed(2) || Number(item.price?.amount).toFixed(2),
           currency: item.variant?.price?.currencyCode || item.price?.currencyCode,
           image: item.variant?.image?.src || item.image?.src,
-          
+          handle: item.variant.product.handle,
+          collection: itemCollection.collection,
         };
-      });
+      }));
 
     return cartItems;
   } catch (error) {
