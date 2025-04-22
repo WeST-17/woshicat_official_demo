@@ -9,6 +9,7 @@ import AutoCarousel from "./components/autoCarousel";
 import Popup from "./components/popups/popupCard";
 import Square from "./components/bento-layout/square";
 import TwoOneRect from "./components/bento-layout/two-one-rect";
+import ShopNowButton from "./components/ShopNowButton";
 
 
 const homeBanner = [
@@ -17,8 +18,7 @@ const homeBanner = [
 ];
 
 const Home = () => {
-  const [promo, setPromo] = useState<boolean>(false);
-  // setPromo(true);
+  const [promo, setPromo] = useState<boolean>(true);
 
   return (
     <>
@@ -44,7 +44,13 @@ const Home = () => {
               <source src="/media/homepage/Woshi Homepage Video 2.mov" type="video/mp4" data-v-f518367b="" />
           </video> 
         </div>
-        <div className="absolute bottom-0 left-0 font-thin text-white w-full h-full"/>
+        
+        <Link className="button-hover flex items-end justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12"
+        href="/collections">
+          <ShopNowButton />
+          <div className="absolute bottom-0 left-0 w-full h-full hover:bg-black/30 transition duration-300"/>
+        </Link>
+        
       </div>
       
       <section className="w-full">
@@ -137,11 +143,18 @@ const Home = () => {
       {promo && 
         (
         <Popup 
-          PromoLink="Add link here" 
-          imgSrc="/media/homepage/woshi-hermanpark-05.jpg" 
-          imgAlt="Two people sitting on a window ledge in a park, on page has a description of a promotion or event." 
-          promoDesc={`We'll be at St. Edward's University April 14, 2025 for their AAPI Celebration! Meet us there!`} 
-          code="Add Promo Here"/>
+          PromoLink="https://www.tokyonightfest.com/artistalley" 
+          imgSrc="" 
+          video="/logo/tokyox2025/VERTICAL LAST 123.mp4"
+          imgAlt="Tokyo X Promotion Video Showcase." 
+          promoDesc={
+            `
+            Catch us at Tokyo X on June 14-15!!
+            
+            `} 
+          code="@NRG Center - Houston, TX"
+          extra="/logo/tokyox2025/Logo 2025.png"
+          />
         )
       }
     </main>

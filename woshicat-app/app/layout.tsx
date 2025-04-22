@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Changa } from 'next/font/google';
+import { Lato } from 'next/font/google';
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Transition from "./components/transition";
 import TransitionSlide from "./components/transitionWipe";
 import { CartProvider } from "./components/cart/cartContext";
 
-const changa = Changa({
-    weight: ['300', '400', '600'],
-    subsets: ['latin-ext']
+
+const lato = Lato({
+  weight: ['300', '400', '700'],
+  subsets: ['latin-ext']
 })
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
-      <body className={`${changa.className} text-stone-700 w-full mx-auto`}>
+      <body className={`${lato.className} text-stone-700 w-full mx-auto`}>
             <CartProvider>
             <Header />
             <div className="w-full mt-[70px]"/>
