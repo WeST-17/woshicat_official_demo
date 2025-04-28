@@ -33,7 +33,7 @@ const Collections = () => {
             <h2 className="text-2xl">Designed in-house. Yoyo&apos;s happy you&apos;re here!</h2>
           </div>
         </div>
-        <div className="w-full mx-auto col-span-9 grid grid-cols-9 md:p-2">
+        <div className="w-full mx-auto col-span-9 grid grid-cols-9 p-2 gap-2">
           {/* Begin section */}
           <div className="relative md:col-span-3 col-span-9 aspect-square"> {/* Feature Collection, add square ones at the bottom for older collections */}
             <Link href={'/collections/metro-daydreams/'} >

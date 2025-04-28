@@ -1,6 +1,5 @@
 'use client';
 import { useState } from "react";
-
 import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
