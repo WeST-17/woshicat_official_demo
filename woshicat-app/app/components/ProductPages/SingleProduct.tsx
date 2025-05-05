@@ -23,6 +23,11 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [quantity, setQuantity] = useState(1);
 
+    const currFormat = new Intl.NumberFormat('default', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
     // Product fetching
     useEffect(() => {
         setPageLoading(true);
@@ -104,7 +109,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
     // Error handling
     if (error) {
-        return <div className='flex items-center h-[100vh]'>Something happened on our end!</div>;
+        return <div className='flex h-32 w-full justify-center items-center'>Error fetching products: {"Oops! Something happened on our end!"}</div>;
     }
 
     if (!item || !item.image) {
@@ -194,7 +199,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 <div className='lg:col-span-1 h-full w-full'>
                     <div className='w-full'>
                         <h3 className="text-4xl font-bold text-black">{item.name}</h3>
-                        <p className="my-8 text-lg font-medium text-stone-900">${item.price}</p>
+                        <p className="my-8 text-lg font-medium text-stone-900">{currFormat.format(Number(item.price))}</p>
                     </div>
                 
                     {/* Apparel Colors */}
@@ -258,7 +263,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                             name="quantity"
                             value={quantity}
                             onChange={handleQuantitySelection}
-                            className="w-16 border border-gray-300 rounded-sm p-1 text-center"
+                            className="w-16 h-full border border-gray-300 rounded-sm p-1 text-center"
                             >
                             {/* Dropdown options for quantities */}
                             {[...Array(5)].map((_, i) => (

@@ -21,7 +21,7 @@ export const FAQ = [
     },
     { 
         q: 'How long does shipping take?',
-        a: 'Shipping times vary based on your location and the shipping method selected at checkout. Order processing and preparation can take 1-3 business days. Generally, standard shipping takes 3-7 business days through USPS. Shipping times to Canada will vary.',
+        a: 'Shipping times vary based on your location and the shipping method selected at checkout. Order processing and preparation can take 1-3 business days. Generally, standard shipping takes 3-7 business days through USPS.',
         link: 'shipping'
     },
     { 

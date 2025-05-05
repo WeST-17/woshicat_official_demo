@@ -18,8 +18,9 @@ async function getProducts(client: Client): Promise<any[]> {
     
     // Extract necessary information from each product
     const serializedProducts = products.map((product) => {
+      const imagesLength = product.images.length - 1;
       const image = product.images[0];
-      const image2 = product.images[7] ? product.images[7] : product.images[3]; 
+      const image2 = product.images[7] ? product.images[7] : product.images[imagesLength];
 
       const plainImage = {
         url: image?.src || '',
@@ -40,19 +41,33 @@ async function getProducts(client: Client): Promise<any[]> {
         price: Number(product.variants[0]?.price.amount).toFixed(2) || 0, // Adjust this based on your product structure
         image: plainImage,
         image2: plainImage2,
-        collection: product.productType,
+        drop: product.productType,
+        available: !!product.availableForSale,
         
         // may need to add collection tag for a general products page somehow...
         // add more properties as needed
       };
     });
 
-    return serializedProducts;
+    return serializedProducts.reverse();
   } catch (error) {
     console.error('Error fetching products:', error);
     throw error;
   }
 };
+
+export async function getCollectionNames() {
+  try {
+    const collectionList = await client.collection.fetchAllWithProducts();
+    const collectionNames = collectionList.map((names) => {
+      return names.handle;
+    })
+    return collectionNames;
+  } catch (error) {
+    console.error('Error fetching collection:', error);
+    throw error;
+  }
+}
 
 async function getCollectionID(collectionName: string): Promise<any> {
   try {
@@ -93,7 +108,7 @@ async function getCollection(collectionName: string) {
         url: image2?.src || '',
         altText: image2?.altText || '',
       }
-      // console.log('available: ', product.availableForSale)
+      // console.log(product.productType)
       return {
         id: product.id,
         handle: product.handle,
@@ -103,6 +118,7 @@ async function getCollection(collectionName: string) {
         collection: collectionName,
         price: Number(product.variants[0].price.amount).toFixed(2),
         available: !!product.availableForSale,
+        drop: product.productType,
         // add more properties as needed
       };
     });

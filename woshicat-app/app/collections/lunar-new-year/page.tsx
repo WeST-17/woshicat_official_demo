@@ -9,7 +9,7 @@ const LunarNewYear = () => {
     <>
     <main className="flex justify-center w-full grid grid-cols-8">
       {/* */}
-      <div className="col-span-8 relative h-96 mb-8 overflow-hidden">
+      <div className="col-span-8 relative h-64 mb-8 overflow-hidden">
         <CoverHeader
           src={'/media/LNY2025/IMG_1130header.jpg'}  //change to lunar new year photo
           alt={'lunar new year collection header full of red packets'}

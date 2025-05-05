@@ -12,11 +12,6 @@ const Cart: React.FC = () => {
     const { cartOpen, setCartOpen, setCartUpdated, cartItemsLoading, setCartItemsLoading, cartItems, cartTotal, setCartTotal } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
-    // function formHandle(title: string) {
-    //     const handle = title.split(' ').join('-');
-    //     return handle;
-    // }
-
     const currFormat = new Intl.NumberFormat('default', {
         style: 'currency',
         currency: 'USD',

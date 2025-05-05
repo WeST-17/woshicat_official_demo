@@ -11,10 +11,11 @@ interface PopupProps {
     video?: string,
     promoDesc?: string,
     code?: string,
-    extra?: string
+    extra?: string,
+    on: boolean,
 }
 
-const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDesc, code, extra }) => {
+const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDesc, code, extra, on }) => {
     const [popup, setPopup] = useState<boolean>(false);
 
     const closeConfirmation = () => {
@@ -25,7 +26,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
     useEffect(() => {
         const storedValue = sessionStorage.getItem('popup');
         setTimeout(() => {
-            if (storedValue !== 'visited') {
+            if (storedValue !== 'visited' && on) {
                 setPopup(true);
               }
         }, 1000)
@@ -35,7 +36,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
     return (
         <>
         <div className={`z-[2000] fixed top-0 right-0 w-screen h-screen bg-black/50 ${popup ? '' : 'hidden'}`} />
-        <div className={`transition-opacity duration-500 fixed inset-y-40 2xl:inset-y-1/3 w-full h-1/2 lg:h-[500px] flex justify-center items-center z-[2000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
+        <div className={`transition-opacity duration-500 fixed inset-y-20 w-full h-1/2 lg:h-[500px] flex justify-center items-center z-[2000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
             <div className="relative w-4/5 md:w-[600px] flex justify-center items-center h-full bg-white z-[1001] text-white shadow-xl">
             <Link 
                 href={PromoLink || ''}
@@ -100,7 +101,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                     {/* Bottom left cat */}
                     <Image src={'/peoples/kameel cat.png'} alt="Kameel cat persona" width={120} height={1} className="max-lg:hidden absolute -bottom-5 -left-5 object-cover rotate-45 rounded-lg" />
                     {/* Top left cat */}
-                    <Image src={'/peoples/Stag cat.png'} alt="Stag cat persona" width={120} height={1} className="max-lg:hidden absolute -top-4 -left-5 rotate-[135deg] rounded-lg" />
+                    <Image src={'/peoples/han cat.png'} alt="Stag cat persona" width={120} height={1} className="max-lg:hidden absolute -top-4 -left-5 rotate-[135deg] rounded-lg" />
 
                 </>
                 )

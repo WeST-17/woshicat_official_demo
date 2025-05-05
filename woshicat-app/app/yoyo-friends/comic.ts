@@ -40,7 +40,7 @@ const ComicEps = [
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1730339651/e4p4_emxrjp.png'
     },
     {
-        title: `Ep.5 Yoyo's Shenanigans Halloween Part 2 - Yoyo`,
+        title: `Ep.5 Halloween Part 2 - Yoyo`,
         date: 'Oct 31, 2024',
         folder: 'comic-e5-halloween2024-pt2',
         link: '',

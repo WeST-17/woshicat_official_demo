@@ -8,9 +8,9 @@ import TransitionSlide from '@/app/components/transitionWipe';
 
 const ProductDetailPage = () => {
     const pathname = usePathname(); // get pathname: '/apparel/[handle]
-    const handle = pathname.replace('/collections/metro-daydreams/', ''); // get handle from pathname
+    const handle = pathname.replace(/^\/collections\/[^/]+\//, ''); // get handle from pathname
 
-    const isAccessory: boolean = handle.includes('sticker');
+    const isAccessory: boolean = !handle.includes('shirt') || !handle.includes('hoodie') || !handle.includes('sweater') || !handle.includes('pants')// change to exclude shirts, hoodie, apparel, etc...
     
     return (
       <>

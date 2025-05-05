@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+
 import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
 import Transition from "./components/transition";
@@ -13,11 +13,10 @@ import ShopNowButton from "./components/ShopNowButton";
 
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
-  `Get 10% off your order with the code YOYO10`,
+  `Sign up for our newsletter and get a discount code!`,
 ];
 
 const Home = () => {
-  const [promo, setPromo] = useState<boolean>(true);
 
   return (
     <>
@@ -52,8 +51,8 @@ const Home = () => {
         
       </div>
       
-      <section className="w-full">
-        <div className="col-span-9 w-screen h-fit flex justify-center items-center text-center">
+      <section className="w-full md:w-4/5 mx-auto col-span-9">
+        <div className="w-full h-fit flex justify-center items-center text-center">
           <div className="w-1/2 h-fit flex justify-center items-center">
             <Image
               src={'/media/misc/woshicat_script2b.png'}
@@ -63,24 +62,27 @@ const Home = () => {
             />
           </div>
         </div>
-        <div className="col-span-9 w-screen md:text-xl font-thin flex flex-col justify-center items-center text-center mb-8">
+        <div className="w-full md:text-xl font-thin flex flex-col justify-center items-center text-center mb-12">
           <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
-          <div className="p-3 md:w-1/2">
+          <div className="p-3 md:w-4/5">
           {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
           </div>
         </div>
       </section>
 
-      <div className="w-full col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 p-2">
+      <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
+        {`Featured Arrivals`}
+      </div>
+      <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 p-2">
         {/* Lunar New Year 2025 */}
         <TwoOneRect
-          link={`/collections/lunar-new-year`}
-          collectionName="Lunar New Year - 2025"
+          link={`/collections/stationary-and-accessories`}
+          collectionName="Stationary and Accessories"
         >
           <Image 
             className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-            src={'/media/LNY2025/dome of light.jpg'} 
-            alt={'photo of guy in the Taiwan Dome of Light'} 
+            src={'/media/stationary-page/apr2025_506print1.jpg'} 
+            alt={'A studio style photo of the WoShi Cat 5:06 Train Print'} 
             fill={true}
           />
         </TwoOneRect>
@@ -111,51 +113,68 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Rest of the Collections */}
-      <Link href="/collections" className="w-full col-span-9 text-3xl font-normal p-8">
-        {`Yoyo's Collection List`}
-      </Link>
-      
-      <div className="w-full mx-auto col-span-9 grid grid-cols-9 mb-3 p-2 gap-2">
-        {/* Metro Daydreams */}
-        <Square
-          link={'/collections/metro-daydreams/'}
-          collectionName={`Metro Daydreams`}
-        > 
-          <video className="aspect-square object-cover h-full w-full absolute top-0 left-0 bottom-0 right-0" autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"><source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" /></video>
-        </Square>
+      <div className="w-full md:w-4/5 col-span-9 mx-auto">
+        {/* Rest of the Collections */}
+        <Link href="/collections" className="w-full text-3xl font-normal">
+          {`Yoyo's Collection List`}
+        </Link>
+        
+        <div className="w-full mx-auto grid grid-cols-9 mb-3 p-2 gap-2">
+          {/* Metro Daydreams */}
+          <Square
+            link={'/collections/metro-daydreams/'}
+            collectionName={`Metro Daydreams`}
+          > 
+            <Image 
+              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+              src={'/media/homepage/woshi-hermanpark-05.jpg'} 
+              alt={'photo of our lion dance pin on a bag'} 
+              fill={true}
+            />
+          </Square>
 
-        {/* Lunar New Year 2025 */}
-        <Square
-          link={`/collections/lunar-new-year`}
-          collectionName={`Lunar New Year - 2025`}
-        >
-          <Image 
-            className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-            src={'/media/collections-page/uniq bag pin.jpeg'} 
-            alt={'photo of guy in the Taiwan Dome of Light'} 
-            fill={true}
-          />
-        </Square>
-      </div>  
+          {/* Lunar New Year 2025 */}
+          <Square
+            link={`/collections/lunar-new-year`}
+            collectionName={`Lunar New Year - 2025`}
+          >
+            <Image 
+              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+              src={'/media/collections-page/uniq bag pin.jpeg'} 
+              alt={'photo of our lion dance pin on a bag'} 
+              fill={true}
+            />
+          </Square>
 
-      {promo && 
-        (
-        <Popup 
-          PromoLink="https://www.tokyonightfest.com/artistalley" 
-          imgSrc="" 
-          video="/logo/tokyox2025/VERTICAL LAST 123.mp4"
-          imgAlt="Tokyo X Promotion Video Showcase." 
-          promoDesc={
-            `
-            Catch us at Tokyo X on June 14-15!!
-            
-            `} 
-          code="@NRG Center - Houston, TX"
-          extra="/logo/tokyox2025/Logo 2025.png"
-          />
-        )
-      }
+          {/* Stationary and Accessories */}
+          <Square
+            link={'/collections/stationary-and-accessories/'}
+            collectionName={`Stationary and Accessories`}
+          > 
+            <Image 
+              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+              src={'/media/stationary-page/apr2025_506print.jpg'} 
+              alt={'picture of our 506 train print close up on caligraphy'} 
+              fill={true}
+            />
+          </Square>
+        </div>  
+      </div>
+
+      <Popup 
+        PromoLink="https://www.tokyonightfest.com/" 
+        imgSrc="" 
+        video="/logo/tokyox2025/VERTICAL LAST 123.mp4"
+        imgAlt="Tokyo X Promotion Video Showcase." 
+        promoDesc={
+          `
+          Catch us at Tokyo X on June 14-15!!
+          
+          `} 
+        code="@NRG Center - Houston, TX"
+        extra="/logo/tokyox2025/Logo 2025.png"
+        on={true}
+      />
     </main>
     </Transition>
     <TransitionSlide />

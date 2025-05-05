@@ -21,10 +21,10 @@ const Square: React.FC<SquareProps> = ({ children, link, collectionName }) => {
                 {children}
             </div>
             <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
-                <h2 className="text-3xl ">{collectionName}</h2>
+                <h2 className="text-2xl ">{collectionName}</h2>
                 <ShopNowButton />
             </div>
-            <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/15 w-full h-full"/>
+            <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/5 w-full h-full"/>
             </Link>
         </div>
         </>

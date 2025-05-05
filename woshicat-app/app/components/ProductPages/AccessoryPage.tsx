@@ -20,6 +20,11 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [quantity, setQuantity] = useState(1);
 
+    const currFormat = new Intl.NumberFormat('default', {
+        style: 'currency',
+        currency: 'USD',
+    });
+
     // Product fetching
     useEffect(() => {
         setPageLoading(true);
@@ -67,7 +72,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
     }
     // Error handling
     if (error) {
-        return <div className='flex items-center h-[100vh]'>Something happened on our end!</div>;
+        return <div className='flex h-32 w-full justify-center items-center'>Error fetching products: {"Oops! Something happened on our end!"}</div>;
     }
 
     if (!item || !item.image) {
@@ -153,12 +158,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                 <div className='lg:col-span-1 h-full w-full'>
                     <div className='w-full'>
                         <h3 className="text-4xl font-bold text-black">{item.name}</h3>
-                        <p className="my-8 text-lg text-stone-900">${item.price}</p>
-                    </div>
-
-                    {/* Product Description: Need to make components for product description and add to cart button */}
-                    <div className='my-8 flex flex-col items-start text-lg gap-4'>
-                        <ProductDescription description={item.description}/>
+                        <p className="my-8 text-lg text-stone-900">{currFormat.format(Number(item.price))}</p>
                     </div>
                     <div className='flex gap-2'>
                         {/* Quantity Selector Dropdown */}
@@ -168,7 +168,7 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                             name="quantity"
                             value={quantity}
                             onChange={handleQuantitySelection}
-                            className="w-16 border border-gray-300 rounded-sm p-1 text-center"
+                            className="w-16 border border-gray-300 rounded-sm p-1 text-center h-full"
                             >
                             {/* Dropdown options for quantities */}
                             {[...Array(5)].map((_, i) => (
@@ -178,21 +178,26 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
                             ))}
                             </select>
                         </div>
-                    <button
-                        className="rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 mt-4 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
-                        disabled={
-                            item.available === false
-                        }
-                        onClick={(e) => {
-                            e.preventDefault();
-                            addItemToCart(item.variants[0].id);
-                        }}
-                        >
-                        <div className='col-span-6 flex justify-center items-center min-h-full'>
-                            {isLoading ? <LoadingIcon /> : 'Add to Cart'}
-                        </div>
-                    </button>
+                        <button
+                            className="rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 mt-4 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600"
+                            disabled={
+                                item.available === false
+                            }
+                            onClick={(e) => {
+                                e.preventDefault();
+                                addItemToCart(item.variants[0].id);
+                            }}
+                            >
+                            <div className='col-span-6 flex justify-center items-center min-h-full'>
+                                {isLoading ? <LoadingIcon /> : 'Add to Cart'}
+                            </div>
+                        </button>
                     </div>
+                    {/* Product Description: Need to make components for product description and add to cart button */}
+                    <div className='my-8 flex flex-col items-start gap-4'>
+                        <ProductDescription description={item.description}/>
+                    </div>
+                    
                 </div>
                 
             </div>

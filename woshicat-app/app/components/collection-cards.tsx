@@ -47,35 +47,29 @@ function CollectionCards({ collection }: CollectionType) {
   if (error != null) {
     return <div className='flex justify-center w-[100vw] h-[50vh] mt-64'>Something happened on our end!</div>;
   }
-  
-  let collectionAdjust;
-  if (collection === 'apparel') {
-    collectionAdjust = 'shirts';
-  } else {
-    collectionAdjust = collection;
-  }
+
 
   return (
     <>
-    <div className={`grid grid-cols-1 w-full mx-1 mx-auto md:grid-cols-3 gap-2 fade-in ${!loading ? 'show' : ''}`}>
+    <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto md:grid-cols-3 gap-2 fade-in ${!loading ? 'show' : ''} `}>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
         <FadeInImage key={product.name}>
-        <div className='relative text-center' 
+        <div className={`relative text-center h-full`} 
           key={product.name}
         >
           <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
           
-          <div className='bg-white flex justify-center overflow-hidden'>
-            <Link className='w-full flex justify-center bg-white' href={`/collections/${collectionAdjust}/${product.handle}`} passHref>
+          <div className={`bg-white flex justify-center overflow-hidden`}>
+            <Link className='w-full flex justify-center bg-white' href={`/collections/${collection}/${product.handle}`} passHref>
             {/* Render product details */}
             <div className='relative aspect-square flex justify-center items-center'>
               {/* Default product image */}
               <img 
                 src={product.image.url} 
                 alt={product.image.altText} 
-                className='object-contain h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
+                className='object-cover h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
               />
               
               {/* Hover image */}
