@@ -10,7 +10,11 @@ const ProductDetailPage = () => {
     const pathname = usePathname(); // get pathname: '/apparel/[handle]
     const handle = pathname.replace(/^\/collections\/[^/]+\//, ''); // get handle from pathname
 
-    const isAccessory: boolean = !handle.includes('shirt') || !handle.includes('hoodie') || !handle.includes('sweater') || !handle.includes('pants')// change to exclude shirts, hoodie, apparel, etc...
+    const isAccessory: boolean = !['shirt', 'hoodie', 'sweater', 'pants'].some(item =>
+      handle.toLowerCase().includes(item)
+    );
+    
+
     
     return (
       <>
