@@ -134,8 +134,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover'
             />
         </div>
-        <div className='h-full w-full text-lg p-5 xl:w-3/4 mx-auto flex items-center' key={item.id}>
-            <div className='flex justify-center items-center grid md:grid-cols-2 gap-8'>
+        <div className='h-full w-full text-lg p-5 lg:w-4/5 mx-auto flex items-start' key={item.id}>
+            <div className='flex justify-center items-start grid md:grid-cols-2 gap-8'>
                 {/* Apparel Images */}
                 {item.image.length > 0 && (
                     <div className='relative md:col-span-1 bg-white rounded-md'>
@@ -160,7 +160,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                   <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={8} height={1}/>
                                 </button>
                             )}
-                            className="flex items-center overflow-hidden"
+                            className="flex items-center overflow-hidden aspect-square"
                             placeholder={undefined}
                             navigation={({ setActiveIndex, activeIndex, length }) => (
                                 <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2 max-sm:hidden">
@@ -186,7 +186,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                     key={index}
                                     src={image.url}
                                     alt={image.altText}
-                                    className='mx-auto snap-center pointer-events-none'
+                                    className='mx-auto snap-center pointer-events-none object-cover h-full'
                                 />
                             ))}
                         </Carousel>
