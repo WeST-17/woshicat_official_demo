@@ -44,8 +44,6 @@ async function getProducts(client: Client): Promise<any[]> {
         drop: product.productType,
         available: !!product.availableForSale,
         
-        // may need to add collection tag for a general products page somehow...
-        // add more properties as needed
       };
     });
 
@@ -108,7 +106,7 @@ async function getCollection(collectionName: string) {
         url: image2?.src || '',
         altText: image2?.altText || '',
       }
-      // console.log(product.productType)
+
       return {
         id: product.id,
         handle: product.handle,
@@ -119,6 +117,7 @@ async function getCollection(collectionName: string) {
         price: Number(product.variants[0].price.amount).toFixed(2),
         available: !!product.availableForSale,
         drop: product.productType,
+        bundleID: product.vendor
         // add more properties as needed
       };
     });
@@ -187,7 +186,7 @@ async function getProductByHandle(productHandle: string) {
       image: images,
       available: (item as any).available, // same for item.available
       description: item.description, // item description, update in shopify product listing
-      collection: item.productType
+      collection: item.productType,
     };
   } catch (error) {
     console.error('Error fetching products:', error);
@@ -209,7 +208,6 @@ export async function getProductsByID(productID: string) {
       available: (item as any).available, // same for item.available
       description: item.description, // item description, update in shopify product listing
       collection: item.productType,
-      
     };
   } catch (error) {
     console.error('Error fetching product by ID');

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import TransitionSlide from "./components/transitionWipe";
-import Transition from "./components/transition";
 import Link from "next/link";
 import AutoCarousel from "./components/autoCarousel";
 import Popup from "./components/popups/popupCard";
@@ -20,7 +19,6 @@ const Home = () => {
 
   return (
     <>
-    <Transition>
     <main className="relative flex justify-center w-full grid grid-cols-9">
       <div className="text-center col-span-9 w-full h-fit flex-col justify-center items-center">
         <Link href="https://woshicat.com/collections/" target="_blank" className="w-full">
@@ -176,7 +174,6 @@ const Home = () => {
         on={true}
       />
     </main>
-    </Transition>
     <TransitionSlide />
     </>
   );

@@ -3,7 +3,6 @@ import "./globals.css";
 import { Lato } from 'next/font/google';
 import Header from "./components/header";
 import Footer from "./components/footer";
-import Transition from "./components/transition";
 import TransitionSlide from "./components/transitionWipe";
 import { CartProvider } from "./components/cart/cartContext";
 
@@ -30,9 +29,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             <CartProvider>
             <Header />
             <div className="w-full mt-[70px]"/>
-              <Transition>
               {children}
-              </Transition>
             <Footer />
             </CartProvider>
         <TransitionSlide />

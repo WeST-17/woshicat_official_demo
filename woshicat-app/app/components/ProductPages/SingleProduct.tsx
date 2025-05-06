@@ -5,7 +5,6 @@ import { Carousel } from "@material-tailwind/react";
 import ProductDescription from '../product-description';
 import Image from 'next/image';
 import { useCart } from '../cart/cartContext';
-import Loader from '../LoadingScreen';
 import LoadingIcon from '../loading';
 
 interface Handle {

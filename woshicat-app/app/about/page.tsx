@@ -1,24 +1,6 @@
 'use client';
-import React, { useState } from "react";
-import Image from "next/image";
-import AboutCarousel from "@/app/components/imageHolderAbout/ImageHolderAbout";
 
 const About = () => {
-  // const [active, setActive] = useState(false);
-  // const [picIndex, setPicIndex] = useState(0);
-
-  // const openCarousel = (_e: any, key: number) => {
-  //   setPicIndex(key);
-  //   setTimeout(() => {
-  //     setActive(true);
-  //   }, 150)
-    
-  // }
-
-  // const closeCarousel = () => {
-  //   setActive(false);
-  //   setPicIndex(0);
-  // }
   
   return (
     <>
@@ -35,6 +17,7 @@ const About = () => {
             playsInline={true} 
             data-v-f518367b="" 
             preload="metadata"
+            
           >
               <source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" />
           </video> 

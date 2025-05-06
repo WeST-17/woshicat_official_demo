@@ -80,14 +80,7 @@ const Collections = () => {
               fill={true}
             />
           </Square>
-          <div className="relative col-span-9 md:col-span-3 aspect-square">
-            <Image
-              src={'/media/collections-page/3 Large.jpeg'}
-              fill={true}
-              alt={'Metro DayDreams Collection'}
-              className="object-cover"
-            />
-          </div>
+          
           {/* End section */}
         </div>
         {/* Show All Products */}

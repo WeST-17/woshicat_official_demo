@@ -14,7 +14,7 @@ export default function ApparelLayout({
           <div className="h-[100vh] w-screen flex justify-center items-center">
             <LoadingScreen />
           </div>}>
-          <Transition>{children}</Transition>
+          {children}
         </Suspense>
         <TransitionSlide />
       </section>

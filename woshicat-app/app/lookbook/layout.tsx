@@ -1,5 +1,4 @@
 'use client';
-import Transition from "@/app/components/transition";
 import TransitionSlide from "@/app/components/transitionWipe";
 
 export default function LookbookLayout({
@@ -9,9 +8,7 @@ export default function LookbookLayout({
   }) {
     return ( 
       <section className="flex justify-center">
-          <Transition>
             {children}
-          </Transition>
         <TransitionSlide />
       </section>
     )
