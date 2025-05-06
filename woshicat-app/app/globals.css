@@ -166,6 +166,7 @@ body {
   bottom: 0;
   background-color: white;
   z-index: 1001;
+  pointer-events: none;
 }
 
 .loading-screen {
@@ -228,6 +229,17 @@ body {
 
 .fade-in.show {
   opacity: 1;
+}
+
+@keyframes FadeOut {
+  0% { opacity: 1;}
+  100% { opacity: 0;}
+}
+
+.fade-out {
+  animation: FadeOut ease-out 1.0s forwards;
+  pointer-events: none;
+
 }
 
 .collapse-item {

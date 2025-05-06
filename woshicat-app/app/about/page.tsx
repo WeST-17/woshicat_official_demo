@@ -10,7 +10,7 @@ const About = () => {
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
-            className="w-full h-full object-cover object-[50%_30%]" 
+            className={`w-full h-full object-cover object-[50%_30%]`}
             autoPlay 
             loop 
             muted 

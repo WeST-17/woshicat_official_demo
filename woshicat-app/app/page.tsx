@@ -1,7 +1,6 @@
 'use client';
 
 import Image from "next/image";
-import TransitionSlide from "./components/transitionWipe";
 import Link from "next/link";
 import AutoCarousel from "./components/autoCarousel";
 import Popup from "./components/popups/popupCard";
@@ -174,7 +173,6 @@ const Home = () => {
         on={true}
       />
     </main>
-    <TransitionSlide />
     </>
   );
 }
