@@ -11,7 +11,7 @@ import ShopNowButton from "./components/ShopNowButton";
 
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
-  `Sign up for our newsletter and get a discount code!`,
+  `Sign up for our newsletter and get a 10% off code!`,
 ];
 
 const Home = () => {
@@ -19,10 +19,8 @@ const Home = () => {
   return (
     <>
     <main className="relative flex justify-center w-full grid grid-cols-9">
-      <div className="text-center col-span-9 w-full h-fit flex-col justify-center items-center">
-        <Link href="https://woshicat.com/collections/" target="_blank" className="w-full">
-          <AutoCarousel messages={homeBanner}/>
-        </Link>
+      <div className="absolute top-0 text-center col-span-9 w-full h-fit flex-col justify-center items-center">
+        <AutoCarousel messages={homeBanner} link="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs"/>
       </div>
       <div className="relative grid grid-flow-col col-span-9">
         <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">

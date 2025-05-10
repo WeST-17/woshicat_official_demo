@@ -7,7 +7,7 @@ const Stationary = () => {
   
   return (
     <>
-    <main className="flex justify-center w-full grid grid-cols-8">
+    <main className="flex justify-center w-screen grid grid-cols-8">
       {/* */}
       <div className="col-span-8 relative h-64 mb-8 overflow-hidden">
         <CoverHeader

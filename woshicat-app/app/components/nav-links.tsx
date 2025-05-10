@@ -14,6 +14,7 @@ const links = [
     name: 'Shop Collections', 
     href: '/collections', 
     subLinks: [
+      // { name: 'Ego Diffraction', href: '/collections/ego-diffraction'},
       { name: 'Metro Daydreams', href: '/collections/metro-daydreams'},
       { name: 'Lunar New Year', href: '/collections/lunar-new-year'},
       { name: 'Stationary and Accessories', href: '/collections/stationary-and-accessories'},
@@ -71,7 +72,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             href={link.href}
             passHref={true}
             className={clsx(
-              'flex h-[32px] max-md:w-full w-fit items-center justify-start text-end p-2 rounded-sm text-sm hover:text-stone-900 transition duration-150 ease-in-out',
+              'flex h-[32px] w-full items-center justify-start text-end p-2 rounded-sm text-sm hover:text-stone-900 transition duration-150 ease-in-out',
               {
                 'text-black': parentPath === link.href,
                 'text-stone-400': parentPath !== link.href,
@@ -84,7 +85,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute w-40 text-sm md:right-0 right-4/5 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
+              "absolute w-48 text-sm md:right-0 right-4/5 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,

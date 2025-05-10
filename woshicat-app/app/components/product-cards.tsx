@@ -113,7 +113,7 @@ const ProductCards = () => {
           unoptimized={true}
         />
       </div> : 
-      <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto md:grid-cols-4 gap-2 fade-in ${!loading ? 'show' : ''} `}>
+      <div className={`grid grid-cols-2 w-full md:w-4/5 px-2 mx-auto md:grid-cols-4 gap-2 fade-in ${!loading ? 'show' : ''} `}>
         {/* Render your products here using the 'products' state */}
         {products.filter(product => {
           // Show all if no filter is selected
