@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { getImagesCloudinary } from "@/app/components/animationComps/cloudinary";
 import FadeInImage from "@/app/components/animationComps/FadeInImages";
-import Loader from "@/app/components/LoadingScreen";
+import NotFound from "@/app/not-found";
 
 const LookbookSlug = () => {
   const pathname = usePathname(); // get pathname: '/lookbook/[handle]
@@ -18,10 +18,10 @@ const LookbookSlug = () => {
     const fetchImages = async () => {
       try {
         const response = await getImagesCloudinary(folder);
-        if (response) {
+        if (response.length > 0) {
           setImages(response);
         } else {
-          setError(response || 'Failed to fetch images');
+          setError('Failed to fetch images');
         }
       } catch (error) {
           console.error('Something went wrong!');
@@ -35,40 +35,38 @@ const LookbookSlug = () => {
 
   if (pageLoad) {
     return (
-    <Loader/>
+    <div className="loader"/>
     );
   }
 
-  // Error handling
+      // Error handling
   if (error) {
-    return <div className='flex items-center h-[100vh]'>Something happened on our end!</div>;
-  }
-
-  if (!images) {
-      return <div className='flex justify-center items-center p-8 h-[100vh]'>Huh, nothing here...</div>;
+    return <NotFound />;
   }
 
   return (
     <>
     <main className="flex justify-center w-screen mt-3">
       {/* */}
-      
-      <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-3 lg:w-3/4 mx-auto gap-1">
-      {images.map((image: any, index: number) => (
-        <>
-        <FadeInImage>
-            <Image 
-              src={image.secure_url}
-              alt={`Image ${index + 1}`} 
-              width={image.width} 
-              height={1} 
-              className={`object-cover aspect-[3/4]`}
-            />
-        </FadeInImage>
-        </>
-        ))}
-        
-      </div>
+      { images.length > 0  && (
+        <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-3 lg:w-3/4 mx-auto gap-1">
+        {images.map((image: any, index: number) => (
+          <>
+          <FadeInImage>
+              <Image 
+                src={image.secure_url}
+                alt={`Image ${index + 1}`} 
+                width={image.width} 
+                height={1} 
+                className={`object-cover aspect-[3/4]`}
+              />
+          </FadeInImage>
+          </>
+          ))}
+          
+        </div>
+      )
+    }
     </main>
     </>
   );

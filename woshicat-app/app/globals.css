@@ -7,7 +7,7 @@ html {
   overflow-x: hidden;
   scroll-behavior: smooth;
   color: black;
-  
+  margin: 0px;
 }
 
 ::-webkit-scrollbar {
@@ -21,6 +21,7 @@ body {
   color: black;
   text-rendering: auto;
   font-weight: lighter;
+  margin: 0px;
 }
 
 .disable-scrollbars::-webkit-scrollbar {

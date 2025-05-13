@@ -44,7 +44,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                 onClick={closeConfirmation}
             >
                 {
-                    imgSrc && (
+                    imgSrc && popup && (
                         <Image 
                             src={imgSrc || '/media/graphics/Yoyo happy.png'}
                             alt={imgAlt || ''}
@@ -55,7 +55,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                     )
                 }
                 {
-                    video && (
+                    video && popup &&(
                         <video 
                             className="aspect-square object-cover h-full w-full absolute top-0 left-0 bottom-0 right-0" 
                             autoPlay 
@@ -76,7 +76,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
             <div
                 className='overflow-hidden absolute w-full h-full flex flex-col justify-center items-center z-[2004]'
             >
-                { PromoLink && (
+                { PromoLink && popup && (
                 <>
                     <Link 
                         href={PromoLink} 

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getServerCollectionProps } from '../action';
 import Link from 'next/link';
 import FadeInImage from './animationComps/FadeInImages';
-import Loader from './LoadingScreen';
+import Image from 'next/image';
 
 interface CollectionType {
     collection: string
@@ -40,7 +40,15 @@ function CollectionCards({ collection }: CollectionType) {
 
   if (loading) {
     return (
-      <div className='loader'/>
+      <div className={`flex justify-center w-full md:w-4/5 mx-1 mx-auto gap-2`}>
+        <Image
+          src="/loading_assets/Yoyo_Walk_Cycle_Forward.gif"
+          alt="Yoyo walk cycle"
+          width={400}
+          height={1}
+          unoptimized={true}
+        />
+      </div>
     );
   }
 
@@ -69,14 +77,14 @@ function CollectionCards({ collection }: CollectionType) {
               <img 
                 src={product.image.url} 
                 alt={product.image.altText} 
-                className='object-cover h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0'
+                className={`${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
               />
               
               {/* Hover image */}
               <img 
                 src={product.image2.url} 
                 alt={product.image2.altText} 
-                className='max-sm:hidden absolute top-0 left-0 object-contain w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100'
+                className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
               />
             </div>
             </Link>

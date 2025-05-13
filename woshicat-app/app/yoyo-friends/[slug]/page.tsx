@@ -3,6 +3,7 @@ import React from "react";
 import ComicEps from "../comic";
 import ComicHolder from "@/app/components/comic-episodes/ComicEpisodeHolder";
 import { usePathname } from "next/navigation";
+import NotFound from "@/app/not-found";
 
 const YoyoComicSlug = () => {
   const pathname = usePathname();
@@ -13,6 +14,10 @@ const YoyoComicSlug = () => {
   };
 
   const episode = getEpisodeById(episodeID);
+
+  if (!episode) {
+    return <NotFound />
+  }
 
   return (
     

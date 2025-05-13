@@ -6,6 +6,8 @@ import ProductDescription from '../product-description';
 import Image from 'next/image';
 import { useCart } from '../cart/cartContext';
 import LoadingIcon from '../loading';
+import Loader from '../LoadingScreen';
+import NotFound from '@/app/not-found';
 
 interface Handle {
     handle: string,
@@ -68,12 +70,14 @@ const AccessoryCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     if (pageLoad) {
         return (
-        <></>
+        <>
+        <Loader />
+        </>
         );
     }
     // Error handling
     if (error) {
-        return <div className='flex h-32 w-full justify-center items-center'>Error fetching products: {"Oops! Something happened on our end!"}</div>;
+        return <NotFound />;
     }
 
     if (!item || !item.image) {

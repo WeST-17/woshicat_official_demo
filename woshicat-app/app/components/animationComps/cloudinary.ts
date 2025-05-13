@@ -15,7 +15,7 @@ interface CloudinaryImage {
     signed_url: string;
 }
 
-export async function getImagesCloudinary(tag: string): Promise<CloudinaryImage[] | { error: string }> {
+export async function getImagesCloudinary(tag: string): Promise<CloudinaryImage[]> {
 
     try {
         // const resources = await cloudinary.search.expression(`tags=${tag}`).execute()
@@ -42,6 +42,6 @@ export async function getImagesCloudinary(tag: string): Promise<CloudinaryImage[
         return cloudinaryPass.sort((a, b) => (a['public_id'] > b['public_id'] ? 1 : -1));
       } catch (error) {
         console.error('Error fetching Cloudinary images:', error);
-        return { error: 'Error fetching images' };
+        return [];
       }
 };

@@ -7,6 +7,7 @@ import Popup from "./components/popups/popupCard";
 import Square from "./components/bento-layout/square";
 import TwoOneRect from "./components/bento-layout/two-one-rect";
 import ShopNowButton from "./components/ShopNowButton";
+import CollectionListing from "./components/collection-listings/collectionListing";
 
 
 const homeBanner = [
@@ -115,44 +116,7 @@ const Home = () => {
         </Link>
         
         <div className="w-full mx-auto grid grid-cols-9 mb-3 p-2 gap-2">
-          {/* Metro Daydreams */}
-          <Square
-            link={'/collections/metro-daydreams/'}
-            collectionName={`Metro Daydreams`}
-          > 
-            <Image 
-              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-              src={'/media/homepage/woshi-hermanpark-05.jpg'} 
-              alt={'photo of our lion dance pin on a bag'} 
-              fill={true}
-            />
-          </Square>
-
-          {/* Lunar New Year 2025 */}
-          <Square
-            link={`/collections/lunar-new-year`}
-            collectionName={`Lunar New Year - 2025`}
-          >
-            <Image 
-              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-              src={'/media/collections-page/uniq bag pin.jpeg'} 
-              alt={'photo of our lion dance pin on a bag'} 
-              fill={true}
-            />
-          </Square>
-
-          {/* Stationary and Accessories */}
-          <Square
-            link={'/collections/stationary-and-accessories/'}
-            collectionName={`Stationary and Accessories`}
-          > 
-            <Image 
-              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-              src={'/media/stationary-page/apr2025_506print.jpg'} 
-              alt={'picture of our 506 train print close up on caligraphy'} 
-              fill={true}
-            />
-          </Square>
+          <CollectionListing addClass="col-span-9 md:col-span-3"/>
         </div>  
       </div>
 

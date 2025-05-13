@@ -7,11 +7,11 @@ import ShopNowButton from "../ShopNowButton";
 interface SquareProps {
     children: React.ReactNode,
     link: string,
-    collectionName: string
-
+    collectionName: string,
+    shopNow?: boolean,
 }
 
-const Square: React.FC<SquareProps> = ({ children, link, collectionName }) => {
+const Square: React.FC<SquareProps> = ({ children, link, collectionName, shopNow }) => {
 
     return (
         <>
@@ -20,11 +20,17 @@ const Square: React.FC<SquareProps> = ({ children, link, collectionName }) => {
             <div className="">
                 {children}
             </div>
-            <div className="absolute bottom-0 left-0 p-3 m-3 font-thin text-white bg-black/45 w-4/5 z-[100]">
-                <h2 className="text-lg lg:text-2xl ">{collectionName}</h2>
-                <ShopNowButton />
-            </div>
-            <div className="absolute bottom-0 left-0 font-thin text-white bg-amber-50/5 w-full h-full"/>
+            { !shopNow && 
+            (
+            <>
+                <div className="absolute bottom-0 left-0 p-3 mx-2 mx-auto font-thin text-white bg-black/45 w-full z-[100]">
+                    <h2 className="text-lg lg:text-2xl ">{collectionName}</h2>
+                    <ShopNowButton />
+                </div>
+                <div className="absolute bottom-0 left-0 font-thin text-white w-full h-full"/>
+            </>
+            )
+            }
             </Link>
         </div>
         </>
