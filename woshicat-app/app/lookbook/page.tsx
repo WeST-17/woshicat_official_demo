@@ -9,7 +9,7 @@ import FadeInImage from '../components/animationComps/FadeInImages';
 const LookbookHome = () => {
     
     return (
-      <div className='w-full md:w-4/5 grid grid-cols-2 gap-2'>
+      <div className='w-full md:w-4/5 grid grid-cols-1 p-2 md:grid-cols-2 gap-2'>
         <section id='item-1'>
         <FadeInImage>
         <div className='w-full flex flex-col justify-center items-center gap-2'>
