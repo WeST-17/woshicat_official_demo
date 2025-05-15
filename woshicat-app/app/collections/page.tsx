@@ -10,7 +10,7 @@ const Collections = () => {
   return (
     <>
     <main className="w-full flex flex-col gap-1">
-      <div className="relative w-full h-fit md:h-64 overflow-hidden">
+      <div className="relative w-full h-64 overflow-hidden">
         <CoverHeader
           src={'/media/collections-page/sk1.jpg'} 
           alt={'models pointing out and wearing woshi cat shirts'}
