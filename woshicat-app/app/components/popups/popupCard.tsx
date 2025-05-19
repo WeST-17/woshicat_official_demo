@@ -29,7 +29,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
             if (storedValue !== 'visited' && on) {
                 setPopup(true);
               }
-        }, 1000)
+        }, 3000)
         
     }, []);
 

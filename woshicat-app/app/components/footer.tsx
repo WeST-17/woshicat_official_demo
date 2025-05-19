@@ -4,12 +4,32 @@ import EmailList from "../email-list/EmailList";
 
 const Footer = () => {
     return (
+        <>
+        <div className="fixed bottom-0 right-0 flex justify-end items-center w-16 h-16 z-[1000]">
+            <div className="newsletter-hover w-full h-full relative">
+                <Link 
+                    className="opacity-60 hover:opacity-100 transition duration-500 ease w-full h-full"
+                    href="#newsletter"
+                >
+                    <Image
+                        src="/media/graphics/Yoyo happy fill.png"
+                        alt="down arrow to get to footer and newsletter sign up"
+                        fill={true}
+                        className="w-full h-full"
+                    />
+                </Link>
+                <div 
+                    className="absolute flex justify-end items-center right-16 bottom-0 w-[80vw] h-12 nl-signup"
+                >
+                    <p className="py-2 px-2 mx-2 h-full flex items-center text-center bg-stone-50 text-xs md:text-base">{`Sign up for the WoShi Cat Newsletter!`}</p>
+                </div>
+            </div>
+        </div>
         <footer className="relative grid-cols-8 self-end items-center justify-center h-[200px] bg-stone-50 text-base text-stone-700">
             <div className="col-span-8 p-4">
                 {/* Email subscription list! */}
-                <div className="flex w-full justify-center items-center bg-stone-50 min-h-fit pt-8">
-                    <EmailList />
-                    
+                <div className="flex w-full justify-center items-center bg-stone-50 min-h-fit pt-8" id="newsletter">
+                    <EmailList />  
                 </div>
                 <div className="border-t border-stone-400"/>
                 {/* Social Media */}
@@ -63,6 +83,7 @@ const Footer = () => {
                 WoShi Cat, LLC - 2024
             </div>
         </footer>
+        </>
     )
 }
 

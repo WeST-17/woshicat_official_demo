@@ -24,7 +24,7 @@ const Home = () => {
         <AutoCarousel messages={homeBanner} link="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs"/>
       </div>
       <div className="relative grid grid-flow-col col-span-9">
-        <div className="flex justify-center items-center h-[90vh] w-full overflow-hidden">
+        <div className="flex justify-center items-center h-[91vh] w-full overflow-hidden">
           {/* Upload and replace video link */}
           <video 
             className="w-full object-cover h-full" 

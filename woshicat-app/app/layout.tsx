@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: 'WoShi Cat'
   },
   description: "WoShi Cat",
-  keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'Comfort', 'Quality', 'cat', 'loungewear', 'chinese', 'japanese', 'asian', 'anime', 'subway', 'japan', 'work culture', 'hustle', 'tired']
+  keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'pants', 'Comfort', 'Quality', 'cat', 'loungewear', 'chinese', 'japanese', 'asian', 'anime', 'subway', 'japan', 'work culture', 'hustle', 'tired','streetwear']
 };
 
 export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {

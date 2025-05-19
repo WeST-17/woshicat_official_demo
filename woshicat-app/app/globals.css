@@ -280,6 +280,17 @@ body {
 .fade-imgs {
   animation: fadeInContainer 0.5s linear forwards;
 }
+.nl-signup {
+  opacity: 0;
+  transition-duration: 500ms;
+  transform: translateY(100px);
+}
+
+.newsletter-hover:hover .nl-signup {
+  opacity: 100%;
+  transform: translateY(0);
+  transition-duration: 500ms ease;
+}
 
 @keyframes sway {
   0% { transform: rotate(6deg)}
