@@ -65,9 +65,19 @@ const ComicEps = [
         folder: 'comic-e7-mar-2025',
         link: '',
         epID: 'ep-7-mar-2025',
-        nextID: '',
+        nextID: 'ep-8-may-2025',
         prevID: 'ep-6-feb-2025',
         thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/v1742925941/Onigiri_Panel_3_Large_qldx5b.jpg'
+    },
+    {
+        title: `Ep.8 Laser Focused - Yoyo`,
+        date: 'May 20, 2025',
+        folder: 'comic-e8-may-2025',
+        link: '',
+        epID: 'ep-8-may-2025',
+        nextID: '',
+        prevID: 'ep-7-mar-2025',
+        thumbnail: 'https://res.cloudinary.com/woshicat-official/image/upload/c_thumb,w_200,g_face/v1747712159/panel_3_Large_t7rdsg.jpg'
     },
 ];
 

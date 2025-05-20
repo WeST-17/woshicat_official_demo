@@ -81,10 +81,9 @@ const Cart: React.FC = () => {
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
-                    <button onClick={closeCart} className="absolute top-8 right-4 py-1 px-2 text-stone-400 font-thin">
-                        <div className="w-8 h-8 flex justify-center items-center relative hover:bg-black/25 transition duration-300">
-                            <span className="absolute top-0 flex bg-stone-500 w-8 h-[1px] rotate-45 translate-y-4"></span>
-                            <span className="absolute top-0 flex bg-stone-500 w-8 h-[1px] -rotate-45 translate-y-4"></span>
+                    <button onClick={closeCart} className="absolute right-0 my-4 mx-2 text-stone-400 font-thin">
+                        <div className="w-12 h-8 flex justify-center items-center relative hover:bg-black/15 transition duration-300">
+                            <p> {`close`}</p>
                         </div>
                     </button>
                     <h2 className="sticky text-2xl font-medium m-10 mb-8">
