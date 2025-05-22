@@ -59,16 +59,18 @@ const EmailList = () => {
       <form
         className="relative w-[320px] h-[150px] text-start flex flex-col justify-start items-center"
       >
-        <div className="text-2xl flex justify-center items-center gap-3">
+        <div className="relative text-xl flex justify-center items-center gap-3">
           <h1>WoShi Cat Newsletter!</h1> 
           <Image 
-            src={'/media/graphics/Yoyo happy.png'}
+            src={'/media/graphics/Yoyo Single Shot.png'}
             alt={'Yoyo is slightly smiling...'}
-            width={50}
+            width={80}
             height={1}
+            className="translate-y-5 hover:-translate-y-0 transition duration-300 ease"
           />
+          <div className="absolute rounded-full bg-red-600 w-2 h-2 right-10 -top-8"></div>
         </div>
-        <div className="flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
+        <div className="z-[999] flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
           <input
             id="email"
             name="email"

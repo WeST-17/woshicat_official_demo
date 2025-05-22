@@ -9,7 +9,7 @@ const shopify_token = process.env.SHOPIFY_TOKEN;
 const client = Client.buildClient({
   domain: shopify_domain!,
   storefrontAccessToken: shopify_token!,
-  apiVersion: '2024-01'
+  apiVersion: '2025-04'
 });
 
 async function getProducts(client: Client): Promise<any[]> {
