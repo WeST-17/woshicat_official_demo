@@ -16,13 +16,13 @@ const ProductDescription: React.FC<Description> = ({ description }) => {
     return (
         <>
             <div className="border-y border-stone-300 w-full py-2">
-                <p className="font-medium text-xl mb-2">Description</p>
-                {updateDesc[0]}
+                <p className="font-medium text-lg mb-2">Description</p>
+                <p className="text-base">{updateDesc[0]}</p>
             </div>
             <div className="border-b border-stone-300 w-full pb-2"> 
                 <Collapse plus={'Product Details +'} minus={'Product Details -'} classProp='w-full text-stone-500 pb-1 hover:text-black transition duration-200'>
                     {updateDesc.slice(1).map((val: string, index) => (
-                        <div className="w-full" key={index}>
+                        <div className="w-ful" key={index}>
                             {val !== " " ? <div className="">{val}</div> : <br></br>}
                         </div>
                     ))}

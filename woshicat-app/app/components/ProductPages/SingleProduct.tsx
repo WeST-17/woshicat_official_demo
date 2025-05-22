@@ -125,7 +125,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
     return (
         <>
-        <div className={`relative flex justify-center items-center h-[50vh] md:h-[80vh] w-full bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
+        <div className={`relative flex justify-center items-center h-[50vh] w-full bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product. Upload directly as part of code base in Vercel i.e., /[handle] */}
             <div className='absolute object-cover w-screen h-full bg-black/25 z-[100] flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-7xl'>{item.name}</h1>
@@ -138,11 +138,11 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover'
             />
         </div>
-        <div className='h-full w-full text-lg p-5 lg:w-4/5 mx-auto flex items-start' key={item.id}>
-            <div className='flex justify-center items-start grid md:grid-cols-2 gap-8'>
+        <div className='min-h-screen w-full text-lg max-lg:p-2 lg:w-4/5 mx-auto flex items-start' key={item.id}>
+            <div className='flex justify-center items-start grid lg:grid-cols-3 gap-8'>
                 {/* Apparel Images */}
                 {item.image.length > 0 && (
-                    <div className='relative md:col-span-1 bg-white rounded-md'>
+                    <div className='relative lg:col-span-2 bg-white rounded-md'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <Carousel
@@ -199,7 +199,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     
                 )}
                     
-                <div className='lg:col-span-1 h-full w-full'>
+                <div className='lg:col-span-1 min-h-screen w-full'>
                     <div className='w-full'>
                         <h3 className="text-4xl font-bold text-black">{item.name}</h3>
                         <p className="my-8 text-lg font-medium text-stone-900">{currFormat.format(Number(item.price))}</p>
