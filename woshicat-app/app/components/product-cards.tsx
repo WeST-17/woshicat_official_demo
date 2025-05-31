@@ -5,6 +5,7 @@ import { getCollectionNames, getServerProductsProps } from '../action';
 import Link from 'next/link';
 import FadeInImage from './animationComps/FadeInImages';
 import Image from 'next/image';
+// import
 
 const ProductCards = () => {
   const [products, setProducts] = useState<any[]>([]);
