@@ -10,12 +10,13 @@ interface PopupProps {
     imgAlt?: string,
     video?: string,
     promoDesc?: string,
+    promoDescLine2?: string,
     code?: string,
     extra?: string,
     on: boolean,
 }
 
-const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDesc, code, extra, on }) => {
+const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDesc, promoDescLine2, code, extra, on }) => {
     const [popup, setPopup] = useState<boolean>(false);
 
     const closeConfirmation = () => {
@@ -84,6 +85,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                         onClick={closeConfirmation}
                     >
                         <p className='text-xl lg:text-3xl transition-all duration-250 mb-8'>{promoDesc}</p>
+                        <p className='text-base lg:text-lg transition-all duration-250 mb-8'>{promoDescLine2}</p>
                         {extra && 
                             (<Image
                                 src={extra}

@@ -13,6 +13,7 @@ import CollectionListing from "./components/collection-listings/collectionListin
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
   `Sign up for our newsletter and get a 10% off code!`,
+  `Our online store will be closed from June 14 - 15 for TokyoX.`
 ];
 
 const Home = () => {
@@ -128,8 +129,8 @@ const Home = () => {
         promoDesc={
           `
           Catch us at Tokyo X on June 14-15!!
-          
           `} 
+        promoDescLine2="-- Our online store will be closed for this weekend --"
         code="@NRG Center - Houston, TX"
         extra="/logo/tokyox2025/Logo 2025.png"
         on={true}
