@@ -128,7 +128,7 @@ const ProductCards = () => {
           <div className={`relative text-center h-full`} 
             key={product.name}
           >
-            <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+            <div className={`z-[1000] absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
             
             <div className={`bg-white flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center bg-white' href={`/collections/${product.drop}/${product.handle}`} passHref>
