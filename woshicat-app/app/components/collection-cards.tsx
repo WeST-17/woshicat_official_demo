@@ -59,7 +59,7 @@ function CollectionCards({ collection }: CollectionType) {
 
   return (
     <>
-    <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto md:grid-cols-3 gap-2 fade-in ${!loading ? 'show' : ''} `}>
+    <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto md:grid-cols-4 gap-2 fade-in ${!loading ? 'show' : ''} `}>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
