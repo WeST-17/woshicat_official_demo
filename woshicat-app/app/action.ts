@@ -174,7 +174,7 @@ async function getProductByHandle(productHandle: string) {
       available: (variant as any).available, 
       // TS doesn't see available as a field for ProductVariant. Can use 'variant as any' to bypass!
     }));
-
+    console.log(item.availableForSale);
     return {
       id: item.id,
       handle: item.handle,
@@ -184,7 +184,7 @@ async function getProductByHandle(productHandle: string) {
       price: Number(item.variants[0]?.price.amount).toFixed(2) || 0, // Adjust this based on your product structure
       variants: variants,
       image: images,
-      available: (item as any).available, // same for item.available
+      available: item.availableForSale, // same for item.available
       description: item.description, // item description, update in shopify product listing
       collection: item.productType,
     };
