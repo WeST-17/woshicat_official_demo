@@ -13,7 +13,7 @@ interface QuantityAdjusterProps {
 const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initialQuantity, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const [itemQuantLoad, setItemQuantLoad] = useState<boolean>(false);
-  const { setCartUpdated, setCartItemsLoading } = useCart();
+  const { setCartUpdated, setCartItemsLoading, progress, setProgress } = useCart();
 
   useEffect(() => {
     setItemQuantLoad(true);

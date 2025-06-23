@@ -35,7 +35,7 @@ const Home = () => {
             data-v-f518367b="" 
             preload="metadata"
           >
-              <source src="/media/homepage/Woshi Homepage Video 2.mov" type="video/mp4" data-v-f518367b="" />
+              <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
           </video> 
         </div>
         

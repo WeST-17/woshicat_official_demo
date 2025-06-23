@@ -14,7 +14,7 @@ const Header = () => {
                     <h2 className="max-md:hidden">WoShi Cat</h2>
                 </Link>
                 <div className="absolute w-screen flex justify-start md:justify-center items-center p-4 md:"><Navigation /></div>
-                <div className="z-[1001] absolute right-0">
+                <div className="z-[1001] absolute right-0 flex justify-center items-center">
                     <Cart />
                 </div>
             </header>

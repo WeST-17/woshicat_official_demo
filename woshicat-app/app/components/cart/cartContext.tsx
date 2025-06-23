@@ -15,6 +15,8 @@ interface CartContextType {
   setCartItemsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   cartTotal: number;
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
+  progress: number;
+  setProgress: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface CartItems {
@@ -38,6 +40,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cartItems, setCart] = useState<CartItems[]>([]);
   const [cartItemsLoading, setCartItemsLoading] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
+  const [progress, setProgress] = useState<number>(0);
   
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -52,7 +55,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [cartUpdated]);
 
   return (
-    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal }}>
+    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress }}>
       {children}
     </CartContext.Provider>
   );

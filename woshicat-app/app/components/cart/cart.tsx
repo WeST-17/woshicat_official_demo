@@ -6,10 +6,11 @@ import QuantityAdjuster from "./cartItemModify";
 import React, { useRef, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
+import ProgressBar from "./progressBar";
 
 
 const Cart: React.FC = () => {
-    const { cartOpen, setCartOpen, setCartUpdated, cartItemsLoading, setCartItemsLoading, cartItems, cartTotal, setCartTotal } = useCart();
+    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
     const currFormat = new Intl.NumberFormat('default', {
@@ -77,21 +78,25 @@ const Cart: React.FC = () => {
                 onClick={closeCart}
             >
                 <div
-                    className={`cart-container rounded-sm transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
+                    className={`relative cart-container rounded-sm transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
-                    <button onClick={closeCart} className="absolute right-0 my-4 mx-2 text-stone-400 font-thin">
-                        <div className="w-12 h-8 flex justify-center items-center relative hover:bg-black/15 transition duration-300">
-                            <p> {`close`}</p>
-                        </div>
-                    </button>
-                    <h2 className="sticky text-2xl font-medium m-10 mb-8">
-                        Nice Cart
-                    </h2>
+                    <div className="relative sticky top-0 w-full z-[1000] h-20">
+                        <div className="absolute w-full h-full bg-stone-100/70"/>
+                        <button onClick={closeCart} className="absolute right-0 my-4 mx-2 text-stone-400 font-thin">
+                            <div className="w-12 h-8 flex justify-center items-center relative hover:bg-black/15 transition duration-300">
+                                <p> {`close`}</p>
+                            </div>
+                        </button>
+                        <h2 className="absolute top-5 ms-5 text-2xl font-medium">
+                            Nice Cart
+                        </h2>
+                    </div>
+                    
                     {/* Cart content */}
                     {cartItems.length > 0 ? (
-                    <div className="cart-items gap-2 overflow-none">
+                    <div className="cart-items gap-2 overflow-y-scroll">
                         {cartItems.map((item: any) => {
                             
                             return (
@@ -131,17 +136,27 @@ const Cart: React.FC = () => {
                         )}
                     
                     {/* Centered Checkout Button */}
-                    <div className="w-full sticky bottom-8 flex flex-col items-center justify-end p-4 mt-8 gap-4">
-                        <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-3/4 mx-auto ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
+                    <div className="w-full sticky bottom-0 bg-white/70 p-2">
                         
-                    </div>
-                    <div className="flex sticky w-full justify-end bottom-0">
-                        <div className="w-4/5 flex justify-end items-center text-xl me-2 mb-2">
-                            <p className="text-2xl">Subtotal:</p>
+                        <div className="h-full flex flex-col sticky w-full justify-end items-center bottom-0 p-2 gap-2">
+                            <div className="w-full flex justify-end items-center text-xl me-2">
+                                <p className="text-2xl">{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
+                            </div>
+                            <div className="w-full sticky flex flex-col items-center justify-end gap-4">
+                                <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
+                            </div>
                         </div>
-                        <div className="flex w-1/5 justify-center items-center text-xl me-4 mb-2">
-                            {/* <div className={`text-2xl ${cartItemsLoading ? 'loader': 'hidden'}`} /> */}
-                            <p className={`text-2xl ${!cartItemsLoading ? '': 'text-loader'}`}>{currFormat.format(Number(cartTotal))}</p>
+                        <div className="sticky bottom-0 h-20 pe-2 w-full flex flex-col items-end justify-end gap-4">
+                            <div className="w-full flex justify-end">
+                                <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
+                                </p>
+                                <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
+                                </p>
+                            </div>
+                            
+                            <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
+                                <ProgressBar />
+                            </div>
                         </div>
                     </div>
                 </div>
