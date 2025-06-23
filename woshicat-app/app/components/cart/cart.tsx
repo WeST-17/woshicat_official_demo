@@ -96,7 +96,7 @@ const Cart: React.FC = () => {
                     
                     {/* Cart content */}
                     {cartItems.length > 0 ? (
-                    <div className="cart-items gap-2 overflow-y-scroll">
+                    <div className="cart-items gap-2 h-[65%] overflow-y-auto overscroll-contain rounded-lg p-1">
                         {cartItems.map((item: any) => {
                             
                             return (
@@ -136,7 +136,7 @@ const Cart: React.FC = () => {
                         )}
                     
                     {/* Centered Checkout Button */}
-                    <div className="flex flex-col w-full sticky bottom-0 bg-white/70 p-2">
+                    <div className="flex flex-col w-full absolute bottom-0 p-2 bg-stone-100/70">
                         
                         <div className="h-full flex flex-col sticky bottom-0 w-full justify-end items-center bottom-0 p-2 gap-2">
                             <div className="w-full flex justify-end items-center text-xl me-2">
