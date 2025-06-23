@@ -74,7 +74,7 @@ const Cart: React.FC = () => {
 
             {/* Cart Modal (Always Rendered) */}
             <div
-                className={`fixed inset-0 z-[1100] flex justify-end items-center transition-opacity duration-500 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`static fixed inset-0 z-[1100] flex justify-end items-center transition-opacity duration-500 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={closeCart}
             >
                 <div
@@ -132,13 +132,13 @@ const Cart: React.FC = () => {
                             <div className="loader"></div>
                         </div>
                         ) : (
-                        <p className="text-sm font-thin text-gray-500 text-start ms-10">Your cart is empty.</p>
+                        <p className="text-sm font-thin text-gray-500 text-start ms-10 mb-8">Your cart is empty.</p>
                         )}
                     
                     {/* Centered Checkout Button */}
-                    <div className="w-full sticky bottom-0 bg-white/70 p-2">
+                    <div className="flex flex-col w-full sticky bottom-0 bg-white/70 p-2">
                         
-                        <div className="h-full flex flex-col sticky w-full justify-end items-center bottom-0 p-2 gap-2">
+                        <div className="h-full flex flex-col sticky bottom-0 w-full justify-end items-center bottom-0 p-2 gap-2">
                             <div className="w-full flex justify-end items-center text-xl me-2">
                                 <p className="text-2xl">{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                             </div>
@@ -146,7 +146,7 @@ const Cart: React.FC = () => {
                                 <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
                             </div>
                         </div>
-                        <div className="sticky bottom-0 h-20 pe-2 w-full flex flex-col items-end justify-end gap-4">
+                        <div className="sticky bottom-0 h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
                             <div className="w-full flex justify-end">
                                 <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
                                 </p>

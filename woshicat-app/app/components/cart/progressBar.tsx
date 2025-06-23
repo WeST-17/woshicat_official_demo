@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useCart } from "./cartContext";
 
 const ProgressBar: React.FC = () => {
-    const { progress, setProgress, cartTotal, cartItems, cartOpen } = useCart(); 
+    const { progress, setProgress, cartTotal } = useCart(); 
     
     useEffect(() => {
         
