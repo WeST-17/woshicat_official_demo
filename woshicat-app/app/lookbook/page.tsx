@@ -15,7 +15,7 @@ const LookbookHome = () => {
         <div className='w-full flex flex-col justify-center items-center gap-2'>
           <Link href={'/lookbook/metro-daydreams'} className='relative w-full'>
             <Image 
-              src={'/media/lookbook grid/MD_Cover_Lookbook.jpeg'}
+              src={'https://res.cloudinary.com/woshicat-official/image/upload/v1728785637/A02_Large_c5yaq1.jpg'}
               alt={'Guy standing with 506 train shirt back facing.'}
               width={1000}
               height={1}

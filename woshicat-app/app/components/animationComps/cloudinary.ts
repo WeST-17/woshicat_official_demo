@@ -19,7 +19,7 @@ export async function getImagesCloudinary(tag: string): Promise<CloudinaryImage[
 
     try {
         // const resources = await cloudinary.search.expression(`tags=${tag}`).execute()
-        const resources = await cloudinary.api.resources_by_asset_folder(`${tag}`, {max_results: 50, })
+        const resources = await cloudinary.api.resources_by_asset_folder(`lookbook/${tag}`, {max_results: 50, })
         
         const cloudinaryPass: CloudinaryImage[] = resources.resources.map((resource: any) => {
           // Generate signed URL for each image
