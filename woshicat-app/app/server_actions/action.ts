@@ -360,7 +360,6 @@ export async function getCart() {
   const { data, errors } = await client.request(getCartItems);
   if (data) {
     const lineItems = data.cart.lines.edges.map((line: any) => {
-      console.log('line: ', line.node.quantity)
       return {
       cartLineId: line.node.id,
       quantity: line.node.quantity,

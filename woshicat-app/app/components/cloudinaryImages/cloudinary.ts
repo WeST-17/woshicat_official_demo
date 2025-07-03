@@ -15,11 +15,11 @@ interface CloudinaryImage {
     signed_url: string;
 }
 
-export async function getImagesCloudinary(tag: string): Promise<CloudinaryImage[]> {
+export async function getImagesCloudinary(folder: string): Promise<CloudinaryImage[]> {
 
     try {
 
-        const resources = await cloudinary.api.resources_by_asset_folder(`lookbook/${tag}`, {max_results: 50, })
+        const resources = await cloudinary.api.resources_by_asset_folder(`${folder}`, {max_results: 50, })
         
         const cloudinaryPass: CloudinaryImage[] = resources.resources.map((resource: any) => {
           // Generate signed URL for each image
