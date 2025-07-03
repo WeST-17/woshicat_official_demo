@@ -9,7 +9,7 @@ const LookbookHome = () => {
   return (
     <>
     <div className='relative w-full h-full flex flex-col justify-center items-center gap-1'>      
-      {/* <div className='relative w-full h-full flex justify-center items-center'>
+      {/*<div className='relative w-full h-full flex justify-center items-center'>
         <LookBookCover 
           photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/woshi-hermanpark-05.jpg?v=1748581247'}
           photoAlt={'Guy standing with morning commute shirt back facing.'}
