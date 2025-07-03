@@ -23,7 +23,7 @@ const LookBookCover: React.FC<LookBookCoverProps> = ({ photoSrc, photoAlt, title
                     src={photoSrc}
                     alt={photoAlt}
                     fill={true}
-                    className='object-cover object-[50%_75%] h-full'
+                    className='object-cover object-bottom h-full'
                 />
                 <div className="absolute bottom-0 left-0 p-3 mx-2 mx-auto font-thin text-white bg-black/45 w-full z-[100]">
                     <h2 className="text-lg lg:text-2xl ">{title}</h2>

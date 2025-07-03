@@ -1,52 +1,67 @@
 'use client'
-
 // Set link to routed pages for individual items here
 import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
-import FadeInImage from '../components/animationComps/FadeInImages';
+import CoverHeader from '../components/ProductComps-Layouts/heroImageInsert';
+import LookBookCover from '../components/cloudinaryImages/lookbookCovers';
 
 const LookbookHome = () => {
-    
-    return (
-      <div className='w-full md:w-4/5 grid grid-cols-1 p-2 md:grid-cols-2 gap-2'>
-        <section id='item-1'>
-        <FadeInImage>
-        <div className='w-full flex flex-col justify-center items-center gap-2'>
-          <Link href={'/lookbook/metro-daydreams'} className='relative w-full'>
-            <Image 
-              src={'https://res.cloudinary.com/woshicat-official/image/upload/v1728785637/A02_Large_c5yaq1.jpg'}
-              alt={'Guy standing with 506 train shirt back facing.'}
-              width={1000}
-              height={1}
-              className='object-cover aspect-square w-full'
-            />
-            <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 hover:opacity-25 transition duration-300'/>
-          </Link>
-          <p className='w-full text-center text-xl px-2'>{`2024 - Metro Daydreams`}</p>
+  return (
+    <>
+    <div className='relative w-full h-full flex flex-col justify-center items-center gap-1'>      
+      {/* <div className='relative w-full h-full flex justify-center items-center'>
+        <LookBookCover 
+          photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/woshi-hermanpark-05.jpg?v=1748581247'}
+          photoAlt={'Guy standing with morning commute shirt back facing.'}
+          title={'2025 - Ego Diffraction'}
+          link={'/lookbook/ego-diffraction'}
+          classExtra='ms-auto text-right z-[100]'
+        />
+        <div className="max-md:hidden absolute -left-0 w-[370px] h-full flex justify-left">
+          <Image
+            src={'/icons/Sketchy arrow demo.png'}
+            alt={'black sketched arrow pointing at lookbook panel links'}
+            width={800}
+            height={1}
+            className='absolute bottom-20 -right-0 -rotate-[135deg] scale-[1.2] transform -scale-y-100 z-[101]'
+          />
+          <Image 
+            src={'/media/cat_pngs/2025_Benji_Design.png'}
+            alt={'Seredipity Benji doing an ollie on a skateboard'}
+            width={600}
+            height={1}
+            className='z-[102] absolute top-0 transform object-cover h-full'
+          />
         </div>
-        </FadeInImage>
-        </section>
-
-        {/* <section id='item-2'>
-        <FadeInImage>
-        <div className='w-full flex flex-col justify-center items-center gap-2'>
-          <Link href={'/lookbook/ego-diffraction'} className='relative w-full'>
-            <Image 
-              src={'/media/LNY2025/dome of light.jpg'}
-              alt={'Guy standing in the Taiwan Dome of Light wearing our Morning Commute Shirt.'}
-              width={1000}
-              height={1}
-              className='object-cover aspect-square w-full'
-            />
-            <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 hover:opacity-25 transition duration-300'/>
-          </Link>
-          <p className='w-full text-center text-xl px-2'>{`2025 - Ego Diffraction`}</p>
+      </div> */}
+      <div className='relative w-full h-full flex justify-center items-center'>
+        <LookBookCover 
+          photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/woshi-hermanpark-05.jpg?v=1748581247'}
+          photoAlt={'Two models wearing MD shirts sitting on a ledge.'}
+          title={'2024 - Metro Daydreams'}
+          link={'/lookbook/metro-daydreams'}
+          classExtra='me-auto z-[100]'
+        />
+        <div className="max-md:hidden absolute flex justify-right -right-0 w-[370px] h-full">
+          <Image
+            src={'/icons/Sketchy arrow demo.png'}
+            alt={'black sketched arrow pointing at lookbook panel links'}
+            width={500}
+            height={1}
+            className='z-[102] rotate-[30deg] transform scale-[1.2] -scale-y-100 absolute top-20'
+          />
+          <Image 
+            src={'/media/cat_pngs/Suffocation_YOYO.png'}
+            alt={'City Nights Prosperity Yoyo'}
+            width={800}
+            height={1}
+            className='absolute bottom-0 transform object-cover h-full w-full'
+          />
         </div>
-        </FadeInImage>
-        </section> */}
       </div>
-    );
+    </div>
+    </>
+  );
 }
 
 export default LookbookHome;
