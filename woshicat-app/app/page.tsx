@@ -1,13 +1,13 @@
 'use client';
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AutoCarousel from "./components/autoCarousel";
 import Popup from "./components/popups/popupCard";
-import Square from "./components/bento-layout/square";
 import TwoOneRect from "./components/bento-layout/two-one-rect";
 import ShopNowButton from "./components/ShopNowButton";
 import CollectionListing from "./components/collection-listings/collectionListing";
+import { getFeaturedCollectionHelper } from "./server_actions/action";
 
 
 const homeBanner = [
@@ -16,6 +16,20 @@ const homeBanner = [
 ];
 
 const Home = () => {
+  const [featured, setFeatured] = useState<any[]>([]);
+  
+  useEffect(() => {
+    const getFeaturedCollection = async () => {
+      const featured = await getFeaturedCollectionHelper();
+      console.log(featured)
+      if (featured) {
+        setFeatured(featured);
+      } else {
+        console.log("couldn't get featured collection...");
+      }
+    }
+    getFeaturedCollection();
+  }, [])
 
   return (
     <>
@@ -70,18 +84,20 @@ const Home = () => {
         {`Featured Arrivals`}
       </div>
       <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 p-2">
-        {/* Lunar New Year 2025 */}
-        <TwoOneRect
-          link={`/collections/stationary-and-accessories`}
-          collectionName="Stationary and Accessories"
-        >
-          <Image 
-            className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-            src={'/media/stationary-page/apr2025_506print1.jpg'} 
-            alt={'A studio style photo of the WoShi Cat 5:06 Train Print'} 
-            fill={true}
-          />
-        </TwoOneRect>
+        {/* Featured Collection */}
+        {featured[0] && (
+          <TwoOneRect
+          link={`/collections/${featured[0].handle}`}
+          collectionName={`${featured[0].title}`}
+          >
+            <Image 
+              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+              src={featured[0].imgSrc} 
+              alt={featured[0].imgAlt || 'Photo of featured collection'} 
+              fill={true}
+            />
+          </TwoOneRect>
+        )}
         
         <div className="relative col-span-9 md:col-span-3 aspect-square h-full overflow-hidden flex items-end">
           <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
