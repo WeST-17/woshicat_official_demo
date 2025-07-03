@@ -1,29 +1,26 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { incrementQuantity, decrementQuantity, removeItemCart, getItemQuantityCart } from '@/app/action';
+import { updateCartQuantity } from '@/app/server_actions/action';
 import { useCart } from './cartContext';
 import Image from 'next/image';
 
 interface QuantityAdjusterProps {
-  lineItemID: string;
+  variantId: string;
   initialQuantity: number;
   onQuantityChange: (newQuantity: number) => void;
 }
 
-const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initialQuantity, onQuantityChange }) => {
+const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQuantity, onQuantityChange }) => {
   const [quantity, setQuantity] = useState(initialQuantity);
   const [itemQuantLoad, setItemQuantLoad] = useState<boolean>(false);
-  const { setCartUpdated, setCartItemsLoading, progress, setProgress } = useCart();
+  const { setCartUpdated, setCartItemsLoading, cartItems } = useCart();
 
   useEffect(() => {
     setItemQuantLoad(true);
     const updateQuantity = async () => {
-      const newQuant = await getItemQuantityCart(lineItemID);
-      console.log('new quant:', newQuant, 'old quantity: ', quantity)
-      if (newQuant !== quantity) {
-        setQuantity(newQuant);
-        onQuantityChange(newQuant);
-      }
+      const newQuantity = quantity;
+      setQuantity(newQuantity);
+      onQuantityChange(newQuantity);
       setCartUpdated(true);
     }
     
@@ -32,16 +29,15 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initial
     }
     setTimeout(() => {
       setItemQuantLoad(false); // Delay resetting to false
-    }, 1000);
+    }, 500);
   }, [initialQuantity]);
 
   const handleIncrement = async () => {
     try {
       setCartItemsLoading(true);
       setItemQuantLoad(true);
-      await incrementQuantity(lineItemID);
-      const itemQuantity = quantity + 1;
-      const newQuantity = itemQuantity;
+      const newQuantity = quantity + 1;
+      await updateCartQuantity(variantId, newQuantity);
       setQuantity(newQuantity);
       onQuantityChange(newQuantity);
       setCartUpdated(true);
@@ -57,14 +53,13 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initial
       setItemQuantLoad(true);
       setCartItemsLoading(true)
       if (quantity > 1) {
-        await decrementQuantity(lineItemID);
         const newQuantity = quantity - 1;
+        await updateCartQuantity(variantId, newQuantity);
         setQuantity(newQuantity);
         onQuantityChange(newQuantity);
       } else {
         console.log("Item removed from your cart!")
-        await removeItemCart(lineItemID);
-        // Handle cart update logic here if needed
+        await updateCartQuantity(variantId, 0);
       }
       setCartUpdated(true);
       setItemQuantLoad(false);
@@ -79,33 +74,39 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ lineItemID, initial
     try {
       if (quantity >= 1) {
         console.log("Item removed from your cart!")
-        await removeItemCart(lineItemID);
+        await updateCartQuantity(variantId, 0);
         // Handle cart update logic here if needed
       } else {
         return
       }
       setCartUpdated(true);
       setItemQuantLoad(false);
+      
     } catch (error) {
       console.error('Error decrementing quantity or removing item:', error);
     }
   }
 
+  const checkInventory = () => {
+    const itemQuantity = cartItems.filter((item: any) => item.variantId === variantId);
+    return itemQuantity[0].inventoryAvailable <= quantity;
+  }
+  
   return (
-    <div className="flex items-center">
-      <p className='text-sm mr-2'>Quantity</p>
+    <div className="flex items-center justify-start w-full gap-2 mt-1">
+      <p className='text-sm'>Quantity</p>
       <button
         onClick={handleDecrement}
-        className={`px-2 py-1 text-black hover:scale-[1.2] transition duration-300 ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
+        className={`px-2 text-black transition duration-300 rounded-md ${itemQuantLoad === false ? 'opacity-100 hover:bg-black/25' : 'opacity-10 pointer-events-none'}`}
         disabled={itemQuantLoad === true}
       >
         -
       </button>
-      <span className="text-sm w-10 flex justify-center">{itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}</span>
+      <span className="text-sm w-6 flex justify-center text-sm">{itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}</span>
       <button
         onClick={handleIncrement}
-        className={`px-2 py-1 text-black hover:scale-[1.2] transition duration-300 ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
-        disabled={itemQuantLoad === true}
+        className={`px-1 transition duration-300 rounded-md ${!checkInventory() && itemQuantLoad === false ? 'text-black opacity-100 hover:bg-black/25' : 'opacity-40 pointer-events-none'}`}
+        disabled={itemQuantLoad === true || checkInventory()}
       >
         +
       </button>

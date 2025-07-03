@@ -2,7 +2,8 @@
 
 // cartContext.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { displayCart } from '@/app/action';
+import { getCart } from '@/app/server_actions/action';
+import colors from '../colors';
 
 interface CartContextType {
   cartOpen: boolean;
@@ -17,19 +18,18 @@ interface CartContextType {
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
   progress: number;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
+  colorList: Map<any, string>;
 }
 
 interface CartItems {
-  title: any;
-  cartItemID: any;
-  variantID: any;
-  size: any;
-  color: any;
-  variantTitle: any;
-  quantity: any;
-  price: string;
-  currency: any;
-  image: any;
+  cartLineId: string,
+  quantity: number,
+  variantId: string,
+  variantTitle: string,
+  inventoryAvailable: number,
+  imageUrl: string,
+  imageAlt: string,
+  price: number
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -41,21 +41,22 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cartItemsLoading, setCartItemsLoading] = useState(false);
   const [cartTotal, setCartTotal] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
+  const colorList = colors;
   
   useEffect(() => {
     const fetchCartItems = async () => {
         setCartItemsLoading(true);
-        const items = await displayCart();
+        const items: CartItems[] = await getCart();
         setCart(items);
         setCartItemsLoading(false);
         setCartUpdated(false); // Reset cartUpdated after fetching
     };
 
-    fetchCartItems();
+    fetchCartItems(); 
   }, [cartUpdated]);
 
   return (
-    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress }}>
+    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress, colorList }}>
       {children}
     </CartContext.Provider>
   );

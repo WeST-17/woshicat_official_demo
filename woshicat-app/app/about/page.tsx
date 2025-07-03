@@ -6,7 +6,7 @@ const About = () => {
     <>
     <main className="w-full">
       {/* */}
-      <div className="relative flex max-lg:flex-col w-full lg:h-[90vh]">
+      <div className="relative flex max-lg:flex-col w-full lg:h-[95vh]">
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
@@ -19,7 +19,7 @@ const About = () => {
             preload="metadata"
             
           >
-              <source src="/media/homepage/Woshi Homepage Video.mp4" type="video/mp4" data-v-f518367b="" />
+              <source src="https://cdn.shopify.com/videos/c/o/v/930d239ffbc645f4b4d95df7ea57a505.mp4" type="video/mp4" data-v-f518367b="" />
           </video> 
         </div>
 

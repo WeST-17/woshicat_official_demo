@@ -1,6 +1,6 @@
 'use client';
 import Link from "next/link";
-import TransitionSlide from "../components/transitionWipe";
+import TransitionSlide from "../components/transitions-navigation/transitionWipe";
 
 const Contact = () => {
   return (

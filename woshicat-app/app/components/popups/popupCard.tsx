@@ -30,7 +30,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
             if (storedValue !== 'visited' && on) {
                 setPopup(true);
               }
-        }, 3000)
+        }, 2000)
         
     }, []);
 
@@ -84,8 +84,13 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                         className="text-white text-xl xl:text-3xl z-[2006] text-center w-full p-2 flex flex-col justify-center items-center"
                         onClick={closeConfirmation}
                     >
-                        <p className='text-xl lg:text-3xl transition-all duration-250 mb-8'>{promoDesc}</p>
-                        <p className='text-base lg:text-lg transition-all duration-250 mb-8'>{promoDescLine2}</p>
+                        <p className='text-xl lg:text-3xl transition-all duration-250 mb-8'>
+                            {promoDesc}
+                        </p>
+                        <p className='text-base lg:text-lg transition-all duration-250 mb-8'>
+                            {promoDescLine2}
+                        </p>
+
                         {extra && 
                             (<Image
                                 src={extra}

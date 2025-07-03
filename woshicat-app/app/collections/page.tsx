@@ -1,8 +1,8 @@
 'use client';
 import React from "react";
 import Image from "next/image";
-import CoverHeader from "../components/heroImageInsert";
-import ProductCards from "../components/product-cards";
+import CoverHeader from "../components/ProductComps-Layouts/heroImageInsert";
+import ProductCards from "../components/ProductComps-Layouts/product-cards";
 import CollectionListing from "../components/collection-listings/collectionListing";
 
 const Collections = () => {
@@ -32,9 +32,9 @@ const Collections = () => {
             <h2 className="text-2xl">Designed in-house. Yoyo&apos;s happy you&apos;re here!</h2>
           </div>
         </div>
-        <div className="w-full md:w-4/5 mx-auto col-span-9 grid grid-cols-9 p-2 gap-2">
+        <div className="w-full md:w-4/5 mx-auto col-span-9 grid grid-cols-10 md:grid-cols-9 gap-2">
           {/* Begin section */}
-            <CollectionListing addClass="col-span-9 md:col-span-3"/>
+            <CollectionListing addClass="max-sm:col-span-10 col-span-5 md:col-span-3"/>
           {/* End section */}
         </div>
         {/* Show All Products */}

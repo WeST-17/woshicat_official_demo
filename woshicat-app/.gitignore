@@ -37,4 +37,4 @@ next-env.d.ts
 
 # Folders
 /test-kit
-/Tests-and-stuff
+/Tests-and-stuff.DS_Store

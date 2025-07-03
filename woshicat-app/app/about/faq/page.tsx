@@ -1,7 +1,7 @@
 'use client';
-import Collapse from "@/app/components/collapse-item";
+import Collapse from "@/app/components/ProductComps-Layouts/collapse-item";
 import { FAQ } from "@/app/about/faq/faqData";
-import TransitionSlide from "@/app/components/transitionWipe";
+import TransitionSlide from "@/app/components/transitions-navigation/transitionWipe";
 
 const BrandFAQ = () => {
   

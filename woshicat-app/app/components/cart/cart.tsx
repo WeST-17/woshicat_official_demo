@@ -1,6 +1,5 @@
 'use client';
-// import Link from "next/link";
-import { FinalCheckout } from "@/app/action";
+import { FinalCheckout } from "@/app/server_actions/action";
 import { useCart } from './cartContext';
 import QuantityAdjuster from "./cartItemModify";
 import React, { useRef, useEffect } from 'react';
@@ -20,6 +19,7 @@ const Cart: React.FC = () => {
 
     useEffect(() => {
         const calcTotal = async () => {
+            console.log("calculating subtotal")
             let subtotal: number = 0;
             for (const item of cartItems) {
               subtotal += Number(item.price)*Number(item.quantity);
@@ -98,25 +98,25 @@ const Cart: React.FC = () => {
                     {cartItems.length > 0 ? (
                     <div className="cart-items gap-2 h-[65%] overflow-y-auto overscroll-contain rounded-lg p-1">
                         {cartItems.map((item: any) => {
-                            
                             return (
-                            <div key={item.cartItemID} className="relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center">
+                            <div key={item.cartLineId} className={`relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center justify-start ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                                 
                                 <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="">
                                     <img
-                                    src={item.image}
-                                    alt={item.variantTitle}
-                                    className="w-24 h-24 object-cover object-bottom rounded-md mr-4"
+                                    src={item.imageUrl}
+                                    alt={item.handle}
+                                    className="w-24 h-24 object-cover bg-stone-100 aspect-square rounded-md mr-2"
                                     />
                                 </Link>
                                 <div>
-                                <h3 className="text-md font-thin mb-2">{item.title}</h3>
-                                {item.size && item.size !== 'Default Title' && item.color && item.color !== 'N/A' && (
-                                    <p className="text-sm font-thin">{item.size} \ {item.color}</p>
-                                )}
+                                <h2 className='h-full w-full mb-1 text-base'>{item.title}</h2>
+                                <h3 className="text-xs font-thin mb-1 opacity-80">
+                                    {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
+                                </h3>
+                                <p className='text-sm font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
                                 {/* Quantity adjuster component */}
                                 <QuantityAdjuster
-                                    lineItemID={item.cartItemID}
+                                    variantId={item.variantId}
                                     initialQuantity={item.quantity}
                                     onQuantityChange={(newQuantity) => {
                                         console.log('Quantity changed to:', newQuantity);
@@ -140,7 +140,7 @@ const Cart: React.FC = () => {
                         
                         <div className="h-full flex flex-col sticky bottom-0 w-full justify-end items-center bottom-0 p-2 gap-2">
                             <div className="w-full flex justify-end items-center text-xl me-2">
-                                <p className="text-2xl">{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
+                                <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                             </div>
                             <div className="w-full sticky flex flex-col items-center justify-end gap-4">
                                 <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>

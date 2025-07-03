@@ -3,7 +3,7 @@ import "./globals.css";
 import { Lato } from 'next/font/google';
 import Header from "./components/header";
 import Footer from "./components/footer";
-import TransitionSlide from "./components/transitionWipe";
+import TransitionSlide from "./components/transitions-navigation/transitionWipe";
 import { CartProvider } from "./components/cart/cartContext";
 
 

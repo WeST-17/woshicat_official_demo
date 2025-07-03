@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import { getImagesCloudinary } from "@/app/components/animationComps/cloudinary";
-import FadeInImage from "@/app/components/animationComps/FadeInImages";
+import { getImagesCloudinary } from "@/app/components/cloudinaryImages/cloudinary";
+import FadeInImage from "@/app/components/transitions-navigation/FadeInImages";
 import NotFound from "@/app/not-found";
 
 const LookbookSlug = () => {
@@ -51,7 +51,7 @@ const LookbookSlug = () => {
       { images.length > 0  && (
         <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-3 lg:w-3/4 mx-auto gap-1">
         {images.map((image: any, index: number) => (
-          <>
+          <div className="" key={index}>
           <FadeInImage>
               <Image 
                 src={image.secure_url}
@@ -61,7 +61,7 @@ const LookbookSlug = () => {
                 className={`object-cover aspect-[3/4]`}
               />
           </FadeInImage>
-          </>
+          </div>
           ))}
           
         </div>

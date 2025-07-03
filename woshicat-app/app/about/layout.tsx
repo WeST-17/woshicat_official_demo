@@ -1,7 +1,7 @@
 
 import { Suspense } from "react";
-import TransitionSlide from "@/app/components/transitionWipe";
-import LoadingScreen from "@/app/components/loading";
+import TransitionSlide from "@/app/components/transitions-navigation/transitionWipe";
+import LoadingScreen from "@/app/components/transitions-navigation/loading";
 
 export default function ApparelLayout({
     children,

@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link";
 import Image from "next/image";
-import Navigation from "./navbar";
+import Navigation from "./transitions-navigation/navbar";
 import Cart from "./cart/cart";
 
 const Header = () => {

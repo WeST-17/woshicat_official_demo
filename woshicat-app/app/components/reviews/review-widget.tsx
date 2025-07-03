@@ -1,5 +1,5 @@
 'use client';
-import { getImagesCloudinary } from "../animationComps/cloudinary";
+import { getImagesCloudinary } from "../cloudinaryImages/cloudinary";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
