@@ -9,7 +9,7 @@ import ProgressBar from "./progressBar";
 
 
 const Cart: React.FC = () => {
-    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
+    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, cartUpdated, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
     const currFormat = new Intl.NumberFormat('default', {
@@ -28,7 +28,7 @@ const Cart: React.FC = () => {
         }
 
         calcTotal();
-    }, [cartOpen])
+    }, [cartItems])
 
     const openCart = async () => {
         setCartOpen(true);
