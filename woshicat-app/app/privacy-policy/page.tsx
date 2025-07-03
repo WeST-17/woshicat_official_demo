@@ -1,5 +1,5 @@
 'use client';
-import TransitionSlide from "../components/transitionWipe";
+import TransitionSlide from "../components/transitions-navigation/transitionWipe";
 import { privacyDoc } from "./privacyData";
 
 const PrivacyPolicy = () => {
