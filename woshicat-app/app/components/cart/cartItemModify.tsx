@@ -18,13 +18,15 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
   useEffect(() => {
     setItemQuantLoad(true);
     const updateQuantity = async () => {
-      const newQuantity = quantity;
+      const newQuantity = initialQuantity;
       setQuantity(newQuantity);
       onQuantityChange(newQuantity);
       setCartUpdated(true);
     }
     
     if (initialQuantity != quantity) {
+      console.log("old: ", initialQuantity);
+      console.log('new: ', quantity);
       updateQuantity();
     }
     setTimeout(() => {

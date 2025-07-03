@@ -373,7 +373,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         <option
                                         key={quantity}
                                         value={quantity}
-                                        disabled={(!selectedColor && !selectedSize) || (item.inventoryAvailable && item.inventoryAvailable < quantity)}
+                                        disabled={(item.inventoryAvailable && item.inventoryAvailable < quantity)}
                                         >
                                         {quantity}
                                         </option>

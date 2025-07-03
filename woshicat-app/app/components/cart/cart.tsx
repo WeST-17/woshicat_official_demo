@@ -28,7 +28,7 @@ const Cart: React.FC = () => {
         }
 
         calcTotal();
-    }, [cartItems])
+    }, [cartOpen])
 
     const openCart = async () => {
         setCartOpen(true);
