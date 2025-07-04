@@ -19,7 +19,7 @@ export async function getImagesCloudinary(folder: string): Promise<CloudinaryIma
 
     try {
 
-        const resources = await cloudinary.api.resources_by_asset_folder(`${folder}`, {max_results: 50, })
+        const resources = await cloudinary.api.resources_by_asset_folder(`${folder}`, {max_results: 30, })
         
         const cloudinaryPass: CloudinaryImage[] = resources.resources.map((resource: any) => {
           // Generate signed URL for each image
@@ -35,7 +35,7 @@ export async function getImagesCloudinary(folder: string): Promise<CloudinaryIma
             height: resource.height,
             signed_url, // Return the signed URL
             d_name: resource.display_name,
-            quality: 100,
+            quality: 90,
           };
         });
         // console.log(cloudinaryPass.sort())

@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getImagesCloudinary } from "@/app/components/cloudinaryImages/cloudinary";
 import FadeInImage from "../transitions-navigation/FadeInImages";
-import ComicEps from "@/app/yoyo-friends/comic";
 
 interface ComicSource {
     title: string;
