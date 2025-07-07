@@ -48,21 +48,23 @@ const LookbookSlug = () => {
     <>
     <main className="flex justify-center w-screen mt-3">
       {/* */}
-      { images.length > 0  && (
-        <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-3 lg:w-3/4 mx-auto gap-1">
-        {images.map((image: any, index: number) => (
-          <div className="" key={index}>
-          <FadeInImage>
-              <Image 
-                src={image.secure_url}
-                alt={`Image ${index + 1}`} 
-                width={image.width} 
-                height={1} 
-                className={`object-cover aspect-[3/4]`}
-              />
-          </FadeInImage>
-          </div>
-          ))}
+      { images.length > 0 && (
+        <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-2 lg:w-3/4 mx-auto gap-1">
+        {images.map((image: any, index: number) => {
+            return (
+              <div className="" key={index}>
+              <FadeInImage>
+                  <Image 
+                    src={image.secure_url}
+                    alt={`Image ${index + 1}`} 
+                    width={image.width} 
+                    height={1} 
+                    className={`object-cover aspect-[4/5]`}
+                  />
+              </FadeInImage>
+              </div>
+            )
+        })}
           
         </div>
       )

@@ -80,7 +80,7 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
+      <div className="p-2 w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
       <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 p-2">
@@ -127,7 +127,7 @@ const Home = () => {
 
       <div className="w-full md:w-4/5 col-span-9 mx-auto">
         {/* Rest of the Collections */}
-        <Link href="/collections" className="w-full text-3xl font-normal">
+        <Link href="/collections" className="p-2 w-full text-3xl font-normal">
           {`Yoyo's Collection List`}
         </Link>
         
