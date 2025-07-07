@@ -87,7 +87,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
               <img 
                 src={product.images[product.images.length - 2].url} 
                 alt={product.images[product.images.length - 2].altText} 
-                className={`object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
               />
             </div>
             </Link>

@@ -24,7 +24,7 @@ const Collapse: React.FC<CollapseProps> = ({ children, plus, minus, classProp}) 
             >
                 {openItem ? minus || ' - ' : plus || ' + '}
             </button>
-            <div className={`collapse-item absolute flex flex-col justify-center w-full text-base ${openItem ? 'open' : ''}`}>
+            <div className={`collapse-item flex flex-col justify-center w-full text-base ${openItem ? 'open' : ''}`}>
                 {children}
             </div>
         </>
