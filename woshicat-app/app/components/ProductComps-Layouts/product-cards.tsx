@@ -25,7 +25,7 @@ const ProductCards = () => {
   useEffect(() => {
 
     const fetchData = async () => {
-      try {
+      try { 
         setLoading(true);
         const products = await getAllProductsHelper();  
         const collections = await getCollectionNamesHelper();
@@ -41,8 +41,9 @@ const ProductCards = () => {
         setLoading(false);
       }
     };
-    console.log('Products Gallery loaded.');
     fetchData();
+    console.log('Products Gallery loaded.');
+    
   }, []);
 
   if (error) {
@@ -103,7 +104,7 @@ const ProductCards = () => {
             <div className={`bg-white flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
               {/* Render product details */}
-              <div className='relative flex justify-center items-center aspect-square min-h-full'>
+              <div className='relative flex justify-center items-center aspect-square h-full'>
                 {/* Default product image */}
                 <img 
                   src={product.images[0].url} 

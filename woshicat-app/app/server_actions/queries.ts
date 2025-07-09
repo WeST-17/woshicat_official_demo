@@ -84,7 +84,7 @@ export const collectionByHandle = (handle: string) => {
           url
           altText
         }
-        products(first: 20) {
+        products(first: 30) {
           edges {
             node {
               id
@@ -96,7 +96,7 @@ export const collectionByHandle = (handle: string) => {
                   amount
                 }
               }
-              images(first: 50) {
+              images(first: 15) {
                 nodes {
                   url
                   altText
