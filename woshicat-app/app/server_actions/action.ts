@@ -147,8 +147,8 @@ export async function getFeaturedCollectionHelper() {
   return featuredCollection;
 }
 
-async function getCollectionByHandle(handle: string): Promise<any[]> {
-  const collectionHandleQuery: string = collectionByHandle(handle);
+async function getCollectionByHandle(handle: string, cursor?: string | null): Promise<any[]> {
+  const collectionHandleQuery: string = collectionByHandle(handle, cursor);
   const { data, errors } = await client.request(collectionHandleQuery);
   try {
     const products = data.collection.products.edges.map((product: any) => {
@@ -175,14 +175,18 @@ async function getCollectionByHandle(handle: string): Promise<any[]> {
       }
     }
   )
-    return products;
+    
+    return [products, {
+      endCursor: data.collection.products.pageInfo.endCursor, 
+      hasNextPage: data.collection.products.pageInfo.hasNextPage
+    }];
   } catch (error) {
     throw errors;
   }
 };
 
-export async function getCollectionProductsHelper(handle: string) {
-  const products = await getCollectionByHandle(handle);
+export async function getCollectionProductsHelper(handle: string, cursor?: string | null) {
+  const products = await getCollectionByHandle(handle, cursor);
   return products;
 }
 

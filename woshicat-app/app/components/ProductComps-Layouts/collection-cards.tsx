@@ -15,6 +15,8 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   const [products, setProducts] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [cursor, setCursor] = useState<string | null>();
+  const [scrollPos, setScrollPos] = useState<number>(0);
   
   useEffect(() => {
 
@@ -22,7 +24,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
       setLoading(true);
       const products = await getCollectionProductsHelper(collectionHandle);
       try {
-        setProducts(products);
+        setProducts(products[0]);
       } catch (error) {
         console.error('Error fetching server component props:', products);
         setError(products);
@@ -33,6 +35,40 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
     fetchData();
     console.log('Products Gallery loaded.');
   }, [collectionHandle]);
+
+  const HandleScroll = () => {
+    const height = 
+        document.documentElement.scrollHeight - 
+        document.documentElement.clientHeight;
+    const windowScroll = document.documentElement.scrollTop;
+    const scrolled = (windowScroll / height) * 100;
+    setScrollPos(scrolled);
+  }
+
+  useEffect(() => {
+      window.addEventListener("scroll", HandleScroll, { passive: true });
+      return () => {
+          window.removeEventListener("scroll", HandleScroll);
+      };
+  }, []);
+
+  const getNextPage = async () => {
+    if (cursor === null) {
+      return;
+    }
+    const nextPageProducts = await getCollectionProductsHelper(collectionHandle, cursor);
+    if (nextPageProducts[1].hasNextPage === true) {
+      setCursor(nextPageProducts[1].endCursor);
+    } else {
+      setCursor(null);
+    }
+    const productsPlusNext = products.concat(nextPageProducts[0]);
+    setProducts(productsPlusNext);
+  }
+
+  useEffect(() => {
+    if (scrollPos > 75) getNextPage();
+  }, [scrollPos]);
 
   if (loading) {
     return (

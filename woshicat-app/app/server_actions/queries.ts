@@ -131,7 +131,55 @@ export const collectionsInfoQuery = `
     }
   }
 `;
-export const collectionByHandle = (handle: string) => {
+export const collectionByHandle = (handle: string, cursor?: string | null) => {
+  if (cursor) {
+    return (`
+      query {
+        collection(handle: "${handle}") {
+          id
+          handle
+          title
+          image {
+            url
+            altText
+          }
+          products(first: 12, after: "${cursor}") {
+            edges {
+              node {
+                id
+                title
+                handle
+                totalInventory
+                priceRange {
+                  maxVariantPrice {
+                    amount
+                  }
+                }
+                images(first: 15) {
+                  nodes {
+                    url
+                    altText
+                  }
+                }
+                collections(first: 1) {
+                  edges {
+                    node {
+                      handle
+                    }
+                  }
+                }
+              }
+            }
+            pageInfo {
+              endCursor
+              hasNextPage
+            }
+          }
+        }
+      }
+    `)
+  }
+  // inital request
   return (`
     query {
       collection(handle: "${handle}") {
@@ -142,7 +190,7 @@ export const collectionByHandle = (handle: string) => {
           url
           altText
         }
-        products(first: 30) {
+        products(first: 12) {
           edges {
             node {
               id
@@ -168,6 +216,10 @@ export const collectionByHandle = (handle: string) => {
                 }
               }
             }
+          }
+          pageInfo {
+            endCursor
+            hasNextPage
           }
         }
       }
