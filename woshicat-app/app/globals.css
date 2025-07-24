@@ -356,7 +356,7 @@ button:hover {
 @media screen and (max-width: 1023px) {
   /* Carousel.css */
   .carousel-content > * {
-      width: 50%;
+      width: 100%;
       flex-shrink: 0;
       flex-grow: 1;
   }
