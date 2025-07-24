@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Square from "../bento-layout/square";
 import Image from "next/image";
 import { getCollectionInfoHelper } from "@/app/server_actions/action";
-import Loader from "../transitions-navigation/LoadingScreen";
 
 interface DisplayProps {
   addClass: string,
