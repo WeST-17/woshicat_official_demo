@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-export default function getScrollPosition() {
+const getScrollPosition = () => {
     const [scrollPos, setScrollPos] = useState<number>(0);
-    const handleScroll = () => {
+    const HandleScroll = () => {
         const height = 
             document.documentElement.scrollHeight - 
             document.documentElement.clientHeight;
@@ -14,11 +14,13 @@ export default function getScrollPosition() {
     }
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("scroll", HandleScroll, { passive: true });
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", HandleScroll);
         };
     }, []);
 
     return scrollPos;
 }
+
+export default getScrollPosition;
