@@ -5,7 +5,7 @@ import { getCollectionNamesHelper, getAllProductsHelper } from '../../server_act
 import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
-import getScrollPosition from '../transitions-navigation/ScrollToBottom';
+// import getScrollPosition from '../transitions-navigation/ScrollToBottom';
 
 const ProductCards = () => {
   const [products, setProducts] = useState<any[]>([]);

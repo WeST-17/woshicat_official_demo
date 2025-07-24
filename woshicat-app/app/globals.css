@@ -345,11 +345,19 @@ button:hover {
     opacity: 1;
     overscroll-behavior: scroll;
   }
-}
 
-/* Carousel.css */
-.carousel-content > * {
-    width: 33%;
+  .carousel-content > * {
+    width: calc(100% / 3);
     flex-shrink: 0;
     flex-grow: 1;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  /* Carousel.css */
+  .carousel-content > * {
+      width: 50%;
+      flex-shrink: 0;
+      flex-grow: 1;
+  }
 }

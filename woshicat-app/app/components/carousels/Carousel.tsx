@@ -2,6 +2,8 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
+import useWindowDimensions from "../transitions-navigation/useWindowDimension";
+import Loader from "../transitions-navigation/LoadingScreen";
 
 interface CarouselComponentProps {
     children: React.ReactNode,
@@ -13,7 +15,8 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const [currIndex, setCurrIndex] = useState<number>(0);
     const [length, setLength] = useState<number>(0);
     const childRef = useRef<HTMLDivElement | null>(null);
-
+    const windowSize = useWindowDimensions();
+    
     useEffect(() => {
         if (childRef.current) {
             setLength(childRef.current.childNodes.length)
@@ -35,6 +38,14 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
             setCurrIndex(length - 2);
         };
     };
+
+    if (windowSize.width === undefined) {
+        return (
+            <>
+            <Loader />
+            </>
+        )
+    };
     
     return (
         <div className={`w-full flex flex-col`}>
@@ -43,13 +54,25 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={8} height={1}/>
                 </button>
                 <div className="overflow-hidden w-full h-full">
-                    <div 
+                    { windowSize.width > 1024 && (
+                        <div 
                         className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
                         style={{ transform: `translateX(-${currIndex * (1/numPerSlide*100)}%)` }}
                         ref={childRef}
-                    >
-                        {children}
-                    </div>
+                        >
+                            {children}
+                        </div>
+                    )}
+                    
+                    { windowSize.width <= 1024 && (
+                        <div 
+                        className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
+                        style={{ transform: `translateX(-${currIndex * (1/(numPerSlide - 1)*100)}%)` }}
+                        ref={childRef}
+                        >
+                            {children}
+                        </div>
+                    )}
                 </div>
                 <button className={`absolute right-0 top-1/2 z-[100] bg-white rounded-md p-3 ${length <= numPerSlide ? 'hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={8} height={1}/>
