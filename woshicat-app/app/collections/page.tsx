@@ -37,6 +37,7 @@ const Collections = () => {
           {/* Begin section */}
             <ScrollingCarousel addClass="" numPerSlide={3}>
               <CollectionListing addClass="w-full h-full px-1"/>
+              <CollectionListing addClass="w-full h-full px-1"/>
             </ScrollingCarousel>
           {/* End section */}
         </div>

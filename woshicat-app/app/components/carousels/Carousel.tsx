@@ -19,7 +19,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     
     useEffect(() => {
         if (childRef.current) {
-            setLength(childRef.current.childNodes.length)
+            setLength(childRef.current.childNodes.length);
         };
     }, [children]);
 
@@ -54,25 +54,18 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={8} height={1}/>
                 </button>
                 <div className="overflow-hidden w-full h-full">
-                    { windowSize.width > 1024 && (
-                        <div 
+                    <div
                         className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
-                        style={{ transform: `translateX(-${currIndex * (1/numPerSlide*100)}%)` }}
+                        style={{
+                            transform: `translateX(-${currIndex * (
+                            1 / (windowSize.width > 1024 ? numPerSlide : (numPerSlide - 1)) * 100
+                            )}%)`,
+                        }}
                         ref={childRef}
                         >
-                            {children}
+                        {children}
                         </div>
-                    )}
-                    
-                    { windowSize.width <= 1024 && (
-                        <div 
-                        className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
-                        style={{ transform: `translateX(-${currIndex * (1/(numPerSlide - 1)*100)}%)` }}
-                        ref={childRef}
-                        >
-                            {children}
-                        </div>
-                    )}
+
                 </div>
                 <button className={`absolute right-0 top-1/2 z-[100] bg-white rounded-md p-3 ${length <= numPerSlide ? 'hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={8} height={1}/>
