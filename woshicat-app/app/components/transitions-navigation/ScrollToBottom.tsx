@@ -1,26 +1,25 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const getScrollPosition = () => {
-    const [scrollPos, setScrollPos] = useState<number>(0);
-    const HandleScroll = () => {
-        const height = 
-            document.documentElement.scrollHeight - 
-            document.documentElement.clientHeight;
-        const windowScroll = document.documentElement.scrollTop;
-        const scrolled = (windowScroll / height) * 100;
-        setScrollPos(scrolled);
-    }
+export default function getScrollPosition() {
+    // const [scrollPos, setScrollPos] = useState<number>(0);
+    // const HandleScroll = () => {
+    //     const height = 
+    //         document.documentElement.scrollHeight - 
+    //         document.documentElement.clientHeight;
+    //     const windowScroll = document.documentElement.scrollTop;
+    //     const scrolled = (windowScroll / height) * 100;
+    //     setScrollPos(scrolled);
+    // }
 
-    useEffect(() => {
-        window.addEventListener("scroll", HandleScroll, { passive: true });
-        return () => {
-            window.removeEventListener("scroll", HandleScroll);
-        };
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener("scroll", HandleScroll, { passive: true });
+    //     return () => {
+    //         window.removeEventListener("scroll", HandleScroll);
+    //     };
+    // }, []);
 
-    return scrollPos;
+    // return scrollPos;
+    return;
 }
-
-export default getScrollPosition;

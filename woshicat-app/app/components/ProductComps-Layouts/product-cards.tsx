@@ -14,7 +14,22 @@ const ProductCards = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [cursor, setCursor] = useState<string | null>();
   const [filter, setFilter] = useState<string>('All Products');
-  const scrollPos = getScrollPosition();
+  const [scrollPos, setScrollPos] = useState<number>(0);
+  const HandleScroll = () => {
+      const height = 
+          document.documentElement.scrollHeight - 
+          document.documentElement.clientHeight;
+      const windowScroll = document.documentElement.scrollTop;
+      const scrolled = (windowScroll / height) * 100;
+      setScrollPos(scrolled);
+  }
+
+  useEffect(() => {
+      window.addEventListener("scroll", HandleScroll, { passive: true });
+      return () => {
+          window.removeEventListener("scroll", HandleScroll);
+      };
+  }, []);
 
   const filterClick = (x: string) => {
     setFilter(x);
