@@ -8,7 +8,6 @@ import NotFound from "@/app/not-found";
 
 const LookbookSlug = () => {
   const pathname = usePathname(); // get pathname: '/lookbook/[handle]
-  const folder = pathname.replace('/lookbook/', 'lookbook/'); // get handle from pathname for folder
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<any>(null);
   const [pageLoad, setPageLoading] = useState<boolean>(false);
@@ -17,7 +16,7 @@ const LookbookSlug = () => {
     setPageLoading(true);
     const fetchImages = async () => {
       try {
-        const response = await getImagesCloudinary(folder);
+        const response = await getImagesCloudinary(pathname.replace('/lookbook/', 'lookbook/'));
         if (response.length > 0) {
           setImages(response);
         } else {

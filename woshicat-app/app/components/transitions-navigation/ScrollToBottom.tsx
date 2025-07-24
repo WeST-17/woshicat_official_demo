@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function getScrollPosition() {
     const [scrollPos, setScrollPos] = useState<number>(0);
-    function handleScroll() {
+    const handleScroll = () => {
         const height = 
             document.documentElement.scrollHeight - 
             document.documentElement.clientHeight;
