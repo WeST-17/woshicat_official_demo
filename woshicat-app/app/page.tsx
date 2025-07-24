@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AutoCarousel from "./components/autoCarousel";
+import AutoCarousel from "./components/carousels/autoCarousel";
 import Popup from "./components/popups/popupCard";
 import TwoOneRect from "./components/bento-layout/two-one-rect";
 import ShopNowButton from "./components/ShopNowButton";
@@ -13,6 +13,7 @@ import { getFeaturedCollectionHelper } from "./server_actions/action";
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
   `Sign up for our newsletter and get a 10% off code!`,
+  `Our team will be out until August 5th. Please expect shipping delays when ordering.`
 ];
 
 const Home = () => {
@@ -137,18 +138,18 @@ const Home = () => {
       </div>
 
       <Popup 
-        PromoLink="url" 
-        imgSrc="" 
-        video="video src"
-        imgAlt="add alt text" 
+        PromoLink="/" 
+        imgSrc="/media/graphics/Yoyo happy.png" 
+        video=""
+        imgAlt="" 
         promoDesc={
           `
-          promo description
+          Hi team! I'm currently out of office on PTO and will be back on Aug 5th. Please expect shipping delays until then.
           `} 
-        promoDescLine2=""
+        promoDescLine2="Thanks, Yoyo"
         code=""
-        extra="extra logo or image"
-        on={false}
+        extra=""
+        on={true}
       />
     </main>
     </>

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Square from "../bento-layout/square";
 import Image from "next/image";
 import { getCollectionInfoHelper } from "@/app/server_actions/action";
+import Loader from "../transitions-navigation/LoadingScreen";
 
 interface DisplayProps {
   addClass: string,
@@ -13,10 +14,12 @@ interface DisplayProps {
 const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
   const [collectionList, setCollectionList] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean | null>(null);
 
   useEffect(() => {
   
       const fetchData = async () => {
+        setLoading(true);
         const collectionInfo = await getCollectionInfoHelper();
         try {
           setCollectionList(collectionInfo);
@@ -24,6 +27,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
           console.error('Error fetching server component props:', error);
           setError(error);
         } 
+        setLoading(false);
       };
       console.log('Products Gallery loaded.');
       fetchData();
@@ -31,9 +35,9 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
 
   return (
       <>
-        { !error && collectionList.map((collection) => (
+        { !loading && !error && collectionList.map((collection) => (
             
-            <section className={`w-full ${addClass}`} key={collection.handle}>
+            <section className={`${addClass}`} key={collection.handle}>
               <Square
               link={`/collections/${collection.handle}`}
               collectionName={`${collection.title}`}

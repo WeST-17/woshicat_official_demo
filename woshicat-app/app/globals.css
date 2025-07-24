@@ -346,3 +346,10 @@ button:hover {
     overscroll-behavior: scroll;
   }
 }
+
+/* Carousel.css */
+.carousel-content > * {
+    width: 33%;
+    flex-shrink: 0;
+    flex-grow: 1;
+}

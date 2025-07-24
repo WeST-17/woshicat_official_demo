@@ -2,7 +2,6 @@
 import { motion, useIsPresent } from "framer-motion";
 import Loader from "./LoadingScreen";
 import { usePathname } from "next/navigation";
-import path from "path";
 
 export default function TransitionSlide() {
     const isPresent = useIsPresent();

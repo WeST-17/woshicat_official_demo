@@ -26,14 +26,14 @@ const client = shopify({
 });
 
 
-async function getProducts(): Promise<any[]> {
-  const { data, errors } = await client.request(productsQuery);
+async function getProducts(cursor?: string | null): Promise<any[]> {
+  const { data, errors } = await client.request(productsQuery(cursor));
   try {
     const products = data.products.edges.map((item: any) => {
       const collection = item.node.collections.edges[0];
       const price = item.node.priceRange.maxVariantPrice.amount;
       const images = item.node.images.edges.map((image: any) => ({
-        url: image.node.originalSrc,
+        url: image.node.url,
         altText: image.node.altText,
       }));
       
@@ -59,14 +59,17 @@ async function getProducts(): Promise<any[]> {
       }; 
     })
     
-    return products.reverse(); // allow to display in reverse order from upload order
+    return [products, { 
+      endCursor: data.products.pageInfo.endCursor, 
+      hasNextPage: data.products.pageInfo.hasNextPage
+    }]; // allow to display in reverse order from upload order
   } catch (error) {
     throw errors;
   }
 };
 
-export async function getAllProductsHelper() {
-  const products = await getProducts();
+export async function getAllProductsHelper(cursor?: string | null) {
+  const products = await getProducts(cursor);
   return products;
 }
 

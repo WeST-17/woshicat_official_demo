@@ -1,45 +1,103 @@
 // Product Related Queries
-export const productsQuery = `
-  query {
-    products(first: 20) {
-      edges {
-        node {
-          id
-          handle
-          title
-          totalInventory
-          collections(first: 5) {
+export const productsQuery = (cursor?: string | null) => {
+  if (cursor) {
+    return (
+      `
+        query {
+          products(first: 12, after: "${cursor}", reverse: true) {
             edges {
               node {
-                title
+                id
                 handle
+                title
+                totalInventory
+                collections(first: 5) {
+                  edges {
+                    node {
+                      title
+                      handle
+                    }
+                  }
+                }
+                priceRange {
+                  maxVariantPrice {
+                    amount
+                  }
+                }
+                description
+                images(first: 10) {
+                  pageInfo {
+                    hasNextPage
+                    hasPreviousPage
+                  }
+                  edges {
+                    cursor
+                    node {
+                      url
+                      altText
+                    }
+                  }
+                }
               }
             }
-          }
-          priceRange {
-            maxVariantPrice {
-              amount
-            }
-          }
-          description
-          images(first: 10) {
             pageInfo {
               hasNextPage
-              hasPreviousPage
+              endCursor
             }
-            edges {
-              cursor
-              node {
-                originalSrc
-                altText
+          }
+        }
+      `
+    )
+  }
+  
+  return (
+    `
+    query {
+      products(first: 12, reverse: true) {
+        edges {
+          node {
+            id
+            handle
+            title
+            totalInventory
+            collections(first: 5) {
+              edges {
+                node {
+                  title
+                  handle
+                }
+              }
+            }
+            priceRange {
+              maxVariantPrice {
+                amount
+              }
+            }
+            description
+            images(first: 10) {
+              pageInfo {
+                hasNextPage
+                hasPreviousPage
+              }
+              edges {
+                cursor
+                node {
+                  url
+                  altText
+                }
               }
             }
           }
         }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
       }
     }
-  }
-`;
+  `
+  )
+} ;
 export const collectionNamesQuery = `
   query {
     collections(first: 10) {

@@ -5,13 +5,16 @@ import { getCollectionNamesHelper, getAllProductsHelper } from '../../server_act
 import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
+import getScrollPosition from '../transitions-navigation/ScrollToBottom';
 
 const ProductCards = () => {
   const [products, setProducts] = useState<any[]>([]);
   const [collectionList, setCollectionList] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [cursor, setCursor] = useState<string | null>();
   const [filter, setFilter] = useState<string>('All Products');
+  const scrollPos = getScrollPosition();
 
   const filterClick = (x: string) => {
     setFilter(x);
@@ -21,6 +24,24 @@ const ProductCards = () => {
     style: 'currency',
     currency: 'USD',
   });
+
+  const getNextPage = async () => {
+    if (cursor === null) {
+      return;
+    }
+    const nextPageProducts = await getAllProductsHelper(cursor);
+    if (nextPageProducts[1].hasNextPage === true) {
+      setCursor(nextPageProducts[1].endCursor);
+    } else {
+      setCursor(null);
+    }
+    const productsPlusNext = products.concat(nextPageProducts[0]);
+    setProducts(productsPlusNext);
+  }
+
+  useEffect(() => {
+    if (scrollPos > 75) getNextPage();
+  }, [scrollPos]);
   
   useEffect(() => {
 
@@ -29,11 +50,15 @@ const ProductCards = () => {
         setLoading(true);
         const products = await getAllProductsHelper();  
         const collections = await getCollectionNamesHelper();
-        const validProducts = products.filter((product: { collection: string | undefined; }) => {
+        const validProducts = products[0].filter((product: { collection: string | undefined; }) => {
           return product.collection !== undefined;
         })
         setProducts(validProducts || []);
         setCollectionList(collections || []);
+        if (products[1].hasNextPage) {
+          setCursor(products[1].endCursor);
+        }
+
       } catch (error) {
         console.error('Error fetching server component props:', error);
         setError(error);
@@ -126,8 +151,9 @@ const ProductCards = () => {
               <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
             </div>
           </div>
-        </FadeInImage>
-        ))}
+          </FadeInImage>
+          ))}
+        
     </div>}
     </>
   );

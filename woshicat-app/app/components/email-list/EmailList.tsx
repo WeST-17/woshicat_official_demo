@@ -21,7 +21,7 @@ const EmailList = () => {
   };
 
   const joinNewsletter = (e: React.FormEvent) => {
-    // e.preventDefault(); // Prevent form submission
+    e.preventDefault(); // Prevent form submission
 
     if (isEmailValid && email !== '') {
       AddEmailSubscriber(email);

@@ -40,7 +40,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
         <div className={`transition-opacity duration-500 fixed inset-y-20 w-full h-1/2 lg:h-[500px] flex justify-center items-center z-[2000] modal overflow-hidden ${popup === true ? 'open' : 'close pointer-events-none'}`}>
             <div className="relative w-4/5 md:w-[600px] flex justify-center items-center h-full bg-white z-[1001] text-white shadow-xl">
             <Link 
-                href={PromoLink || ''}
+                href={PromoLink || 'https://woshicat.com'}
                 className='relative absolute w-full h-full flex justify-center items-center z-[1004] overflow-hidden'
                 onClick={closeConfirmation}
             >
@@ -48,7 +48,7 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                     imgSrc && popup && (
                         <Image 
                             src={imgSrc || '/media/graphics/Yoyo happy.png'}
-                            alt={imgAlt || ''}
+                            alt={imgAlt || 'happy yoyo smiling'}
                             width={1000}
                             height={1}
                             className="w-full h-full object-cover inset-0"
@@ -77,10 +77,10 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
             <div
                 className='overflow-hidden absolute w-full h-full flex flex-col justify-center items-center z-[2004]'
             >
-                { PromoLink && popup && (
+                { popup && (
                 <>
                     <Link 
-                        href={PromoLink} 
+                        href={PromoLink || 'https://woshicat.com'} 
                         className="text-white text-xl xl:text-3xl z-[2006] text-center w-full p-2 flex flex-col justify-center items-center"
                         onClick={closeConfirmation}
                     >
@@ -104,11 +104,11 @@ const Popup: React.FC<PopupProps> = ({ PromoLink, imgSrc, video, imgAlt, promoDe
                         }
                     </Link>
                     {/* Bottom right cat */}
-                    <Image src={'/peoples/alvin cat.png'} alt="Alvin cat persona" width={120} height={1} className="max-lg:hidden absolute -bottom-5 -right-4 object-cover -rotate-45 rounded-lg" />
+                    {/* <Image src={'/peoples/alvin cat.png'} alt="Alvin cat persona" width={120} height={1} className="max-lg:hidden absolute -bottom-5 -right-4 object-cover -rotate-45 rounded-lg" /> */}
                     {/* Bottom left cat */}
-                    <Image src={'/peoples/kameel cat.png'} alt="Kameel cat persona" width={120} height={1} className="max-lg:hidden absolute -bottom-5 -left-5 object-cover rotate-45 rounded-lg" />
+                    {/* <Image src={'/peoples/kameel cat.png'} alt="Kameel cat persona" width={120} height={1} className="max-lg:hidden absolute -bottom-5 -left-5 object-cover rotate-45 rounded-lg" /> */}
                     {/* Top left cat */}
-                    <Image src={'/peoples/han cat.png'} alt="Stag cat persona" width={120} height={1} className="max-lg:hidden absolute -top-4 -left-5 rotate-[135deg] rounded-lg" />
+                    {/* <Image src={'/peoples/han cat.png'} alt="Stag cat persona" width={120} height={1} className="max-lg:hidden absolute -top-4 -left-5 rotate-[135deg] rounded-lg" /> */}
 
                 </>
                 )
