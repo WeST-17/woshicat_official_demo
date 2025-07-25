@@ -74,38 +74,38 @@ export async function getAllProductsHelper(cursor?: string | null) {
   return products;
 }
 
-async function getProductRecommendations(handle: string): Promise<any[]> {
-  const recommendationsQuery = productRecommendationsQuery(handle);
-  const { data, errors } = await client.request(recommendationsQuery);
-  try {
-    const productRecommendations = data.productRecommendations.map((product: any) => {
-      const images = product.images.edges.map((img: any) => {
-        return {
-          url: img.node.url,
-          altText: img.node.altText
-        }
-      })
+// async function getProductRecommendations(handle: string): Promise<any[]> {
+//   const recommendationsQuery = productRecommendationsQuery(handle);
+//   const { data, errors } = await client.request(recommendationsQuery);
+//   try {
+//     const productRecommendations = data.productRecommendations.map((product: any) => {
+//       const images = product.images.edges.map((img: any) => {
+//         return {
+//           url: img.node.url,
+//           altText: img.node.altText
+//         }
+//       })
       
-      return {
-        id: product.id,
-        handle: product.handle,
-        available: product.availableForSale,
-        collection: product.collections.edges[0].node.handle,
-        images: images,
-        name: product.title,
-        price: product.priceRange.maxVariantPrice.amount
-      }
-    })
-    return productRecommendations.slice(0, 6);
-  } catch (error) {
-    throw errors;
-  }
-}
+//       return {
+//         id: product.id,
+//         handle: product.handle,
+//         available: product.availableForSale,
+//         collection: product.collections.edges[0].node.handle,
+//         images: images,
+//         name: product.title,
+//         price: product.priceRange.maxVariantPrice.amount
+//       }
+//     })
+//     return productRecommendations;
+//   } catch (error) {
+//     throw errors;
+//   }
+// }
 
-export async function getProductRecommendationsHelper(handle: string) {
-  const productRecommendations = await getProductRecommendations(handle);
-  return productRecommendations;
-}
+// export async function getProductRecommendationsHelper(handle: string) {
+//   const productRecommendations = await getProductRecommendations(handle);
+//   return productRecommendations;
+// }
 
 async function getCollectionNames(): Promise<string[]> {
   const { data, errors } = await client.request(collectionNamesQuery);

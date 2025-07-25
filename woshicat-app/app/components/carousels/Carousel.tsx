@@ -19,7 +19,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
 
     const next = () => {
         if (windowSize.width && windowSize.width > 1023) {
-            if (currIndex < (length - 3)) {
+            if (currIndex < (length - numPerSlide)) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
@@ -38,7 +38,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
             if (currIndex > 0) {
                 setCurrIndex(currIndex - 1);
             } else {
-                setCurrIndex((length - 3));
+                setCurrIndex((length - numPerSlide));
             };
         } else {
             if (currIndex > 0) {
@@ -70,7 +70,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
                         style={{
                             transform: `translateX(-${currIndex * (
-                            1 / (windowSize.width > 1024 ? numPerSlide : (2)) * 100
+                            1 / (windowSize.width >= 1024 ? numPerSlide : (2)) * 100
                             )}%)`,
                         }}
                         ref={childRef}
