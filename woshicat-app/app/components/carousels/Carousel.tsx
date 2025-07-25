@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useWindowDimensions from "../transitions-navigation/useWindowDimension";
 import Loader from "../transitions-navigation/LoadingScreen";
@@ -16,6 +16,18 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const [currIndex, setCurrIndex] = useState<number>(0);
     const childRef = useRef<HTMLDivElement | null>(null);
     const windowSize = useWindowDimensions();
+
+    useEffect(() => {
+        const width = windowSize.width;
+        window.addEventListener('resize', function () {
+            if (window.innerWidth !== width) setCurrIndex(0);
+        });
+
+        console.log('window width changed: ', windowSize.width);
+        return (): void => window.removeEventListener('resize', function () {
+            if (window.innerWidth !== width) setCurrIndex(0);
+        });
+    }, [windowSize.width]);
 
     const next = () => {
         if (windowSize.width && windowSize.width > 1023) {
@@ -60,9 +72,9 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     };
     
     return (
-        <div className={`w-full flex flex-col`}>
+        <div className={`w-full grid grid-cols-1`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-0 lg:-left-10 h-1/2 z-[100] bg-stone-300 p-3 rounded-md opacity-20 hover:opacity-100 transition duration-300 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-2 lg:-left-10 h-1/2 z-[100] bg-stone-300 p-3 rounded-md opacity-20 hover:opacity-100 transition duration-300 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={10} height={1}/>
                 </button>
                 <div className="overflow-hidden w-full h-full">
@@ -70,7 +82,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
                         style={{
                             transform: `translateX(-${currIndex * (
-                            1 / (windowSize.width >= 1024 ? numPerSlide : (2)) * 100
+                            1 / (windowSize.width >= 1024 ? numPerSlide : 2) * 100
                             )}%)`,
                         }}
                         ref={childRef}
@@ -79,7 +91,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-1/2 right-0 lg:-right-10 z-[100] bg-stone-300 rounded-md p-3 opacity-20 hover:opacity-100 transition duration-300 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-1/2 right-2 lg:-right-10 z-[100] bg-stone-300 rounded-md p-3 opacity-20 hover:opacity-100 transition duration-300 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={10} height={1}/>
                 </button>
             </div>

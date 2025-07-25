@@ -2,16 +2,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { getProductByHandleHelper, addToCart } from '@/app/server_actions/action';
 import { Carousel } from "@material-tailwind/react";
-//import ScrollingCarousel from '../../carousels/Carousel';
-//import { getProductRecommendationsHelper } from '@/app/server_actions/action';
+import ScrollingCarousel from '../../carousels/Carousel';
+import { getProductRecommendationsHelper } from '@/app/server_actions/action';
 import ProductDescription from '../product-description';
 import Image from 'next/image';
 import { useCart } from '../../cart/cartContext';
 import LoadingIcon from '../../transitions-navigation/loading';
 import Loader from '../../transitions-navigation/LoadingScreen';
 import NotFound from '@/app/not-found';
-// import FadeInImage from '../../transitions-navigation/FadeInImages';
-// import Link from 'next/link';
+import FadeInImage from '../../transitions-navigation/FadeInImages';
+import Link from 'next/link';
 
 interface Handle {
     handle: string
@@ -26,7 +26,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const [quantity, setQuantity] = useState(1);
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
-    //const [recommendations, setRecommendations] = useState<any[]>([]);
+    const [recommendations, setRecommendations] = useState<any[]>([]);
     
     const colors: Set<string> = new Set();
     const sizes: Set<string> = new Set();
@@ -62,23 +62,23 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     }, []);
 
     // Product recommendations fetching
-    // useEffect(() => {
-    //     setPageLoading(true);
-    //     const fetchRecommendationData = async (): Promise<void> => {
-    //         try { 
-    //             const productRecommendations = await getProductRecommendationsHelper(handle);
-    //             setRecommendations(productRecommendations);
+    useEffect(() => {
+        setPageLoading(true);
+        const fetchRecommendationData = async (): Promise<void> => {
+            try { 
+                const productRecommendations = await getProductRecommendationsHelper(handle);
+                setRecommendations(productRecommendations);
                 
-    //         } catch (error) {
-    //             console.error('Something went wrong!', error);
-    //             setError(error);
-    //         } finally {
-    //             setPageLoading(false);
-    //         }
-    //     };
+            } catch (error) {
+                console.error('Something went wrong!', error);
+                setError(error);
+            } finally {
+                setPageLoading(false);
+            }
+        };
 
-    //     fetchRecommendationData();
-    // }, []);
+        fetchRecommendationData();
+    }, []);
     
 // --------------------------------------------------------------------------------------------------------------------------
 
@@ -432,7 +432,51 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         </div>
         
         {/* Product Recommendations */}
-        
+        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex items-start mb-6 px-1'>
+            <div className="w-full text-3xl font-normal">
+                {`Yoyo's Recommendations`}
+            </div>
+        </div>
+        <FadeInImage>
+        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex items-start'>
+            <ScrollingCarousel addClass='' numPerSlide={3} length={10}>
+            {recommendations.map((product: any) => (
+                <div className='w-full h-full px-1' key={product.id}>
+                    <div className={`relative text-center h-full`} 
+                        key={product.id}
+                    >
+                        <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+                        
+                        <div className={`bg-white flex justify-center overflow-hidden`}>
+                        <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
+                        {/* Render product details */}
+                        <div className='relative flex justify-center items-center aspect-[9/10] h-full'>
+                            {/* Default product image */}
+                            <img 
+                            src={product.images[0].url} 
+                            alt={product.images[0].altText} 
+                            className={`${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                            />
+                            
+                            {/* Hover image */}
+                            <img 
+                            src={product.images[product.images.length - 1].url} 
+                            alt={product.images[product.images.length - 1].altText} 
+                            className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                            />
+                        </div>
+                        </Link>
+                        </div>
+                        <div className='flex w-full p-2 text-xs gap-2'>
+                        <div className="text-stone-700 me-auto lg:text-sm">{product.name}</div>
+                        <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+            </ScrollingCarousel>
+        </div>
+        </FadeInImage>
         </>
     );
 }
