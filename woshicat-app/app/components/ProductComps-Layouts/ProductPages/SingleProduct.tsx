@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { getProductByHandleHelper, addToCart } from '@/app/server_actions/action';
 import { Carousel } from "@material-tailwind/react";
 //import ScrollingCarousel from '../../carousels/Carousel';
-import { getProductRecommendationsHelper } from '@/app/server_actions/action';
+//import { getProductRecommendationsHelper } from '@/app/server_actions/action';
 import ProductDescription from '../product-description';
 import Image from 'next/image';
 import { useCart } from '../../cart/cartContext';
