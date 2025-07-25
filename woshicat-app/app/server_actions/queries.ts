@@ -461,3 +461,37 @@ export const getCheckoutQuery = (cartID: string) => {
     `
   )
 }
+export const productRecommendationsQuery = (handle: string) => {
+  return (
+    `
+      query {
+        productRecommendations(intent: RELATED, productHandle: "${handle}") {
+          id
+          handle
+          title
+          availableForSale
+          priceRange {
+            maxVariantPrice {
+              amount
+            }
+          }
+          collections(first: 1) {
+            edges {
+              node {
+                handle
+              }
+            }
+          }
+          images(first: 2) {
+            edges {
+              node {
+                url
+                altText
+              }
+            }
+          }
+        }
+      }
+    `
+  )
+}

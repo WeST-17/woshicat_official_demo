@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useCart } from "./cartContext";
 
 const ProgressBar: React.FC = () => {
-    const { progress, setProgress, cartTotal, cartOpen, cartUpdated } = useCart(); 
+    const { progress, setProgress, cartTotal, cartOpen } = useCart(); 
     
     useEffect(() => {
         
@@ -21,7 +21,6 @@ const ProgressBar: React.FC = () => {
     
     return (
         <>
-        {console.log(progress)}
         <div 
             className={`h-full bg-[#CD000A] rounded-full transition-all duration-300 ease-in-out`} 
             style={{ width: `${progress}%`}}

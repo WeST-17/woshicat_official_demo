@@ -8,7 +8,7 @@ import TwoOneRect from "./components/bento-layout/two-one-rect";
 import ShopNowButton from "./components/ShopNowButton";
 import CollectionListing from "./components/collection-listings/collectionListing";
 import { getFeaturedCollectionHelper } from "./server_actions/action";
-
+import ScrollingCarousel from "./components/carousels/Carousel";
 
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
@@ -81,10 +81,10 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="p-2 w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
+      <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
-      <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 p-2">
+      <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2">
         {/* Featured Collection */}
         {featured[0] && (
           <TwoOneRect
@@ -126,15 +126,19 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-4/5 col-span-9 mx-auto">
+      <div className="w-full md:w-4/5 col-span-9 mx-auto mb-6">
         {/* Rest of the Collections */}
-        <Link href="/collections" className="p-2 w-full text-3xl font-normal">
+        <Link href="/collections" className="w-full text-3xl font-normal">
           {`Yoyo's Collection List`}
         </Link>
         
-        <div className="w-full mx-auto grid grid-cols-9 mb-3 p-2 gap-2">
-          <CollectionListing addClass="col-span-9 md:col-span-3"/>
-        </div>  
+        <div className="w-full mx-auto flex">
+          {/* Begin section */}
+            <ScrollingCarousel addClass="" numPerSlide={3} length={3}>
+              <CollectionListing addClass="w-full h-full pe-1"/>
+            </ScrollingCarousel>
+          {/* End section */}
+        </div>
       </div>
 
       <Popup 

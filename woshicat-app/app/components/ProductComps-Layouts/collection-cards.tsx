@@ -112,7 +112,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
           <div className={`bg-white flex justify-center overflow-hidden`}>
             <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
             {/* Render product details */}
-            <div className='relative aspect-square flex justify-center items-center'>
+            <div className='relative aspect-[9/10] flex justify-center items-center'>
               {/* Default product image */}
               <img 
                 src={product.images[0].url} 
@@ -129,7 +129,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
             </Link>
           </div>
           <div className='flex w-full p-2 text-xs'>
-            <div className="text-stone-700 me-auto lg:text-sm">{product.title}</div>
+            <div className="text-stone-700 me-auto lg:text-sm text-start">{product.title}</div>
             <div className="text-stone-700 ms-auto lg:text-sm">${product.price}</div>
           </div>
         </div>

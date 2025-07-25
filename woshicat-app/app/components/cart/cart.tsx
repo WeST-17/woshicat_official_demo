@@ -78,7 +78,7 @@ const Cart: React.FC = () => {
                 onClick={closeCart}
             >
                 <div
-                    className={`relative cart-container rounded-sm transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
+                    className={`rounded-xl relative cart-container rounded-sm transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >

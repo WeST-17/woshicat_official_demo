@@ -87,13 +87,15 @@ const ProductCards = () => {
   }, []);
 
   if (error) {
-    return <div className='flex h-32 w-full justify-center items-center'>Error fetching products: {"Oops! Something happened on our end!"}</div>;
+    return <div className='flex h-32 w-full justify-center items-center'>{"Oops! Something happened on our end!"}</div>;
   }
   
   return (
     <>
+    <div className='w-4/5 h-[70px] mx-auto' id='top-products'/>
     <div 
-      className={`w-full md:w-4/5 flex items-center justify-start mx-auto text-2xl font-semibold mt-8`}
+      className={`w-full md:w-4/5 flex items-center justify-start mx-auto text-2xl font-semibold`}
+      id='top-products'
     >
       {`Shop / ${filter}`}
     </div>
@@ -125,7 +127,9 @@ const ProductCards = () => {
           unoptimized={true}
         />
       </div> : 
-      <div className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-4/5 mx-auto lg:grid-cols-4 gap-2 fade-in ${!loading ? 'show' : ''} `}>
+      <div 
+        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-4/5 mx-auto lg:grid-cols-5 gap-2 fade-in ${!loading ? 'show' : ''} `}
+      >
         {/* Render your products here using the 'products' state */}
         {products.filter(product => {
           // Show all if no filter is selected
@@ -144,7 +148,7 @@ const ProductCards = () => {
             <div className={`bg-white flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
               {/* Render product details */}
-              <div className='relative flex justify-center items-center aspect-square h-full'>
+              <div className='relative flex justify-center items-center aspect-[9/10] h-full'>
                 {/* Default product image */}
                 <img 
                   src={product.images[0].url} 
@@ -162,14 +166,26 @@ const ProductCards = () => {
               </Link>
             </div>
             <div className='flex w-full p-2 text-xs gap-2'>
-              <div className="text-stone-700 me-auto lg:text-sm">{product.name}</div>
+              <div className="text-stone-700 me-auto lg:text-sm text-start">{product.name}</div>
               <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
             </div>
           </div>
           </FadeInImage>
           ))}
-        
     </div>}
+    <Link 
+      className='w-4/5 mx-auto flex flex-col gap-2 justify-center items-center mt-10 transition duration-500 ease-in-out opacity-35 hover:opacity-100 text-sm'
+      href={'#top-products'}
+    >
+      <Image
+        src={'/icons/caret-left-solid.svg'}
+        alt='up arrow, back to top'
+        width={30}
+        height={1}
+        className='rotate-90 aspect-square'
+      />
+      {`back to top`}
+    </Link>
     </>
   );
 }
