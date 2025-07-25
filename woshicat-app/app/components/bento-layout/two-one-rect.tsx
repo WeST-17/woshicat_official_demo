@@ -16,7 +16,7 @@ const TwoOneRect: React.FC<TwoOneRectProps> = ({ children, link, collectionName 
     return (
         <>
         {/* Change to Lunar New Year 2025 */}
-        <div className="button-hover relative col-span-9 md:col-span-6 overflow-hidden md:aspect-[2/1] aspect-square">
+        <div className="button-hover relative col-span-9 md:col-span-6 overflow-hidden max-md:aspect-[9/10]">
           <Link href={link}>
             <div className="">
               {children}

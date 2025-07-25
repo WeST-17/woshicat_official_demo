@@ -21,12 +21,12 @@ const Collections = () => {
         
       </div>
       <div className="w-full mx-auto col-span-9 flex flex-col">
-        <div className="col-span-9 md:text-xl font-thin flex justify-center items-center text-center my-4">
+        <div className="col-span-9 md:text-xl font-thin flex justify-center items-center text-center my-8">
           <div className="md:w-1/2 flex flex-col gap-6">
             <Image 
               src={'/media/graphics/Yoyo happy.png'}
               alt={'Yoyo the cat smiling slightly'}
-              width={200}
+              width={250}
               height={1}
               className="mx-auto pointer-events-none"
             />
@@ -36,7 +36,7 @@ const Collections = () => {
         <div className="w-full md:w-4/5 mx-auto flex">
           {/* Begin section */}
             <ScrollingCarousel addClass="" numPerSlide={3} length={3}>
-              <CollectionListing addClass="w-full h-full pe-1"/>
+              <CollectionListing addClass="w-full h-full px-1"/>
             </ScrollingCarousel>
           {/* End section */}
         </div>

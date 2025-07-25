@@ -43,7 +43,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
               shopNow={true}
               > 
                 <Image 
-                  className="aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+                  className="object-cover absolute top-0 left-0 bottom-0 right-0" 
                   src={collection.imgSrc} 
                   alt={collection.imgAlt || ''} 
                   fill={true}

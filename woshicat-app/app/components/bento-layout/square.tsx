@@ -15,7 +15,7 @@ const Square: React.FC<SquareProps> = ({ children, link, collectionName, shopNow
 
     return (
         <>
-        <div className="h-full w-full button-hover relative col-span-9 md:col-span-3 overflow-hidden aspect-square">
+        <div className="h-full w-full button-hover relative col-span-9 md:col-span-3 overflow-hidden aspect-[9/10]">
             <Link href={link} className="">
                 <div className="">
                     {children}

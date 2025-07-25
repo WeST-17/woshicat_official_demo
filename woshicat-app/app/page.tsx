@@ -84,7 +84,7 @@ const Home = () => {
       <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
-      <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2">
+      <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
         {/* Featured Collection */}
         {featured[0] && (
           <TwoOneRect
@@ -100,7 +100,7 @@ const Home = () => {
           </TwoOneRect>
         )}
         
-        <div className="relative col-span-9 md:col-span-3 aspect-square h-full overflow-hidden flex items-end">
+        <div className="relative col-span-9 md:col-span-3 aspect-[9/10] h-full overflow-hidden flex items-center">
           <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
             <Image
               src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
@@ -135,7 +135,7 @@ const Home = () => {
         <div className="w-full mx-auto flex">
           {/* Begin section */}
             <ScrollingCarousel addClass="" numPerSlide={3} length={3}>
-              <CollectionListing addClass="w-full h-full pe-1"/>
+              <CollectionListing addClass="w-full h-full px-1"/>
             </ScrollingCarousel>
           {/* End section */}
         </div>
