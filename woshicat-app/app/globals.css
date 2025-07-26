@@ -346,8 +346,14 @@ button:hover {
     overscroll-behavior: scroll;
   }
 
-  .carousel-content > * {
+  .carousel-collection > * {
     width: calc(100% / 3);
+    flex-shrink: 0;
+    flex-grow: 1;
+  }
+
+  .carousel-recommendations > * {
+    width: calc(100% / 3.2);
     flex-shrink: 0;
     flex-grow: 1;
   }
@@ -355,9 +361,15 @@ button:hover {
 
 @media screen and (max-width: 1023px) {
   /* Carousel.css */
-  .carousel-content > * {
+  .carousel-collection > * {
       width: 50%;
       flex-shrink: 0;
       flex-grow: 1;
+  }
+
+  .carousel-recommendations > * {
+    width: calc(100% / 3.2);
+    flex-shrink: 0;
+    flex-grow: 1;
   }
 }

@@ -9,10 +9,11 @@ interface CarouselComponentProps {
     children: React.ReactNode,
     addClass?: string,
     numPerSlide: number,
-    length: number
+    length: number,
+    type?: string 
 }
 
-const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length }) => {
+const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length, type }) => {
     const [currIndex, setCurrIndex] = useState<number>(0);
     const childRef = useRef<HTMLDivElement | null>(null);
     const windowSize = useWindowDimensions();
@@ -31,13 +32,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
 
     const next = () => {
         if (windowSize.width && windowSize.width > 1023) {
-            if (currIndex < (length - numPerSlide)) {
+            if (currIndex < (length - Math.ceil(numPerSlide - 1))) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
             }; 
         } else {
-            if (currIndex < (length - 2)) {
+            if (currIndex < (length - Math.ceil(numPerSlide - 1))) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
@@ -46,19 +47,11 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     };
 
     const prev = () => {
-        if (windowSize.width && windowSize.width > 1023) {
-            if (currIndex > 0) {
-                setCurrIndex(currIndex - 1);
-            } else {
-                setCurrIndex((length - numPerSlide));
-            };
+        if (currIndex > 0) {
+            setCurrIndex(currIndex - 1);
         } else {
-            if (currIndex > 0) {
-                setCurrIndex(currIndex - 1);
-            } else {
-                setCurrIndex((length - 2));
-            };
-        }
+            setCurrIndex((length - Math.ceil(numPerSlide - 1)));
+        };
         
     };
 
@@ -79,10 +72,10 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 </button>
                 <div className="overflow-hidden w-full h-full">
                     <div
-                        className={`flex transition transition-all duration-450 ease-in-out carousel-content ${addClass}`}
+                        className={`flex transition transition-all duration-450 ease-in-out ${type ? `carousel-${type}` : 'carousel-collection'} ${addClass}`}
                         style={{
                             transform: `translateX(-${currIndex * (
-                            1 / (windowSize.width >= 1024 ? numPerSlide : 2) * 100
+                            1 / (windowSize.width >= 1024 ? numPerSlide : (numPerSlide !== Math.floor(numPerSlide) ? numPerSlide : 2)) * 100
                             )}%)`,
                         }}
                         ref={childRef}
