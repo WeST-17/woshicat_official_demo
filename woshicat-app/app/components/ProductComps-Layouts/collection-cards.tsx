@@ -25,6 +25,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
       const products = await getCollectionProductsHelper(collectionHandle);
       try {
         setProducts(products[0]);
+        setCursor(products[1].endCursor);
       } catch (error) {
         console.error('Error fetching server component props:', products);
         setError(products);
@@ -67,7 +68,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   }
 
   useEffect(() => {
-    if (scrollPos > 75) getNextPage();
+    if (scrollPos > 75 && cursor !== null) getNextPage();
   }, [scrollPos]);
 
   if (loading) {
