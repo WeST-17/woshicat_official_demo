@@ -177,7 +177,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     return (
         <>
-        <div className={`relative flex justify-center items-center h-[50vh] w-full bg-stone-200 mb-6 fade-in ${!pageLoad ? 'show' : ''}`}>
+        <div className={`relative flex justify-center items-center h-[45vh] w-full bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product. Upload directly as part of code base in Vercel i.e., /[handle] */}
             <div className='absolute object-cover w-screen h-full bg-black/25 z-[100] flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-5xl lg:text-7xl'>{item.title}</h1>
@@ -190,33 +190,34 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover'
             />
         </div>
-        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex items-start' key={item.id}>
-            <div className='flex justify-center items-start grid lg:grid-cols-6 gap-8 relative'>
+        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex flex-col justify-start items-center' key={item.id}>
+            <div className='flex justify-center items-start grid lg:grid-cols-6 gap-8 relative mb-20'>
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
                     <div className='relative col-span-6 lg:col-span-3 bg-white rounded-md flex justify-center'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <Carousel
+                            loop={true}
                             prevArrow={({ handlePrev }) => (
                                 <button
                                     color="black"
                                     onClick={handlePrev}
-                                    className="z-[51] absolute top-2/4 left-3 -translate-y-2/4 rounded-md p-3 hover:bg-black/20 transition duration-200"
+                                    className="z-[51] absolute top-2/4 left-0 -translate-y-2/4 h-1/3 rounded-md p-3 bg-white/20 hover:bg-black/30 transition duration-200"
                                 >
-                                  <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={8} height={1}/>
+                                  <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={10} height={1}/>
                                 </button>
                               )}
                               nextArrow={({ handleNext }) => (
                                 <button
                                     color="black"
                                     onClick={handleNext}
-                                    className="z-[51] absolute top-2/4 right-3 -translate-y-2/4 rounded-md p-3 hover:bg-black/20 transition duration-200"
+                                    className="z-[51] absolute top-2/4 right-0 -translate-y-2/4 h-1/3 rounded-md p-3 bg-white/20 hover:bg-black/30 transition duration-200"
                                 >
-                                  <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={8} height={1}/>
+                                  <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={10} height={1}/>
                                 </button>
                             )}
-                            className="flex w-full items-center overflow-hidden aspect-square"
+                            className="flex w-full items-center overflow-hidden aspect-[9/10]"
                             placeholder={undefined}
                             navigation={({ setActiveIndex, activeIndex, length }) => (
                                 <div className="absolute w-full bottom-3 z-50 flex justify-center gap-2 max-md:hidden">
@@ -245,7 +246,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         className='mx-auto snap-center pointer-events-none object-cover h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
-                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-xs'>
+                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm pe-2'>
                                             {image.altText.split('/')[0]}
                                             <br></br>
                                             {image.altText.split('/')[1]}
@@ -260,7 +261,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     
                 )}
                     
-                <div className='p-2 lg:p-0 col-span-6 lg:col-span-3 min-h-screen w-full relative gap-4'>
+                <div className='p-2 lg:p-0 col-span-6 lg:col-span-3 h-fit w-full relative gap-4'>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -424,59 +425,58 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         )}
                     </div>
                     {/* Product Description: Need to make components for product description and add to cart button */}
-                    <div className='w-full h-full md:col-span-3 my-6 flex flex-col items-start text-lg gap-4'>
+                    <div className='w-full h-full md:col-span-3 mt-6 mb-3 flex flex-col items-start text-lg gap-4'>
                         <ProductDescription description={item.description}/>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        {/* Product Recommendations */}
-        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex items-start mb-6 px-1'>
-            <div className="w-full text-3xl font-normal">
-                {`Yoyo's Recommendations`}
+            {/* Product Recommendations */}
+            <div className='h-fit w-full text-lg mx-auto flex items-start mb-6 px-1'>
+                <div className="w-full text-3xl font-normal">
+                    {`Yoyo's Recommendations`}
+                </div>
             </div>
-        </div>
-        <FadeInImage>
-        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex items-start'>
-            <ScrollingCarousel addClass='' numPerSlide={3.2} length={10} type={'recommendations'}>
-            {recommendations.map((product: any) => (
-                <div className={`w-full h-full px-1`} key={product.id}>
-                    <div className={`relative text-center h-full`} 
-                        key={product.id}
-                    >
-                        <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
-                        
-                        <div className={`bg-white flex justify-center overflow-hidden`}>
-                        <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
-                        {/* Render product details */}
-                        <div className={`relative flex justify-center items-center aspect-[9/10] h-full`}>
-                            {/* Default product image */}
-                            <img 
-                            src={product.images[0].url} 
-                            alt={product.images[0].altText} 
-                            className={`${product.handle.includes('shirt', 'hoodie', 'sweater') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
-                            />
+            <FadeInImage>
+            <div className='h-fit w-full text-lg mx-auto flex items-start'>
+                <ScrollingCarousel addClass='' numPerSlide={3.2} mobileSlide={1.2} length={10} type={'recommendations'}>
+                {recommendations.map((product: any) => (
+                    <div className={`w-full h-full px-1`} key={product.id}>
+                        <div className={`relative text-center h-full`} 
+                            key={product.id}
+                        >
+                            <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
                             
-                            {/* Hover image */}
-                            <img 
-                            src={product.images[product.images.length - 1].url} 
-                            alt={product.images[product.images.length - 1].altText} 
-                            className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
-                            />
-                        </div>
-                        </Link>
-                        </div>
-                        <div className='flex w-full p-2 text-xs gap-2'>
-                        <div className="text-stone-700 me-auto lg:text-sm">{product.name}</div>
-                        <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
+                            <div className={`bg-white flex justify-center overflow-hidden`}>
+                            <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
+                            {/* Render product details */}
+                            <div className={`relative flex justify-center items-center aspect-[9/10] h-full`}>
+                                {/* Default product image */}
+                                <img 
+                                src={product.images[0].url} 
+                                alt={product.images[0].altText} 
+                                className={`${product.handle.includes('shirt', 'hoodie', 'sweater') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                                />
+                                
+                                {/* Hover image */}
+                                <img 
+                                src={product.images[product.images.length - 1].url} 
+                                alt={product.images[product.images.length - 1].altText} 
+                                className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                                />
+                            </div>
+                            </Link>
+                            </div>
+                            <div className='flex w-full p-2 text-sm gap-2'>
+                            <div className="text-stone-700 me-auto lg:text-sm">{product.name}</div>
+                            <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
-            </ScrollingCarousel>
+                ))}
+                </ScrollingCarousel>
+            </div>
+            </FadeInImage>
         </div>
-        </FadeInImage>
         </>
     );
 }

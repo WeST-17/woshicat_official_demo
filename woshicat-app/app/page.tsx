@@ -81,7 +81,7 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 text-3xl font-normal">
+      <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
       <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
@@ -128,13 +128,13 @@ const Home = () => {
 
       <div className="w-full md:w-4/5 col-span-9 mx-auto mb-6">
         {/* Rest of the Collections */}
-        <Link href="/collections" className="w-full text-3xl font-normal">
+        <Link href="/collections" className="w-full text-3xl font-normal ps-1">
           {`Yoyo's Collection List`}
         </Link>
         
         <div className="w-full mx-auto flex">
           {/* Begin section */}
-            <ScrollingCarousel addClass="" numPerSlide={3} length={3} type={'collection'}>
+            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3} type={'collection'}>
               <CollectionListing addClass="w-full h-full px-1"/>
             </ScrollingCarousel>
           {/* End section */}

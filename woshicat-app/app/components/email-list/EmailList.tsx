@@ -60,7 +60,7 @@ const EmailList = () => {
         className="relative w-[320px] h-[150px] text-start flex flex-col justify-start items-center"
       >
         <div className="relative text-xl flex justify-center items-center gap-3">
-          <h1>WoShi Cat Newsletter!</h1> 
+          <h2>WoShi Cat Newsletter!</h2> 
           <Image 
             src={'/media/graphics/Yoyo Single Shot.png'}
             alt={'Yoyo is slightly smiling...'}

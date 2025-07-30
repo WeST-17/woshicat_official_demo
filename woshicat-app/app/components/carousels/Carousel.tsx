@@ -10,10 +10,11 @@ interface CarouselComponentProps {
     addClass?: string,
     numPerSlide: number,
     length: number,
-    type?: string 
+    type?: string,
+    mobileSlide: number
 }
 
-const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length, type }) => {
+const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length, type, mobileSlide }) => {
     const [currIndex, setCurrIndex] = useState<number>(0);
     const childRef = useRef<HTMLDivElement | null>(null);
     const windowSize = useWindowDimensions();
@@ -38,7 +39,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 setCurrIndex(0);
             }; 
         } else {
-            if (currIndex < (length - Math.ceil(numPerSlide - 1))) {
+            if (currIndex < (length - Math.floor(mobileSlide))) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
@@ -50,7 +51,11 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         if (currIndex > 0) {
             setCurrIndex(currIndex - 1);
         } else {
-            setCurrIndex((length - Math.ceil(numPerSlide - 1)));
+            if (windowSize.width && windowSize.width > 1023) {
+                setCurrIndex((length - Math.ceil(numPerSlide - 1)));
+            } else {
+                setCurrIndex((length - Math.floor(mobileSlide)));
+            }
         };
         
     };
@@ -75,7 +80,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         className={`flex transition transition-all duration-450 ease-in-out ${type ? `carousel-${type}` : 'carousel-collection'} ${addClass}`}
                         style={{
                             transform: `translateX(-${currIndex * (
-                            1 / (windowSize.width >= 1024 ? numPerSlide : (numPerSlide !== Math.floor(numPerSlide) ? numPerSlide : 2)) * 100
+                            1 / (windowSize.width >= 1024 ? numPerSlide : mobileSlide) * 100
                             )}%)`,
                         }}
                         ref={childRef}

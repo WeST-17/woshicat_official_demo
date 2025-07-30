@@ -86,20 +86,20 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             href={link.href}
             passHref={true}
             className={clsx(
-              'flex h-[32px] w-full items-center justify-start text-end p-2 rounded-sm text-sm hover:text-stone-900 transition duration-150 ease-in-out',
+              'flex h-[32px] w-full items-center justify-start text-end p-2 rounded-sm hover:text-stone-900 transition duration-150 ease-in-out',
               {
                 'text-black': parentPath === link.href,
                 'text-stone-400': parentPath !== link.href,
               }
             )}
           >
-            <p className="block max-md:text-lg">{link.name}</p>
+            <p className="block max-md:text-lg text-base">{link.name}</p>
           </Link>
 
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute w-48 text-sm md:right-0 right-4/5 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
+              "absolute w-48 text-sm md:right-0 max-md:left-20 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,
@@ -117,7 +117,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
                 )}
                 onClick={closeMenu}
               >
-                <p className="block max-md:text-lg">{subLink.name}</p>
+                <p className="block max-md:text-lg text-base">{subLink.name}</p>
               </Link>
             ))}
           </div>
