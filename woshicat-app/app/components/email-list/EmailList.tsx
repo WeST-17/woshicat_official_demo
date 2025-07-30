@@ -57,9 +57,9 @@ const EmailList = () => {
         </div>
       </div>
       <form
-        className="relative w-[320px] h-[150px] text-start flex flex-col justify-start items-center"
+        className="relative w-[320px] h-[150px] text-start flex flex-col justify-start items-center mb-3"
       >
-        <div className="relative text-xl flex justify-center items-center gap-3">
+        <div className="relative text-xl flex justify-center items-center gap-3 w-full">
           <h2>WoShi Cat Newsletter!</h2> 
           <Image 
             src={'/media/graphics/Yoyo Single Shot.png'}
@@ -70,21 +70,21 @@ const EmailList = () => {
           />
           <div className="absolute rounded-full bg-red-600 w-2 h-2 right-10 -top-8"></div>
         </div>
-        <div className="z-[999] flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600">
+        <div className={`z-[999] flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600`}>
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
             placeholder="shop@woshicat.com"
-            className="flex w-full text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6"
+            className={`flex w-full text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6 ${!isEmailValid ? 'outline-2 outline-red-600' : ''}`}
             onChange={handleEmailChange}
             required
           />
           <button
             type="button"
             className={`m-1 rounded-md w-10 h-10 flex justify-center items-center aspect-square text-sm font-semibold text-white shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
-              !isEmailValid || email === '' ? 'bg-stone-200' : 'bg-stone-400 hover:bg-stone-500'
+              !isEmailValid || email === '' ? 'bg-stone-100' : 'bg-stone-400 hover:bg-stone-500'
             }`}
             disabled={!isEmailValid || email === ''}
             onClick={joinNewsletter}
@@ -98,7 +98,7 @@ const EmailList = () => {
           </button>
         </div>
         <div
-          className={`mt-2 z-[999] text-red-600 text-sm ${
+          className={`mt-2 z-[999] text-red-600 text-base absolute bottom-0 left-0 ${
             !isEmailValid ? '' : 'hidden'
           }`}
         >
