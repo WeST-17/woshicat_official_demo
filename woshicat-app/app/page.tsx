@@ -141,7 +141,7 @@ const Home = () => {
         </div>
       </div>
 
-      <Popup 
+      {/* <Popup 
         PromoLink="/" 
         imgSrc="/media/graphics/Yoyo happy.png" 
         video=""
@@ -153,8 +153,8 @@ const Home = () => {
         promoDescLine2="Thanks, Yoyo"
         code=""
         extra=""
-        on={true}
-      />
+        on={false}
+      /> */}
     </main>
     </>
   );
