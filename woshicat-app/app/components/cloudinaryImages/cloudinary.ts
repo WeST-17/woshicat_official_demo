@@ -27,7 +27,6 @@ export async function getImagesCloudinary(folder: string): Promise<CloudinaryIma
             sign_url: true,
             secure: true,
           });
-    
           return {
             secure_url: resource.secure_url,
             public_id: resource.public_id,
@@ -36,6 +35,7 @@ export async function getImagesCloudinary(folder: string): Promise<CloudinaryIma
             signed_url, // Return the signed URL
             d_name: resource.display_name,
             quality: 90,
+            
           };
         });
         // console.log(cloudinaryPass.sort())

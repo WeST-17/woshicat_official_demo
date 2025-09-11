@@ -5,7 +5,7 @@ const NotFound = () => {
     return (
     <div className="w-screen h-[100vh] flex flex-col justify-start items-center">
          <Image
-            src={'/media/yoyo_yellow_sticker.png'}
+            src={'/media/stickers/Subway2_Sticker.png'}
             alt={'sad yoyo subway sticker'}
             width={300}
             height={1}

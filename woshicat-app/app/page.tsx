@@ -73,7 +73,7 @@ const Home = () => {
             />
           </div>
         </div>
-        <div className="w-full md:text-xl font-thin flex flex-col justify-center items-center text-center mb-12">
+        <div className="w-full md:text-xl flex flex-col justify-center items-center text-center mb-12">
           <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
           <div className="p-3 md:w-4/5">
           {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}

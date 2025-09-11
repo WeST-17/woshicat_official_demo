@@ -25,7 +25,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
-      <body className={`${lato.className} text-stone-700 w-full mx-auto`}>
+      <body className={`${lato.className} text-stone-800 w-full mx-auto`}>
             <CartProvider>
             <Header />
             <div className="w-full mt-[70px]"/>

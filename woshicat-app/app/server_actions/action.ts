@@ -394,7 +394,8 @@ export async function addToCart(
 export async function getCart() {
   const cartID = (await cookies()).get('cartID');
   if (!cartID || !(await validateCart())) {
-    throw new Error('Cart not found');
+    console.log('Cart not found. Yoyo would like you to add an item first...');
+    return [];
   }
 
   const getCartItems = getCartQuery(cartID.value);

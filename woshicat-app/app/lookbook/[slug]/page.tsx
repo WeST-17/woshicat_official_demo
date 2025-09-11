@@ -56,7 +56,7 @@ const LookbookSlug = () => {
               <FadeInImage>
                   <Image 
                     src={image.secure_url}
-                    alt={`Image ${index + 1}`} 
+                    alt={image.altText} 
                     width={image.width} 
                     height={1} 
                     className={`object-cover aspect-[4/5]`}

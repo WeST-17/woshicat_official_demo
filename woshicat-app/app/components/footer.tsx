@@ -25,10 +25,10 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <footer className="mt-20 relative w-screen h-fit grid-cols-8 h-[200px] bg-stone-50 text-base text-stone-700">
+        <footer className="mt-20 relative w-screen h-fit grid-cols-8 h-[200px] bg-transparent text-base text-stone-800">
             <div className="col-span-8 p-4">
                 {/* Email subscription list! */}
-                <div className="flex w-full justify-center items-center bg-stone-50 min-h-fit pt-8" id="newsletter">
+                <div className="flex w-full justify-center items-center min-h-fit pt-8" id="newsletter">
                     <EmailList />  
                 </div>
                 <div className="border-t border-stone-400"/>

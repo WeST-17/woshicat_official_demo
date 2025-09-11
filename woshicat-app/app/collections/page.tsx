@@ -21,7 +21,7 @@ const Collections = () => {
         
       </div>
       <div className="w-full mx-auto col-span-9 flex flex-col">
-        <div className="col-span-9 md:text-xl font-thin flex justify-center items-center text-center my-8">
+        <div className="col-span-9 md:text-xl flex justify-center items-center text-center my-8">
           <div className="md:w-1/2 flex flex-col gap-6">
             <Image 
               src={'/media/graphics/Yoyo happy.png'}
