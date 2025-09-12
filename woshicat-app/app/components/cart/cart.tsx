@@ -78,7 +78,7 @@ const Cart: React.FC = () => {
                 onClick={closeCart}
             >
                 <div
-                    className={`rounded-xl relative cart-container rounded-sm transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
+                    className={`rounded-xl relative cart-container transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
@@ -89,39 +89,39 @@ const Cart: React.FC = () => {
                                 <p> {`close`}</p>
                             </div>
                         </button>
-                        <h2 className="absolute top-5 ms-5 text-2xl font-medium">
-                            Nice Cart
+                        <h2 className="absolute top-5 p-4 text-2xl font-medium">
+                            {`Shopping Cart`}
                         </h2>
                     </div>
                     
                     {/* Cart content */}
                     {cartItems.length > 0 ? (
-                    <div className="cart-items gap-2 h-[65%] overflow-y-auto overscroll-contain rounded-lg p-1">
+                    <div className="cart-items gap-2 h-[65%] w-full overflow-y-auto overscroll-contain rounded-lg p-1">
                         {cartItems.map((item: any) => {
                             return (
-                            <div key={item.cartLineId} className={`relative cart-item p-4 hover:bg-stone-200 transition duration-300 flex items-center justify-start ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                            <div key={item.cartLineId} className={`relative cart-item p-2 gap-4 hover:bg-stone-200 transition duration-300 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                                 
-                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="">
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-40">
                                     <img
                                     src={item.imageUrl}
                                     alt={item.handle}
-                                    className="w-24 h-24 object-cover bg-stone-100 aspect-square rounded-md mr-2"
+                                    className="h-full object-contain bg-white aspect-[4/5] rounded-md mr-2"
                                     />
                                 </Link>
-                                <div>
-                                <h2 className='h-full w-full mb-1 text-base'>{item.title}</h2>
-                                <h3 className="text-xs font-thin mb-1 opacity-80">
-                                    {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
-                                </h3>
-                                <p className='text-sm font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
-                                {/* Quantity adjuster component */}
-                                <QuantityAdjuster
-                                    variantId={item.variantId}
-                                    initialQuantity={item.quantity}
-                                    onQuantityChange={(newQuantity) => {
-                                        console.log('Quantity changed to:', newQuantity);
-                                    }}
-                                />
+                                <div className="ms-auto w-full p-2 flex flex-col justify-center">
+                                    <h2 className='h-full w-full mb-1 text-base lg:text-lg'>{item.title}</h2>
+                                    <h3 className="text-xs font-thin mb-1 opacity-80">
+                                        {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
+                                    </h3>
+                                    <p className='text-sm font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
+                                    {/* Quantity adjuster component */}
+                                    <QuantityAdjuster
+                                        variantId={item.variantId}
+                                        initialQuantity={item.quantity}
+                                        onQuantityChange={(newQuantity) => {
+                                            console.log('Quantity changed to:', newQuantity);
+                                        }}
+                                    />
                                 </div>
                             </div>
                         )})}

@@ -95,7 +95,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
   }
   
   return (
-    <div className="flex items-center justify-start w-full gap-2 mt-1">
+    <div className="flex items-center justify-start w-full gap-2">
       <p className='text-sm'>Quantity</p>
       <button
         onClick={handleDecrement}
@@ -114,7 +114,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
       </button>
       <button
         onClick={handleDeleteItem}
-        className={`absolute flex flex-col justify-center items-center right-0 bottom-0 text-black hover:bg-stone-400/25 transition duration-300 text-xs px-2 py-1 m-5 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
+        className={`ms-auto flex flex-col justify-center items-center text-black hover:bg-stone-400/25 transition duration-300 text-xs px-2 py-1 m-5 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
         disabled={itemQuantLoad === true}
       >
         <Image
