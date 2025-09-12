@@ -61,11 +61,6 @@ export default function Navigation() {
                     <div onClick={() => { setTimeout(() => { setMenuOpen(false)}, 150) }}>
                         <NavLinks closeMenu={closeMenu} />
                     </div>
-
-                    {/* Menu Footer */}
-                    {/* <div className="w-full flex justify-end self-end row-start-4 row-end-5">
-                        <div className="pe-2 text-end text-base w-full"></div>
-                    </div> */}
                     <div className="w-full flex justify-start"> 
                         {/* Social Media */}
                         <div className='p-1 flex text-sm text-stone-400'>

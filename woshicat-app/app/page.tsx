@@ -62,23 +62,37 @@ const Home = () => {
         
       </div>
       
-      <section className="w-full md:w-4/5 mx-auto col-span-9">
+      <section className="relative flex w-full mx-auto col-span-9">
+        <Image
+          src={'/media/corner-bright.png'}
+          width={80}
+          height={1}
+          alt="Chinese style corner frame decoration/design"
+          className="mb-auto m-2"
+        />
         <div className="w-full h-fit flex justify-center items-center text-center">
-          <div className="w-1/2 h-fit flex justify-center items-center">
+          <div className="w-full md:w-4/5 h-fit flex flex-col justify-center items-center">
             <Image
               src={'/media/misc/woshicat_script2b.png'}
               width={400}
               height={1}
               alt={'Chinese Phonetics: Wo Shi Cat'}
             />
+            <div className="w-full md:text-xl flex flex-col justify-center items-center text-center mb-12">
+              <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
+              <div className="p-3">
+              {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="w-full md:text-xl flex flex-col justify-center items-center text-center mb-12">
-          <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
-          <div className="p-3 md:w-4/5">
-          {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
-          </div>
-        </div>
+        <Image
+          src={'/media/corner-bright.png'}
+          width={80}
+          height={1}
+          alt="Chinese style corner frame decoration/design"
+          className="mt-auto rotate-180 m-2"
+        />
       </section>
 
       <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">

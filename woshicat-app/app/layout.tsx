@@ -5,6 +5,8 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import TransitionSlide from "./components/transitions-navigation/transitionWipe";
 import { CartProvider } from "./components/cart/cartContext";
+import { ToggleProvider } from "./components/toggles/toggleContext";
+import SmoothScroll from "./components/toggles/SmoothScroll";
 
 
 const lato = Lato({
@@ -25,15 +27,21 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
+      
       <body className={`${lato.className} text-stone-800 w-full mx-auto`}>
             <CartProvider>
+            <ToggleProvider>
             <Header />
+            <SmoothScroll>
             <div className="w-full mt-[70px]"/>
               {children}
+            </SmoothScroll>
             <Footer />
+            </ToggleProvider>
             </CartProvider>
         <TransitionSlide />
       </body>
+      
     </html>
   );
 }
