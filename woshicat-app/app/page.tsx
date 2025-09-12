@@ -13,7 +13,6 @@ import ScrollingCarousel from "./components/carousels/Carousel";
 const homeBanner = [
   `Free shipping and one random sticker on orders over $50!`,
   `Sign up for our newsletter and get a 10% off code!`,
-  `Our team will be out until August 5th. Please expect shipping delays when ordering.`
 ];
 
 const Home = () => {
