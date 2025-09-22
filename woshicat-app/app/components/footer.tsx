@@ -82,7 +82,7 @@ const Footer = () => {
             </div>
             <div className="absolute bottom-0 left-0 m-1 flex flex-col gap-1 justify-center items-start text-start text-stone-400 md:scale-[0.75]">
                 <ToggleButton />
-                <p className="text-xs">{`Smoother Scroll`}</p>
+                <p className="text-xs max-md:hidden">{`Smoother Scroll`}</p>
             </div>
             <div className="mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8">
                 {`WoShi Cat, LLC - 2024`}
