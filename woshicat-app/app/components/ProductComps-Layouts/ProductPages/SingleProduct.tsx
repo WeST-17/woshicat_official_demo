@@ -364,7 +364,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 w-3/5 mt-4 p-2 text-md font-semibold text-white shadow-sm bg-stone-400 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
+                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 w-2/5 mt-4 p-2 text-md font-semibold text-white shadow-sm bg-stone-400 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
                                 disabled={
                                     item.variants && item.variants.length === 0 
                                     ? (!selectedSize || !selectedColor) 
@@ -376,7 +376,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 }}
                                 >
                                 <div className='col-span-6 flex justify-center items-center min-h-full'>
-                                    {isLoading ? <LoadingIcon/> : 'Add to Cart'}
+                                    {isLoading ? <LoadingIcon/> : `${item.quantity <= 0 ? 'Out of Stock' : 'Add to Cart'}`}
                                 </div>
                             </button>
                             </>
@@ -418,7 +418,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 }}
                                 >
                                 <div className='col-span-6 flex justify-center items-center min-h-full'>
-                                    {isLoading ? <LoadingIcon/> : 'Add to Cart'}
+                                    {isLoading ? <LoadingIcon/> : `${item.quantity <= 0 ? 'Out of Stock' : 'Add to Cart'}`}
                                 </div>
                             </button>
                             </>
@@ -444,7 +444,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         <div className={`relative text-center h-full`} 
                             key={product.id}
                         >
-                            <div className={`absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+                            <div className={`z-[1000] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
                             
                             <div className={`bg-white flex justify-center overflow-hidden`}>
                             <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>

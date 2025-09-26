@@ -142,7 +142,8 @@ const ProductCards = () => {
           <div className={`relative text-center h-full`} 
             key={product.id}
           >
-            <div className={`z-[100] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+            <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+            <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
             <div className={`bg-white flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
@@ -152,21 +153,21 @@ const ProductCards = () => {
                 <img 
                   src={product.images[0].url} 
                   alt={product.images[0].altText} 
-                  className={`${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} ${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                 />
                 
                 {/* Hover image */}
                 <img 
                   src={product.images[product.images.length - 2].url} 
                   alt={product.images[product.images.length - 2].altText} 
-                  className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                 />
               </div>
               </Link>
             </div>
-            <div className='flex w-full p-2 text-xs gap-2'>
-              <div className="text-stone-700 me-auto lg:text-sm text-start">{product.name}</div>
-              <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
+            <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-400' : 'text-stone-700'}`}>
+              <div className="me-auto lg:text-sm text-start">{product.name}</div>
+              <div className="ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
             </div>
           </div>
           </FadeInImage>

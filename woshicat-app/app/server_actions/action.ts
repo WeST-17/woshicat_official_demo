@@ -54,6 +54,7 @@ async function getProducts(cursor?: string | null): Promise<any[]> {
         collectionTitle: collection.node.title,
         inventoryCount: item.node.totalInventory, //total inventory in stock
         available: item.node.totalInventory > 0, //checks if item is available
+        lowStock: item.node.totalInventory < 20,
         price: Number(price).toFixed(2) || 0, //price assigned in shopify
         description: item.node.description, //description assigned to product in shopify
         images: images, //array of images related to shopify product
@@ -93,7 +94,7 @@ async function getProductRecommendations(handle: string): Promise<any[]> {
         collection: product.collections.edges[0].node.handle,
         images: images,
         name: product.title,
-        price: product.priceRange.maxVariantPrice.amount
+        price: product.priceRange.maxVariantPrice.amount,
       }
     })
     return productRecommendations;
@@ -200,6 +201,7 @@ async function getCollectionByHandle(handle: string, cursor?: string | null): Pr
         title: info.title,
         handle: info.handle,
         available: Number(info.totalInventory) > 0,
+        lowStock: Number(info.totalInventory) < 20,
         price: itemPrice,
         images: imageList,
         collection: handle,
