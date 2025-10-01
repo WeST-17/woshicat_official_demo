@@ -61,7 +61,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
 
     return (
         <>
-            <div className="w-full flex relative items-center justify-center">
+            <div className="w-full flex relative items-center justify-center overflow-hidden">
                 <button className="px-5 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 ms-4 mb-2 z-[2002] text-white flex items-center gap-2 text-sm h-16" onClick={playControls}>
                     {auto ? 
                         <>
