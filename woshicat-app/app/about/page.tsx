@@ -6,11 +6,11 @@ const About = () => {
     <>
     <main className="w-full">
       {/* */}
-      <div className="relative flex max-lg:flex-col w-full lg:h-[95vh]">
+      <div className="relative flex max-lg:flex-col w-full h-[110vh] lg:h-[100vh]">
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
-            className={`w-full h-full object-cover object-[50%_30%]`}
+            className={`w-full h-full object-cover object-[50%_25%]`}
             autoPlay 
             loop 
             muted 
@@ -24,8 +24,8 @@ const About = () => {
         </div>
 
         <div className="flex h-full w-full lg:w-1/2 bg-white/85 absolute right-0 z-[-1]"/>
-        <div className="flex justify-start h-full w-full lg:w-1/2 ms-auto flex-col p-8 gap-1">
-          <div className="flex max-xl:flex-col max-xl:items-start items-end gap-3">
+        <div className="flex justify-center h-full w-full lg:w-1/2 ms-auto flex-col p-8 gap-1 ">
+          <div className="flex flex-col items-start justify-center gap-3">
             <h1 className="text-3xl font-bold">{`WoShi Cat:`}</h1>
             <h1 className="text-3xl">{`What's beyond the cycle?`}</h1>
           </div>

@@ -8,7 +8,7 @@ import LookBookCover from '../components/cloudinaryImages/lookbookCovers';
 const LookbookHome = () => {
   return (
     <>
-    <div className='relative w-full h-full flex flex-col justify-center items-center gap-1'>      
+    <div className='mt-20 relative w-full h-full flex flex-col justify-center items-center gap-1'>      
       {/*<div className='relative w-full h-full flex justify-center items-center'>
         <LookBookCover 
           photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/woshi-hermanpark-05.jpg?v=1748581247'}

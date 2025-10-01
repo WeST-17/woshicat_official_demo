@@ -45,12 +45,12 @@ export default function Navigation() {
 
     return (
         <>
-        <div className="hidden md:flex gap-2">
+        <div className="hidden lg:flex h-[70px]">
             <NavLinks closeMenu={closeMenu}/>
         </div>
         
-        <div className="md:hidden">
-            <div className={`bg-black/50 z-0 fixed left-0 top-0 w-[100vw] h-[100vh] ${openMenu ? '' : 'hidden overflow-hidden'}`} ref={overlayRef}></div>
+        <div className="lg:hidden">
+            <div className={`bg-black/70 z-0 fixed left-0 top-0 w-[100vw] h-[100vh] ${openMenu ? '' : 'hidden overflow-hidden'}`} ref={overlayRef} />
             <div className="flex flex-col-reverse z-[100]">
                 <div className={`scale-[0.7] menu_btn ${openMenu ? 'open-btn' : ''}`} ref={menuBtnRef}>
                     <span className='line top_line rounded-md'></span>
@@ -61,15 +61,15 @@ export default function Navigation() {
                     <div onClick={() => { setTimeout(() => { setMenuOpen(false)}, 150) }}>
                         <NavLinks closeMenu={closeMenu} />
                     </div>
-                    <div className="w-full flex justify-start"> 
+                    <div className="w-full flex justify-center mt-8"> 
                         {/* Social Media */}
-                        <div className='p-1 flex text-sm text-stone-400'>
-                            <div className="text-start rounded-md hover:text-stone-900 transition duration-300 p-1">
+                        <div className='flex text-sm text-stone-500'>
+                            <div className="text-start rounded-md hover:text-black transition duration-300 p-1">
                             <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-1">
                                 <Image 
                                     src={'/logo/instagram-brands-solid.svg'}
                                     alt={'Instagram - WoShi Cat Official!'}
-                                    className="text-stone-700"
+                                    className="text-black"
                                     width={20}
                                     height={20}
                                 />

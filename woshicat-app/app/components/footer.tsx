@@ -22,7 +22,7 @@ const Footer = () => {
                 <div 
                     className="absolute flex justify-end items-center right-16 bottom-0 w-[80vw] h-12 nl-signup"
                 >
-                    <p className="py-2 px-2 mx-2 h-full flex items-center text-center bg-stone-50 text-xs md:text-base">{`Sign up for the WoShi Cat Newsletter!`}</p>
+                    <p className="py-2 px-2 mx-2 h-full flex items-center text-center bg-stone-50/80 text-xs md:text-base">{`Sign up for the WoShi Cat Newsletter and get 10% off your next order!`}</p>
                 </div>
             </div>
         </div>

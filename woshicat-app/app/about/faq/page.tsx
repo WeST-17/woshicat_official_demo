@@ -8,7 +8,7 @@ const BrandFAQ = () => {
   return (
     <>
       <main className="w-screen h-fit flex justify-center">
-        <div className="flex flex-col mt-12 mb-8 w-full p-2 lg:w-1/2 gap-2">
+        <div className="flex flex-col mt-28 mb-8 w-full p-2 lg:w-1/2 gap-2">
           <div className="flex flex-col justify-start w-full h-fit">
             <h1 className="text-5xl mb-8">Frequently Asked Questions:</h1>
           </div>

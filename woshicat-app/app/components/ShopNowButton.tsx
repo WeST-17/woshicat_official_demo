@@ -1,8 +1,16 @@
+'use client'
+import React from "react";
 
-const ShopNowButton = () => {
+interface ShopButtonProps {
+    title?: string,
+    classAdd?: string
+}
+
+
+const ShopNowButton:React.FC<ShopButtonProps> = ({ title, classAdd }) => {
     return (
-        <button className="shop-item-button h-fit w-32 flex justify-center items-center rounded-sm border-2 text-white border-white mt-2 z-[1]">
-            <p className="text-base">Shop Now</p>
+        <button className="shop-item-button h-fit w-fit flex justify-center items-center rounded-md mt-2 z-[1]">
+            <p className={`${classAdd ? classAdd : 'text-lg p-1 border-2 border-white rounded-sm w-48 font-normal'}`}>{title ? `${title}` : 'Shop Now'}</p>
         </button>
     )
 }

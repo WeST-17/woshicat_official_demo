@@ -2,18 +2,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import AutoCarousel from "./components/carousels/autoCarousel";
-import Popup from "./components/popups/popupCard";
+// import Popup from "./components/popups/popupCard";
 import TwoOneRect from "./components/bento-layout/two-one-rect";
 import ShopNowButton from "./components/ShopNowButton";
 import CollectionListing from "./components/collection-listings/collectionListing";
 import { getFeaturedCollectionHelper } from "./server_actions/action";
 import ScrollingCarousel from "./components/carousels/Carousel";
-
-const homeBanner = [
-  `Free shipping and one random sticker on orders over $50!`,
-  `Sign up for our newsletter and get a 10% off code!`,
-];
+import AutoCarousel from "./components/carousels/autoCarousel";
 
 const Home = () => {
   const [featured, setFeatured] = useState<any[]>([]);
@@ -34,41 +29,76 @@ const Home = () => {
   return (
     <>
     <main className="relative flex justify-center w-full grid grid-cols-9">
-      <div className="absolute top-0 text-center col-span-9 w-full h-fit flex-col justify-center items-center">
-        <AutoCarousel messages={homeBanner} link="https://manage.kmail-lists.com/subscriptions/subscribe?a=U8rDsa&g=YvUXMs"/>
+      <div className="relative col-span-9">
+        <AutoCarousel>
+          {/* Singularity */}
+          <div className="flex relative justify-center items-center h-[100vh] w-screen overflow-hidden">
+            <video 
+              className="object-cover xl:w-full max-xl:h-full" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline={true} 
+              data-v-f518367b="" 
+              preload="metadata"
+            >
+                <source src="https://cdn.shopify.com/videos/c/o/v/17a26dcfdd034c1a9a47d9daa4df1baa.mp4" type="video/mp4" data-v-f518367b="" />
+            </video> 
+            <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
+              <div className="relative z-[100] h-full w-full lg:w-3/4 p-2 w-full flex flex-col items-center justify-center text-2xl font-bold text-center gap-2 pointer-events-none">
+                <section className="w-full flex justify-center">
+                  <Image 
+                    src="/logo/Singularity logo light.png"
+                    alt="Logo for Singularity, our Fall 2025 Drop"
+                    width={2000}
+                    height={1}
+                    className="w-full object-contain"
+                  />
+                </section>
+
+                <p className="">{`COMING SOON`}</p>
+                
+              </div>
+              <div className="absolute bottom-0 left-0 w-full h-full bg-black/30 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
+            </Link>
+          </div>
+
+          {/* Metro Daydreams */}
+          <div className="flex relative justify-center items-center h-[100vh] w-screen overflow-hidden">
+            <video 
+              className="object-cover xl:w-full max-xl:h-full" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline={true} 
+              data-v-f518367b="" 
+              preload="metadata"
+            >
+                <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
+            </video> 
+            <Link className="button-hover flex items-end justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
+              <div className="z-[100] h-20 flex items-center justify-center font-bold mb-20">
+                <ShopNowButton />
+              </div>
+              
+              <div className="absolute bottom-0 left-0 w-full h-full bg-black/30 hover:bg-black/60 transition duration-300 flex justify-center items-center flex-col text-2xl text-center lg:text-7xl font-bold">
+                {`METRO DAYDREAMS`}
+              </div>
+            </Link>
+          </div>
+        </AutoCarousel>
       </div>
-      <div className="relative grid grid-flow-col col-span-9">
-        <div className="flex justify-center items-center h-[91vh] w-full overflow-hidden">
-          {/* Upload and replace video link */}
-          <video 
-            className="w-full object-cover h-full" 
-            autoPlay 
-            loop 
-            muted 
-            playsInline={true} 
-            data-v-f518367b="" 
-            preload="metadata"
-          >
-              <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
-          </video> 
+
+      <section className="relative flex flex-col w-full mx-auto col-span-9">
+        <div className="w-full flex">
+          <Image
+            src={'/media/corner-bright.png'}
+            width={140}
+            height={1}
+            alt="Chinese style corner frame decoration/design"
+            className="mb-auto"
+          />
         </div>
-        
-        <Link className="button-hover flex items-end justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12"
-        href="/collections">
-          <ShopNowButton />
-          <div className="absolute bottom-0 left-0 w-full h-full hover:bg-black/30 transition duration-300"/>
-        </Link>
-        
-      </div>
-      
-      <section className="relative flex w-full mx-auto col-span-9">
-        <Image
-          src={'/media/corner-bright.png'}
-          width={80}
-          height={1}
-          alt="Chinese style corner frame decoration/design"
-          className="mb-auto m-2"
-        />
         <div className="w-full h-fit flex justify-center items-center text-center">
           <div className="w-full md:w-4/5 h-fit flex flex-col justify-center items-center">
             <Image
@@ -77,21 +107,23 @@ const Home = () => {
               height={1}
               alt={'Chinese Phonetics: Wo Shi Cat'}
             />
-            <div className="w-full md:text-xl flex flex-col justify-center items-center text-center mb-12">
-              <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
+            <div className="w-full md:text-2xl flex flex-col justify-center items-center text-center mb-12">
+              <p className="text-2xl md:text-3xl font-bold">{`Breaking the cycle, day by day.`}</p>
               <div className="p-3">
               {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
               </div>
             </div>
           </div>
         </div>
-        <Image
-          src={'/media/corner-bright.png'}
-          width={80}
-          height={1}
-          alt="Chinese style corner frame decoration/design"
-          className="mt-auto rotate-180 m-2"
-        />
+        <div className="w-full flex">
+          <Image
+            src={'/media/corner-bright.png'}
+            width={140}
+            height={1}
+            alt="Chinese style corner frame decoration/design"
+            className="mt-auto ms-auto rotate-180"
+          />
+        </div>
       </section>
 
       <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">

@@ -79,27 +79,27 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           key={link.name}
           onMouseEnter={() => link.subLinks && handleMouseEnter(link.name)}
           onMouseLeave={handleMouseLeave}
-          className="relative group"
+          className="relative h-16 lg:h-full flex justify-center items-center"
         >
           <Link
             onClick={closeMenu}
             href={link.href}
             passHref={true}
             className={clsx(
-              'flex h-[32px] w-full items-center justify-start text-end p-2 rounded-sm hover:text-stone-900 transition duration-150 ease-in-out',
+              'flex h-full w-3/4 lg:w-36 items-center justify-center text-end hover:text-white transition duration-450 ease-in-out relative hover:bg-red-900/85 px-2',
               {
-                'text-black': parentPath === link.href,
-                'text-stone-400': parentPath !== link.href,
+                'text-white bg-red-900/70': parentPath === link.href,
+                'text-black/50': parentPath !== link.href,
               }
             )}
           >
-            <p className="block max-md:text-lg text-base">{link.name}</p>
+            <p className="block max-lg:text-lg text-base">{link.name}</p>
           </Link>
 
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute w-48 text-sm md:right-0 max-md:left-20 bg-white z-10 text-end transition-opacity duration-300 ease-in-out",
+              "absolute lg:left-0 lg:w-64 w-3/4 top-full text-sm bg-white z-10 text-end transition-opacity duration-450 ease-in-out",
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,
@@ -112,12 +112,12 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
                 href={subLink.href}
                 passHref={true}
                 className={clsx(
-                  'block px-2 py-2 text-stone-400 hover:text-black transition duration-150',
+                  'block p-3 text-black/70 hover:text-white hover:bg-red-900/85 transition duration-450',
                   
                 )}
                 onClick={closeMenu}
               >
-                <p className="block max-md:text-lg text-base">{subLink.name}</p>
+                <p className="flex justify-center items-center text-base lg:text-sm">{subLink.name}</p>
               </Link>
             ))}
           </div>

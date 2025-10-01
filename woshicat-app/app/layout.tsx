@@ -33,7 +33,7 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             <ToggleProvider>
             <Header />
             <SmoothScroll>
-            <div className="w-full mt-[70px]"/>
+            <div className="w-full"/>
               {children}
             </SmoothScroll>
             <Footer />

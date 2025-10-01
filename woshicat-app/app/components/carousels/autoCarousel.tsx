@@ -1,42 +1,106 @@
 'use client';
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 interface CarouselProps {
-    messages: string[];
-    link?: string,
+    children?: React.ReactNode
 }
 
-const AutoCarousel: React.FC<CarouselProps> = ({ messages, link }) => {
-    const [current, setCurrent] = useState(0);
-    
-    useEffect(() => {
-        const timeout = 
-        setTimeout(() => {
-            slideNext();
-        }, 5000);
+const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
+    const [currIndex, setCurrIndex] = useState<number>(0);
+    const [auto, setAuto] = useState<boolean>(true);
+    const childRef = useRef<HTMLDivElement | null>(null);
+    let childCount: number;
 
-        return () => clearTimeout(timeout);
-    }, [current])
+    useEffect(() => {
+        if (auto) {
+            const timeout = 
+            setTimeout(() => {
+                slideNext();
+            }, 10000);
+            return () => clearTimeout(timeout);
+        }
+        
+    }, [currIndex, auto])
+
+    const playControls = () => {
+        setAuto(!auto);
+    }
 
     const slideNext = () => {
-        setCurrent(current === messages.length - 1 ? 0 : current + 1);
+        setCurrIndex(currIndex === childCount - 1 ? 0 : currIndex + 1);
     };
+
+    useEffect(() => {
+        const getChildCount = async () => {
+            if (childRef.current) {
+                childCount = childRef.current?.childNodes.length;
+            }
+            
+        } 
+        getChildCount();
+    })
+
+    const next = () => {
+        if (childRef.current && currIndex < (childCount - 1)) {
+            setCurrIndex(currIndex + 1);
+        } else {
+            setCurrIndex(0);
+        }; 
+    };
+
+    const prev = () => {
+        if (currIndex > 0) {
+            setCurrIndex(currIndex - 1);
+        } else {
+            setCurrIndex(childCount - 1)
+        };
+        
+    };
+
 
     return (
         <>
-            <Link 
-                className={`relative auto-carousel w-full h-20 h-8 flex justify-center items-center bg-orange-100 z-[1000] transition duration-300 ${!link ? 'pointer-events-none' : ''}`}
-                href={link || ''}
-                target="_blank"
-                id="header-info"
-            >
-                {messages.map((message, index) => (
-                    <div className={`absolute transition-opacity duration-500 text-xs md:text-base ${current === index ? 'opacity-100' : 'opacity-0'}`} key={index}>
-                        {message}
-                    </div>
-                ))}
-            </Link>
+            <div className="w-full flex relative items-center justify-center">
+                <button className="px-5 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 ms-4 mb-2 z-[2002] text-white flex items-center gap-2 text-sm h-16" onClick={playControls}>
+                    {auto ? 
+                        <>
+                        <Image 
+                            src="/icons/playpausecontrols/pause-solid-full-white.svg"
+                            alt="Pause button"
+                            height={25}
+                            width={25}
+                        />
+                        <p>pause slideshow</p>
+                        </> 
+                        :
+                        <>
+                        <Image 
+                            src="/icons/playpausecontrols/play-solid-full-white.svg"
+                            alt="Play button"
+                            height={25}
+                            width={25}  
+                        />
+                        <p>play slideshow</p>
+                        </>
+                    }
+                </button>
+                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev}>
+                    <Image src={'/icons/caret-left-solid-white.svg'} alt={'left arrow'} width={25} height={1}/>
+                </button>
+                <div
+                    className={`carousel-auto relative w-full h-full flex transition transition-all duration-[1.5s] ease-in-out`}
+                    style={{
+                        transform: `translateX(-${currIndex * (100)}%)`,
+                    }}
+                    ref={childRef}
+                    >
+                    {children}
+                </div>
+                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-300`} onClick={next} >
+                    <Image src={'/icons/caret-right-solid-white.svg'} alt={'right arrow'} width={25} height={1}/>
+                </button>
+            </div>
         </>
     )
 }

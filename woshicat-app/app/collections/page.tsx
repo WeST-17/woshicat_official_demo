@@ -11,12 +11,12 @@ const Collections = () => {
   return (
     <>
     <main className="w-full flex flex-col gap-1">
-      <div className="relative w-full h-64 overflow-hidden">
+      <div className="relative w-full h-96 overflow-hidden">
         <CoverHeader
-          src={'/media/collections-page/sk1.jpg'} 
+          src={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-061.jpg?v=1759292096'} 
           alt={'models pointing out and wearing woshi cat shirts'}
           header={'Collections'}
-          additional="object-cover inset-0 w-full object-[50%_30%]"
+          additional="object-cover inset-0 w-full object-[50%_26%]"
         />
         
       </div>
