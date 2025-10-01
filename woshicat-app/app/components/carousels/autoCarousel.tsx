@@ -10,7 +10,45 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
     const [currIndex, setCurrIndex] = useState<number>(0);
     const [auto, setAuto] = useState<boolean>(true);
     const childRef = useRef<HTMLDivElement | null>(null);
-    let childCount: number;
+    const [childCount, setChildCount] = useState<number>(0);
+
+    const [touchPosition, setTouchPosition] = useState<any>(null);
+
+    useEffect(() => {
+        window.addEventListener("touchstart", handleTouchStart, { passive: true });
+        window.addEventListener("touchmove", handleTouchMove, { passive: true });
+        
+        return () => {
+            window.removeEventListener("touchstart", handleTouchStart);
+            window.removeEventListener("touchmove", handleTouchMove);
+        };
+      }, [touchPosition]);
+    
+    const handleTouchStart = (e: any) => {
+        const touchDown = e.touches[0].clientX;
+        setTouchPosition(touchDown);
+    };
+
+    const handleTouchMove = (e: any) => {
+        const touchDown = touchPosition
+        if(touchDown === null) {
+            return
+        }
+
+        const currentTouch = e.touches[0].clientX
+        const diff = touchDown - currentTouch
+
+        if (diff > 5) {
+            next()
+        }
+
+        if (diff < -5) {
+            prev()
+        }
+
+        setTouchPosition(null);
+        
+    };
 
     useEffect(() => {
         if (auto) {
@@ -34,12 +72,12 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
     useEffect(() => {
         const getChildCount = async () => {
             if (childRef.current) {
-                childCount = childRef.current?.childNodes.length;
+                setChildCount(childRef.current?.childNodes.length);
             }
             
         } 
         getChildCount();
-    })
+    }, [childRef.current])
 
     const next = () => {
         if (childRef.current && currIndex < (childCount - 1)) {
@@ -61,7 +99,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
 
     return (
         <>
-            <div className="w-full flex relative items-center justify-center overflow-hidden">
+            <div className="w-full flex relative items-center justify-center overflow-hidden" >
                 <button className="px-5 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 ms-4 mb-2 z-[2002] text-white flex items-center gap-2 text-sm h-16" onClick={playControls}>
                     {auto ? 
                         <>
@@ -94,10 +132,12 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                         transform: `translateX(-${currIndex * (100)}%)`,
                     }}
                     ref={childRef}
+                    onTouchStart={handleTouchStart}
+                    onTouchMove={handleTouchMove}
                     >
                     {children}
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-300`} onClick={next} >
+                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} >
                     <Image src={'/icons/caret-right-solid-white.svg'} alt={'right arrow'} width={25} height={1}/>
                 </button>
             </div>

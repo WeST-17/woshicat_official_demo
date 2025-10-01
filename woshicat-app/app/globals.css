@@ -389,7 +389,3 @@ button:hover {
     opacity: 1;
   }
 }
-
-.create-underline {
-  animation: growLine ease-out 0.5s forwards;
-}

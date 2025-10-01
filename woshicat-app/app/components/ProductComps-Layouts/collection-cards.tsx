@@ -97,12 +97,12 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
 
   return (
     <>
-    <div className="relative h-64 mb-8 overflow-hidden">
+    <div className="relative h-96 mb-8 overflow-hidden">
       <CoverHeader
         src={products[0].collectionImg} 
         alt={products[0].collectionAlt}
         header={products[0].collectionTitle}
-        additional="object-[25%_63%] object-cover inset-0 w-full"
+        additional="object-[25%_63%] object-cover"
       />
     </div>
     <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto lg:grid-cols-4 gap-2 fade-in ${!loading ? 'show' : ''} `}>

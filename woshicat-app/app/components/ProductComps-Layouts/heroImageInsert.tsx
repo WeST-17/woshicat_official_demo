@@ -21,7 +21,7 @@ const CoverHeader: React.FC<CoverHeaderProp> = ({ src, alt, header, additional }
                 src={src}
                 alt={alt}
                 fill={true}
-                className={`${additional} object-fit w-full h-full`}
+                className={`${additional} h-full`}
             />
         </>
     )

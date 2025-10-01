@@ -32,7 +32,7 @@ const Home = () => {
       <div className="relative col-span-9">
         <AutoCarousel>
           {/* Singularity */}
-          <div className="flex relative justify-center items-center h-[100vh] w-screen overflow-hidden">
+          <div className="flex relative justify-center items-center h-[100vh] w-screen">
             <video 
               className="object-cover xl:w-full max-xl:h-full" 
               autoPlay 
@@ -45,7 +45,7 @@ const Home = () => {
                 <source src="https://cdn.shopify.com/videos/c/o/v/17a26dcfdd034c1a9a47d9daa4df1baa.mp4" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
-              <div className="relative z-[100] h-full w-full lg:w-3/4 p-2 w-full flex flex-col items-center justify-center text-2xl font-bold text-center gap-2 pointer-events-none">
+              <div className="relative z-[100] h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center text-xl lg:text-3xl font-bold text-center gap-2 pointer-events-none">
                 <section className="w-full flex justify-center">
                   <Image 
                     src="/logo/Singularity logo light.png"
@@ -59,12 +59,12 @@ const Home = () => {
                 <p className="">{`COMING SOON`}</p>
                 
               </div>
-              <div className="absolute bottom-0 left-0 w-full h-full bg-black/30 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
+              <div className="absolute bottom-0 left-0 w-full h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
             </Link>
           </div>
 
           {/* Metro Daydreams */}
-          <div className="flex relative justify-center items-center h-[100vh] w-screen overflow-hidden">
+          <div className="flex relative justify-center items-end h-[100vh] w-screen">
             <video 
               className="object-cover xl:w-full max-xl:h-full" 
               autoPlay 
@@ -76,17 +76,32 @@ const Home = () => {
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
             </video> 
-            <Link className="button-hover flex items-end justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
-              <div className="z-[100] h-20 flex items-center justify-center font-bold mb-20">
+            <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections">
+              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-5xl font-bold z-[100] gap-2 pointer-events-none mx-auto">
+                <section className="w-full flex justify-center items-center gap-6">
+                  <div className="flex justify-center items-center">
+                    <Image 
+                      src="/logo/Logo Red Version Clean.png"
+                      alt="WoShi Cat Seal Logo in white"
+                      width={80}
+                      height={1}
+                      className="object-contain brightness-0 invert"
+                    />
+                  </div>
+                  <div className="text-start">
+                    <p>{`METRO`}</p>
+                    <p>{`DAYDREAMS`}</p>
+                  </div>
+                </section>
+              </div>
+              <div className="z-[100] h-20 flex items-end justify-center font-bold mb-20">
                 <ShopNowButton />
               </div>
-              
-              <div className="absolute bottom-0 left-0 w-full h-full bg-black/30 hover:bg-black/60 transition duration-300 flex justify-center items-center flex-col text-2xl text-center lg:text-7xl font-bold">
-                {`METRO DAYDREAMS`}
-              </div>
+              <div className="absolute bottom-0 left-0 w-screen h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
             </Link>
           </div>
         </AutoCarousel>
+        
       </div>
 
       <section className="relative flex flex-col w-full mx-auto col-span-9">

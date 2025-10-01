@@ -8,7 +8,7 @@ export default function ApparelLayout({
     children: React.ReactNode
   }) {
     return ( 
-      <section className="flex justify-center mt-16">
+      <section className="flex justify-center">
         <Suspense fallback={
           <div className="loader"></div>}>
           {children}

@@ -19,6 +19,43 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const childRef = useRef<HTMLDivElement | null>(null);
     const windowSize = useWindowDimensions();
 
+    const [touchPosition, setTouchPosition] = useState<any>(null);
+
+    useEffect(() => {
+            window.addEventListener("touchstart", handleTouchStart, { passive: true });
+            window.addEventListener("touchmove", handleTouchMove, { passive: true });
+            return () => {
+                window.removeEventListener("touchstart", handleTouchStart);
+                window.removeEventListener("touchmove", handleTouchMove);
+            };
+        }, [touchPosition]);
+    
+    const handleTouchStart = (e: any) => {
+        const touchDown = e.touches[0].clientX;
+        setTouchPosition(touchDown);
+    };
+
+    const handleTouchMove = (e: any) => {
+        const touchDown = touchPosition
+
+        if(touchDown === null) {
+            return
+        }
+
+        const currentTouch = e.touches[0].clientX
+        const diff = touchDown - currentTouch
+
+        if (diff > 5) {
+            next()
+        }
+
+        if (diff < -5) {
+            prev()
+        }
+
+        setTouchPosition(null)
+    }
+
     useEffect(() => {
         const width = windowSize.width;
         window.addEventListener('resize', function () {
@@ -70,26 +107,28 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     };
     
     return (
-        <div className={`w-full grid grid-cols-1`}>
+        <div className={`w-full grid grid-cols-1 overflow-hidden`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-2 lg:-left-10 h-1/2 z-[100] bg-white px-3 rounded-md opacity-20 hover:opacity-80 transition duration-300 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-2 lg:-left-10 h-1/2 z-[100] bg-white px-3 rounded-md opacity-20 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={20} height={1}/>
                 </button>
                 <div className="overflow-hidden w-full h-full">
                     <div
-                        className={`flex transition transition-all duration-450 ease-in-out ${type ? `carousel-${type}` : 'carousel-collection'} ${addClass}`}
+                        className={`flex transition transition-all duration-500 ease-in-out ${type ? `carousel-${type}` : 'carousel-collection'} ${addClass}`}
                         style={{
                             transform: `translateX(-${currIndex * (
                             1 / (windowSize.width >= 1024 ? numPerSlide : mobileSlide) * 100
                             )}%)`,
                         }}
                         ref={childRef}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
                         >
                         {children}
                     </div>
 
                 </div>
-                <button className={`absolute h-1/2 right-2 lg:-right-10 z-[100] bg-white rounded-md px-3 opacity-20 hover:opacity-80 transition duration-300 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-1/2 right-2 lg:-right-10 z-[100] bg-white rounded-md px-3 opacity-20 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={20} height={1}/>
                 </button>
             </div>
