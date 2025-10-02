@@ -43,6 +43,7 @@ const Home = () => {
               playsInline={true} 
               data-v-f518367b="" 
               preload="metadata"
+              
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/17a26dcfdd034c1a9a47d9daa4df1baa.mp4" type="video/mp4" data-v-f518367b="" />
             </video> 

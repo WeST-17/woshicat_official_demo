@@ -197,7 +197,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             <div className='flex justify-center items-start grid lg:grid-cols-6 gap-8 relative mb-20'>
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
-                    <div className='relative col-span-6 lg:col-span-3 bg-white rounded-md flex justify-center'>
+                    <div className='relative col-span-6 lg:col-span-3 bg-white rounded-md flex justify-center overflow-y-hidden'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <Carousel
@@ -220,7 +220,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                   <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={10} height={1}/>
                                 </button>
                             )}
-                            className="flex w-full items-center aspect-[9/10]"
+                            className="flex w-full items-center aspect-[9/10] overflow-hidden"
                             placeholder={undefined}
                             navigation={({ setActiveIndex, activeIndex, length }) => (
                                 <div className="absolute w-full bottom-3 z-50 flex justify-center gap-2 max-md:hidden">

@@ -75,11 +75,11 @@ const Cart: React.FC = () => {
 
             {/* Cart Modal (Always Rendered) */}
             <div
-                className={`static fixed inset-0 z-[1100] flex justify-end items-center transition-opacity duration-500 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`static fixed inset-0 z-[2100] flex justify-end items-center transition-opacity duration-500 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={closeCart}
             >
                 <div
-                    className={`rounded-xl relative cart-container transition-transform duration-300 ease-in-out overscroll-none ${cartOpen ? 'open-cart' : 'close-cart'}`}
+                    className={`relative cart-container transition-transform duration-300 ease-in-out overscroll-none ${cartOpen ? 'open-cart' : 'close-cart'}`}
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
@@ -98,7 +98,7 @@ const Cart: React.FC = () => {
                     {/* Cart content */}
                     {cartItems.length > 0 ? (
                     <>
-                    <div className="cart-items gap-2 h-full w-full overflow-y-visible overscroll-contain rounded-lg p-1">
+                    <div className="relative cart-items gap-2 h-3/4 w-full overflow-y-visible overscroll-contain rounded-lg p-1">
                         {cartItems.map((item: any) => {
                             return (
                             <div key={item.cartLineId} className={`h-36 cart-item p-2 gap-4 hover:bg-stone-200 transition duration-300 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
@@ -127,32 +127,7 @@ const Cart: React.FC = () => {
                                 </div>
                             </div>
                         )})}
-                        {/* Centered Checkout Button */}
-                        <div className="flex flex-col w-full sticky bottom-0 p-2 bg-stone-100/85">
-                            
-                            <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
-                                <div className="w-full flex justify-end items-center text-xl me-2">
-                                    <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
-                                </div>
-                                <div className="w-full flex flex-col items-center justify-end gap-4">
-                                    <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
-                                </div>
-                            </div>
-                            <div className="h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
-                                <div className="w-full flex justify-end">
-                                    <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
-                                    </p>
-                                    <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
-                                    </p>
-                                </div>
-                                
-                                <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
-                                    <ProgressBar />
-                                </div>
-                            </div>
-                        </div>    
                     </div>
-                    
                     </>
                     ) : cartItemsLoading ? (
                         <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
@@ -161,7 +136,32 @@ const Cart: React.FC = () => {
                         ) : (
                         <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
                         )}
+                    {/* Centered Checkout Button */}
+                    <div className="flex flex-col w-full sticky bottom-0 p-2 bg-stone-100/85">
+                        
+                        <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
+                            <div className="w-full flex justify-end items-center text-xl me-2">
+                                <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
+                            </div>
+                            <div className="w-full flex flex-col items-center justify-end gap-4">
+                                <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
+                            </div>
+                        </div>
+                        <div className="h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
+                            <div className="w-full flex justify-end">
+                                <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
+                                </p>
+                                <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
+                                </p>
+                            </div>
+                            
+                            <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
+                                <ProgressBar />
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
             
             
