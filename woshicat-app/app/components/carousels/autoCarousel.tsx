@@ -98,7 +98,16 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
     return (
         <>
             <div className="w-full flex relative items-center justify-center overflow-hidden" >
-                <button className="px-5 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 ms-4 mb-2 z-[100] text-white flex items-center gap-2 text-sm h-16" onClick={playControls}>
+                <section className="absolute bottom-0 mb-3 w-full lg:w-1/2 mx-auto flex gap-2 justify-center items-center z-[200]">
+                    {new Array(childCount).fill("").map((_, i) => (
+                        <span
+                            key={i}
+                            className={`bg-white rounded-full flex justify-center items-center w-10 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
+                            onClick={() => setCurrIndex(i)}
+                        />
+                    ))}
+                </section>
+                <button className="px-2 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 m-2 z-[100] text-white flex items-center gap-2 text-sm h-10 md:w-36" onClick={playControls} aria-description="play and pause control button for carousel">
                     {auto ? 
                         <>
                         <Image 
@@ -107,7 +116,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                             height={25}
                             width={25}
                         />
-                        <p>pause slideshow</p>
+                        <p className="hidden md:block">pause slideshow</p>
                         </> 
                         :
                         <>
@@ -117,11 +126,11 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                             height={25}
                             width={25}  
                         />
-                        <p>play slideshow</p>
+                        <p className="hidden md:block">play slideshow</p>
                         </>
                     }
                 </button>
-                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev}>
+                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev} aria-description="previous slide button">
                     <Image src={'/icons/caret-left-solid-white.svg'} alt={'left arrow'} width={25} height={1}/>
                 </button>
                 <div
@@ -135,7 +144,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                     >
                     {children}
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} >
+                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} aria-description="next slide button">
                     <Image src={'/icons/caret-right-solid-white.svg'} alt={'right arrow'} width={25} height={1}/>
                 </button>
             </div>
