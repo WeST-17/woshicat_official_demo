@@ -4,13 +4,15 @@ const About = () => {
   
   return (
     <>
-    <main className="w-full">
+    <main className="relative w-full h-full">
       {/* */}
-      <div className="relative flex max-lg:flex-col w-full h-[110vh] lg:h-[100vh]">
+      <div className="flex h-full w-full bg-white/85 absolute right-0"/>
+      <div className="relative flex justify-center items-center max-lg:flex-col w-full h-full">
+        
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
-            className={`w-full h-full object-cover object-[50%_25%]`}
+            className={`h-full w-full object-cover`}
             autoPlay 
             loop 
             muted 
@@ -23,13 +25,13 @@ const About = () => {
           </video> 
         </div>
 
-        <div className="flex h-full w-full lg:w-1/2 bg-white/85 absolute right-0 z-[-1]"/>
-        <div className="flex justify-center h-full w-full lg:w-1/2 ms-auto flex-col p-8 gap-1 ">
-          <div className="flex flex-col items-start justify-center gap-3">
-            <h1 className="text-3xl font-bold">{`WoShi Cat:`}</h1>
-            <h1 className="text-3xl">{`What's beyond the cycle?`}</h1>
+        <div className="relative flex justify-center h-full w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
+          
+          <div className="flex flex-col items-start justify-start gap-3">
+            <h1 className="text-xl lg:text-3xl font-bold">{`WoShi Cat:`}</h1>
+            <h1 className="text-xl lg:text-3xl">{`What's beyond the cycle?`}</h1>
           </div>
-          <section className="grid gap-4 pt-3 text-black text-base">
+          <section className="flex flex-col justify-center items-center gap-2 text-black text-sm lg:text-base">
             <p>
               {`WoShi Cat (我是貓) was founded as an exploration into the pocket where Taiwanese-inspired streetwear, frustration with the cyclical nature of corporate life, and a love of cats can intertwine. "Wǒ shì," or “I am" in Mandarin, is more than a self-introduction; it encompasses limitless multifaceted identities that can exist in tandem, whether professional or personal. No one is confined to playing only one role in life—not even a cat.`}
             </p>
