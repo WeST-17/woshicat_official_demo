@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 html {
-  overflow-y: scroll;
-  overflow-x: hidden;
   scroll-behavior: smooth;
   color: black;
   margin: 0px;
@@ -22,6 +20,12 @@ body {
   text-rendering: auto;
   font-weight: normal;
   margin: 0px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.toggle-body-scroll {
+  overflow-y: hidden;
 }
 
 .disable-scrollbars::-webkit-scrollbar {

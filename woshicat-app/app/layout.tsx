@@ -27,7 +27,6 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
 
   return (
     <html lang="en">
-      
       <body className={`${lato.className} text-stone-800 w-full mx-auto`}>
             <CartProvider>
             <ToggleProvider>
@@ -41,7 +40,6 @@ export default function RootLayout({ children, }: Readonly<{ children: React.Rea
             </CartProvider>
         <TransitionSlide />
       </body>
-      
     </html>
   );
 }

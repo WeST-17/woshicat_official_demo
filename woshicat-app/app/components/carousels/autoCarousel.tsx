@@ -11,19 +11,18 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
     const [auto, setAuto] = useState<boolean>(true);
     const childRef = useRef<HTMLDivElement | null>(null);
     const [childCount, setChildCount] = useState<number>(0);
-
     const [touchPosition, setTouchPosition] = useState<any>(null);
 
     useEffect(() => {
-        window.addEventListener("touchstart", handleTouchStart, { passive: true });
-        window.addEventListener("touchmove", handleTouchMove, { passive: true });
-        
+        window.addEventListener("touchstart", handleTouchStart, { passive: false });
+        window.addEventListener("touchmove", handleTouchMove, { passive: false });
         return () => {
             window.removeEventListener("touchstart", handleTouchStart);
             window.removeEventListener("touchmove", handleTouchMove);
         };
-      }, [touchPosition]);
-    
+      }, []);
+
+
     const handleTouchStart = (e: any) => {
         const touchDown = e.touches[0].clientX;
         setTouchPosition(touchDown);
@@ -34,7 +33,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
         if(touchDown === null) {
             return
         }
-
+        
         const currentTouch = e.touches[0].clientX
         const diff = touchDown - currentTouch
 
@@ -45,9 +44,8 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
         if (diff < -5) {
             prev()
         }
-
-        setTouchPosition(null);
         
+        setTouchPosition(null);
     };
 
     useEffect(() => {
@@ -127,7 +125,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                     <Image src={'/icons/caret-left-solid-white.svg'} alt={'left arrow'} width={25} height={1}/>
                 </button>
                 <div
-                    className={`carousel-auto relative w-full h-full flex transition transition-all duration-[1.5s] ease-in-out`}
+                    className={`touch-pan-y carousel-auto relative w-full h-full flex transition transition-all duration-[1.5s] ease-in-out`}
                     style={{
                         transform: `translateX(-${currIndex * (100)}%)`,
                     }}

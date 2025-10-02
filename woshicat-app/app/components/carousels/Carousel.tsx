@@ -22,13 +22,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const [touchPosition, setTouchPosition] = useState<any>(null);
 
     useEffect(() => {
-            window.addEventListener("touchstart", handleTouchStart, { passive: true });
-            window.addEventListener("touchmove", handleTouchMove, { passive: true });
+            window.addEventListener("touchstart", handleTouchStart, { passive: false });
+            window.addEventListener("touchmove", handleTouchMove, { passive: false });
             return () => {
                 window.removeEventListener("touchstart", handleTouchStart);
                 window.removeEventListener("touchmove", handleTouchMove);
             };
-        }, [touchPosition]);
+        }, []);
     
     const handleTouchStart = (e: any) => {
         const touchDown = e.touches[0].clientX;
@@ -114,7 +114,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 </button>
                 <div className="overflow-hidden w-full h-full">
                     <div
-                        className={`flex transition transition-all duration-500 ease-in-out ${type ? `carousel-${type}` : 'carousel-collection'} ${addClass}`}
+                        className={`touch-pan-y flex transition transition-all duration-500 ease-in-out ${type ? `carousel-${type}` : 'carousel-collection'} ${addClass}`}
                         style={{
                             transform: `translateX(-${currIndex * (
                             1 / (windowSize.width >= 1024 ? numPerSlide : mobileSlide) * 100

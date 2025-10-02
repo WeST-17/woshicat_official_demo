@@ -79,6 +79,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
         fetchRecommendationData();
     }, []);
+
     
 // --------------------------------------------------------------------------------------------------------------------------
 
@@ -217,7 +218,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                   <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={10} height={1}/>
                                 </button>
                             )}
-                            className="flex w-full items-center overflow-hidden aspect-[9/10]"
+                            className="flex w-full items-center aspect-[9/10]"
                             placeholder={undefined}
                             navigation={({ setActiveIndex, activeIndex, length }) => (
                                 <div className="absolute w-full bottom-3 z-50 flex justify-center gap-2 max-md:hidden">
@@ -243,7 +244,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                     <img
                                         src={image.url}
                                         alt={image.altText}
-                                        className='mx-auto snap-center pointer-events-none object-cover h-full'
+                                        className='mx-auto pointer-events-none object-cover h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
                                         <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm pe-2'>
