@@ -159,7 +159,9 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     if (pageLoad) {
         return (
         <>
-        <Loader />
+        <div className="object-contain relative w-full h-[100vh] overflow-hidden flex justify-center items-center">
+            <Loader />
+        </div>
         </>
         );
     }

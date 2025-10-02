@@ -114,13 +114,13 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
       </button>
       <button
         onClick={handleDeleteItem}
-        className={`ms-auto flex flex-col justify-center items-center text-black hover:bg-stone-400/25 transition duration-300 text-xs px-2 py-1 m-5 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
+        className={`ms-auto flex flex-col justify-center items-center text-black hover:bg-stone-400/25 transition duration-300 text-xs px-2 py-1 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
         disabled={itemQuantLoad === true}
       >
         <Image
           src={'/icons/Woshi Trash.png'}
           alt={'trashcan icon, yoyo trash'}
-          width={35}
+          width={25}
           height={1}
           className=''
         />

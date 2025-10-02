@@ -336,7 +336,7 @@ button:hover {
     position: absolute;
     top: 0;
     right: 0;
-    width: 35vw;
+    width: 45vw;
     height: 100vh;
     opacity: 0;
     background-color: #f5f5f4;
@@ -392,4 +392,19 @@ button:hover {
   100% {
     opacity: 1;
   }
+}
+
+@keyframes shimmer {
+   to {
+      background-position-x: 0%
+   }
+}
+
+.shimmer {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
+  background-size: 300%;
+  background-position-x: 100%;
+  animation: shimmer 1s infinite linear;
 }

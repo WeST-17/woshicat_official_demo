@@ -9,6 +9,7 @@ import CollectionListing from "./components/collection-listings/collectionListin
 import { getFeaturedCollectionHelper } from "./server_actions/action";
 import ScrollingCarousel from "./components/carousels/Carousel";
 import AutoCarousel from "./components/carousels/autoCarousel";
+import Loader from "./components/transitions-navigation/LoadingScreen";
 
 const Home = () => {
   const [featured, setFeatured] = useState<any[]>([]);
@@ -23,6 +24,7 @@ const Home = () => {
         console.log("couldn't get featured collection...");
       }
     }
+    
     getFeaturedCollection();
   }, [])
 
@@ -146,20 +148,23 @@ const Home = () => {
       </div>
       <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
         {/* Featured Collection */}
-        {featured[0] && (
-          <TwoOneRect
-          link={`/collections/${featured[0].handle}`}
-          collectionName={`${featured[0].title}`}
-          >
-            <Image 
-              className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
-              src={featured[0].imgSrc} 
-              alt={featured[0].imgAlt || 'Photo of featured collection'} 
-              fill={true}
-            />
-          </TwoOneRect>
-        )}
-        
+          {featured[0] ? (
+            <TwoOneRect
+            link={`/collections/${featured[0].handle}`}
+            collectionName={`${featured[0].title}`}
+            >
+              <Image 
+                className="max-md:aspect-square object-cover absolute top-0 left-0 bottom-0 right-0" 
+                src={featured[0].imgSrc} 
+                alt={featured[0].imgAlt || 'Photo of featured collection'} 
+                fill={true}
+              />
+            </TwoOneRect>
+          ) : (
+          <div className="object-contain relative col-span-9 md:col-span-6 w-full overflow-hidden flex justify-center items-center">
+            <Loader />
+          </div>
+      )}
         <div className="relative col-span-9 md:col-span-3 aspect-[9/10] h-full overflow-hidden flex items-center">
           <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
             <Image

@@ -6,10 +6,11 @@ import React, { useRef, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import ProgressBar from "./progressBar";
+import Loader from "../transitions-navigation/LoadingScreen";
 
 
 const Cart: React.FC = () => {
-    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, cartUpdated, setCartTotal, progress } = useCart();
+    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
     const currFormat = new Intl.NumberFormat('default', {
@@ -78,7 +79,7 @@ const Cart: React.FC = () => {
                 onClick={closeCart}
             >
                 <div
-                    className={`rounded-xl relative cart-container transition-transform duration-300 ease-in-out overscroll-none disable-scrollbars ${cartOpen ? 'open-cart' : 'close-cart'}`}
+                    className={`rounded-xl relative cart-container transition-transform duration-300 ease-in-out overscroll-none ${cartOpen ? 'open-cart' : 'close-cart'}`}
                     onClick={(e) => e.stopPropagation()}
                     ref={cartContainerRef}
                 >
@@ -96,19 +97,20 @@ const Cart: React.FC = () => {
                     
                     {/* Cart content */}
                     {cartItems.length > 0 ? (
-                    <div className="cart-items gap-2 h-[65%] w-full overflow-y-auto overscroll-contain rounded-lg p-1">
+                    <>
+                    <div className="cart-items gap-2 h-full w-full overflow-y-visible overscroll-contain rounded-lg p-1">
                         {cartItems.map((item: any) => {
                             return (
-                            <div key={item.cartLineId} className={`relative cart-item p-2 gap-4 hover:bg-stone-200 transition duration-300 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                            <div key={item.cartLineId} className={`h-36 cart-item p-2 gap-4 hover:bg-stone-200 transition duration-300 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                                 
-                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-40">
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full">
                                     <img
-                                    src={item.imageUrl}
-                                    alt={item.handle}
-                                    className="h-full object-contain bg-white aspect-[4/5] rounded-md mr-2"
+                                        src={item.imageUrl}
+                                        alt={item.handle}
+                                        className="h-full object-contain bg-white aspect-square mr-2"
                                     />
                                 </Link>
-                                <div className="ms-auto w-full p-2 flex flex-col justify-center">
+                                <div className="ms-auto w-full p-2 flex flex-col justify-center h-full">
                                     <h2 className='h-full w-full mb-1 text-base lg:text-lg'>{item.title}</h2>
                                     <h3 className="text-xs font-thin mb-1 opacity-80">
                                         {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
@@ -125,42 +127,43 @@ const Cart: React.FC = () => {
                                 </div>
                             </div>
                         )})}
+                        {/* Centered Checkout Button */}
+                        <div className="flex flex-col w-full sticky bottom-0 p-2 bg-stone-100/85">
                             
+                            <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
+                                <div className="w-full flex justify-end items-center text-xl me-2">
+                                    <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
+                                </div>
+                                <div className="w-full flex flex-col items-center justify-end gap-4">
+                                    <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
+                                </div>
+                            </div>
+                            <div className="h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
+                                <div className="w-full flex justify-end">
+                                    <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
+                                    </p>
+                                    <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
+                                    </p>
+                                </div>
+                                
+                                <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
+                                    <ProgressBar />
+                                </div>
+                            </div>
+                        </div>    
                     </div>
-                    ) : !cartItemsLoading && cartItems.length > 0 ? (
-                        <div className="w-full h-24 flex justify-center items-center">
-                            <div className="loader"></div>
+                    
+                    </>
+                    ) : cartItemsLoading ? (
+                        <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
+                            <Loader />
                         </div>
                         ) : (
-                        <p className="text-sm font-thin text-gray-500 text-start ms-10 mb-8">Your cart is empty.</p>
+                        <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
                         )}
-                    
-                    {/* Centered Checkout Button */}
-                    <div className="flex flex-col w-full absolute bottom-0 p-2 bg-stone-100/70">
-                        
-                        <div className="h-full flex flex-col sticky bottom-0 w-full justify-end items-center bottom-0 p-2 gap-2">
-                            <div className="w-full flex justify-end items-center text-xl me-2">
-                                <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
-                            </div>
-                            <div className="w-full sticky flex flex-col items-center justify-end gap-4">
-                                <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
-                            </div>
-                        </div>
-                        <div className="sticky bottom-0 h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
-                            <div className="w-full flex justify-end">
-                                <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
-                                </p>
-                                <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
-                                </p>
-                            </div>
-                            
-                            <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
-                                <ProgressBar />
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+            
             
         </>
     );

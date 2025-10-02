@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import Square from "../bento-layout/square";
 import Image from "next/image";
 import { getCollectionInfoHelper } from "@/app/server_actions/action";
+import Loader from "../transitions-navigation/LoadingScreen";
 
 interface DisplayProps {
   addClass: string,
@@ -34,6 +35,11 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
 
   return (
       <>
+        { loading && (
+          <div className="object-contain relative w-full overflow-hidden flex justify-center items-end">
+            <Loader />
+          </div>
+        )}
         { !loading && !error && collectionList.map((collection) => (
             
             <section className={`${addClass}`} key={collection.handle}>
@@ -48,6 +54,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
                   alt={collection.imgAlt || ''} 
                   fill={true}
                 />
+                
               </Square>
             </section>
           ))}
