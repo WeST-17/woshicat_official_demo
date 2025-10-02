@@ -16,7 +16,13 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*.cdn.instagram.com',
         port: ''
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'asiatimessquare.com',
+        port: ''
+      },
+
     ]
   },
   

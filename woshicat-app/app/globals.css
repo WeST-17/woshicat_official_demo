@@ -144,6 +144,14 @@ body {
   overscroll-behavior: scroll;
 }
 
+.notice-container {
+  opacity: 1;
+}
+
+.notice-container.close-notice {
+  opacity: 0;
+}
+
 @keyframes transitionScreen {
   0% {
     opacity: 0;
