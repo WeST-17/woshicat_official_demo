@@ -43,6 +43,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [progress, setProgress] = useState<number>(0);
   const colorList = colors;
   
+  
   useEffect(() => {
     const fetchCartItems = async () => {
         setCartItemsLoading(true);
@@ -54,6 +55,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     fetchCartItems(); 
   }, [cartUpdated]);
+
+  
 
   return (
     <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress, colorList }}>
