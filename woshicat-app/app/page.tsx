@@ -47,16 +47,16 @@ const Home = () => {
             <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
               <div className="relative z-[100] h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center text-xl lg:text-3xl font-bold text-center gap-2 pointer-events-none">
                 <section className="w-full flex justify-center">
-                  <Image 
+                  {/* <Image 
                     src="/logo/Singularity logo light.png"
                     alt="Logo for Singularity, our Fall 2025 Drop"
                     width={2000}
                     height={1}
                     className="w-full object-contain"
-                  />
+                  /> */}
+                  <p className="text-3xl lg:text-6xl">{`COMING SOON`}</p>
                 </section>
-
-                <p className="">{`COMING SOON`}</p>
+                <p className="">{`FALL 2025`}</p>
                 
               </div>
               <div className="absolute bottom-0 left-0 w-full h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
