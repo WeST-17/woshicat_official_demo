@@ -49,7 +49,7 @@ const Home = () => {
               preload="metadata"
               
             >
-                <source src="https://cdn.shopify.com/videos/c/o/v/17a26dcfdd034c1a9a47d9daa4df1baa.mp4" type="video/mp4" data-v-f518367b="" />
+                <source src="https://cdn.shopify.com/videos/c/o/v/7e67a2eadc914d49878675781c465991.mp4" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
               <div className="relative z-[100] h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center text-xl lg:text-3xl font-bold text-center gap-2 pointer-events-none">
