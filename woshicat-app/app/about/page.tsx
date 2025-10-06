@@ -21,7 +21,7 @@ const About = () => {
             preload="metadata"
             
           >
-              <source src="https://cdn.shopify.com/videos/c/o/v/930d239ffbc645f4b4d95df7ea57a505.mp4" type="video/mp4" data-v-f518367b="" />
+              <source src="https://cdn.shopify.com/videos/c/o/v/f8b51e6a0c3a4e96a58162f39484980c.mov" type="video/mp4" data-v-f518367b="" />
           </video> 
         </div>
 

@@ -411,7 +411,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 mt-4 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity <= quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
+                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 mt-4 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
                                 disabled={
                                     item.quantity < quantity
                                 }
