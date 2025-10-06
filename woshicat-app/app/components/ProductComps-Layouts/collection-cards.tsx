@@ -97,20 +97,20 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
 
   return (
     <>
-    <div className="relative h-96 mb-8 overflow-hidden">
+    <div className="flex justify-center items-center w-full h-fit relative overflow-hidden mb-8">
       <CoverHeader
         src={products[0].collectionImg} 
         alt={products[0].collectionAlt}
         header={products[0].collectionTitle}
-        additional="object-[25%_63%] object-cover"
+        additional="w-full h-full"
       />
     </div>
-    <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto lg:grid-cols-4 gap-2 fade-in ${!loading ? 'show' : ''} `}>
+    <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
         <FadeInImage key={product.handle}>
-        <div className={`relative text-center h-full`}  
+        <div className={`relative text-center h-full bg-white/80 overflow-hidden`}  
           key={product.handle}
         >
           <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
@@ -135,7 +135,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
             </div>
             </Link>
           </div>
-          <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-400' : 'text-stone-700'}`}>
+          <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
             <div className="me-auto lg:text-sm text-start">{product.title}</div>
             <div className="ms-auto lg:text-sm">{currFormat.format(product.price)}</div>
           </div>

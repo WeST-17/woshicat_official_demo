@@ -25,7 +25,7 @@ const About = () => {
           </video> 
         </div>
 
-        <div className="relative flex justify-center h-full w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
+        <div className="relative flex justify-start mt-20 lg:mt-64 h-full w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
           
           <div className="flex flex-col items-start justify-start gap-3">
             <h1 className="text-xl lg:text-3xl font-bold">{`WoShi Cat:`}</h1>

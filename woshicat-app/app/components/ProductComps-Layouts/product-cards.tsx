@@ -127,7 +127,7 @@ const ProductCards = () => {
         />
       </div> : 
       <div 
-        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-4/5 mx-auto lg:grid-cols-5 gap-2 fade-in ${!loading ? 'show' : ''} `}
+        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-4/5 mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}
       >
         {/* Render your products here using the 'products' state */}
         {products.filter(product => {
@@ -139,7 +139,7 @@ const ProductCards = () => {
         }).map((product) => (
           // Render each product item
           <FadeInImage key={product.id}>
-          <div className={`relative text-center h-full`} 
+          <div className={`relative text-center h-full overflow-hidden bg-white/80`} 
             key={product.id}
           >
             <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
@@ -165,7 +165,7 @@ const ProductCards = () => {
               </div>
               </Link>
             </div>
-            <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-400' : 'text-stone-700'}`}>
+            <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
               <div className="me-auto lg:text-sm text-start">{product.name}</div>
               <div className="ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
             </div>

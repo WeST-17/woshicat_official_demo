@@ -83,7 +83,7 @@ const Home = () => {
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
             </video> 
-            <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections">
+            <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections/metro-daydreams">
               <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-5xl font-bold z-[100] gap-2 pointer-events-none mx-auto">
                 <section className="w-full flex justify-center items-center gap-6">
                   <div className="flex justify-center items-center">
@@ -111,11 +111,11 @@ const Home = () => {
         
       </div>
 
-      <section className="relative flex flex-col w-full mx-auto col-span-9">
+      <section className="relative flex flex-col w-full mx-auto col-span-9 mb-4">
         <div className="w-full flex">
           <Image
             src={'/media/corner-bright.png'}
-            width={140}
+            width={120}
             height={1}
             alt="Chinese style corner frame decoration/design"
             className="mb-auto"
@@ -129,9 +129,9 @@ const Home = () => {
               height={1}
               alt={'Chinese Phonetics: Wo Shi Cat'}
             />
-            <div className="w-full md:text-2xl flex flex-col justify-center items-center text-center mb-12">
+            <div className="w-full md:text-2xl flex flex-col justify-center items-center text-center p-2">
               <p className="text-2xl md:text-3xl font-bold">{`Breaking the cycle, day by day.`}</p>
-              <div className="p-3">
+              <div className="">
               {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
               </div>
             </div>
@@ -140,7 +140,7 @@ const Home = () => {
         <div className="w-full flex">
           <Image
             src={'/media/corner-bright.png'}
-            width={140}
+            width={120}
             height={1}
             alt="Chinese style corner frame decoration/design"
             className="mt-auto ms-auto rotate-180"

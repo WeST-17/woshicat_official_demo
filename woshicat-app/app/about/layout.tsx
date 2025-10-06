@@ -9,7 +9,7 @@ export default function ApparelLayout({
     children: React.ReactNode
   }) {
     return ( 
-      <section className="flex w-full h-[120vh] justify-center items-center">
+      <section className="flex w-full h-[115vh] justify-center items-center">
         <Suspense fallback={
           <div className="h-full w-screen flex justify-center items-center">
             <LoadingScreen />

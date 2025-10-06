@@ -11,22 +11,22 @@ const Collections = () => {
   return (
     <>
     <main className="w-full flex flex-col gap-1">
-      <div className="relative w-full h-96 overflow-hidden">
+      <div className="relative w-full h-fit overflow-hidden">
         <CoverHeader
-          src={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/h-town_skate_park.jpg?v=1759767641'} 
+          src={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-094.jpg?v=1759774433'} 
           alt={'models sitting at skate park watching you (?)'}
           header={'Collections'}
-          additional="object-cover object-[50%_26%]"
+          additional="object-cover object-bottom"
         />
         
       </div>
       <div className="w-full mx-auto col-span-9 flex flex-col">
         <div className="col-span-9 md:text-xl flex justify-center items-center text-center my-8">
-          <div className="md:w-1/2 flex flex-col gap-6">
+          <div className="md:w-full flex flex-col gap-6">
             <Image 
               src={'/media/graphics/Yoyo happy.png'}
               alt={'Yoyo the cat smiling slightly'}
-              width={250}
+              width={300}
               height={1}
               className="mx-auto pointer-events-none"
             />

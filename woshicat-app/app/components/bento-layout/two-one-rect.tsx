@@ -27,6 +27,7 @@ const TwoOneRect: React.FC<TwoOneRectProps> = ({ children, link, collectionName 
               <ShopNowButton />
             </div>
             <div className="absolute bottom-0 left-0 font-thin text-white w-full h-full"/>
+            <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 hover:opacity-25 transition duration-300'/>
           </Link>
         </div>
         </>
