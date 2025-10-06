@@ -444,7 +444,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 <ScrollingCarousel addClass='' numPerSlide={3.2} mobileSlide={1.2} length={10} type={'recommendations'}>
                 {recommendations.map((product: any) => (
                     <div className={`w-full h-full px-1`} key={product.id}>
-                        <div className={`relative text-center h-full`} 
+                        <div className={`relative text-center h-full bg-white/80`} 
                             key={product.id}
                         >
                             <div className={`z-[1000] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
