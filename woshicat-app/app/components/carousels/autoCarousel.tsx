@@ -98,13 +98,18 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
     return (
         <>
             <div className="w-full flex relative items-center justify-center overflow-hidden" >
-                <section className="absolute bottom-0 mb-3 w-full lg:w-1/2 mx-auto flex gap-2 justify-center items-center z-[200]">
+                <section className="absolute bottom-0 mb-2 h-12 w-fit mx-auto flex gap-2 justify-center items-center z-[200]">
                     {new Array(childCount).fill("").map((_, i) => (
-                        <span
+                        <div 
                             key={i}
-                            className={`bg-white rounded-full flex justify-center items-center w-10 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
-                            onClick={() => setCurrIndex(i)}
-                        />
+                            className="flex justify-center items-center h-full w-fit"
+                        >
+                            <span
+                                key={i}
+                                className={`bg-white rounded-full flex justify-center items-center w-10 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
+                                onClick={() => setCurrIndex(i)}
+                            />
+                        </div>
                     ))}
                 </section>
                 <button className="px-2 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 m-2 z-[100] text-white flex items-center gap-2 text-sm h-10 md:w-36" onClick={playControls} aria-description="play and pause control button for carousel">

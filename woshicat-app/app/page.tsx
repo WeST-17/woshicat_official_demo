@@ -31,8 +31,8 @@ const Home = () => {
   return (
     <>
     <main className="relative flex justify-center w-full grid grid-cols-9">
-      {/* Promotion Graphic Popup */}
-      <Notice />
+      {/* Promotion Graphic Popup, need to figure out better way to flag. manual for now. */}
+      {/* <Notice /> */}
 
       {/* Top of website */}
       <div className="relative col-span-9">
