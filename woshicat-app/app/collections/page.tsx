@@ -13,8 +13,8 @@ const Collections = () => {
     <main className="w-full flex flex-col gap-1">
       <div className="relative w-full h-96 overflow-hidden">
         <CoverHeader
-          src={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-061.jpg?v=1759292096'} 
-          alt={'models pointing out and wearing woshi cat shirts'}
+          src={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/h-town_skate_park.jpg?v=1759767641'} 
+          alt={'models sitting at skate park watching you (?)'}
           header={'Collections'}
           additional="object-cover object-[50%_26%]"
         />
