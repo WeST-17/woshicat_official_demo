@@ -10,6 +10,7 @@ import ScrollingCarousel from "./components/carousels/Carousel";
 import AutoCarousel from "./components/carousels/autoCarousel";
 import Loader from "./components/transitions-navigation/LoadingScreen";
 import Notice from "./components/messageUpdates/websiteNotice";
+// import VideoHero from "./components/ProductComps-Layouts/videoHero"; work in progress
 
 const Home = () => {
   const [featured, setFeatured] = useState<any[]>([]);
@@ -37,7 +38,7 @@ const Home = () => {
       {/* Top of website */}
       <div className="relative col-span-9">
         <AutoCarousel>
-          {/* Singularity */}
+          {/* Fall 2025 Drop Sweater/Hoodie */}
           <div className="flex relative justify-center items-center h-[100vh] w-screen">
             <video 
               className="object-cover xl:w-full max-xl:h-full" 

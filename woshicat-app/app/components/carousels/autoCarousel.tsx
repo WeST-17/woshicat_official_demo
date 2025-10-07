@@ -112,7 +112,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                         </div>
                     ))}
                 </section>
-                <button className="px-2 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 m-2 z-[100] text-white flex items-center gap-2 text-sm h-10 md:w-36" onClick={playControls} aria-description="play and pause control button for carousel">
+                <button className="px-2 opacity-80 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-0 m-2 z-[100] text-white flex items-center gap-2 text-sm h-10 md:w-36" onClick={playControls} aria-description="play and pause control button for carousel" disabled={childCount <= 1}>
                     {auto ? 
                         <>
                         <Image 
@@ -135,7 +135,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                         </>
                     }
                 </button>
-                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev} aria-description="previous slide button">
+                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-left-solid-white.svg'} alt={'left arrow'} width={25} height={1}/>
                 </button>
                 <div
@@ -149,7 +149,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                     >
                     {children}
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} aria-description="next slide button">
+                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-right-solid-white.svg'} alt={'right arrow'} width={25} height={1}/>
                 </button>
             </div>
