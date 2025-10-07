@@ -8,7 +8,7 @@ const ProgressBar: React.FC = () => {
     useEffect(() => {
         
         const progressBar = async () => {
-            let progress = Number(cartTotal) / 50 * 100;
+            let progress = Number(cartTotal) / 75 * 100;
             if (progress > 100) {
                 setProgress(100);
                 return
