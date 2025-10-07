@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
 import { getProductByHandleHelper, addToCart } from '@/app/server_actions/action';
-import { Carousel } from "@material-tailwind/react";
+import ProductCarousel from '../../carousels/productCarousel';
 import ScrollingCarousel from '../../carousels/Carousel';
 import { getProductRecommendationsHelper } from '@/app/server_actions/action';
 import ProductDescription from '../product-description';
@@ -193,63 +193,23 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover'
             />
         </div>
-        <div className='h-fit w-full text-lg lg:w-4/5 mx-auto flex flex-col justify-start items-center' key={item.id}>
+        <div className='h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
             <div className='flex justify-center items-start grid lg:grid-cols-6 gap-8 relative mb-20'>
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
                     <div className='relative col-span-6 lg:col-span-3 bg-white rounded-md flex justify-center overflow-y-hidden'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
-                        <Carousel
-                            loop={true}
-                            prevArrow={({ handlePrev }) => (
-                                <button
-                                    color="black"
-                                    onClick={handlePrev}
-                                    className="z-[51] absolute top-2/4 left-0 -translate-y-2/4 h-1/3 rounded-md p-3 bg-white/20 hover:bg-black/30 transition duration-200"
-                                >
-                                  <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={10} height={1}/>
-                                </button>
-                              )}
-                              nextArrow={({ handleNext }) => (
-                                <button
-                                    color="black"
-                                    onClick={handleNext}
-                                    className="z-[51] absolute top-2/4 right-0 -translate-y-2/4 h-1/3 rounded-md p-3 bg-white/20 hover:bg-black/30 transition duration-200"
-                                >
-                                  <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={10} height={1}/>
-                                </button>
-                            )}
-                            className="flex w-full items-center aspect-[9/10] overflow-hidden"
-                            placeholder={undefined}
-                            navigation={({ setActiveIndex, activeIndex, length }) => (
-                                <div className="absolute w-full bottom-3 z-50 flex justify-center gap-2 max-md:hidden">
-                                    {new Array(length).fill("").map((_, i) => (
-                                        <span
-                                            key={i}
-                                            className={`block flex justify-center items-center h-1 cursor-pointer transition-all content-[''] ${activeIndex === i ? "w-9 mb-4" : "w-9 mb-4 opacity-50"}`}
-                                            onClick={() => setActiveIndex(i)}
-                                        >
-                                            <Image
-                                                    key={i}
-                                                    src={item.images[i].url}
-                                                    alt={item.images[i].altText || ''}
-                                                    className={`aspect-square object-cover`}
-                                                    width={100} height={1}
-                                                />
-                                        </span>
-                                    ))}
-                                </div>
-                            )} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} >
+                        <ProductCarousel images={item.images}>
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className='w-full h-full flex justify-center items-center relative'>
+                                <div key={index} className='pb-16 w-full h-full aspect-[9/10] flex justify-center items-center relative'>
                                     <img
                                         src={image.url}
                                         alt={image.altText}
                                         className='mx-auto pointer-events-none object-cover h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
-                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm pe-2'>
+                                        <div className='flex justify-end items-center absolute bottom-16 right-0 h-fit w-fit text-sm pe-2'>
                                             {image.altText.split('/')[0]}
                                             <br></br>
                                             {image.altText.split('/')[1]}
@@ -258,7 +218,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                     
                                 </div>
                             ))}
-                        </Carousel>
+                        </ProductCarousel>
                         
                     </div>
                     
