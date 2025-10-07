@@ -78,7 +78,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
 
   if (loading) {
     return (
-      <div className={`flex justify-center w-full md:w-4/5 mx-1 mx-auto gap-2`}>
+      <div className={`flex justify-center w-full md:w-[90vw] mx-1 mx-auto gap-2`}>
         <Image
           src="/loading_assets/Yoyo_Walk_Cycle_Forward.gif"
           alt="Yoyo walk cycle"
@@ -105,7 +105,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
         additional="w-full h-full"
       />
     </div>
-    <div className={`grid grid-cols-2 w-full md:w-4/5 mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
+    <div className={`grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
       {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item

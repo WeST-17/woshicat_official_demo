@@ -113,17 +113,17 @@ const Home = () => {
       </div>
 
       <section className="relative flex flex-col w-full mx-auto col-span-9 mb-4">
-        <div className="w-full flex">
+        <div className="w-full flex justify-start">
           <Image
             src={'/media/corner-bright.png'}
             width={120}
             height={1}
             alt="Chinese style corner frame decoration/design"
-            className="mb-auto"
+            className=""
           />
         </div>
         <div className="w-full h-fit flex justify-center items-center text-center">
-          <div className="w-full md:w-4/5 h-fit flex flex-col justify-center items-center">
+          <div className="w-full md:w-[90vw] h-fit flex flex-col justify-center items-center">
             <Image
               src={'/media/misc/woshicat_script2b.png'}
               width={400}
@@ -138,21 +138,21 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex">
+        <div className="w-full flex justify-end">
           <Image
             src={'/media/corner-bright.png'}
             width={120}
             height={1}
             alt="Chinese style corner frame decoration/design"
-            className="mt-auto ms-auto rotate-180"
+            className="rotate-180"
           />
         </div>
       </section>
 
-      <div className="w-full md:w-4/5 col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">
+      <div className="w-full md:w-[90vw] col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
-      <div className="w-full md:w-4/5 col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
+      <div className="w-full md:w-[90vw] col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
         {/* Featured Collection */}
           {featured[0] ? (
             <TwoOneRect
@@ -197,7 +197,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-4/5 col-span-9 mx-auto mb-6">
+      <div className="w-full md:w-[90vw] col-span-9 mx-auto mb-6">
         {/* Rest of the Collections */}
         <Link href="/collections" className="w-full text-3xl font-normal ps-1">
           {`Yoyo's Collection List`}

@@ -21,19 +21,39 @@ const Collections = () => {
         
       </div>
       <div className="w-full mx-auto col-span-9 flex flex-col">
-        <div className="col-span-9 md:text-xl flex justify-center items-center text-center my-8">
-          <div className="md:w-full flex flex-col gap-6">
-            <Image 
-              src={'/media/graphics/Yoyo happy.png'}
-              alt={'Yoyo the cat smiling slightly'}
-              width={300}
+        <div className="relative w-full mx-auto flex flex-col mb-2">
+          <div className="absolute left-0 top-0 w-full flex justify-start">
+            <Image
+              src={'/media/corner-bright.png'}
+              width={120}
               height={1}
-              className="mx-auto pointer-events-none"
+              alt="Chinese style corner frame decoration/design"
+              className=""
             />
-            <h2 className="text-2xl">Designed in-house. Yoyo&apos;s happy you&apos;re here!</h2>
+          </div>
+          <div className="col-span-9 md:text-xl flex justify-center items-center text-center px-20 my-8">
+            <div className="w-full flex max-md:flex-col justify-center items-center md:gap-2">
+              <Image 
+                src={'/media/stickers/Desk Yoyo Sticker.png'}
+                alt={'Yoyo the cat smiling slightly'}
+                width={350}
+                height={1}
+                className="pointer-events-none"
+              />
+              <h2 className="text-xl lg:text-2xl">{`Designed in-house. Yoyo's happy you're here!`}</h2>
+            </div>
+          </div>
+          <div className="absolute bottom-0 right-0 w-full flex justify-end">
+            <Image
+              src={'/media/corner-bright.png'}
+              width={120}
+              height={1}
+              alt="Chinese style corner frame decoration/design"
+              className="rotate-180"
+            />
           </div>
         </div>
-        <div className="w-full md:w-4/5 mx-auto flex">
+        <div className="w-full md:w-[90vw] mx-auto flex">
           {/* Begin section */}
             <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3} type={'collection'}>
               <CollectionListing addClass="w-full h-full px-1"/>

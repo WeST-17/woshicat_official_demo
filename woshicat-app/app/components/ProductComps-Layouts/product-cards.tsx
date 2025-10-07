@@ -91,14 +91,14 @@ const ProductCards = () => {
   
   return (
     <>
-    <div className='w-4/5 h-[70px] mx-auto' id='top-products'/>
+    <div className='w-[90vw] h-[70px] mx-auto' id='top-products'/>
     <div 
-      className={`w-full md:w-4/5 flex items-center justify-start mx-auto text-2xl font-semibold`}
+      className={`w-full lg:w-[90vw] flex items-center justify-start mx-auto text-2xl font-semibold`}
       id='top-products'
     >
       {`Shop / ${filter}`}
     </div>
-    <div className='hidden mx-auto w-full lg:w-4/5 lg:flex max-md:items-start gap-4 items-center justify-start mb-8'>
+    <div className='hidden mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-8'>
       <div>
         {`Filter by Collection:`}
       </div>
@@ -117,7 +117,7 @@ const ProductCards = () => {
       
     </div>
     {loading ? 
-      <div className={`flex justify-center w-full md:w-4/5 mx-1 mx-auto gap-2`}>
+      <div className={`flex justify-center w-full md:w-[90vw] mx-1 mx-auto gap-2`}>
         <Image
           src="/loading_assets/Yoyo_Walk_Cycle_Forward.gif"
           alt="Yoyo walk cycle"
@@ -127,7 +127,7 @@ const ProductCards = () => {
         />
       </div> : 
       <div 
-        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-4/5 mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}
+        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-[90vw] mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}
       >
         {/* Render your products here using the 'products' state */}
         {products.filter(product => {
@@ -174,7 +174,7 @@ const ProductCards = () => {
           ))}
     </div>}
     <Link 
-      className='w-4/5 mx-auto flex flex-col gap-2 justify-center items-center mt-10 transition duration-500 ease-in-out opacity-35 hover:opacity-100 text-sm'
+      className='w-full mx-auto flex flex-col gap-2 justify-center items-center mt-10 transition duration-500 ease-in-out opacity-35 hover:opacity-100 text-sm'
       href={'#top-products'}
     >
       <Image

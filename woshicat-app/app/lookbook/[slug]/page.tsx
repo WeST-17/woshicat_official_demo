@@ -49,7 +49,7 @@ const LookbookSlug = () => {
     <main className="flex justify-center w-screen mt-20">
       {/* */}
       { images.length > 0 && (
-        <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-2 lg:w-3/4 mx-auto gap-1">
+        <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-2 lg:w-[90vw] mx-auto gap-1">
         {images.map((image: any, index: number) => {
             return (
               <div className="" key={index}>
