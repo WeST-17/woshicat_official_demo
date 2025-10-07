@@ -149,7 +149,7 @@ const Cart: React.FC = () => {
                         </div>
                         <div className="h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
                             <div className="w-full flex justify-end">
-                                <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(50 - Number(cartTotal))} away from free shipping!`}
+                                <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
                                 </p>
                                 <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
                                 </p>
