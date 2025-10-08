@@ -354,33 +354,11 @@ button:hover {
   .cart-container.open-cart {
     opacity: 1;
   }
-
-  .carousel-collection > * {
-    width: calc(100% / 3);
-    flex-shrink: 0;
-    flex-grow: 1;
-  }
-
-  .carousel-recommendations > * {
-    width: calc(100% / 3.2);
-    flex-shrink: 0;
-    flex-grow: 1;
-  }
 }
 
-@media screen and (max-width: 1023px) {
-  /* Carousel.css */
-  .carousel-collection > * {
-      width: 100%;
-      flex-shrink: 0;
-      flex-grow: 1;
-  }
-
-  .carousel-recommendations > * {
-    width: calc(100% / 1.2);
-    flex-shrink: 0;
-    flex-grow: 1;
-  }
+.carousels > * {
+  flex-shrink: 0;
+  flex-grow: 1;
 }
 
 .carousel-auto > * {

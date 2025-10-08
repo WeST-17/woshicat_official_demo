@@ -79,32 +79,55 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
 
     return (
         <>
-            <div className="w-full flex relative items-center justify-center overflow-hidden" >
-                <section className="bg-stone-200/80 py-1 px-2 rounded-sm absolute bottom-0 mb-2 h-12 w-fit mx-auto flex gap-2 justify-center items-center z-[200]">
-                    {new Array(childCount).fill("").map((_, i) => (
-                        <div 
+            <section className="mx-3 rounded-sm h-fit w-12 hidden lg:flex flex-col gap-1 sm:gap-2 justify-center items-center z-[1000]">
+                {new Array(childCount).fill("").map((_, i) => (
+                    <div 
+                        key={i}
+                        className="flex justify-center items-center"
+                    >
+                        <span
                             key={i}
-                            className="flex justify-center items-center"
+                            className={`block flex justify-center items-center rounded-md w-10 h-10 cursor-pointer transition-all content-[''] ${currIndex === i ? "opacity-100" : "opacity-50"}`}
+                            onClick={() => setCurrIndex(i)}
                         >
-                            <span
-                                key={i}
-                                className={`block flex justify-center items-center rounded-md w-10 h-1 cursor-pointer transition-all content-[''] ${currIndex === i ? "opacity-100" : "opacity-60"}`}
-                                onClick={() => setCurrIndex(i)}
-                            >
-                                <Image
-                                    src={images[i].url}
-                                    alt={images[i].alt}
-                                    width={100}
-                                    height={1}
-                                    className="object-cover bg-white/80 aspect-square rounded-sm"
-                                />
-                            </span>
-                        </div>
-                    ))}
-                </section>
-                
+                            <Image
+                                src={images[i].url}
+                                alt={images[i].alt}
+                                height={100}
+                                width={100}
+                                className="object-cover bg-white/80 aspect-square rounded-sm"
+                            />
+                        </span>
+                    </div>
+                ))}
+            </section>
+
+            <section className="lg:hidden py-1 px-2 rounded-sm absolute -bottom-12 mb-2 h-12 w-full gap-1 mx-auto flex justify-center items-end z-[200]">
+                {new Array(childCount).fill("").map((_, i) => (
+                    <div 
+                        key={i}
+                        className="flex justify-center items-center"
+                    >
+                        <span
+                            key={i}
+                            className={`block flex justify-center items-center rounded-md h-1 cursor-pointer transition-all content-[''] ${currIndex === i ? "opacity-100 w-12" : "opacity-50 w-8"}`}
+                            onClick={() => setCurrIndex(i)}
+                        >
+                            <Image
+                                src={images[i].url}
+                                alt={images[i].alt}
+                                width={100}
+                                height={1}
+                                className="object-cover bg-white/80 aspect-square rounded-sm"
+                            />
+                        </span>
+                    </div>
+                ))}
+            </section>
+
+            <div className="bg-white ps-2 w-full flex relative items-center justify-center overflow-hidden" >                
                 <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-10 hover:opacity-80 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
-                    <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={25} height={1}/>
+                    <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={20} height={1}/>
                 </button>
                 <div
                     className={`touch-pan-y carousel-auto relative w-full h-full flex transition transition-all duration-500 ease-in-out`}
@@ -118,7 +141,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                     {children}
                 </div>
                 <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-10 hover:opacity-80 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
-                    <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={25} height={1}/>
+                    <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={20} height={1}/>
                 </button>
             </div>
         </>

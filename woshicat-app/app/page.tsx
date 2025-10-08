@@ -205,8 +205,8 @@ const Home = () => {
         
         <div className="w-full mx-auto flex">
           {/* Begin section */}
-            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3} type={'collection'}>
-              <CollectionListing addClass="w-full h-full px-1"/>
+            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3}>
+              <CollectionListing addClass="w-full h-full"/>
             </ScrollingCarousel>
           {/* End section */}
         </div>

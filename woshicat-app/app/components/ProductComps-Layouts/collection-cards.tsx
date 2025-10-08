@@ -127,11 +127,11 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
                 className={`${!product.available ? 'grayscale-[0.75]' : ''} ${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
               />
               {/* Hover image */}
-              <img 
-                src={product.images[product.images.length - 2].url} 
-                alt={product.images[product.images.length - 2].altText} 
+              { product.images[2] && (<img 
+                src={product.images[2].url} 
+                alt={product.images[2].altText} 
                 className={`${!product.available ? 'grayscale-[0.75]' : ''} object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
-              />
+              />) }
             </div>
             </Link>
           </div>

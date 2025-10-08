@@ -236,7 +236,7 @@ export const productByHandle = (handle: string) => {
           description
           productType
           tags
-          images(first:10) {
+          images(first:15) {
             edges {
               node {
                 url

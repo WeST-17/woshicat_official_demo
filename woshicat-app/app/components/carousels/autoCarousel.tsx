@@ -106,7 +106,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                         >
                             <span
                                 key={i}
-                                className={`bg-white rounded-full flex justify-center items-center w-10 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
+                                className={`bg-white rounded-full flex justify-center items-center w-8 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
                                 onClick={() => setCurrIndex(i)}
                             />
                         </div>
@@ -121,7 +121,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                             height={25}
                             width={25}
                         />
-                        <p className="hidden md:block">pause slideshow</p>
+                        <p className="block">pause slideshow</p>
                         </> 
                         :
                         <>
@@ -131,11 +131,11 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                             height={25}
                             width={25}  
                         />
-                        <p className="hidden md:block">play slideshow</p>
+                        <p className="block">play slideshow</p>
                         </>
                     }
                 </button>
-                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
+                <button className={`max-sm:hidden absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-30 hover:opacity-100 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-left-solid-white.svg'} alt={'left arrow'} width={25} height={1}/>
                 </button>
                 <div
@@ -149,7 +149,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                     >
                     {children}
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
+                <button className={`max-sm:hidden absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-30 hover:opacity-100 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-right-solid-white.svg'} alt={'right arrow'} width={25} height={1}/>
                 </button>
             </div>

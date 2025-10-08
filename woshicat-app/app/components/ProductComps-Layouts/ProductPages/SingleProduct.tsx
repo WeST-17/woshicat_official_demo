@@ -180,36 +180,36 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     return (
         <>
-        <div className={`relative flex justify-center items-center h-[45vh] w-full bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
-            {/* Insert hero image for each product. Upload directly as part of code base in Vercel i.e., /[handle] */}
-            <div className='absolute object-cover w-screen h-full bg-black/25 z-[100] flex items-center justify-center'>
-                <h1 className='text-[#FAF9F6] text-5xl lg:text-7xl'>{item.title}</h1>
+        <div className={`relative flex justify-center items-center h-[50vh] w-screen bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
+            {/* Insert hero image for each product.*/}
+            <div className='absolute w-full h-full bg-black/25 z-[100] flex items-center justify-center'>
+                <h1 className='text-[#FAF9F6] text-4xl lg:text-7xl mt-[70px]'>{item.title}</h1>
             </div>
             <Image 
                 src={item.images[2] ? item.images[2].url : item.images[0].url}
                 alt={`Image of the ${handle}`}
                 fill={true}
                 priority
-                className='object-cover'
+                className='object-cover w-full'
             />
         </div>
         <div className='h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
-            <div className='flex justify-center items-start grid lg:grid-cols-6 gap-8 relative mb-20'>
+            <div className='flex justify-center items-start grid lg:grid-cols-8 gap-8 relative mb-20'>
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
-                    <div className='relative col-span-6 lg:col-span-3 bg-white rounded-md flex justify-center overflow-y-hidden'>
+                    <div className='relative col-span-8 lg:col-span-4 rounded-md flex justify-center'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <ProductCarousel images={item.images}>
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className='pb-16 w-full h-full aspect-[9/10] flex justify-center items-center relative'>
+                                <div key={index} className='w-full h-full aspect-[9/10] flex justify-center items-center relative'>
                                     <img
                                         src={image.url}
                                         alt={image.altText}
                                         className='mx-auto pointer-events-none object-cover h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
-                                        <div className='flex justify-end items-center absolute bottom-16 right-0 h-fit w-fit text-sm pe-2'>
+                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm pe-2'>
                                             {image.altText.split('/')[0]}
                                             <br></br>
                                             {image.altText.split('/')[1]}
@@ -224,7 +224,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     
                 )}
                     
-                <div className='p-2 lg:p-0 col-span-6 lg:col-span-3 h-fit w-full relative gap-4'>
+                <div className='max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-4'>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -401,7 +401,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             </div>
             <FadeInImage>
             <div className='h-fit w-full text-lg mx-auto flex items-start'>
-                <ScrollingCarousel addClass='' numPerSlide={3.2} mobileSlide={1.2} length={10} type={'recommendations'}>
+                <ScrollingCarousel addClass='' numPerSlide={5.2} mobileSlide={1.2} length={10} type={'recommendations'}>
                 {recommendations.map((product: any) => (
                     <div className={`w-full h-full px-1 bg-white/80`} key={product.id}>
                         <div className={`relative text-center h-full`} 
