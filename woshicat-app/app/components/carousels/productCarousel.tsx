@@ -79,7 +79,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
 
     return (
         <>
-            <section className="mx-3 rounded-sm h-fit w-12 hidden lg:flex flex-col gap-1 sm:gap-2 justify-center items-center z-[1000]">
+            <section className="mx-3 rounded-sm h-fit w-14 hidden lg:flex flex-col gap-1 sm:gap-2 justify-center items-center z-[1000]">
                 {new Array(childCount).fill("").map((_, i) => (
                     <div 
                         key={i}
@@ -87,7 +87,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                     >
                         <span
                             key={i}
-                            className={`block flex justify-center items-center rounded-md w-10 h-10 cursor-pointer transition-all content-[''] ${currIndex === i ? "opacity-100" : "opacity-50"}`}
+                            className={`block flex justify-center items-center rounded-md h-10 cursor-pointer transition-all content-[''] ${currIndex === i ? "w-12 opacity-100" : "w-10 opacity-50"}`}
                             onClick={() => setCurrIndex(i)}
                         >
                             <Image

@@ -31,7 +31,7 @@ const FadeInImage: React.FC<FadeInImageProps> = ({ children }) => {
   }, []);
 
   return (
-    <div ref={fadeImgRef} className="fade-img-container w-full flex justify-center items-center">
+    <div ref={fadeImgRef} className="relative fade-img-container w-full flex justify-center items-center">
         {children}
     </div>
   );

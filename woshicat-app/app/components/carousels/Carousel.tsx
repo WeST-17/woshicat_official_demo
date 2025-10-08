@@ -119,7 +119,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         onClick={() => setCurrIndex(i)}
                     />
                 </div>
-            )) : new Array(length).fill("").map((_, i) => (
+            )) : new Array(length - Math.floor(mobileSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
