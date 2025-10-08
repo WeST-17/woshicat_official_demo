@@ -400,7 +400,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 </div>
             </div>
             <FadeInImage>
-            <div className='hidden h-fit w-full text-lg mx-auto lg:flex items-start'>
+            <div className='relative hidden h-fit w-full text-lg mx-auto lg:flex items-start'>
                 <ScrollingCarousel addClass='' numPerSlide={5.2} mobileSlide={1.2} length={10}>
                 {recommendations.map((product: any) => (
                     <div className={`w-full h-full px-1 bg-white/80`} key={product.id}>
