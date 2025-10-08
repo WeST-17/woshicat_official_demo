@@ -8,7 +8,7 @@ const LookbookHome = () => {
   return (
     <>
     <div className='mt-20 relative w-full h-full flex justify-center items-center gap-1'>      
-      <div className='relative w-full h-full flex justify-center items-center'>
+      {/* <div className='relative w-full h-full flex justify-center items-center'>
         <LookBookCover 
           photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-029.jpg?v=1759768048'}
           photoAlt={'Duo wearing the Serendipity Hoodie.'}
@@ -16,7 +16,7 @@ const LookbookHome = () => {
           link={'/lookbook/taiji-2025'}
           classExtra='ms-auto text-start'
         />
-        {/* <div className="absolute right-0 w-full h-full flex justify-end items-end">
+        <div className="absolute right-0 w-full h-full flex justify-end items-end">
           <Image 
             src={'/media/cat_pngs/2025_Benji_Design.png'}
             alt={'Seredipity Benji doing an ollie on a skateboard'}
@@ -24,8 +24,8 @@ const LookbookHome = () => {
             height={1}
             className='z-[102] object-contain h-full'
           />
-        </div> */}
-      </div>
+        </div>
+      </div> */}
       <div className='relative w-full h-full flex justify-center items-center'>
         <LookBookCover 
           photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/woshi-hermanpark-08.jpg?v=1759898843'}
