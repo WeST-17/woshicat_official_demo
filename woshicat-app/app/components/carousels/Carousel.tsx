@@ -107,7 +107,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     
     return (
         <>
-        <section className={`absolute left-1/4 -bottom-6 h-12 w-1/2 mx-auto flex justify-center items-center z-[200] gap-1`}>
+        <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-[200] gap-1`}>
             {windowSize.width >= 1024 ? new Array(length - Math.floor(numPerSlide - 1)).fill("").map((_, i) => (
                 <div 
                     key={i}
