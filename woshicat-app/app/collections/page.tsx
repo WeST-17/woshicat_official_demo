@@ -55,7 +55,7 @@ const Collections = () => {
         </div>
         <div className="w-full md:w-[90vw] mx-auto flex">
           {/* Begin section */}
-            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3} type={'collection'}>
+            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3}>
               <CollectionListing addClass="w-full h-full px-1"/>
             </ScrollingCarousel>
           {/* End section */}
