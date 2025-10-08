@@ -394,13 +394,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 </div>
             </div>
             {/* Product Recommendations */}
-            <div className='h-fit w-full text-lg mx-auto flex items-start mb-6 px-1'>
+            <div className='h-fit w-full text-lg mx-auto hidden lg:flex items-start mb-6 px-1'>
                 <div className="w-full text-3xl font-normal">
                     {`Yoyo's Recommendations`}
                 </div>
             </div>
             <FadeInImage>
-            <div className='h-fit w-full text-lg mx-auto flex items-start'>
+            <div className='hidden h-fit w-full text-lg mx-auto lg:flex items-start'>
                 <ScrollingCarousel addClass='' numPerSlide={5.2} mobileSlide={1.2} length={10}>
                 {recommendations.map((product: any) => (
                     <div className={`w-full h-full px-1 bg-white/80`} key={product.id}>
@@ -411,19 +411,18 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                             
                             <div className={`bg-white flex justify-center overflow-hidden`}>
                             <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
-                            {/* Render product details */}
+                            
                             <div className={`relative flex justify-center items-center aspect-[9/10] h-full`}>
-                                {/* Default product image */}
+                                
                                 <img 
                                 src={product.images[0].url} 
                                 alt={product.images[0].altText} 
                                 className={`${product.handle.includes('shirt', 'hoodie', 'sweater') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                                 />
                                 
-                                {/* Hover image */}
                                 <img 
-                                src={product.images[product.images.length - 1].url} 
-                                alt={product.images[product.images.length - 1].altText} 
+                                src={product.images[1].url} 
+                                alt={product.images[1].altText} 
                                 className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                                 />
                             </div>

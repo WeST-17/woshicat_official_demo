@@ -107,8 +107,19 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     
     return (
         <>
-        <section className={`absolute left-1/4 -bottom-6 h-12 w-1/2 mx-auto flex justify-center items-center z-[200] gap-1 ${length <= 3 && windowSize.width! >= 1024 ? 'hidden pointer-events-none' : ''}`}>
-            {new Array(length).fill("").map((_, i) => (
+        <section className={`absolute left-1/4 -bottom-6 h-12 w-1/2 mx-auto flex justify-center items-center z-[200] gap-1`}>
+            {windowSize.width >= 1024 ? new Array(length - Math.floor(numPerSlide - 1)).fill("").map((_, i) => (
+                <div 
+                    key={i}
+                    className="flex justify-center items-center h-full w-fit"
+                >
+                    <span
+                        key={i}
+                        className={`bg-red-900/50 rounded-full flex justify-center items-center h-2 cursor-pointer transition-all ${currIndex === i ? "w-6" : "w-2 opacity-50"} `}
+                        onClick={() => setCurrIndex(i)}
+                    />
+                </div>
+            )) : new Array(length).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
