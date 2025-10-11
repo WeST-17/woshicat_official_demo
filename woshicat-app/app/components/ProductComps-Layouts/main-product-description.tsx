@@ -27,7 +27,7 @@ const MainProductDescription: React.FC<Description> = ({ description }) => {
                 {splitDetails.map((lines: string, index) => (
                     
                     <div className="relative w-full" key={index}>
-                        <Collapse title={`${lines.split('-')[0]}`} classProp=" text-stone-600">
+                        <Collapse title={`${lines.split('-')[0]}`} classProp="text-sm text-stone-600">
                             {lines.split('-').splice(1).map((line: string) => (
                                 <div className="w-full text-sm flex justify-start items-center" key={line}>
                                     {"- "}{line}

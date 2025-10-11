@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 interface CollapseProps {
     children: React.ReactNode;
-    title: string;
+    title?: string;
     classProp?: string;
 }
 
@@ -21,7 +21,7 @@ const Collapse: React.FC<CollapseProps> = ({ children, title, classProp}) => {
             <div className={`px-2 my-5 relative w-full h-fit flex flex-col justify-start items-start ${classProp}`}>
                 <button 
                     onClick={toggleItem} 
-                    className={`relative text-sm w-full flex justify-start transition transition-all duration-300 ${!openItem ? 'font-medium' : 'font-bold'}`}
+                    className={`relative w-full flex justify-start transition transition-all duration-300 ${!openItem ? 'font-medium' : 'font-bold'}`}
                 >
                     <p className='text-black w-4/5 h-fit flex justify-start'>{title}</p> 
                     <div className='w-1/5 flex justify-end items-center'>{openItem ? "-" : "+"}</div>
