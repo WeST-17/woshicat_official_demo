@@ -21,7 +21,7 @@ const Header = () => {
                 </div>
             </header>
 
-            <section className="z-[1000] fixed bottom-20 w-full m-1 flex flex-col justify-center items-end overflow-hidden">
+            <section className="z-[1000] fixed bottom-20 right-0 w-fit flex flex-col justify-center items-end overflow-hidden">
             <Link 
                 className='w-20 flex justify-center items-center flex-col'
                 href={'#header'}
@@ -31,8 +31,9 @@ const Header = () => {
                     alt='up arrow, back to top'
                     width={50}
                     height={1}
-                    className='rotate-90 aspect-square opacity-20 hover:opacity-80 hover:bg-black/20 rounded-full p-2 transition duration-300'
+                    className='rotate-90 aspect-square opacity-20 hover:opacity-80 hover:bg-black/20 rounded-full py-2 transition duration-300'
                 />
+                
             </Link>
             </section>
         </>

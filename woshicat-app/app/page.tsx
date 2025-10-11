@@ -102,6 +102,7 @@ const Home = () => {
         
       </div>
 
+      {/* Mid page Yoyo inspiration */}
       <section className="relative flex flex-col w-full mx-auto col-span-9 mb-4">
         <div className="w-full flex justify-start">
           <Image
@@ -139,11 +140,12 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Featured Collection Header */}
       <div className="w-full lg:w-[90vw] col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
-      <div className="w-full md:w-[90vw] col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
-        {/* Featured Collection */}
+      {/* Featured Collection Display */}
+      <div className="w-full md:w-[90vw] col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2">
           {featured[0] ? (
             <TwoOneRect
             link={`/collections/${featured[0].handle}`}
@@ -187,6 +189,10 @@ const Home = () => {
         </div>
       </div>
 
+      {/* Product Showcase */}
+      
+
+      {/* Collection Carousel Display */}
       <div className="w-full lg:w-[90vw] col-span-9 mx-auto mb-6">
         {/* Rest of the Collections */}
         <Link href="/collections" className="w-full text-3xl font-normal ps-1">
@@ -201,6 +207,7 @@ const Home = () => {
           {/* End section */}
         </div>
       </div>
+
     </main>
     </>
   );
