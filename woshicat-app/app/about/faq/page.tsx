@@ -7,9 +7,9 @@ const BrandFAQ = () => {
   
   return (
     <>
-      <main className="w-screen h-fit flex justify-center">
-        <div className="flex flex-col mt-28 mb-8 w-full p-2 lg:w-1/2 gap-2">
-          <div className="flex flex-col justify-start w-full h-fit">
+      <main className="w-screen h-fit flex justify-center items-center grid grid-cols-1 mb-40">
+        <div className="mx-auto flex flex-col w-full p-2 lg:w-1/2 mt-30 h-fit">
+          <div className="flex flex-col justify-start w-full">
             <h1 className="text-5xl mb-8">Frequently Asked Questions:</h1>
           </div>
           
