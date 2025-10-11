@@ -38,33 +38,29 @@ const Home = () => {
       {/* Top of website */}
       <div className="relative col-span-9">
         <AutoCarousel>
-          {/* Fall 2025 Drop Sweater/Hoodie */}
+          {/* Taiji - Fall 2025 */}
           <div className="flex relative justify-center items-center h-[100vh] w-screen">
-            <video 
-              className="object-cover xl:w-full max-xl:h-full" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline={true} 
-              data-v-f518367b="" 
-              preload="metadata"
-              
+            <video className="object-cover xl:w-full max-xl:h-full" 
+              autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/a3d1138f7a52457ead9278adff9de19a.mp4" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
-              <div className="relative z-[100] h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center text-xl lg:text-3xl font-bold text-center gap-2 pointer-events-none">
+              <div className="relative z-[100] h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center font-bold text-center gap-2 pointer-events-none">
                 <section className="w-full flex justify-center">
                   {/* <Image 
+                    // REPLACE WITH TAIJI LOGO
                     src="/logo/Singularity logo light.png"
-                    alt="Logo for Singularity, our Fall 2025 Drop"
+                    alt="Logo for Taiji, our Fall 2025 Drop"
                     width={2000}
                     height={1}
-                    className="w-full object-contain"
+                    className="w-4/5 object-contain"
                   /> */}
-                  <p className="text-3xl lg:text-6xl">{`COMING SOON`}</p>
+                  <p className="text-3xl lg:text-5xl">{`COMING SOON`}</p>
                 </section>
-                <p className="">{`FALL 2025`}</p>
+                <div className="text-center">
+                  <p className="text-xl lg:text-2xl">{`FALL 2025`}</p>
+                </div>
                 
               </div>
               <div className="absolute bottom-0 left-0 w-full h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
@@ -73,14 +69,8 @@ const Home = () => {
 
           {/* Metro Daydreams */}
           <div className="flex relative justify-center items-end h-[100vh] w-screen">
-            <video 
-              className="object-cover xl:w-full max-xl:h-full" 
-              autoPlay 
-              loop 
-              muted 
-              playsInline={true} 
-              data-v-f518367b="" 
-              preload="metadata"
+            <video className="object-cover xl:w-full max-xl:h-full" 
+              autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
             </video> 
@@ -149,7 +139,7 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="w-full md:w-[90vw] col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">
+      <div className="w-full lg:w-[90vw] col-span-9 mx-auto gap-2 ps-1 text-3xl font-normal">
         {`Featured Arrivals`}
       </div>
       <div className="w-full md:w-[90vw] col-span-9 grid grid-cols-9 mb-6 mx-auto gap-2 px-1">
@@ -197,7 +187,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="w-full md:w-[90vw] col-span-9 mx-auto mb-6">
+      <div className="w-full lg:w-[90vw] col-span-9 mx-auto mb-6">
         {/* Rest of the Collections */}
         <Link href="/collections" className="w-full text-3xl font-normal ps-1">
           {`Yoyo's Collection List`}

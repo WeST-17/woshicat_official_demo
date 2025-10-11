@@ -4,7 +4,6 @@ import { getProductByHandleHelper, addToCart } from '@/app/server_actions/action
 import ProductCarousel from '../../carousels/productCarousel';
 import ScrollingCarousel from '../../carousels/Carousel';
 import { getProductRecommendationsHelper } from '@/app/server_actions/action';
-import ProductDescription from '../product-description';
 import Image from 'next/image';
 import { useCart } from '../../cart/cartContext';
 import LoadingIcon from '../../transitions-navigation/loading';
@@ -12,6 +11,7 @@ import Loader from '../../transitions-navigation/LoadingScreen';
 import NotFound from '@/app/not-found';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
+import MainProductDescription from '../main-product-description';
 
 interface Handle {
     handle: string
@@ -193,23 +193,24 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover w-full'
             />
         </div>
-        <div className='h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
-            <div className='flex justify-center items-start grid lg:grid-cols-8 gap-8 relative mb-20'>
+        <div className='relative h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
+            <div className='relative flex justify-center items-start grid lg:grid-cols-8 mb-20 gap-4'>
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
-                    <div className='relative col-span-8 lg:col-span-4 rounded-md flex justify-center'>
+                    <>
+                    <div className='relative col-span-8 lg:col-span-5 rounded-md lg:hidden flex justify-center'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <ProductCarousel images={item.images}>
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className='w-full h-full aspect-[9/10] flex justify-center items-center relative'>
+                                <div key={index} className='w-full h-full aspect-[4/5] flex justify-center items-center relative'>
                                     <img
                                         src={image.url}
-                                        alt={image.altText}
-                                        className='mx-auto pointer-events-none object-cover h-full'
+                                        alt={image.altText || `Image of the ${item.title}`}
+                                        className='pointer-events-none object-contain w-full h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
-                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm pe-2'>
+                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm p-1'>
                                             {image.altText.split('/')[0]}
                                             <br></br>
                                             {image.altText.split('/')[1]}
@@ -219,12 +220,34 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </div>
                             ))}
                         </ProductCarousel>
+                    </div>
+
+                    {/* Large screen size and up */}
+                    <div className='relative col-span-5 rounded-md max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
+                        {/* Render product details */}
+                            {item.images.map((image: {url: string, altText: string}, index: number) => (
+                                <div key={index} className='w-full h-full aspect-[5/7] flex justify-center items-center relative'>
+                                    <img
+                                        src={image.url}
+                                        alt={image.altText || `Image of the ${item.title}`}
+                                        className='mx-auto pointer-events-none object-cover h-full w-full'
+                                    />
+                                    {image.altText && image.altText.includes('Size') && (
+                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-xs p-1 bg-white/60 rounded-md'>
+                                            {image.altText.split('/')[0]}
+                                            <br></br>
+                                            {image.altText.split('/')[1]}
+                                        </div>
+                                    )}
+                                    
+                                </div>
+                            ))}
                         
                     </div>
-                    
+                    </>
                 )}
                     
-                <div className='max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-4'>
+                <div className='sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-3 h-fit lg:h-1/3 w-full relative gap-4'>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -280,7 +303,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                                 key={i}
                                                 className={`rounded-full border-2 border-stone-300 me-1 p-2 w-10 h-10 text-sm font-semibold shadow-sm 
                                                 ${
-                                                    variant.quantity === 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-stone-200 hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600'
+                                                    variant.quantity <= 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-stone-200 hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600'
                                                 } ${
                                                     selectedSize === sizing ? 'bg-stone-500 text-white' : ''
                                                 }`
@@ -298,10 +321,10 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                             </div>
                         </>
                     )}
-                    <div className='w-full flex gap-2 mt-10'>
+                    <div className='w-full flex gap-2 mt-8'>
                         {!hasNoVariants() && (
                             <>
-                            <div className="mt-4 flex items-center">
+                            <div className="flex items-center">
                                 <select
                                 id="quantity"
                                 name="quantity"
@@ -327,7 +350,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 w-2/5 mt-4 p-2 text-md font-semibold text-white shadow-sm bg-stone-400 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
+                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-sm bg-stone-400 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
                                 disabled={
                                     item.variants && item.variants.length === 0 
                                     ? (!selectedSize || !selectedColor) 
@@ -346,7 +369,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         )}
                         {hasNoVariants() && (
                             <>
-                            <div className="mt-4 flex items-center">
+                            <div className="flex items-center">
                                 <select
                                 id="quantity"
                                 name="quantity"
@@ -371,7 +394,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 mt-4 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
+                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
                                 disabled={
                                     item.quantity < quantity
                                 }
@@ -388,11 +411,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         )}
                     </div>
                     {/* Product Description: Need to make components for product description and add to cart button */}
-                    <div className='w-full h-full md:col-span-3 mt-6 mb-3 flex flex-col items-start text-lg gap-4'>
-                        <ProductDescription description={item.description}/>
+                    
+                    <div className='w-full h-full mt-6 mb-3 flex flex-col items-start'>
+                        <MainProductDescription description={item.description}/>
                     </div>
                 </div>
             </div>
+            {/*  */}
             {/* Product Recommendations */}
             <div className='h-fit w-full text-lg mx-auto hidden lg:flex items-start mb-6 px-1'>
                 <div className="w-full text-3xl font-normal">

@@ -257,14 +257,12 @@ body {
 
 .collapse-item {
   max-height: 0;
-  opacity: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
+  transition: max-height 0.5s ease-in-out;
 }
 
 .collapse-item.open {
-  max-height: 1000px;
-  opacity: 1;
+  max-height: 120px;
 }
 
 .button-hover:hover .shop-item-button {

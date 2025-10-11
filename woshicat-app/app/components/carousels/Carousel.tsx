@@ -69,13 +69,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
 
     const next = () => {
         if (windowSize.width && windowSize.width > 1023) {
-            if (currIndex < (length - Math.ceil(numPerSlide - 1))) {
+            if ((currIndex < (Math.ceil(length / numPerSlide)) - 1)) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
             }; 
         } else {
-            if (currIndex < (length - Math.floor(mobileSlide))) {
+            if (currIndex < (Math.ceil(length / mobileSlide) - 1)) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
@@ -84,13 +84,17 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     };
 
     const prev = () => {
-        if (currIndex > 0) {
-            setCurrIndex(currIndex - 1);
-        } else {
-            if (windowSize.width && windowSize.width > 1023) {
-                setCurrIndex((length - Math.ceil(numPerSlide - 1)));
+        if (windowSize.width && windowSize.width > 1023) {
+            if ((currIndex > 0)) {
+                setCurrIndex(currIndex - 1);
             } else {
-                setCurrIndex((length - Math.floor(mobileSlide)));
+                setCurrIndex((Math.ceil(length / numPerSlide)) - 1);
+            }; 
+        } else {
+            if (currIndex > 0) {
+                setCurrIndex(currIndex - 1);
+            } else {
+                setCurrIndex((Math.ceil(length / mobileSlide) - 1));
             }
         };
         
@@ -108,7 +112,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     return (
         <>
         <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-[200] gap-1`}>
-            {windowSize.width >= 1024 ? new Array(length - Math.floor(numPerSlide - 1)).fill("").map((_, i) => (
+            {windowSize.width >= 1024 ? new Array(Math.ceil(length / numPerSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
@@ -119,7 +123,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         onClick={() => setCurrIndex(i)}
                     />
                 </div>
-            )) : new Array(length - Math.floor(mobileSlide - 1)).fill("").map((_, i) => (
+            )) : new Array(Math.ceil(length / mobileSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
@@ -141,7 +145,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     <div
                         className={`lg:gap-1 touch-pan-y flex transition transition-all duration-500 ease-in-out carousels ${addClass}`}
                         style={{
-                            transform: `translateX(-${currIndex * (100)}%)`,
+                            transform: `translateX(-${currIndex * (100 * (windowSize.width >= 1024 ? Math.floor(numPerSlide) : Math.floor(mobileSlide)))}%)`,
                             width: `calc(${100 / (windowSize.width >= 1024 ? numPerSlide : mobileSlide)}%)`
                         }}
                         ref={childRef}

@@ -19,7 +19,7 @@ const nextConfig = {
       },
       // {
       //   protocol: 'https',
-      //   hostname: 'asiatimessquare.com',
+      //   hostname: 'www.instagram.com',
       //   port: ''
       // },
 
