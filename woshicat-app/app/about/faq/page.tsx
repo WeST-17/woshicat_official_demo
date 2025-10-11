@@ -7,9 +7,9 @@ const BrandFAQ = () => {
   
   return (
     <>
-      <main className="w-screen h-fit flex justify-center items-center grid grid-cols-1 mb-40">
-        <div className="mx-auto flex flex-col w-full p-2 lg:w-1/2 mt-30 h-fit">
-          <div className="flex flex-col justify-start w-full">
+      <main className="w-screen h-fit flex justify-center items-center grid grid-cols-1 mt-20 lg:mt-32">
+        <div className="mx-auto flex flex-col w-full p-2 lg:w-1/2 h-fit">
+          <div className="flex flex-col justify-center lg:justify-start w-full">
             <h1 className="text-5xl mb-8">Frequently Asked Questions:</h1>
           </div>
           
@@ -17,7 +17,7 @@ const BrandFAQ = () => {
           {FAQ.map((question) => (
             <div className="flex flex-col justify-start w-full h-fit transition duration-300" key={question.link}>
               <Collapse classProp="text-base -translate-y-5 flex justify-start items-center" title={`${question.q}`}>
-                <p className="mb-2 w-full flex justify-start">
+                <p className="mb-2 w-full flex justify-start text-start">
                   {question.a}
                 </p>
               </Collapse>
