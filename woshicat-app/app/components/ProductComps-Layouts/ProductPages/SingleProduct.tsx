@@ -210,7 +210,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         className='pointer-events-none object-contain w-full h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
-                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm p-1'>
+                                        <div className='bg-white/60 rounded-md flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm p-1'>
                                             {image.altText.split('/')[0]}
                                             <br></br>
                                             {image.altText.split('/')[1]}
@@ -428,14 +428,14 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             <div className='grid grid-cols-1 h-fit w-full text-lg mx-auto flex items-start'>
                 <ScrollingCarousel addClass='' numPerSlide={5.1} mobileSlide={2.1} length={10}>
                 {recommendations.map((product: any) => (
-                    <div className={`w-full h-full px-1 bg-white/80`} key={product.id}>
+                    <div className={`w-full h-full px-1`} key={product.id}>
                         <div className={`relative text-center h-full`} 
                             key={product.id}
                         >
                             <div className={`z-[1000] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
                             
-                            <div className={`bg-white flex justify-center overflow-hidden`}>
-                            <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
+                            <div className={`flex justify-center overflow-hidden`}>
+                            <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
                             
                             <div className={`relative flex justify-center items-center aspect-[9/10] h-full`}>
                                 

@@ -138,8 +138,8 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         </section>
         <div className={`relative w-full overflow-hidden`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-2 h-3/4 z-[100] bg-white px-2 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
-                    <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={20} height={1}/>
+                <button className={`absolute left-0 h-3/4 z-[100] bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
+                    <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
                 <div className="relative overflow-hidden w-full h-full">
                     <div
@@ -156,8 +156,8 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-3/4 right-2 z-[100] bg-white rounded-md px-2 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
-                    <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={20} height={1}/>
+                <button className={`absolute h-3/4 right-0 z-[100] bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
+                    <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>
         </div>
