@@ -425,14 +425,14 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 </div>
             </div>
             <FadeInImage>
-            <div className='grid grid-cols-1 h-fit w-full text-lg mx-auto flex items-start'>
-                <ScrollingCarousel addClass='' numPerSlide={5.1} mobileSlide={2.1} length={10}>
+            <div className='grid grid-cols-1 h-full w-full text-lg mx-auto flex justify-center items-start'>
+                <ScrollingCarousel addClass='' numPerSlide={5} mobileSlide={2} length={10}>
                 {recommendations.map((product: any) => (
-                    <div className={`w-full h-full px-1`} key={product.id}>
+                    <div className={`px-0.5 w-full h-full`} key={product.id}>
                         <div className={`relative text-center h-full`} 
                             key={product.id}
                         >
-                            <div className={`z-[1000] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+                            <div className={`z-[1000] w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
                             
                             <div className={`flex justify-center overflow-hidden`}>
                             <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
@@ -453,8 +453,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                             </div>
                             </Link>
                             </div>
-                            <div className='flex w-full p-2 text-sm gap-2'>
-                            <div className="text-stone-700 me-auto lg:text-sm">{product.name}</div>
+                            <div className='flex w-full p-1 text-sm gap-2'>
+                            <div className="text-stone-700 me-auto lg:text-sm text-start">{product.name}</div>
                             <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
                             </div>
                         </div>

@@ -4,7 +4,6 @@ import Image from "next/image";
 import CoverHeader from "../components/ProductComps-Layouts/heroImageInsert";
 import ProductCards from "../components/ProductComps-Layouts/product-cards";
 import CollectionListing from "../components/collection-listings/collectionListing";
-import ScrollingCarousel from "../components/carousels/Carousel";
 
 const Collections = () => {
   
@@ -55,9 +54,9 @@ const Collections = () => {
         </div>
         <div className="w-full md:w-[90vw] mx-auto flex relative">
           {/* Begin section */}
-            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3}>
-              <CollectionListing addClass="w-full h-full px-1"/>
-            </ScrollingCarousel>
+            
+            <CollectionListing addClass="w-full h-full"/>
+            
           {/* End section */}
         </div>
         {/* Show All Products */}

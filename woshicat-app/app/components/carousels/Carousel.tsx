@@ -143,9 +143,10 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 </button>
                 <div className="relative overflow-hidden w-full h-full">
                     <div
-                        className={`lg:gap-1 touch-pan-y flex transition transition-all duration-500 ease-in-out carousels ${addClass}`}
+                        className={`touch-pan-y flex transition transition-all duration-500 ease-in-out carousels ${addClass}`}
                         style={{
-                            transform: `translateX(-${currIndex * (100 * (windowSize.width >= 1024 ? Math.floor(numPerSlide) : Math.floor(mobileSlide)))}%)`,
+                            transform: `translateX(-${currIndex * ((windowSize.width >= 1024 ? 100 * Math.floor(numPerSlide) - (currIndex === (Math.ceil(length / numPerSlide) - 1) && (length % Math.floor(numPerSlide) > 0) ? (100 * Math.abs((length % Math.floor(numPerSlide)) - Math.floor(numPerSlide))) : 0) 
+                                : 100 * Math.floor(mobileSlide)))}%)`,
                             width: `calc(${100 / (windowSize.width >= 1024 ? numPerSlide : mobileSlide)}%)`
                         }}
                         ref={childRef}

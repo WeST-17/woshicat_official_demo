@@ -140,7 +140,7 @@ async function getCollectionInfo(): Promise<string[]> {
         handle: collection.node.handle,
         title: collection.node.title,
         imgSrc: collection.node.image.url,
-        imgAlt: collection.node.image.altText,
+        imgAlt: collection.node.image.altText || "set alt text",
         featured: collection.node.metafield.value
       }
     })

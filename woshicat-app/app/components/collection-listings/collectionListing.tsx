@@ -5,6 +5,7 @@ import Square from "../bento-layout/square";
 import Image from "next/image";
 import { getCollectionInfoHelper } from "@/app/server_actions/action";
 import Loader from "../transitions-navigation/LoadingScreen";
+import ScrollingCarousel from "../carousels/Carousel";
 
 interface DisplayProps {
   addClass: string,
@@ -35,6 +36,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
 
   return (
       <>
+      <ScrollingCarousel addClass="lg:gap-1" numPerSlide={3} mobileSlide={1} length={3}>
         { loading && (
           <div className="object-contain relative w-full overflow-hidden flex justify-center items-end">
             <Loader />
@@ -42,7 +44,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
         )}
         { !loading && !error && collectionList.map((collection) => (
             
-            <section className={`${addClass}`} key={collection.handle}>
+            <section className={`mx-auto ${addClass}`} key={collection.handle}>
               <Square
               link={`/collections/${collection.handle}`}
               collectionName={`${collection.title}`}
@@ -58,6 +60,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
               </Square>
             </section>
           ))}
+        </ScrollingCarousel>
       </>
   )
 }

@@ -142,7 +142,7 @@ const ProductCards = () => {
           <div className={`relative text-center h-full overflow-hidden bg-white/80`} 
             key={product.id}
           >
-            <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+            <div className={`z-[101] w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
             <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
             <div className={`bg-white flex justify-center overflow-hidden`}>

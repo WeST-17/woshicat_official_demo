@@ -190,7 +190,7 @@ const Home = () => {
       </div>
 
       {/* Product Showcase */}
-      
+
 
       {/* Collection Carousel Display */}
       <div className="w-full lg:w-[90vw] col-span-9 mx-auto mb-6">
@@ -201,9 +201,7 @@ const Home = () => {
         
         <div className="w-full mx-auto flex">
           {/* Begin section */}
-            <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={3}>
-              <CollectionListing addClass="w-full h-full"/>
-            </ScrollingCarousel>
+            <CollectionListing addClass="w-full h-full"/>
           {/* End section */}
         </div>
       </div>
