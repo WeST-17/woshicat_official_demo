@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Square from "../bento-layout/square";
 import Image from "next/image";
 import { getCollectionInfoHelper } from "@/app/server_actions/action";
@@ -30,38 +30,42 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
         } 
         setLoading(false);
       };
-      console.log('Products Gallery loaded.');
+      
       fetchData();
+      console.log('Products Gallery loaded.');
     }, []);
 
   return (
-      <>
-      <ScrollingCarousel addClass="lg:gap-1" numPerSlide={3} mobileSlide={1} length={3}>
-        { loading && (
-          <div className="object-contain relative w-full overflow-hidden flex justify-center items-end">
-            <Loader />
-          </div>
-        )}
-        { !loading && !error && collectionList.map((collection) => (
-            
-            <section className={`mx-auto ${addClass}`} key={collection.handle}>
-              <Square
-              link={`/collections/${collection.handle}`}
-              collectionName={`${collection.title}`}
-              shopNow={true}
-              > 
-                <Image 
-                  className="object-cover absolute top-0 left-0 bottom-0 right-0" 
-                  src={collection.imgSrc} 
-                  alt={collection.imgAlt || ''} 
-                  fill={true}
-                />
-                
-              </Square>
-            </section>
-          ))}
+    <>
+      { loading && (
+        <div className="object-contain relative w-full overflow-hidden flex justify-center items-end">
+          <Loader />
+        </div>
+      )}
+      
+      { !loading && !error && (
+        <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={collectionList.length}>
+          { collectionList.map((collection) => (
+              <section className={`mx-auto lg:px-0.5 ${addClass}`} key={collection.handle}>
+                <Square
+                link={`/collections/${collection.handle}`}
+                collectionName={`${collection.title}`}
+                shopNow={true}
+                > 
+                  <Image 
+                    className="object-cover h-full" 
+                    src={collection.imgSrc} 
+                    alt={collection.imgAlt || ''} 
+                    fill={true}
+                  />
+                  
+                </Square>
+              </section>
+            ))
+          }
         </ScrollingCarousel>
-      </>
+      )}
+    </>
   )
 }
 

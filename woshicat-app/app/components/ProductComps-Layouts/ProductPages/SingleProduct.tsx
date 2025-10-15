@@ -11,7 +11,7 @@ import Loader from '../../transitions-navigation/LoadingScreen';
 import NotFound from '@/app/not-found';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
-import MainProductDescription from '../main-product-description';
+import MainProductDescription from '../components/main-product-description';
 
 interface Handle {
     handle: string
@@ -198,7 +198,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
                     <>
-                    <div className='relative col-span-8 lg:col-span-5 rounded-md lg:hidden flex justify-center'>
+                    <div className='relative col-span-8 rounded-md lg:hidden flex justify-center'>
                         {/* Render product details */}
                         {/* Add a carousel for images inside current div */}
                         <ProductCarousel images={item.images}>
@@ -226,7 +226,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     <div className='relative col-span-5 rounded-md max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
                         {/* Render product details */}
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className='w-full h-full aspect-[5/7] flex justify-center items-center relative'>
+                                <div key={index} className={`w-full h-full aspect-[5/7] flex justify-center items-center relative`}>
                                     <img
                                         src={image.url}
                                         alt={image.altText || `Image of the ${item.title}`}
@@ -247,7 +247,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </>
                 )}
                     
-                <div className='sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-3 h-fit lg:h-1/3 w-full relative gap-4'>
+                <div className={`sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-3 h-fit lg:h-1/3 w-full relative gap-4`}>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -425,7 +425,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 </div>
             </div>
             <FadeInImage>
-            <div className='grid grid-cols-1 h-full w-full text-lg mx-auto flex justify-center items-start'>
+            <div className={`grid grid-cols-1 h-full w-full text-lg mx-auto flex justify-center items-start`}>
                 <ScrollingCarousel addClass='' numPerSlide={5} mobileSlide={2} length={10}>
                 {recommendations.map((product: any) => (
                     <div className={`px-0.5 w-full h-full`} key={product.id}>

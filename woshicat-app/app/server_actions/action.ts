@@ -344,7 +344,7 @@ async function createCart(itemID: string, quantity: number): Promise<boolean> {
   const { data, errors } = await client.request(cartMutation);
   try {
     const cartID = data.cartCreate.cart.id;
-    (await cookies()).set('cartID', cartID, { secure: true }); // set cookie to store cart ID
+    (await cookies()).set('cartID', cartID, { secure: true, httpOnly: true }); // set cookie to store cart ID
     
     console.log('cart created and id set. checkout url set.');
     return true;

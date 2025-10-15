@@ -5,6 +5,7 @@ import { getCollectionNamesHelper, getAllProductsHelper } from '../../server_act
 import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
+import Collapse from './components/collapse-item';
 
 const ProductCards = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -30,8 +31,8 @@ const ProductCards = () => {
       };
   }, []);
 
-  const filterClick = (x: string) => {
-    setFilter(x);
+  const filterClick = ( value: string ) => {
+    setFilter(value);
   }
 
   const currFormat = new Intl.NumberFormat('default', {
@@ -93,28 +94,28 @@ const ProductCards = () => {
     <>
     <div className='w-[90vw] h-[70px] mx-auto' id='top-products'/>
     <div 
-      className={`w-full lg:w-[90vw] flex items-center justify-start mx-auto text-2xl font-semibold`}
+      className={`w-full lg:w-[90vw] flex items-center justify-start mx-auto text-3xl font-semibold mb-2`}
       id='top-products'
     >
       {`Shop / ${filter}`}
     </div>
-    <div className='hidden mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-8'>
-      <div>
-        {`Filter by Collection:`}
-      </div>
-      <button onClick={() => filterClick('All Products')} className={`border-transparent border-2 ${filter === 'All Products' ? '' : 'opacity-50'}`}>
-        {`All Products`}
-      </button>
-      {collectionList.map((collection) => (
-        <button 
-          key={collection.id} 
-          onClick={() => filterClick(collection.title)}
-          className={`border-transparent border-2 ${filter === collection.title ? '' : 'opacity-50'}`}
-        >
-          {`${collection.title}`}
+    <div className='mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-8'>
+      <div className='w-full lg:w-1/2 flex flex-col justify-start items-start'>
+      <Collapse title={`Filter by Collection:`} classProp='w-full text-xl'>
+        <button onClick={() => filterClick('All Products')} className={`text-base w-full text-start border-transparent border-2 ${filter === 'All Products' ? '' : 'opacity-50'}`}>
+          {`All Products`}
         </button>
-      ))}
-      
+        {collectionList.map((collection) => (
+          <button 
+            key={collection.id} 
+            onClick={() => filterClick(collection.title)}
+            className={`border-transparent border-2 w-full text-start text-base ${filter === collection.title ? '' : 'opacity-50'}`}
+          >
+            {`${collection.title}`}
+          </button>
+        ))}
+      </Collapse>
+      </div>
     </div>
     {loading ? 
       <div className={`flex justify-center w-full md:w-[90vw] mx-1 mx-auto gap-2`}>
@@ -139,21 +140,21 @@ const ProductCards = () => {
         }).map((product) => (
           // Render each product item
           <FadeInImage key={product.id}>
-          <div className={`relative text-center h-full overflow-hidden bg-white/80`} 
+          <div className={`relative text-center h-full overflow-hidden`} 
             key={product.id}
           >
             <div className={`z-[101] w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
             <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
-            <div className={`bg-white flex justify-center overflow-hidden`}>
-              <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
+            <div className={`flex justify-center overflow-hidden`}>
+              <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
               {/* Render product details */}
               <div className='relative flex justify-center items-center aspect-[9/10] h-full'>
                 {/* Default product image */}
                 <img 
                   src={product.images[0].url} 
                   alt={product.images[0].altText} 
-                  className={`${!product.available ? 'grayscale-[0.75]' : ''} ${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} ${product.handle.includes('shirt', 'hoodie') ? 'object-contain bg-white' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                 />
                 
                 {/* Hover image */}

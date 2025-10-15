@@ -14,7 +14,7 @@ interface NavLinkProps {
   closeMenu: () => void;
 }
 
-function removeAfterFirstSlash(url: string) {
+const removeAfterFirstSlash = (url: string) => {
   const parts = url.split('/');
   return parts.slice(0, 2).join('/'); // Keep only the first part
 }

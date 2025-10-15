@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import TransitionSlide from "@/app/components/transitions-navigation/transitionWipe";
 import Loader from "../components/transitions-navigation/LoadingScreen";
 
-export default function ApparelLayout({
+export default function LookbookLayout({
     children,
   }: {
     children: React.ReactNode
@@ -12,9 +12,9 @@ export default function ApparelLayout({
       <section className="flex justify-center">
         <Suspense fallback={
           <Loader />}>
-          {children}
+                {children}
         </Suspense>
         <TransitionSlide/>
       </section>
     )
-};
+}

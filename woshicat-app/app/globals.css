@@ -15,7 +15,6 @@ html {
 }
 
 body {
-  background-color: #FAF9F6;
   color: black;
   text-rendering: auto;
   font-weight: normal;
@@ -131,7 +130,7 @@ body {
   top: 0;
   right: 0;
   width: 100vw;
-  height: 0vh;
+  height: 100%;
   opacity: 0;
   background-color: #f5f5f4;
   transition: height 0.15s ease-in-out, opacity 0.05s ease; /* Add transition property */
@@ -139,7 +138,6 @@ body {
 }
 
 .cart-container.open-cart {
-  height: 100vh;
   opacity: 1;
   overscroll-behavior: scroll;
 }
@@ -244,6 +242,18 @@ body {
   opacity: 1;
 }
 
+.fade-scroll {
+  animation: fadeScroll ease-in-out forwards;
+  animation-timeline: view();
+  animation-range-start: cover;
+  animation-range-end: contain;
+}
+
+@keyframes fadeScroll {
+  0% {transform: translateY(100); opacity: 0}
+  60% {transform: translateY(0); opacity: 1;}
+}
+
 @keyframes FadeOut {
   0% { opacity: 1;}
   100% { opacity: 0;}
@@ -342,11 +352,11 @@ button:hover {
     position: absolute;
     top: 0;
     right: 0;
-    width: 45vw;
-    height: 100vh;
+    width: 45%;
+    height: 70%;
     opacity: 0;
     background-color: #f5f5f4;
-    transition: opacity 0.15s ease; /* Add transition property */
+    transition: opacity 0.35s ease; /* Add transition property */
   }
 
   .cart-container.open-cart {

@@ -12,12 +12,12 @@ const SmoothScroll: React.FC<Children> = ({ children }) => {
     const [lenisRef, setLenisRef] = useState<any>(null);
     const [rafState, setRafState] = useState<any>(null);
     const { smoothScroll } = useToggle();
-
+    
     useEffect(() => {
         const smoothScrolling = () => {
             const scroller = new Lenis({
-                easing: (t) => Math.min(1, 1 - Math.pow(1 - t, 4)),
-                duration: 1.2
+                easing: (t) => Math.min(1, 1 - Math.pow(1 - t, 3)),
+                duration: 0.5
             });
             let rf;
 

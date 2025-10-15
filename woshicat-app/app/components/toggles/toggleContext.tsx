@@ -1,15 +1,15 @@
 'use client';
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface ToggleContextType {
-    smoothScroll: boolean,
-    setSmoothScroll: React.Dispatch<React.SetStateAction<boolean>>;
+    smoothScroll: boolean | null,
+    setSmoothScroll: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 const ToggleContext = createContext<ToggleContextType | undefined>(undefined);
 
 export const ToggleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [smoothScroll, setSmoothScroll] = useState<boolean>(false);
+    const [smoothScroll, setSmoothScroll] = useState<boolean | null>(false);
 
     return (
     <ToggleContext.Provider value={{ smoothScroll, setSmoothScroll }}>

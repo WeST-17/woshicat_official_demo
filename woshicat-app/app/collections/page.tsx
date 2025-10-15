@@ -1,7 +1,7 @@
 'use client';
 import React from "react";
 import Image from "next/image";
-import CoverHeader from "../components/ProductComps-Layouts/heroImageInsert";
+import CoverHeader from "../components/ProductComps-Layouts/components/heroImageInsert";
 import ProductCards from "../components/ProductComps-Layouts/product-cards";
 import CollectionListing from "../components/collection-listings/collectionListing";
 

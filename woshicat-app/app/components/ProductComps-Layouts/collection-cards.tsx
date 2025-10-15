@@ -5,10 +5,10 @@ import { getCollectionProductsHelper } from '../../server_actions/action';
 import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
-import CoverHeader from './heroImageInsert';
+import CoverHeader from './components/heroImageInsert';
 
 interface CollectionType {
-    collectionHandle: string
+    collectionHandle: string | any
 }
 
 const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
@@ -106,18 +106,17 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
       />
     </div>
     <div className={`grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
-      {/* Render your products here using the 'products' state */}
       {products.map((product) => (
         // Render each product item
         <FadeInImage key={product.handle}>
-        <div className={`relative text-center h-full bg-white/80 overflow-hidden`}  
+        <div className={`relative text-center h-full overflow-hidden`}  
           key={product.handle}
         >
           <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
           <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
           
           <div className={`bg-white flex justify-center overflow-hidden`}>
-            <Link className='w-full flex justify-center bg-white' href={`/collections/${product.collection}/${product.handle}`} passHref>
+            <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
             {/* Render product details */}
             <div className='relative aspect-[9/10] flex justify-center items-center'>
               {/* Default product image */}

@@ -17,7 +17,6 @@ interface VideoHeroProps {
 const VideoHero: React.FC<VideoHeroProps> = ({ children, source, linkToUrl, logoSrc, imageAlt, imageWidth, imageClassName }) => {
     return (
         <>
-        {/* Singularity */}
         <div className="flex relative justify-center items-center h-[100vh] w-screen">
         <video 
             className="object-cover xl:w-full max-xl:h-full" 

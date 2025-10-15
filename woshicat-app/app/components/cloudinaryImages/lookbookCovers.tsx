@@ -16,22 +16,23 @@ interface LookBookCoverProps {
 const LookBookCover: React.FC<LookBookCoverProps> = ({ photoSrc, photoAlt, title, link, classExtra }) => {
     return (
         <>
-        <section className={`relative w-full h-[75vh] ${classExtra}`} id='item-1'>
-          <Link href={link}>
-            <FadeInImage>
+        <FadeInImage>
+        <section className={`relative w-full h-full overflow-hidden ${classExtra}`}>
+          <Link href={link} className="relative w-full h-full">
                 <Image 
                     src={photoSrc}
                     alt={photoAlt}
-                    fill={true}
+                    width={2000}
+                    height={1}
                     className='object-cover h-full z-[1]'
                 />
-                <div className="absolute bottom-0 left-0 p-3 mx-2 mx-auto font-thin text-white bg-black/45 w-full z-[101]">
-                    <h2 className="text-lg lg:text-2xl ">{title}</h2>
+                <div className="absolute w-full h-full top-0 mx-auto text-white w-full z-[99] flex justify-center items-center">
+                    <h2 className="text-lg lg:text-2xl p-2 bg-black/30 hover:bg-black/10 transition duration-300 rounded-lg h-full w-full flex items-center">{title}</h2>
                 </div>
-            </FadeInImage>
-            <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 hover:opacity-25 transition duration-300 z-[100]'/>
+            {/* <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 z-[100]'/> */}
           </Link>
         </section>
+        </FadeInImage>
         </>
     )
 }

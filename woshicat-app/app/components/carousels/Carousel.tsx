@@ -10,14 +10,14 @@ interface CarouselComponentProps {
     addClass?: string,
     numPerSlide: number,
     length: number,
-    mobileSlide: number
+    mobileSlide: number,
+    autoPlay?: boolean
 }
 
-const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length, mobileSlide }) => {
+const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length, mobileSlide, autoPlay }) => {
     const [currIndex, setCurrIndex] = useState<number>(0);
     const childRef = useRef<HTMLDivElement | null>(null);
     const windowSize = useWindowDimensions();
-
     const [touchPosition, setTouchPosition] = useState<any>(null);
 
     useEffect(() => {
@@ -100,6 +100,17 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         
     };
 
+    useEffect(() => {
+        if (autoPlay) {
+            const timeout = 
+            setTimeout(() => {
+                next();
+            }, 6000);
+            return () => clearTimeout(timeout);
+        }
+        
+    }, [currIndex, autoPlay])
+
     if (windowSize.width === undefined) {
         
         return (
@@ -136,9 +147,9 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 </div>
             ))}
         </section>
-        <div className={`relative w-full overflow-hidden`}>
+        <div className={`relative w-full overflow-hidden rounded-lg`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-0 h-3/4 z-[100] bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-0 h-3/4 z-[100] bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
                 <div className="relative overflow-hidden w-full h-full">
@@ -157,7 +168,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-3/4 right-0 z-[100] bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>

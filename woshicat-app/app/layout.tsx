@@ -23,16 +23,15 @@ export const metadata: Metadata = {
   keywords: ['Apparel', 'Hoodies', 'T-shirts', 'Sweatshirts', 'pants', 'Comfort', 'Quality', 'cat', 'loungewear', 'chinese', 'japanese', 'asian', 'anime', 'subway', 'japan', 'work culture', 'hustle', 'tired','streetwear']
 };
 
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
 
   return (
     <html lang="en">
-      <body className={`${lato.className} text-stone-800 w-full mx-auto`}>
+      <body className={`${lato.className} text-black w-full mx-auto bg-white`}>
             <CartProvider>
             <ToggleProvider>
             <Header />
             <SmoothScroll>
-            <div className="w-full"/>
               {children}
             </SmoothScroll>
             <Footer />

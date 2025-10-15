@@ -1,9 +1,42 @@
+'use client';
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import EmailList from "./email-list/EmailList";
 import ToggleButton from "./toggles/toggleButton";
 
 const Footer = () => {
+    const [scrollPos, setScrollPos] = useState<number>(0);
+    const [footer, setFooter] = useState<boolean>(false);
+
+    const HandleScroll = () => {
+        const height = 
+            document.documentElement.scrollHeight - 
+            document.documentElement.clientHeight;
+        const windowScroll = document.documentElement.scrollTop;
+        const scrolled = (windowScroll / height) * 100;
+        setScrollPos(scrolled);
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", HandleScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", HandleScroll);
+        };
+    }, []);
+
+    const showFooter = () => {
+        if (scrollPos > 95) {
+            setFooter(true)
+        } else {
+            setFooter(false)
+        }
+    };
+
+    useEffect(() => {
+        showFooter();
+    }, [scrollPos])
+
     return (
         <>
         <div className="fixed bottom-0 right-0 flex justify-end items-center w-16 h-16 z-[1000]">
@@ -26,7 +59,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <footer className="mt-20 relative w-screen h-fit grid-cols-8 h-[200px] bg-transparent text-base text-stone-800">
+        <footer className={`mt-20 relative w-screen grid-cols-8 bg-white text-base text-black transition transition-all duration-300 h-fit ${footer ? "opacity-100" : "opacity-0"}`}>
             <div className="col-span-8 p-4">
                 {/* Email subscription list! */}
                 <div className="flex w-full justify-center items-center min-h-fit pt-8" id="newsletter">
@@ -80,9 +113,9 @@ const Footer = () => {
                 <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
                 <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
             </div>
-            <div className="absolute bottom-0 left-0 m-1 flex flex-col gap-1 justify-center items-start text-start text-stone-400 md:scale-[0.75] max-md:hidden">
+            <div className="absolute bottom-0 left-0 m-3 flex flex-col gap-1 justify-center items-start text-start text-stone-500 max-md:hidden">
                 <ToggleButton />
-                <p className="text-xs">{`Smoother Scroll`}</p>
+                <p className="text-xs">{`Experimental: Smooth Scroll`}</p>
             </div>
             <div className="mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8">
                 {`WoShi Cat, LLC - 2024`}
