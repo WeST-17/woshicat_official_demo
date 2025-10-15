@@ -13,8 +13,6 @@ const LookbookSlug = () => {
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<any>(null);
   const [pageLoad, setPageLoading] = useState<boolean>(false);
-  // const [landscapeImgs, setLandscapeImgs] = useState<any[]>([]);
-  // const [portrait, setPortrait] = useState<any[]>([]);
   
   useEffect(() => {
     setPageLoading(true);
