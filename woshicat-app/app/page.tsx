@@ -40,7 +40,7 @@ const Home = () => {
         <AutoCarousel>
           {/* Taiji - Fall 2025 */}
           <div className="flex relative justify-center items-center h-[100vh] w-screen">
-            <video className={`object-cover h-full z-[-1]`}
+            <video className={`object-cover h-full w-full z-[-1]`}
               autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/a3d1138f7a52457ead9278adff9de19a.mp4" type="video/mp4" data-v-f518367b="" />
@@ -69,7 +69,7 @@ const Home = () => {
 
           {/* Metro Daydreams */}
           <div className="flex relative justify-center items-end h-[100vh] w-screen">
-            <video className="object-cover h-full z-[-1]" 
+            <video className="object-cover h-full w-full z-[-1]" 
               autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
