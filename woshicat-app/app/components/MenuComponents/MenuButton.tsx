@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from "../cart/cart-styles.module.css";
 
@@ -16,6 +17,7 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
     };
 
   return (
+    <>
     <div className={`${styles.button} mx-2 z-[1001] bg-white relative`}>
         <motion.div 
             className={`w-full h-full`}
@@ -32,12 +34,14 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
                 className={`flex justify-center items-center transition duration-650`}
                 onClick={toggleMenu}
             >
-                <p className={`rounded-[25px] absolute me-1 my-4 top-0 right-0 w-[100px] h-12 text-lg text-center flex justify-center items-center hover:bg-black/50 transition duration-500 ${!open ? "translate-y-16 opacity-0 pointer-event-none" : ""}`}>
+                <p className={`rounded-[25px] absolute top-0 right-0 w-[100px] h-12 text-lg text-center flex justify-center items-center hover:bg-black/50 transition duration-500 ${!open ? "translate-y-16 opacity-0 pointer-event-none" : ""}`}>
                     {`close`}
                 </p>
             </button>
         </motion.div>
-    </div>);
+    </div>
+    </>
+  );
 };
 
 export default MenuButton;

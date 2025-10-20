@@ -13,6 +13,10 @@ const CartHeaderIcon = () => {
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const windowSize = useWindowDimensions();
 
+    // const toggleMenu = () => {
+    //     setCartOpen(!cartOpen);
+    // };
+
     useEffect(() => {
         window.addEventListener('resize', function () {
             if (window.innerWidth < 1024) {setIsMobile(true)} 
