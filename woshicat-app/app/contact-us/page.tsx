@@ -5,8 +5,8 @@ import TransitionSlide from "../components/transitions-navigation/transitionWipe
 const Contact = () => {
   return (
     <>
-      <main className="w-screen h-fit flex justify-center">
-        <div className="flex flex-col mt-12 mb-8 p-2 w-full lg:w-1/2 gap-2">
+      <main className="w-screen h-screen flex justify-center items-center">
+        <div className="flex flex-col mb-8 p-2 w-full lg:w-1/2 gap-2">
           <div className="flex flex-col justify-start w-full h-fit">
             <h1 className="text-5xl mb-4">Contact Us</h1>
           </div>

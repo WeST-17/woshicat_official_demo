@@ -1,0 +1,98 @@
+'use client';
+import { useState, useEffect } from "react";
+import { useCart } from "./cartContext";
+import useWindowDimensions from "../transitions-navigation/useWindowDimension";
+import { AnimatePresence, motion } from "framer-motion";
+import MenuButton from "../MenuComponents/MenuButton";
+import Cart from "./cart";
+import Image from "next/image";
+import cart from './cart-styles.module.css';
+
+const CartHeaderIcon = () => {
+    const { cartOpen, cartItems, setCartOpen } = useCart();
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+    const windowSize = useWindowDimensions();
+
+    useEffect(() => {
+        window.addEventListener('resize', function () {
+            if (window.innerWidth < 1024) {setIsMobile(true)} 
+            else {setIsMobile(false)};
+        });
+
+        console.log('window width changed: ', windowSize.width);
+        return (): void => window.removeEventListener('resize', function () {});
+    }, [windowSize.width]);
+
+    const menu = {
+        open: {
+            width: "650px",
+            height: "880px",
+            top: "10px",
+            right: "0px",
+            transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1]}
+        },
+
+        closed: {
+            width: "90px",
+            height: "60px",
+            top: "0px",
+            right: "0px",
+            transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1]}
+        }
+    }
+
+    const mobileMenu = {
+        open: {
+            width: "95vw",
+            height: "100vh",
+            top: "0px",
+            right: "0px",
+            transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1]}
+        },
+
+        closed: {
+            width: "90px",
+            height: "60px",
+            top: "0px",
+            right: "0px",
+            transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1]}
+        }
+    }
+
+    return (
+        <>
+            <div className={`fixed m-1 top-0 right-0 z-[2004] ${cart.header}`}>
+                <motion.div
+                    className={`${cart.menu}`}
+                    variants={isMobile ? mobileMenu : menu}
+                    animate={cartOpen ? "open" : "closed"}
+                    initial="closed"
+                >
+                    <AnimatePresence>
+                        {cartOpen && <Cart />}
+                    </AnimatePresence>
+                </motion.div>
+                <MenuButton open={cartOpen} setMenuOpen={setCartOpen}>
+                    <>
+                    <Image
+                        src={'/icons/Shopping_Cart_Yoyo.png'}
+                        alt={'Yoyo pushing a shoppping cart'}
+                        width={150}
+                        height={1}
+                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? '' : 'hidden'} ${cartOpen ? "-translate-y-16 opacity-0" : ""}`}
+                    />
+                    <Image
+                        src={'/icons/Shopping_Cart_Empty.png'}
+                        alt={'Yoyo pushing a shoppping cart'}
+                        width={150}
+                        height={1}
+                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? 'hidden' : ''} ${cartOpen ? "-translate-y-16" : ""}`}
+                    />
+                    </>
+                </MenuButton>
+            </div>
+        </>
+    )
+};
+
+export default CartHeaderIcon;

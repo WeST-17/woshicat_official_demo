@@ -1,0 +1,49 @@
+.button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 60px;
+  cursor: pointer;
+  border-radius: 16px;
+  background-color: transparent;
+}
+
+.header .menu {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  border-radius: 16px;
+  position: relative; }
+
+@media screen and (min-width: 1024px) {
+  .header .menu {
+    width: 650px;
+    height: 70vh;
+    background-color: transparent;
+    border-radius: 16px;
+    position: relative; }
+
+  .nav {
+    height: 100%;
+    box-sizing: border-box; 
+    position: absolute;
+    top: 0;
+  }
+}
+
+.nav {
+  height: 85%;
+  box-sizing: border-box; 
+  position: absolute;
+  top: 0;
+}
+.nav .body {
+  display: flex;
+  gap: 10px;
+  flex-direction: column; 
+}
+.nav .body .linkContainer {
+  perspective: 120px;
+  perspective-origin: bottom; 
+}

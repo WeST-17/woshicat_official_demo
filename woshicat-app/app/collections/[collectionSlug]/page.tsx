@@ -13,7 +13,7 @@ const CollectionPage = () => {
       {/* */}
       
       <div className="col-span-8">
-        <div className="flex flex-col justify-center h-fit w-full" id='products'>
+        <div className="flex flex-col justify-center h-fit w-full relative" id='products'>
           <CollectionCards collectionHandle={handle}/>
         </div>
       </div>

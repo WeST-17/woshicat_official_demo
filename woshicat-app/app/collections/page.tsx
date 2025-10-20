@@ -9,8 +9,8 @@ const Collections = () => {
   
   return (
     <>
-    <main className="w-full flex flex-col gap-1">
-      <div className="relative w-full h-fit overflow-hidden">
+    <main className="w-full flex flex-col gap-1 relative">
+      <div className="relative w-full h-fit overflow-hidden absolute top-0 sticky">
         <CoverHeader
           src={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-094.jpg?v=1759774433'} 
           alt={'models sitting at skate park watching you (?)'}
@@ -19,7 +19,7 @@ const Collections = () => {
         />
         
       </div>
-      <div className="w-full mx-auto col-span-9 flex flex-col">
+      <div className="w-full mx-auto col-span-9 flex flex-col relative absolute bg-white/95 rounded-lg"> 
         <div className="relative w-full mx-auto flex flex-col mb-2">
           <div className="absolute left-0 top-0 w-full flex justify-start">
             <Image

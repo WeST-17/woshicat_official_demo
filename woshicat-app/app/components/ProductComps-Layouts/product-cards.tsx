@@ -13,6 +13,7 @@ const ProductCards = () => {
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [cursor, setCursor] = useState<string | null>();
+  const [hasNextPage, setNext] = useState<boolean | null>(null);
   const [filter, setFilter] = useState<string>('All Products');
   const [scrollPos, setScrollPos] = useState<number>(0);
   const HandleScroll = () => {
@@ -41,21 +42,23 @@ const ProductCards = () => {
   });
 
   const getNextPage = async () => {
-    if (cursor === null) {
+    if (!cursor) {
       return;
     }
     const nextPageProducts = await getAllProductsHelper(cursor);
     if (nextPageProducts[1].hasNextPage === true) {
       setCursor(nextPageProducts[1].endCursor);
+      setNext(true);
     } else {
       setCursor(null);
+      setNext(false);
     }
     const productsPlusNext = products.concat(nextPageProducts[0]);
     setProducts(productsPlusNext);
   }
 
   useEffect(() => {
-    if (scrollPos > 75) getNextPage();
+    if (scrollPos > 75 && hasNextPage === true) getNextPage();
   }, [scrollPos]);
   
   useEffect(() => {
@@ -72,6 +75,9 @@ const ProductCards = () => {
         setCollectionList(collections || []);
         if (products[1].hasNextPage) {
           setCursor(products[1].endCursor);
+          setNext(true);
+        } else {
+          setNext(false);
         }
 
       } catch (error) {

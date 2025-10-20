@@ -17,6 +17,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [cursor, setCursor] = useState<string | null>();
   const [scrollPos, setScrollPos] = useState<number>(0);
+  const [hasNextPage, setNext] = useState<boolean | null>(null);
   
   useEffect(() => {
 
@@ -26,6 +27,8 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
       try {
         setProducts(products[0]);
         setCursor(products[1].endCursor);
+        if (products[1].hasNextPage) setNext(true); else setNext(false);
+        
       } catch (error) {
         console.error('Error fetching server component props:', products);
         setError(products);
@@ -59,21 +62,23 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   }, []);
 
   const getNextPage = async () => {
-    if (cursor === null) {
+    if (!cursor) {
       return;
     }
     const nextPageProducts = await getCollectionProductsHelper(collectionHandle, cursor);
     if (nextPageProducts[1].hasNextPage === true) {
       setCursor(nextPageProducts[1].endCursor);
+      setNext(true);
     } else {
       setCursor(null);
+      setNext(false);
     }
     const productsPlusNext = products.concat(nextPageProducts[0]);
     setProducts(productsPlusNext);
   }
 
   useEffect(() => {
-    if (scrollPos > 75 && cursor !== null) getNextPage();
+    if (scrollPos > 75 && hasNextPage) getNextPage();
   }, [scrollPos]);
 
   if (loading) {
@@ -97,7 +102,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
 
   return (
     <>
-    <div className="flex justify-center items-center w-full h-fit relative overflow-hidden mb-8">
+    <div className="flex justify-center items-center w-full h-fit relative overflow-hidden mb-8 absolute top-0 sticky rounded-b-lg">
       <CoverHeader
         src={products[0].collectionImg} 
         alt={products[0].collectionAlt}
@@ -105,7 +110,9 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
         additional="w-full h-full"
       />
     </div>
-    <div className={`grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
+    <section className='w-full relative'>
+    <div className='absolute w-full h-full bg-white/95 rounded-lg'/>
+    <div className={`pt-4 relative grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
       {products.map((product) => (
         // Render each product item
         <FadeInImage key={product.handle}>
@@ -142,6 +149,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
       </FadeInImage>
       ))}
     </div>
+    </section>
     </>
   );
 }

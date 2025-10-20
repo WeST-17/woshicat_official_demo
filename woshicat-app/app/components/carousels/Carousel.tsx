@@ -21,13 +21,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const [touchPosition, setTouchPosition] = useState<any>(null);
 
     useEffect(() => {
-            window.addEventListener("touchstart", handleTouchStart, { passive: false });
-            window.addEventListener("touchmove", handleTouchMove, { passive: false });
-            return () => {
-                window.removeEventListener("touchstart", handleTouchStart);
-                window.removeEventListener("touchmove", handleTouchMove);
-            };
-        }, []);
+        window.addEventListener("touchstart", handleTouchStart, { passive: false });
+        window.addEventListener("touchmove", handleTouchMove, { passive: false });
+        return () => {
+            window.removeEventListener("touchstart", handleTouchStart);
+            window.removeEventListener("touchmove", handleTouchMove);
+        };
+    }, []);
     
     const handleTouchStart = (e: any) => {
         const touchDown = e.touches[0].clientX;
