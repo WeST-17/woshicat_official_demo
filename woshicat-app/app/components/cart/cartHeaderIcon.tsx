@@ -65,7 +65,7 @@ const CartHeaderIcon = () => {
                 <motion.div
                     className={`${cart.menu}`}
                     variants={isMobile ? mobileMenu : menu}
-                    animate={cartOpen ? "open" : "closed"}
+                    animate={cartOpen ? "open" : "closed"} 
                     initial="closed"
                 >
                     <AnimatePresence>
@@ -79,14 +79,14 @@ const CartHeaderIcon = () => {
                         alt={'Yoyo pushing a shoppping cart'}
                         width={150}
                         height={1}
-                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? '' : 'hidden'} ${cartOpen ? "-translate-y-16 opacity-0" : ""}`}
+                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? '' : 'hidden'} ${cartOpen ? "opacity-0" : ""}`}
                     />
                     <Image
                         src={'/icons/Shopping_Cart_Empty.png'}
                         alt={'Yoyo pushing a shoppping cart'}
                         width={150}
                         height={1}
-                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? 'hidden' : ''} ${cartOpen ? "-translate-y-16" : ""}`}
+                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? 'hidden' : ''} ${cartOpen ? "opacity-0" : ""}`}
                     />
                     </>
                 </MenuButton>
