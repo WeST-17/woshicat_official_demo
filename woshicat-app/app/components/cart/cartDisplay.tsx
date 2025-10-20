@@ -91,7 +91,7 @@ const CartShow = () => {
                 {/* Cart content */}
                 {cartItems.length > 0 ? (
                 <>
-                <div className={`${styles.body} w-full overflow-y-visible overscroll-contain p-5`}> 
+                <div className={`${styles.body} w-full overflow-y-visible overscroll-contain p-5 mt-2`}> 
                     {/* "relative cart-items gap-2 h-3/4 w-full overflow-y-visible overscroll-contain rounded-lg p-1" */}
                     {cartItems.map((item: any, i) => {
                         return (

@@ -19,7 +19,21 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
   return (
     <>
     <div className={`${styles.button} mx-2 z-[1001] bg-white relative`}>
-        <motion.div 
+        <button 
+            className={`flex justify-center items-center transition duration-650`}
+            onClick={toggleMenu}
+        >
+            {children ? (children) : "menu"}
+        </button>
+        <button 
+            className={`flex justify-center items-center transition duration-650`}
+            onClick={toggleMenu}
+        >
+            <p className={`rounded-[25px] absolute top-0 right-0 w-[100px] h-12 text-lg text-center flex justify-center items-center hover:bg-black/50 transition duration-500 ${!open ? "translate-y-16 opacity-0 pointer-event-none" : ""}`}>
+                {`close`}
+            </p>
+        </button>
+        {/* <motion.div 
             className={`w-full h-full`}
             animate={{top: open ? "-100%" : "0%"}}
             transition={{ duration: 1, type: "tween", ease: [0.76, 0, 0.24, 1]}}
@@ -38,7 +52,7 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
                     {`close`}
                 </p>
             </button>
-        </motion.div>
+        </motion.div> */}
     </div>
     </>
   );
