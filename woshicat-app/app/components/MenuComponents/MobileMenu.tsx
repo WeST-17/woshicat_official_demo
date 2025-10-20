@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
 
+// mobile menu and general cart menu
 const MobileMenu = () => {
     const [openMenu, setMenuOpen] = useState(false);
     const menuBtnRef = useRef<HTMLDivElement>(null);
