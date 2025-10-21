@@ -9,7 +9,7 @@ import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
 import Image from "next/image";
-import styles from "./cart-styles.module.css";
+import styles from "../../cart-styles.module.css";
 
 
 const CartShow = () => {
