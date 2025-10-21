@@ -33,14 +33,16 @@ const CartHeaderIcon = () => {
             height: "880px",
             top: "10px",
             right: "0px",
+            opacity: 1,
             transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1]}
         },
 
         closed: {
-            width: "90px",
-            height: "60px",
+            width: "120px",
+            height: "70px",
             top: "0px",
             right: "0px",
+            opacity: 0,
             transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1]}
         }
     }
@@ -51,23 +53,25 @@ const CartHeaderIcon = () => {
             height: "100vh",
             top: "0px",
             right: "0px",
+            opacity: 0,
             transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1]}
         },
 
         closed: {
-            width: "90px",
-            height: "60px",
+            width: "120px",
+            height: "70px",
             top: "0px",
             right: "0px",
+            opacity: 0,
             transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1]}
         }
     }
 
     return (
         <>
-            <div className={`fixed m-1 top-0 right-0 z-[2005] ${cart.header}`}>
+            <div className={`fixed top-0 right-0 z-[2005] flex justify-center ${cart.header}`}>
                 <motion.div
-                    className={`${cart.menu}`}
+                    className={`${cart.menu} `}
                     variants={isMobile ? mobileMenu : menu}
                     animate={cartOpen ? "open" : "closed"} 
                     initial="closed"
@@ -81,16 +85,16 @@ const CartHeaderIcon = () => {
                     <Image
                         src={'/icons/Shopping_Cart_Yoyo.png'}
                         alt={'Yoyo pushing a shoppping cart'}
-                        width={150}
+                        width={200}
                         height={1}
-                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? '' : 'hidden'} ${cartOpen ? "opacity-0" : ""}`}
+                        className={`hover:translate-x-3 transition duration-800 ${cartItems.length > 0 ? '' : 'hidden'} ${cartOpen ? "opacity-0" : ""}`}
                     />
                     <Image
                         src={'/icons/Shopping_Cart_Empty.png'}
                         alt={'Yoyo pushing a shoppping cart'}
-                        width={150}
+                        width={200}
                         height={1}
-                        className={`hover:translate-x-3 transition duration-500 ${cartItems.length > 0 ? 'hidden' : ''} ${cartOpen ? "opacity-0" : ""}`}
+                        className={`hover:translate-x-3 transition duration-800 ${cartItems.length > 0 ? 'hidden' : ''} ${cartOpen ? "opacity-0" : ""}`}
                     />
                     </>
                 </MenuButton>

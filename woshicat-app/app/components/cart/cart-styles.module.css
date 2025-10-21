@@ -3,7 +3,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 100px;
+  width: 120px;
   height: 60px;
   cursor: pointer;
   border-radius: 16px;
@@ -35,7 +35,7 @@
 }
 
 .nav {
-  height: 85%;
+  height: 100%;
   box-sizing: border-box; 
   position: absolute;
   top: 0;
