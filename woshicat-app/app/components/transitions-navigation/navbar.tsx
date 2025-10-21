@@ -9,7 +9,7 @@ export default function Navigation() {
             <NavLinks />
         </div>
         
-        <div className="lg:hidden hover:z-[2005]">
+        <div className="lg:hidden hover:z-2005">
             <MobileMenu />
         </div>
         </>

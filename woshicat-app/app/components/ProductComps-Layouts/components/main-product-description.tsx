@@ -17,7 +17,7 @@ const MainProductDescription: React.FC<Description> = ({ description }) => {
 
     return (
         <>
-            <span className='w-full h-[1px] bg-stone-600/50 rounded-full' />
+            <span className='w-full h-px bg-stone-600/50 rounded-full' />
             <div className="w-full my-2 text-sm">
                 <p className="mb-2 text-xl">Description</p>
                 {updateDesc[0]}

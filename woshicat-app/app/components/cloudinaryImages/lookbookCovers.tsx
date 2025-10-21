@@ -24,12 +24,12 @@ const LookBookCover: React.FC<LookBookCoverProps> = ({ photoSrc, photoAlt, title
                     alt={photoAlt}
                     width={2000}
                     height={1}
-                    className='object-cover h-full z-[1]'
+                    className='object-cover h-full z-1'
                 />
-                <div className="absolute w-full h-full top-0 mx-auto text-white w-full z-[99] flex justify-center items-center">
+                <div className="absolute w-full h-full top-0 mx-auto text-white w-full z-99 flex justify-center items-center">
                     <h2 className="text-lg lg:text-2xl p-2 bg-black/30 hover:bg-black/10 transition duration-300 rounded-lg h-full w-full flex items-center">{title}</h2>
                 </div>
-            {/* <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 z-[100]'/> */}
+            {/* <div className='absolute top-0 left-0 w-full h-full bg-white opacity-0 z-100'/> */}
           </Link>
         </section>
         </FadeInImage>

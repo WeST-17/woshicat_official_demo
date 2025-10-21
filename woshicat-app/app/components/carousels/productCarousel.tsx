@@ -79,7 +79,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
 
     return (
         <>
-            <section className="mx-3 rounded-sm h-fit w-14 hidden lg:flex flex-col gap-1 sm:gap-2 justify-center items-center z-[1000]">
+            <section className="mx-3 rounded-xs h-fit w-14 hidden lg:flex flex-col gap-1 sm:gap-2 justify-center items-center z-1000">
                 {new Array(childCount).fill("").map((_, i) => (
                     <div 
                         key={i}
@@ -95,14 +95,14 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                                 alt={images[i].alt}
                                 height={100}
                                 width={100}
-                                className="object-cover bg-white/80 aspect-square rounded-sm"
+                                className="object-cover bg-white/80 aspect-square rounded-xs"
                             />
                         </span>
                     </div>
                 ))}
             </section>
 
-            <section className="lg:hidden py-1 px-2 rounded-sm absolute -bottom-12 mb-2 h-12 w-full gap-1 mx-auto flex justify-center items-end z-[200]">
+            <section className="lg:hidden py-1 px-2 rounded-xs absolute -bottom-12 mb-2 h-12 w-full gap-1 mx-auto flex justify-center items-end z-200">
                 {new Array(childCount).fill("").map((_, i) => (
                     <div 
                         key={i}
@@ -118,7 +118,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                                 alt={images[i].alt}
                                 width={100}
                                 height={1}
-                                className="object-cover bg-white/80 aspect-square rounded-sm"
+                                className="object-cover bg-white/80 aspect-square rounded-xs"
                             />
                         </span>
                     </div>
@@ -126,7 +126,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
             </section>
 
             <div className="bg-white ps-2 w-full flex relative items-center justify-center overflow-hidden rounded-lg" >                
-                <button className={`absolute left-0 h-3/4 z-[100] p-2 rounded-md opacity-10 hover:opacity-80 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
+                <button className={`absolute left-0 h-3/4 z-100 p-2 rounded-md opacity-10 hover:opacity-80 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={20} height={1}/>
                 </button>
                 <div
@@ -140,7 +140,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                     >
                     {children}
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] rounded-md p-2 opacity-10 hover:opacity-80 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
+                <button className={`absolute h-3/4 right-0 z-100 rounded-md p-2 opacity-10 hover:opacity-80 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={20} height={1}/>
                 </button>
             </div>

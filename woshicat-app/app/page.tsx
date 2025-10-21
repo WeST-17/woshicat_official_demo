@@ -39,14 +39,14 @@ const Home = () => {
       >
         <AutoCarousel>
           {/* Taiji - Fall 2025 */}
-          <div className="flex relative justify-center items-center h-[100vh] w-screen">
+          <div className="flex relative justify-center items-center h-screen w-screen">
             <video className={`object-cover h-full w-full z-[-1]`}
               autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/a3d1138f7a52457ead9278adff9de19a.mp4" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
-              <div className="relative z-[100] h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center font-bold text-center gap-2 pointer-events-none z-[-1]">
+              <div className="relative z-100 h-full w-full lg:w-2/4 p-2 w-full flex flex-col items-center justify-center font-bold text-center gap-2 pointer-events-none z-[-1]">
                 <section className="w-full flex justify-center">
                   {/* <Image 
                     // REPLACE WITH TAIJI LOGO
@@ -68,14 +68,14 @@ const Home = () => {
           </div>
 
           {/* Metro Daydreams */}
-          <div className="flex relative justify-center items-end h-[100vh] w-screen">
+          <div className="flex relative justify-center items-end h-screen w-screen">
             <video className="object-cover h-full w-full z-[-1]" 
               autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections/metro-daydreams">
-              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-5xl font-bold z-[100] gap-2 pointer-events-none mx-auto">
+              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-5xl font-bold z-100 gap-2 pointer-events-none mx-auto">
                 <section className="w-full flex justify-center items-center gap-6">
                   <div className="flex justify-center items-center overflow-hidden">
                     <Image 
@@ -92,7 +92,7 @@ const Home = () => {
                   </div>
                 </section>
               </div>
-              <div className="z-[100] h-20 flex items-end justify-center font-bold mb-20 z-[-1]">
+              <div className="z-100 h-20 flex items-end justify-center font-bold mb-20 z-[-1]">
                 <ShopNowButton />
               </div>
               <div className="absolute bottom-0 left-0 w-screen h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center z-[-1]" />
@@ -166,7 +166,7 @@ const Home = () => {
               <Loader />
             </div>
           )}
-            <div className="relative col-span-9 lg:col-span-3 aspect-[9/10] h-full overflow-hidden rounded-lg flex items-center">
+            <div className="relative col-span-9 lg:col-span-3 aspect-9/10 h-full overflow-hidden rounded-lg flex items-center">
               <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
                 <Image
                   src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}

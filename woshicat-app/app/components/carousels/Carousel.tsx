@@ -122,7 +122,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     
     return (
         <>
-        <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-[200] gap-1`}>
+        <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-200 gap-1`}>
             {windowSize.width >= 1024 ? new Array(Math.ceil(length / numPerSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
@@ -149,7 +149,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         </section>
         <div className={`relative w-full overflow-hidden rounded-lg`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-0 h-3/4 z-[100] bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-0 h-3/4 z-100 bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
                 <div className="relative overflow-hidden w-full h-full">
@@ -168,7 +168,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-3/4 right-0 z-[100] bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-3/4 right-0 z-100 bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>

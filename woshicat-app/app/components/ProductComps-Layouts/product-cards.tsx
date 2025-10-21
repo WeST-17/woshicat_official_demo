@@ -149,13 +149,13 @@ const ProductCards = () => {
           <div className={`relative text-center h-full overflow-hidden`} 
             key={product.id}
           >
-            <div className={`z-[101] w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
-            <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
+            <div className={`z-101 w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+            <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
             <div className={`flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
               {/* Render product details */}
-              <div className='relative flex justify-center items-center aspect-[9/10] h-full'>
+              <div className='relative flex justify-center items-center aspect-9/10 h-full'>
                 {/* Default product image */}
                 <img 
                   src={product.images[0].url} 

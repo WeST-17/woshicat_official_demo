@@ -64,7 +64,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
   ];
 
   return (
-    <Suspense fallback={<div className="flex justify-self-center self-center h-[100vh]">Loading...</div>}>
+    <Suspense fallback={<div className="flex justify-self-center self-center h-screen">Loading...</div>}>
       {links.map((link) => (
         <div
           key={link.name}

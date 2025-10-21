@@ -70,11 +70,11 @@ const CartShow = () => {
     return (
         <>
             <div
-                className={`overflow-hidden rounded-[16px] flex flex-col justify-start items-center ${styles.nav} bg-white w-full z-[1000]`}
+                className={`overflow-hidden rounded-[16px] flex flex-col justify-start items-center ${styles.nav} bg-white w-full z-1000`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
-                <div className={`${styles.body} relative sticky top-0 w-full z-[1000] h-20 transition transition-all duration-500`}>
+                <div className={`${styles.body} relative sticky top-0 w-full z-1000 h-20 transition transition-all duration-500`}>
                     <h2 className="absolute top-2 p-4 text-2xl font-medium">
                         <motion.div
                             variants={perspective}
@@ -108,7 +108,7 @@ const CartShow = () => {
                                     <Image
                                         src={item.imageUrl}
                                         alt={item.handle}
-                                        className="h-36 object-cover bg-white aspect-[9/10] mr-2"
+                                        className="h-36 object-cover bg-white aspect-9/10 mr-2"
                                         width={170}
                                         height={1}
                                     />

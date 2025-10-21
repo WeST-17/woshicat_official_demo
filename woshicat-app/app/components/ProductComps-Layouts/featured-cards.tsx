@@ -55,7 +55,7 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
                   <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} length={photos.length} autoPlay={auto}>
                   {photos.map((image: any, index: number) => {
                       return (
-                        <div className="relative flex justify-center items-center w-full mx-auto aspect-[4/5]" key={index}>
+                        <div className="relative flex justify-center items-center w-full mx-auto aspect-4/5" key={index}>
                             <Image 
                               src={image.secure_url}
                               alt={image.altText || 'images of prosperity/seredipity apparel and models'} 

@@ -69,7 +69,7 @@ const CartHeaderIcon = () => {
 
     return (
         <>
-            <div className={`absolute top-0 right-0 z-[2005] ${cart.header}`}>
+            <div className={`absolute top-0 right-0 z-2005 ${cart.header}`}>
                 <motion.div
                     className={`${cart.menu} `}
                     variants={isMobile ? mobileMenu : menu}

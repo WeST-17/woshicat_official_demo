@@ -96,7 +96,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   }
 
   if (error != null) {
-    return <div className='flex justify-center w-[100vw] h-[50vh] mt-64'>Something happened on our end!</div>;
+    return <div className='flex justify-center w-screen h-[50vh] mt-64'>Something happened on our end!</div>;
   }
 
 
@@ -119,13 +119,13 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
         <div className={`relative text-center h-full overflow-hidden`}  
           key={product.handle}
         >
-          <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
-          <div className={`z-[101] rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
+          <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+          <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
           
           <div className={`bg-white flex justify-center overflow-hidden`}>
             <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
             {/* Render product details */}
-            <div className='relative aspect-[9/10] flex justify-center items-center'>
+            <div className='relative aspect-9/10 flex justify-center items-center'>
               {/* Default product image */}
               <img 
                 src={product.images[0].url} 

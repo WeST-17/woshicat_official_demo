@@ -35,25 +35,25 @@ const EmailList = () => {
 
   return (
     <>
-     <div className={`transition-opacity duration-500 fixed inset-y-32 w-full h-96 flex justify-center items-center z-[1000] rounded-md modal ${isSubmitted === true ? 'open' : 'close pointer-events-none'}`}>
-        <div className="relative w-4/5 md:w-1/2 gap-3 flex flex-col justify-center items-center h-full bg-[#FAF9F6] rounded-md z-[1001] text-white shadow-xl">
+     <div className={`transition-opacity duration-500 fixed inset-y-32 w-full h-96 flex justify-center items-center z-1000 rounded-md modal ${isSubmitted === true ? 'open' : 'close pointer-events-none'}`}>
+        <div className="relative w-4/5 md:w-1/2 gap-3 flex flex-col justify-center items-center h-full bg-[#FAF9F6] rounded-md z-1001 text-white shadow-xl">
           <Image 
             src={'/media/graphics/Yoyo happy.png'}
             alt={'Something is coming, and Yoyo is at the bottom of it...'}
             fill={true}
             className="object-cover rounded-md"
           />
-          <p className="text-4xl z-[1002] text-center w-4/5">
+          <p className="text-4xl z-1002 text-center w-4/5">
             Thanks for joining our newsletter!
           </p>
-          <div className="z-[1003] text-center w-4/5 hover:text-sky-300/50 transition duration-300">
+          <div className="z-1003 text-center w-4/5 hover:text-sky-300/50 transition duration-300">
             <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
               <p>Follow us on Instagram @woshicatofficial</p>
             </Link>
           </div>
           
           <div className="absolute w-full h-full bg-black/80 rounded-md" />
-          <button onClick={closeConfirmation} className="absolute top-0 right-0 m-4 z-[1002]">close</button>
+          <button onClick={closeConfirmation} className="absolute top-0 right-0 m-4 z-1002">close</button>
         </div>
       </div>
       <form
@@ -66,11 +66,11 @@ const EmailList = () => {
             alt={'Yoyo is slightly smiling...'}
             width={80}
             height={1}
-            className="translate-y-5 hover:-translate-y-0 transition duration-300 ease"
+            className="translate-y-5 hover:translate-y-0 transition duration-300 ease"
           />
           <div className="absolute rounded-full bg-red-600 w-2 h-2 right-10 -top-8"></div>
         </div>
-        <div className={`z-[999] flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600`}>
+        <div className={`z-999 flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600`}>
           <input
             id="email"
             name="email"
@@ -83,7 +83,7 @@ const EmailList = () => {
           />
           <button
             type="button"
-            className={`m-1 rounded-md w-10 h-10 flex justify-center items-center aspect-square text-sm font-semibold text-white shadow-sm transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
+            className={`m-1 rounded-md w-10 h-10 flex justify-center items-center aspect-square text-sm font-semibold text-white shadow-xs transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
               !isEmailValid || email === '' ? 'bg-stone-100' : 'bg-stone-400 hover:bg-stone-500'
             }`}
             disabled={!isEmailValid || email === ''}
@@ -98,7 +98,7 @@ const EmailList = () => {
           </button>
         </div>
         <div
-          className={`mt-2 z-[999] text-red-600 text-base absolute bottom-0 left-0 ${
+          className={`mt-2 z-999 text-red-600 text-base absolute bottom-0 left-0 ${
             !isEmailValid ? '' : 'hidden'
           }`}
         >

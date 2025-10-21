@@ -39,7 +39,7 @@ const Footer = () => {
 
     return (
         <>
-        <div className="fixed bottom-0 right-0 flex justify-end items-center w-16 h-16 z-[1000]">
+        <div className="fixed bottom-0 right-0 flex justify-end items-center w-16 h-16 z-1000">
             <div className="newsletter-hover w-full h-full relative">
                 <Link 
                     className="opacity-60 hover:opacity-100 transition duration-500 ease w-full h-full"

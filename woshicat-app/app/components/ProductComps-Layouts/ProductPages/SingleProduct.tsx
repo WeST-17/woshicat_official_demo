@@ -159,7 +159,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     if (pageLoad) {
         return (
         <>
-        <div className="object-contain relative w-full h-[100vh] overflow-hidden flex justify-center items-center">
+        <div className="object-contain relative w-full h-screen overflow-hidden flex justify-center items-center">
             <Loader />
         </div>
         </>
@@ -172,7 +172,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     }
 
     if (!item || !item.images) {
-        return <div className='flex justify-center items-center h-[100vh]'></div>;
+        return <div className='flex justify-center items-center h-screen'></div>;
     }
 
 // --------------------------------------------------------------------------------------------------------------------------
@@ -182,7 +182,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         <>
         <div className={`relative flex justify-center items-center h-[50vh] w-screen bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product.*/}
-            <div className='absolute w-full h-full bg-black/25 z-[100] flex items-center justify-center'>
+            <div className='absolute w-full h-full bg-black/25 z-100 flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-4xl lg:text-7xl mt-[70px]'>{item.title}</h1>
             </div>
             <Image 
@@ -203,7 +203,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         {/* Add a carousel for images inside current div */}
                         <ProductCarousel images={item.images}>
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className='w-full h-full aspect-[4/5] flex justify-center items-center relative'>
+                                <div key={index} className='w-full h-full aspect-4/5 flex justify-center items-center relative'>
                                     <img
                                         src={image.url}
                                         alt={image.altText || `Image of the ${item.title}`}
@@ -226,7 +226,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     <div className='relative col-span-5 rounded-md max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
                         {/* Render product details */}
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className={`w-full h-full aspect-[5/7] flex justify-center items-center relative`}>
+                                <div key={index} className={`w-full h-full aspect-5/7 flex justify-center items-center relative`}>
                                     <img
                                         src={image.url}
                                         alt={image.altText || `Image of the ${item.title}`}
@@ -270,7 +270,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         <button
                                             key={index}
                                             style={{ backgroundColor: color }}
-                                            className={`bg-[${color}] rounded-full border-2 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-sm hover:bg-stone-300 transition duration-300 focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
+                                            className={`bg-[${color}] rounded-full border-2 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-xs hover:bg-stone-300 transition duration-300 focus-visible:outline-solid focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
                                                 selectedColor === variant?.color ? 'border-stone-700' : 'border-stone-300'
                                             }`}
                                             onClick={
@@ -301,9 +301,9 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         return (
                                             <button
                                                 key={i}
-                                                className={`rounded-full border-2 border-stone-300 me-1 p-2 w-10 h-10 text-sm font-semibold shadow-sm 
+                                                className={`rounded-full border-2 border-stone-300 me-1 p-2 w-10 h-10 text-sm font-semibold shadow-xs 
                                                 ${
-                                                    variant.quantity <= 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-stone-200 hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600'
+                                                    variant.quantity <= 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-stone-200 hover:bg-stone-500 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600'
                                                 } ${
                                                     selectedSize === sizing ? 'bg-stone-500 text-white' : ''
                                                 }`
@@ -330,7 +330,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 name="quantity"
                                 value={quantity}
                                 onChange={handleQuantitySelection}
-                                className="w-16 h-full border border-gray-300 rounded-sm p-1 text-center"
+                                className="w-16 h-full border border-gray-300 rounded-xs p-1 text-center"
                                 >
                                 {[...Array(5)].map((_, i) => {
                                     const quantity = i + 1;
@@ -350,7 +350,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-sm bg-stone-400 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
+                                className={`rounded-xs flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-stone-400 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
                                 disabled={
                                     item.variants && item.variants.length === 0 
                                     ? (!selectedSize || !selectedColor) 
@@ -375,7 +375,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 name="quantity"
                                 value={quantity}
                                 onChange={handleQuantitySelection}
-                                className="w-16 h-full border border-gray-300 rounded-sm p-1 text-center"
+                                className="w-16 h-full border border-gray-300 rounded-xs p-1 text-center"
                                 >
                                 {[...Array(5)].map((_, i) => {
                                     const quantity = i + 1;
@@ -394,7 +394,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-sm flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 text-md font-semibold text-white shadow-sm hover:bg-stone-500 transition duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
+                                className={`rounded-xs flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 text-md font-semibold text-white shadow-xs hover:bg-stone-500 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
                                 disabled={
                                     item.quantity < quantity
                                 }
@@ -432,12 +432,12 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         <div className={`relative text-center h-full`} 
                             key={product.id}
                         >
-                            <div className={`z-[1000] w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+                            <div className={`z-1000 w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
                             
                             <div className={`flex justify-center overflow-hidden`}>
                             <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
                             
-                            <div className={`relative flex justify-center items-center aspect-[9/10] h-full`}>
+                            <div className={`relative flex justify-center items-center aspect-9/10 h-full`}>
                                 
                                 <img 
                                 src={product.images[0].url} 

@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const NotFound = () => {
     return (
-    <div className="w-screen h-[100vh] flex flex-col justify-start items-center">
+    <div className="w-screen h-screen flex flex-col justify-start items-center">
          <Image
             src={'/media/stickers/Subway2_Sticker.png'}
             alt={'sad yoyo subway sticker'}

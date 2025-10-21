@@ -46,8 +46,8 @@ const MobileMenu = () => {
 
     return (
         <>
-        <div className={`bg-black/70 z-0 fixed left-0 top-0 w-[100vw] h-[100vh] transition-all duration-500 ease-in-out ${openMenu ? '' : 'hidden overflow-hidden'}`} ref={overlayRef} />
-        <div className="flex flex-col-reverse z-[100]">
+        <div className={`bg-black/70 z-0 fixed left-0 top-0 w-screen h-screen transition-all duration-500 ease-in-out ${openMenu ? '' : 'hidden overflow-hidden'}`} ref={overlayRef} />
+        <div className="flex flex-col-reverse z-100">
             <div className={`menu_btn transition transition-all duration-500 ${openMenu ? 'open-btn translate-y-8 translate-x-2' : ''}`} ref={menuBtnRef}>
                 <span className='line top_line rounded-md'></span>
                 <span className='line middle_line rounded-md'></span>

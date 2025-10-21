@@ -17,7 +17,7 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
 
   return (
     <>
-    <div className={`${styles.button} mx-2 z-[1001] bg-white relative`}>
+    <div className={`${styles.button} mx-2 z-1001 bg-white relative`}>
         <motion.div 
             className={`w-full h-full`}
             animate={{top: open ? "-100%" : "0%"}}

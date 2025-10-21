@@ -49,7 +49,7 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
   }
 
   if (!images || error) {
-      return <div className='flex justify-center items-center p-8 h-[100vh]'>Huh, nothing here...</div>;
+      return <div className='flex justify-center items-center p-8 h-screen'>Huh, nothing here...</div>;
   }
 
   return (

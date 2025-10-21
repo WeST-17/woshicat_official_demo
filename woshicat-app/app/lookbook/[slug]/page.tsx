@@ -75,7 +75,7 @@ const LookbookSlug = () => {
                     alt={image.altText} 
                     width={image.width} 
                     height={1} 
-                    className={`object-cover h-full aspect-[9/10]`}
+                    className={`object-cover h-full aspect-9/10`}
                   />
               </FadeInImage>
               </div>
