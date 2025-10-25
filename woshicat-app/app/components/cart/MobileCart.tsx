@@ -66,7 +66,7 @@ const MobileCart = () => {
     return (
         <>
             <div
-                className={`overflow-y-scroll h-4/5 rounded-[16px] flex flex-col justify-start items-center bg-stone-200/80 w-full z-1000`}
+                className={`relative overflow-y-scroll h-full rounded-[16px] flex flex-col justify-start items-center bg-stone-200/20 w-full z-1000`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
@@ -136,16 +136,15 @@ const MobileCart = () => {
                     ) : (
                     <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
                     )}
-            </div>
             {/* Centered Checkout Button */}
             <motion.div
                 variants={perspective}
                 initial={"initial"}
                 animate={"enter"}
                 exit={"exit"}
-                className={`flex h-full w-full gap-2 p-1`}
+                className={`flex h-full w-full gap-2 p-1 sticky top-0 mb-8`}
             >
-                <div className={`flex flex-col w-full sticky bottom-0 p-2 mt-10 transition transition-all`}>
+                <div className={`flex flex-col w-full p-2 transition transition-all`}>
                     
                     <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
                         <div className="w-full flex justify-end items-center text-xl me-2">
@@ -169,6 +168,8 @@ const MobileCart = () => {
                     </div>
                 </div>
             </motion.div>
+            </div>
+            
         </>
     )
 };

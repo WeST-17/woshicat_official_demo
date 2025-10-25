@@ -13,8 +13,12 @@ import styles from "../../cart-styles.module.css";
 
 
 const CartShow = () => {
-    const { cartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
+    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
+
+    const closeCart = () => {
+        setCartOpen(false);
+    }
 
     useEffect(() => {
         const calcTotal = async () => {
@@ -63,18 +67,19 @@ const CartShow = () => {
         exit: {
             opacity: 0,
             translateY: 80,
-            transition: { duration: 1.2, type: "linear", ease: [0.76, 0, 0.24, 1]}
+            transition: { duration: 1, type: "linear", ease: [0.76, 0, 0.24, 1]}
         }
     }
 
     return (
         <>
+            <div className={`fixed inset-0 bg-black/50 z-999 w-screen h-screen`} onClick={closeCart}/>
             <div
-                className={`overflow-hidden rounded-[16px] flex flex-col justify-start items-center ${styles.nav} bg-white w-full z-1000`}
+                className={`relative overflow-y-hidden rounded-[16px] flex flex-col justify-start items-center ${styles.nav} bg-white w-full h-full z-1000`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
-                <div className={`${styles.body} sticky top-0 w-full z-1000 h-20 transition transition-all duration-500`}>
+                <div className={`relative ${styles.body} sticky top-0 w-full z-1000 h-20 transition-all duration-500`}>
                     <h2 className="absolute top-2 p-4 text-2xl font-medium">
                         <motion.div
                             variants={perspective}
@@ -91,11 +96,11 @@ const CartShow = () => {
                 {/* Cart content */}
                 {cartItems.length > 0 ? (
                 <>
-                <div className={`${styles.body} w-full overflow-y-visible overscroll-contain p-5 mt-2`}> 
+                <div className={`w-full flex flex-col overflow-y-visible overflow-y-scroll overscroll-contain p-5 pt-20`}> 
                     {/* "relative cart-items gap-2 h-3/4 w-full overflow-y-visible overscroll-contain rounded-lg p-1" */}
                     {cartItems.map((item: any, i) => {
                         return (
-                        <div key={`b_${i}`} className={`${styles.linkContainer} flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                        <div key={`b_${i}`} className={`${styles.linkContainer} h-32 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                             <motion.div
                                 custom={i}
                                 variants={perspective}
@@ -108,7 +113,7 @@ const CartShow = () => {
                                     <Image
                                         src={item.imageUrl}
                                         alt={item.handle}
-                                        className="h-36 object-cover bg-white aspect-9/10 mr-2"
+                                        className="h-full w-24 object-cover bg-white mr-2"
                                         width={170}
                                         height={1}
                                     />
@@ -146,9 +151,9 @@ const CartShow = () => {
                     initial={"initial"}
                     animate={"enter"}
                     exit={"exit"}
-                    className={`flex h-full w-full gap-2 p-1`}
+                    className={`flex h-56 w-full gap-2 p-1 sticky bottom-0 bg-white/50`}
                 >
-                    <div className={`${styles.body} flex flex-col w-full sticky bottom-0 p-2 mt-10 transition transition-all ${cartOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                    <div className={`${styles.body} flex flex-col w-full p-2 mt-10 transition transition-all ${cartOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
                         
                         <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
                             <div className="w-full flex justify-end items-center text-xl me-2">

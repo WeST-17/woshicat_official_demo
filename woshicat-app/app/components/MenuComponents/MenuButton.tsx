@@ -33,7 +33,7 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
                 className={`flex justify-center items-center transition duration-650`}
                 onClick={toggleMenu}
             >
-                <p className={`rounded-[25px] absolute top-2 right-1 w-[90px] h-12 text-lg text-center flex justify-center items-center hover:bg-black/50 transition duration-500 ${!open ? "translate-y-16 opacity-0 pointer-event-none" : ""}`}>
+                <p className={`rounded-[25px] absolute top-3 right-1 w-[90px] h-12 text-lg text-center flex justify-center items-center hover:bg-black/50 transition duration-500 ${!open ? "translate-y-20 opacity-0 pointer-event-none" : ""}`}>
                     {`close`}
                 </p>
             </button>

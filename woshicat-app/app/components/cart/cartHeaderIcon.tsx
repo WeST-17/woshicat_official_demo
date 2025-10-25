@@ -34,7 +34,7 @@ const CartHeaderIcon = () => {
     return (
         <>
             {/* mobile */}
-            <div className={`md:hidden flex absolute top-0 right-0 z-2005 ${cart.header}`}>
+            <div className={`flex absolute top-0 right-0 z-2005 ${cart.header}`}>
                 <Link href={'/cart'} className="w-full h-full">
                     <>
                     <Image
@@ -55,7 +55,7 @@ const CartHeaderIcon = () => {
                 </Link>
             </div>
             {/* desktop and tablet */}
-            <div className={`max-md:hidden max-md:pointer-events-none absolute top-0 right-0 z-2005 ${cart.header}`}>
+            {/* <div className={`max-md:hidden max-md:pointer-events-none absolute top-0 right-0 z-2005 ${cart.header}`}>
                 <motion.div
                     className={`${cart.menu} `}
                     variants={menu}
@@ -84,7 +84,7 @@ const CartHeaderIcon = () => {
                     />
                     </>
                 </MenuButton>
-            </div>
+            </div> */}
         </>
     )
 };
