@@ -1,36 +1,19 @@
 'use client';
-import { useState, useEffect } from "react";
 import { useCart } from "./cartContext";
-import useWindowDimensions from "../transitions-navigation/useWindowDimension";
 import { AnimatePresence, motion } from "framer-motion";
 import MenuButton from "../MenuComponents/MenuButton";
 import Cart from "./cart";
 import Image from "next/image";
+import Link from "next/link";
 import cart from '../../cart-styles.module.css';
 
 const CartHeaderIcon = () => {
     const { cartOpen, cartItems, setCartOpen } = useCart();
-    const [isMobile, setIsMobile] = useState<boolean>(false);
-    const windowSize = useWindowDimensions();
-
-    // const toggleMenu = () => {
-    //     setCartOpen(!cartOpen);
-    // };
-
-    useEffect(() => {
-        window.addEventListener('resize', function () {
-            if (window.innerWidth < 1024) {setIsMobile(true)} 
-            else {setIsMobile(false)};
-        });
-
-        console.log('window width changed: ', windowSize.width);
-        return (): void => window.removeEventListener('resize', function () {});
-    }, [windowSize.width]);
 
     const menu = {
         open: {
             width: "650px",
-            height: "880px",
+            height: "90vh",
             top: "10px",
             right: "0px",
             opacity: 1,
@@ -47,32 +30,35 @@ const CartHeaderIcon = () => {
         }
     }
 
-    const mobileMenu = {
-        open: {
-            width: "95vw",
-            height: "100vh",
-            top: "0px",
-            right: "0px",
-            opacity: 0,
-            transition: { duration: 0.75, type: "tween", ease: [0.76, 0, 0.24, 1]}
-        },
-
-        closed: {
-            width: "120px",
-            height: "70px",
-            top: "0px",
-            right: "0px",
-            opacity: 0,
-            transition: { duration: 0.75, delay: 0.35, type: "tween", ease: [0.76, 0, 0.24, 1]}
-        }
-    }
 
     return (
         <>
-            <div className={`absolute top-0 right-0 z-2005 ${cart.header}`}>
+            {/* mobile */}
+            <div className={`md:hidden flex absolute top-0 right-0 z-2005 ${cart.header}`}>
+                <Link href={'/cart'} className="w-full h-full">
+                    <>
+                    <Image
+                        src={'/icons/Shopping_Cart_Yoyo.png'}
+                        alt={'Yoyo pushing a shoppping cart'}
+                        width={120}
+                        height={1}
+                        className={`hover:translate-x-3 transition duration-800 ${cartItems.length > 0 ? '' : 'hidden'} ${cartOpen ? "opacity-0" : ""}`}
+                    />
+                    <Image
+                        src={'/icons/Shopping_Cart_Empty.png'}
+                        alt={'Yoyo pushing a shoppping cart'}
+                        width={120}
+                        height={1}
+                        className={`hover:translate-x-3 transition duration-800 ${cartItems.length > 0 ? 'hidden' : ''} ${cartOpen ? "opacity-0" : ""}`}
+                    />
+                    </>
+                </Link>
+            </div>
+            {/* desktop and tablet */}
+            <div className={`max-md:hidden max-md:pointer-events-none absolute top-0 right-0 z-2005 ${cart.header}`}>
                 <motion.div
                     className={`${cart.menu} `}
-                    variants={isMobile ? mobileMenu : menu}
+                    variants={menu}
                     animate={cartOpen ? "open" : "closed"} 
                     initial="closed"
                 >

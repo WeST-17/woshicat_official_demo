@@ -104,7 +104,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
       >
         -
       </button>
-      <span className="text-sm w-6 flex justify-center text-sm">{itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}</span>
+      <span className="text-sm w-6 flex justify-center">{itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}</span>
       <button
         onClick={handleIncrement}
         className={`px-1 transition duration-300 rounded-md ${!checkInventory() && itemQuantLoad === false ? 'text-black opacity-100 hover:bg-black/25' : 'opacity-40 pointer-events-none'}`}
