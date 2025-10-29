@@ -77,7 +77,7 @@ const CartShow = () => {
                 onClick={toggle}
             />
             {/* Button to Open Cart */}
-            <button onClick={toggle} className={`cart_btn flex items-center justify-center text-xl absolute right-0 top-0`}>
+            <button onClick={toggle} className={`cart_btn flex items-center justify-center text-xl absolute right-0 top-0 z-3000`}>
                 <Image
                     src={'/icons/Shopping_Cart_Yoyo.png'}
                     alt={'Yoyo pushing a shoppping cart'}
