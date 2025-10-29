@@ -18,7 +18,7 @@ interface Handle {
 }
 
 const SingleProductCard: React.FC<Handle> = ({ handle }) => {
-    const { setCartOpen, setCartUpdated, setCartItemsLoading, colorList } = useCart();
+    const { setCartUpdated, setCartItemsLoading, colorList, setItemAdded, setCartOpen } = useCart();
     const [item, setItem] = useState<any>(null);
     const [error, setError] = useState<any>(null);
     const [pageLoad, setPageLoading] = useState<boolean>(false);
@@ -132,6 +132,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         return noSizings;
     }
 
+    const scrollToCart = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
     const addItemToCart = async () => {
         setIsLoading(true);
         setCartItemsLoading(true);
@@ -140,7 +147,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             await addToCart(selectedItem, quantity);
             console.log(selectedItem)
             setCartUpdated(true);
-            setCartOpen(true);
             setIsLoading(false);
             setCartItemsLoading(false);
         } else {
@@ -149,11 +155,17 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             await addToCart(selectedItem, quantity);
             console.log(selectedItem)
             setCartUpdated(true);
-            setCartOpen(true);
             setIsLoading(false);
             setCartItemsLoading(false);
         }
-        
+        setItemAdded(true);
+        setCartOpen(true);
+        scrollToCart();
+
+
+        setTimeout(() => {
+            setItemAdded(false);
+        }, 5000);
     }
 // --------------------------------------------------------------------------------------------------------------------------
     if (pageLoad) {
@@ -330,7 +342,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 name="quantity"
                                 value={quantity}
                                 onChange={handleQuantitySelection}
-                                className="w-16 h-full border border-gray-300 rounded-xs p-1 text-center"
+                                className="w-16 h-full border border-gray-300 rounded-lg p-1 text-center"
                                 >
                                 {[...Array(5)].map((_, i) => {
                                     const quantity = i + 1;
@@ -350,7 +362,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-xs flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-stone-400 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
+                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-stone-400 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
                                 disabled={
                                     item.variants && item.variants.length === 0 
                                     ? (!selectedSize || !selectedColor) 
@@ -375,7 +387,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 name="quantity"
                                 value={quantity}
                                 onChange={handleQuantitySelection}
-                                className="w-16 h-full border border-gray-300 rounded-xs p-1 text-center"
+                                className="w-16 h-full border border-gray-300 rounded-lg p-1 text-center"
                                 >
                                 {[...Array(5)].map((_, i) => {
                                     const quantity = i + 1;
@@ -394,7 +406,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-xs flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 text-md font-semibold text-white shadow-xs hover:bg-stone-500 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
+                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 text-md font-semibold text-white shadow-xs hover:bg-stone-500 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
                                 disabled={
                                     item.quantity < quantity
                                 }

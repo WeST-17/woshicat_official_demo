@@ -9,15 +9,14 @@ import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
 import Image from "next/image";
-import styles from "../../cart-styles.module.css";
 
 
 const CartShow = () => {
     const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
-    const closeCart = () => {
-        setCartOpen(false);
+    const toggle = () => {
+        setCartOpen(!cartOpen);
     }
 
     useEffect(() => {
@@ -73,58 +72,72 @@ const CartShow = () => {
 
     return (
         <>
-            <div className={`fixed inset-0 bg-black/50 z-999 w-screen h-screen`} onClick={closeCart}/>
             <div
-                className={`relative overflow-y-hidden rounded-[16px] flex flex-col justify-start items-center ${styles.nav} bg-white w-full h-full z-1000`}
+                className={`overflow-hidden inset-0 absolute w-[100vw] h-[100vh] z-[2999] flex justify-end items-center transition-opacity duration-500 bg-black/50 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                onClick={toggle}
+            />
+            {/* Button to Open Cart */}
+            <button onClick={toggle} className={`cart_btn flex items-center justify-center text-xl absolute right-0 top-0`}>
+                <Image
+                    src={'/icons/Shopping_Cart_Yoyo.png'}
+                    alt={'Yoyo pushing a shoppping cart'}
+                    width={120}
+                    height={1}
+                    className={`relative hover:translate-x-5 transition-all duration-500 ease-in-out ${cartItems.length > 0 ? '' : 'hidden'}`}
+                />
+                <Image
+                    src={'/icons/Shopping_Cart_Empty.png'}
+                    alt={'Yoyo pushing a shoppping cart'}
+                    width={120}
+                    height={1}
+                    className={`hover:translate-x-5 transition-all duration-500 ease-in-out ${cartItems.length > 0 ? 'hidden' : ''}`}
+                />
+            </button>
+            
+            {/* Cart Modal (Always Rendered) */}
+            <div
+                className={`z-[3000] cart-container overflow-auto rounded-lg ${cartOpen ? 'open-cart' : ''}`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
-                <div className={`relative ${styles.body} sticky top-0 w-full z-1000 h-20 transition-all duration-500`}>
-                    <h2 className="absolute top-2 p-4 text-2xl font-medium">
-                        <motion.div
-                            variants={perspective}
-                            initial={"initial"}
-                            animate={"enter"}
-                            exit={"exit"}
-                            className={`flex h-full w-full gap-2 p-1`}
-                        >
-                            {`Shopping Cart`}
-                        </motion.div>
-                    </h2>
+                <div className="relative sticky top-0 w-full h-20 flex justify-center items-center">
+                    
+                    <Link href={"/cart"} className="me-auto top-3 p-4 text-2xl font-medium" onClick={toggle}>
+                        <p>{`Shopping Cart`}</p>
+                    </Link>
+                    <button onClick={toggle} className="ms-auto my-4 mx-4 text-stone-400">
+                        <div className="w-12 h-8 flex justify-center items-center relative hover:bg-black/15 transition duration-300 rounded-lg text-lg">
+                            <p> {`close`}</p>
+                        </div>
+                    </button>
                 </div>
-
-                {/* Cart content */}
+                
                 {cartItems.length > 0 ? (
-                <>
-                <div className={`w-full flex flex-col overflow-y-visible overflow-y-scroll overscroll-contain p-5 pt-20`}> 
-                    {/* "relative cart-items gap-2 h-3/4 w-full overflow-y-visible overscroll-contain rounded-lg p-1" */}
-                    {cartItems.map((item: any, i) => {
-                        return (
-                        <div key={`b_${i}`} className={`${styles.linkContainer} h-32 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
-                            <motion.div
-                                custom={i}
-                                variants={perspective}
-                                initial={"initial"}
-                                animate={"enter"}
-                                exit={"exit"}
-                                className={`flex h-full w-full gap-2 p-1`}
-                            >
-                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className={`h-full overflow-hidden rounded-lg transition-all duration-500 ${cartOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                                    <Image
+                    <div className={`w-full h-full p-1 rounded-lg`}>
+                        {cartItems.map((item: any, i) => {
+                            return (
+                            <div key={`b_${i}`} className={`h-32 cart-item p-2 gap-4 hover:bg-stone-200 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                                <motion.div
+                                    custom={i}
+                                    variants={perspective}
+                                    initial={"initial"}
+                                    animate={"enter"}
+                                    exit={"exit"}
+                                    className={`flex h-full w-full gap-2 overflow-hidden`}
+                                >
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full">
+                                    <img
                                         src={item.imageUrl}
                                         alt={item.handle}
-                                        className="h-full w-24 object-cover bg-white mr-2"
-                                        width={170}
-                                        height={1}
+                                        className="h-full object-cover bg-white aspect-square rounded-lg mr-2"
                                     />
                                 </Link>
-                                <div className={`ms-auto w-full p-2 flex flex-col justify-center h-full transition transition-all duration-500 ${cartOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                                <div className="ms-auto w-full p-2 flex flex-col justify-center h-full">
                                     <h2 className='h-full w-full mb-1 text-base lg:text-lg'>{item.title}</h2>
                                     <h3 className="text-xs font-thin mb-1 opacity-80">
                                         {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
                                     </h3>
                                     <p className='text-sm font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
-                                    {/* Quantity adjuster component */}
                                     <QuantityAdjuster
                                         variantId={item.variantId}
                                         initialQuantity={item.quantity}
@@ -133,50 +146,42 @@ const CartShow = () => {
                                         }}
                                     />
                                 </div>
-                            </motion.div>
-                        </div>
-                    )})}
-                </div>
-                </>
+                                </motion.div>
+                            </div>
+                        )})}
+                    </div>
                 ) : cartItemsLoading ? (
-                    <div className="object-contain relative w-full h-full overflow-hidden flex justify-center items-center">
+                    <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
                         <Loader />
                     </div>
                     ) : (
                     <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
                     )}
-                {/* Centered Checkout Button */}
-                <motion.div
-                    variants={perspective}
-                    initial={"initial"}
-                    animate={"enter"}
-                    exit={"exit"}
-                    className={`flex h-56 w-full gap-2 p-1 sticky bottom-0 bg-white/50`}
-                >
-                    <div className={`${styles.body} flex flex-col w-full p-2 mt-10 transition transition-all ${cartOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-                        
-                        <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
-                            <div className="w-full flex justify-end items-center text-xl me-2">
-                                <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
-                            </div>
-                            <div className="w-full flex flex-col items-center lg:items-end justify-end gap-4">
-                                <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full lg:w-1/2 ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
-                            </div>
+
+                <div className="flex flex-col w-full sticky bottom-0 p-2">
+                    
+                    <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
+                        <div className="w-full flex justify-end items-center text-xl me-2">
+                            <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                         </div>
-                        <div className="h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
-                            <div className="w-full flex justify-end">
-                                <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
-                                </p>
-                                <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
-                                </p>
-                            </div>
-                            
-                            <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
-                                <ProgressBar />
-                            </div>
+                        <div className="w-full flex flex-col items-center justify-end gap-4">
+                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
                         </div>
                     </div>
-                </motion.div>
+                    <div className="h-24 pe-2 w-full flex flex-col items-end justify-center gap-4">
+                        <div className="w-full flex justify-end">
+                            <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
+                            </p>
+                            <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
+                            </p>
+                        </div>
+                        
+                        <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
+                            <ProgressBar />
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </>
     )

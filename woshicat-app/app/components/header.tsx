@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Navigation from "./transitions-navigation/navbar";
-import CartHeaderIcon from "./cart/cartHeaderIcon";
+import CartShow from "./cart/cartDisplay";
 
 const Header = () => {
     const [isActive, setIsActive] = useState<boolean>(false);
@@ -15,32 +15,17 @@ const Header = () => {
 
     return (
         <>
-            <header className={`fixed top-0 flex justify-center items-center h-[70px] w-full bg-white/70 hover:bg-white text-base text-black p-2 z-2002 transition duration-300`} id="header">
-                <Link href={'/'} className="z-2001 bg-transparent absolute lg:left-0 grid grid-flow-col flex justify-center lg:justify-start items-center w-64">
+            <header className={`fixed sticky top-0 h-[70px] w-screen bg-white/70 hover:bg-white text-base text-black p-2 z-2002 transition duration-500 flex`} id="header">
+                <Link href={'/'} className="z-1 bg-transparent absolute top-0 lg:left-0 grid grid-flow-col flex justify-center items-center max-lg:w-screen h-full lg:justify-start">
                     <Image width={75} height={1} src='/logo/Logo Red Version.png' alt='Wo Shi Cat logo red' priority/>
                     <h1 className="max-lg:hidden">WoShi Cat</h1>
                 </Link>
-                <div className={`absolute relative w-screen flex justify-start lg:justify-center items-center p-4 transition transition-all duration-500 ease-in-out ${isActive ? "z-2006" : "z-2000"}`} onClick={activeMenu}>
+                <div className={`p-2 absolute max-lg:left-0 relative w-fit lg:mx-auto h-full flex justify-start lg:justify-center items-center transition transition-all duration-500 ease-in-out ${isActive ? "z-2006" : "z-2000"}`} onClick={activeMenu}>
                     <Navigation />
                 </div>
-                <CartHeaderIcon />
-            </header>
-            
-            <section className="z-1000 fixed bottom-20 right-0 w-fit flex flex-col justify-center items-end overflow-hidden">
-            <Link 
-                className='w-20 flex justify-center items-center flex-col'
-                href={'#header'}
-                >
-                <Image
-                    src={'/icons/caret-left-solid.svg'}
-                    alt='up arrow, back to top'
-                    width={50}
-                    height={1}
-                    className='rotate-90 aspect-square opacity-20 hover:opacity-80 hover:bg-black/20 rounded-full py-2 transition duration-300'
-                />
                 
-            </Link>
-            </section>
+                <CartShow />
+            </header>
         </>
     )
 }

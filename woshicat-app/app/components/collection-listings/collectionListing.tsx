@@ -44,9 +44,9 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
       )}
       
       { !loading && !error && (
-        <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1} length={collectionList.length}>
+        <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={2} length={collectionList.length}>
           { collectionList.map((collection) => (
-              <section className={`mx-auto lg:px-0.5 ${addClass}`} key={collection.handle}>
+              <section className={`mx-auto px-0.5 ${addClass}`} key={collection.handle}>
                 <Square
                 link={`/collections/${collection.handle}`}
                 collectionName={`${collection.title}`}

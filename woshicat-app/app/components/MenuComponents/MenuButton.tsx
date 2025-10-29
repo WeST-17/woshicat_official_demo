@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-import styles from "../../cart-styles.module.css";
 
 interface MenuButtonProps {
     children?: React.ReactNode,
@@ -17,7 +16,7 @@ const MenuButton:React.FC<MenuButtonProps> = ({ children, open, setMenuOpen }) =
 
   return (
     <>
-    <div className={`${styles.button} mx-2 z-1001 bg-white relative`}>
+    <div className={`mx-2 z-1001 bg-white relative`}>
         <motion.div 
             className={`w-full h-full`}
             animate={{top: open ? "-100%" : "0%"}}

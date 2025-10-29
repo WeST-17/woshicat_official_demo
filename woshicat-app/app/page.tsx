@@ -35,7 +35,7 @@ const Home = () => {
       {/* <Notice /> */}
 
       {/* Top of website */}
-      <div className={`relative col-span-9 absolute top-0 sticky transition transition-all duration-500 ease-in-out`}
+      <div className={`relative col-span-9 sticky top-0 transition transition-all duration-500 ease-in-out`}
       >
         <AutoCarousel>
           {/* Taiji - Fall 2025 */}
@@ -146,7 +146,7 @@ const Home = () => {
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
           <h3 className="ps-1">{`Featured Arrivals`}</h3>
           {/* Featured Collection Display */}
-          <div className={`relative w-full grid grid-cols-9 mb-10 mx-auto rounded-lg gap-1`}>
+          <div className={`relative w-full grid grid-cols-10 mb-10 mx-auto rounded-lg gap-1`}>
             {featured[0] ? (
               <>
                 <TwoOneRect
@@ -162,11 +162,11 @@ const Home = () => {
                 </TwoOneRect>
               </>
             ) : (
-            <div className="object-contain relative col-span-9 lg:col-span-6 w-full overflow-hidden flex justify-center items-center">
+            <div className="object-contain relative col-span-10 lg:col-span-6 w-full overflow-hidden flex justify-center items-center">
               <Loader />
             </div>
           )}
-            <div className="relative col-span-9 lg:col-span-3 aspect-9/10 h-full overflow-hidden rounded-lg flex items-center">
+            <div className="relative col-span-3 lg:col-span-4 h-full overflow-hidden rounded-lg flex items-center">
               <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
                 <Image
                   src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
@@ -174,8 +174,8 @@ const Home = () => {
                   fill={true}
                   className="object-cover"
                 />
-                <div className="absolute top-0 right-0 w-full text-white h-full flex flex-col justify-center items-center p-8 bg-black/50 hover:bg-black/80 text-3xl md:text-xl transition duration-300 gap-4">
-                  <div className="flex flex-col text-center">
+                <div className="absolute top-0 right-0 w-full text-white h-full flex flex-col justify-center items-center p-8 bg-black/50 hover:bg-black/80 text-base md:text-xl transition duration-300 gap-4">
+                  <div className="flex flex-col text-start md:text-center">
                     <p>follow us for updates</p>
                     <p>@woshicatofficial</p>
                   </div>

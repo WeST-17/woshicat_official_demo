@@ -2,11 +2,9 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import ProgressBar from "./progressBar";
 import Loader from "../transitions-navigation/LoadingScreen";
 import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
-import { FinalCheckout } from "@/app/server_actions/action";
 import Image from "next/image";
 
 const MobileCart = () => {
@@ -25,16 +23,6 @@ const MobileCart = () => {
 
         calcTotal();
     }, [cartItems])
-
-    const checkout = async () => {
-        const checkoutUrl = await FinalCheckout();
-        if (checkoutUrl && cartItems.length > 0) {
-            window.location.href = checkoutUrl;
-        } else {
-            console.log("Cart, not cart. Noodles, not noodles...")
-            return;
-        }
-    }
 
     const currFormat = new Intl.NumberFormat('default', {
         style: 'currency',
@@ -66,7 +54,7 @@ const MobileCart = () => {
     return (
         <>
             <div
-                className={`relative overflow-y-scroll h-full rounded-[16px] flex flex-col justify-start items-center bg-stone-200/20 w-full z-1000`}
+                className={`relative overflow-y-visible h-full rounded-[16px] flex flex-col justify-start items-center bg-stone-200/20 w-full z-1000`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
@@ -88,7 +76,6 @@ const MobileCart = () => {
                 {cartItems.length > 0 ? (
                 <>
                 <div className={`w-full overflow-y-visible overscroll-contain p-5 mt-2`}> 
-                    {/* "relative cart-items gap-2 h-3/4 w-full overflow-y-visible overscroll-contain rounded-lg p-1" */}
                     {cartItems.map((item: any, i) => {
                         return (
                         <div key={`b_${i}`} className={`flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
@@ -136,38 +123,6 @@ const MobileCart = () => {
                     ) : (
                     <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
                     )}
-            {/* Centered Checkout Button */}
-            <motion.div
-                variants={perspective}
-                initial={"initial"}
-                animate={"enter"}
-                exit={"exit"}
-                className={`flex h-full w-full gap-2 p-1 sticky top-0 mb-8`}
-            >
-                <div className={`flex flex-col w-full p-2 transition transition-all`}>
-                    
-                    <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
-                        <div className="w-full flex justify-end items-center text-xl me-2">
-                            <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
-                        </div>
-                        <div className="w-full flex flex-col items-center lg:items-end justify-end gap-4">
-                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full lg:w-1/2 ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
-                        </div>
-                    </div>
-                    <div className="h-20 pe-2 w-full flex flex-col items-end justify-center gap-4">
-                        <div className="w-full flex justify-end">
-                            <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
-                            </p>
-                            <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
-                            </p>
-                        </div>
-                        
-                        <div className={`h-3 overflow-hidden w-full rounded-full border border-2 bg-gray-200`}>
-                            <ProgressBar />
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
             </div>
             
         </>
