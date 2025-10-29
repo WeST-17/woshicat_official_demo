@@ -59,7 +59,7 @@ const Home = () => {
                   <p className="text-3xl lg:text-6xl">{`COMING SOON`}</p>
                 </section>
                 <div className="text-center">
-                  <p className="text-xl lg:text-2xl">{`FALL 2025`}</p>
+                  <p className="text-xl lg:text-2xl">{`WINTER SEASON DROP`}</p>
                 </div>
                 
               </div>
