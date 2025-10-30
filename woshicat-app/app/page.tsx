@@ -162,20 +162,20 @@ const Home = () => {
                 </TwoOneRect>
               </>
             ) : (
-            <div className="object-contain relative col-span-10 lg:col-span-6 w-full overflow-hidden flex justify-center items-center">
+            <div className="object-contain relative col-span-10 md:col-span-5 w-full overflow-hidden flex justify-center items-center">
               <Loader />
             </div>
           )}
-            <div className="relative col-span-3 lg:col-span-4 h-full overflow-hidden rounded-lg flex items-center">
-              <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank">
+            <div className="relative col-span-10 md:col-span-5 h-full overflow-hidden rounded-lg flex items-center aspect-[3/2] md:aspect-[9/10]">
+              <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank" className="h-full w-full">
                 <Image
                   src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
                   alt={'A guy sitting on a ledge, wearing the 5:06 Train Shirt'}
                   fill={true}
                   className="object-cover"
                 />
-                <div className="absolute top-0 right-0 w-full text-white h-full flex flex-col justify-center items-center p-8 bg-black/50 hover:bg-black/80 text-base md:text-xl transition duration-300 gap-4">
-                  <div className="flex flex-col text-start md:text-center">
+                <div className="absolute top-0 right-0 w-full text-white h-full flex flex-col justify-center items-center p-8 bg-black/50 hover:bg-black/80 text-3xl md:text-xl transition duration-300 gap-4">
+                  <div className="flex flex-col text-center">
                     <p>follow us for updates</p>
                     <p>@woshicatofficial</p>
                   </div>

@@ -125,7 +125,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                 ))}
             </section>
 
-            <div className="bg-white ps-2 w-full flex relative items-center justify-center overflow-hidden rounded-lg" >                
+            <div className="bg-white w-full flex relative items-center justify-center overflow-hidden rounded-lg touch-none" >                
                 <button className={`absolute left-0 h-3/4 z-100 p-2 rounded-md opacity-10 hover:opacity-80 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={20} height={1}/>
                 </button>

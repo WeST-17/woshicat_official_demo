@@ -68,7 +68,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     }, [windowSize.width]);
 
     const next = () => {
-        if (windowSize.width && windowSize.width > 1023) {
+        if (windowSize.width && windowSize.width > 767) {
             if ((currIndex < (Math.ceil(length / numPerSlide)) - 1)) {
                 setCurrIndex(currIndex + 1);
             } else {
@@ -84,7 +84,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     };
 
     const prev = () => {
-        if (windowSize.width && windowSize.width > 1023) {
+        if (windowSize.width && windowSize.width > 767) {
             if ((currIndex > 0)) {
                 setCurrIndex(currIndex - 1);
             } else {
@@ -123,7 +123,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     return (
         <>
         <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-200 gap-1`}>
-            {windowSize.width >= 1024 ? new Array(Math.ceil(length / numPerSlide)).fill("").map((_, i) => (
+            {windowSize.width >= 768 ? new Array(Math.ceil(length / numPerSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
@@ -152,13 +152,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 <button className={`absolute left-0 h-3/4 z-100 bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
-                <div className="relative overflow-hidden w-full h-full">
+                <div className="relative overflow-hidden w-full h-full touch-none">
                     <div
                         className={`touch-pan-y flex transition transition-all duration-500 ease-in-out carousels ${addClass}`}
                         style={{
-                            transform: `translateX(-${currIndex * ((windowSize.width >= 1024 ? 100 * Math.floor(numPerSlide) - (currIndex === (Math.ceil(length / numPerSlide) - 1) && (length % Math.floor(numPerSlide) > 0) ? (100 * Math.abs((length % Math.floor(numPerSlide)) - Math.floor(numPerSlide))) : 0) 
+                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) - (currIndex === (Math.ceil(length / numPerSlide) - 1) && (length % Math.floor(numPerSlide) > 0) ? (100 * Math.abs((length % Math.floor(numPerSlide)) - Math.floor(numPerSlide))) : 0) 
                                 : 100 * Math.floor(mobileSlide)))}%)`,
-                            width: `calc(${100 / (windowSize.width >= 1024 ? numPerSlide : mobileSlide)}%)`
+                            width: `calc(${100 / (windowSize.width >= 768 ? numPerSlide : mobileSlide)}%)`
                         }}
                         ref={childRef}
                         onTouchStart={handleTouchStart}
@@ -168,7 +168,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-3/4 right-0 z-100 bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-3/4 right-0 z-100 bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'md:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>
