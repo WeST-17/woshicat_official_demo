@@ -15,12 +15,12 @@ const Header = () => {
 
     return (
         <>
-            <header className={`fixed sticky top-0 h-[70px] w-screen bg-white/70 hover:bg-white text-base text-black p-2 z-2002 transition duration-500 flex`} id="header">
+            <header className={`fixed sticky top-0 h-[70px] w-screen bg-white/60 hover:bg-white text-base text-black p-2 z-2002 transition duration-500 flex rounded-b-lg`} id="header">
                 <Link href={'/'} className="z-1 bg-transparent absolute top-0 lg:left-0 grid grid-flow-col flex justify-center items-center max-lg:w-screen h-full lg:justify-start">
                     <Image width={75} height={1} src='/logo/Logo Red Version.png' alt='Wo Shi Cat logo red' priority/>
                     <h1 className="max-lg:hidden">WoShi Cat</h1>
                 </Link>
-                <div className={`p-2 absolute max-lg:left-0 relative w-fit lg:mx-auto h-full flex justify-start lg:justify-center items-center transition transition-all duration-500 ease-in-out ${isActive ? "z-2006" : "z-2000"}`} onClick={activeMenu}>
+                <div className={`p-2 absolute max-lg:left-0 relative w-fit lg:mx-auto h-full flex justify-start lg:justify-center items-center transition transition-all duration-500 ease-in-out ${isActive ? "z-3001" : "z-2000"}`} onClick={activeMenu}>
                     <Navigation />
                 </div>
                 

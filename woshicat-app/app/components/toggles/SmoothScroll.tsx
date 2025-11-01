@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Lenis from "lenis";
 import { useToggle } from "./toggleContext";
+import { useCart } from "../cart/cartContext";
 
 interface Children {
     children: React.ReactNode;
@@ -12,6 +13,7 @@ const SmoothScroll: React.FC<Children> = ({ children }) => {
     const [lenisRef, setLenisRef] = useState<any>(null);
     const [rafState, setRafState] = useState<any>(null);
     const { smoothScroll } = useToggle();
+    const { cartOpen } = useCart();
     
     useEffect(() => {
         const smoothScrolling = () => {
@@ -36,7 +38,8 @@ const SmoothScroll: React.FC<Children> = ({ children }) => {
                 }
             }
         };
-        if (smoothScroll) {
+        
+        if (smoothScroll && !cartOpen) {
             smoothScrolling();
         } else {
             if (lenisRef) {
@@ -44,7 +47,7 @@ const SmoothScroll: React.FC<Children> = ({ children }) => {
                 lenisRef.destroy();
             }
         }
-    }, [smoothScroll]);
+    }, [smoothScroll, cartOpen]);
     
 
     return (

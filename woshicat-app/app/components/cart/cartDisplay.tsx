@@ -96,11 +96,11 @@ const CartShow = () => {
             
             {/* Cart Modal (Always Rendered) */}
             <div
-                className={`z-[3000] cart-container overflow-auto rounded-lg ${cartOpen ? 'open-cart' : ''}`}
+                className={`relative z-[3000] cart-container overflow-y-scroll overscroll-contain rounded-lg ${cartOpen ? 'open-cart' : ''}`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
-                <div className="relative sticky top-0 w-full h-20 flex justify-center items-center">
+                <div className="relative sticky top-0 w-full h-20 flex justify-center items-center bg-white/50">
                     
                     <Link href={"/cart"} className="me-auto top-3 p-4 text-2xl font-medium" onClick={toggle}>
                         <p>{`Shopping Cart`}</p>
@@ -112,11 +112,12 @@ const CartShow = () => {
                     </button>
                 </div>
                 
+                <div className={`w-full h-4/5 p-1 rounded-lg touch-pan-y overflow-auto`}>
                 {cartItems.length > 0 ? (
-                    <div className={`w-full h-full p-1 rounded-lg`}>
+                    <>
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`h-32 cart-item p-2 gap-4 hover:bg-stone-200 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                            <div key={`b_${i}`} className={`h-28 rounded-md cart-item p-2 gap-4 hover:bg-stone-200 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                                 <motion.div
                                     custom={i}
                                     variants={perspective}
@@ -149,7 +150,8 @@ const CartShow = () => {
                                 </motion.div>
                             </div>
                         )})}
-                    </div>
+                    </>
+                    
                 ) : cartItemsLoading ? (
                     <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
                         <Loader />
@@ -157,18 +159,17 @@ const CartShow = () => {
                     ) : (
                     <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
                     )}
-
-                <div className="flex flex-col w-full sticky bottom-0 p-2">
-                    
-                    <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-2">
+                </div>
+                <div className="flex flex-col w-full sticky bottom-0 p-1 bg-white/75">
+                    <div className="h-full flex flex-col w-full justify-end items-center p-1 gap-1">
                         <div className="w-full flex justify-end items-center text-xl me-2">
-                            <p className={`text-2xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
+                            <p className={`text-xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                         </div>
                         <div className="w-full flex flex-col items-center justify-end gap-4">
                             <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
                         </div>
                     </div>
-                    <div className="h-24 pe-2 w-full flex flex-col items-end justify-center gap-4">
+                    <div className="rounded-lg h-16 pe-2 w-full flex flex-col items-end justify-center gap-2">
                         <div className="w-full flex justify-end">
                             <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
                             </p>

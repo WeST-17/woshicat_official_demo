@@ -58,27 +58,13 @@ const MobileCart = () => {
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
-                <div className={`sticky top-0 w-full z-1000 h-20 transition transition-all duration-500`}>
-                    <h2 className="absolute top-2 p-4 text-2xl font-medium">
-                        <motion.div
-                            variants={perspective}
-                            initial={"initial"}
-                            animate={"enter"}
-                            exit={"exit"}
-                            className={`flex h-full w-full gap-2 p-1`}
-                        >
-                            {`Shopping Cart`}
-                        </motion.div>
-                    </h2>
-                </div>
-
                 {/* Cart content */}
                 {cartItems.length > 0 ? (
                 <>
-                <div className={`w-full overflow-y-visible overscroll-contain p-5 mt-2`}> 
+                <div className={`w-full overflow-y-visible overscroll-contain p-2`}> 
                     {cartItems.map((item: any, i) => {
                         return (
-                        <div key={`b_${i}`} className={`flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                        <div key={`b_${i}`} className={`flex items-center justify-start w-full h-30 ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                             <motion.div
                                 custom={i}
                                 variants={perspective}

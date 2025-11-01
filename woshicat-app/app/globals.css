@@ -47,8 +47,8 @@ body {
   overflow-x: hidden;
 }
 
-.toggle-body-scroll {
-  overflow-y: hidden;
+img {
+  border-radius: 8px;
 }
 
 .disable-scrollbars::-webkit-scrollbar {
@@ -144,7 +144,7 @@ body {
 }
 
 .menu-container.open-menu {
-  height: 80vh;
+  height: 90vh;
   width: 90vw;
   opacity: 1;
   overscroll-behavior: hidden;
@@ -164,7 +164,7 @@ body {
 
 .cart-container.open-cart {
   width: 95vw;
-  height: 90vh;
+  height: 95vh;
   opacity: 1;
 }
 
@@ -184,7 +184,7 @@ body {
   .cart-container.open-cart {
     opacity: 1;
     width: 700px;
-    height: 80vh;
+    height: 95vh;
   }
 }
 

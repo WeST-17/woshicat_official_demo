@@ -59,6 +59,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     fetchCartItems(); 
   }, [cartUpdated]);
 
+  useEffect(() => {
+    const setBodyOverflow = () => {
+      document.body.classList.toggle('overflow-hidden');
+    };
+    setBodyOverflow();
+  }, [cartOpen]);
+
   
 
   return (
