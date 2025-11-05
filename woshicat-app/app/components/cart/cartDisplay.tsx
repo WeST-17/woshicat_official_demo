@@ -96,7 +96,7 @@ const CartShow = () => {
             
             {/* Cart Modal (Always Rendered) */}
             <div
-                className={`relative z-[3000] cart-container overflow-y-scroll overscroll-contain rounded-lg ${cartOpen ? 'open-cart' : ''}`}
+                className={`relative z-[3002] cart-container overflow-y-scroll overscroll-contain rounded-lg ${cartOpen ? 'open-cart' : ''}`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
