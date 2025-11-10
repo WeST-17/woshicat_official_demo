@@ -8,7 +8,7 @@ const LookbookHome = () => {
 
   return (
     <>
-    <div className='mt-20 grid grid-cols-1 lg:grid-cols-3 relative w-full h-fit flex flex-col justify-center items-center gap-1'>
+    <div className='grid grid-cols-1 lg:grid-cols-3 relative w-full min-h-[90vh] flex flex-col justify-center gap-1'>
       {/* <div className={`relative w-full h-full flex justify-center items-center`}>
         <LookBookCover 
           photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-029.jpg?v=1759768048'}
@@ -18,7 +18,7 @@ const LookbookHome = () => {
           classExtra='h-full'
         />
       </div> */}
-      <div className='relative w-full h-full flex justify-center items-center overflow-hidden rounded-lg'>
+      <div className='relative w-full h-fit flex justify-center items-center overflow-hidden rounded-lg'>
         <LookBookCover 
           photoSrc={'https://cdn.shopify.com/s/files/1/0901/4794/6795/files/woshi-hermanpark-08.jpg?v=1759898843'}
           photoAlt={'Two models wearing MD shirts sitting on a ledge.'}

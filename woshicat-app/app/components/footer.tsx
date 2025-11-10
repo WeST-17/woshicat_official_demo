@@ -6,36 +6,36 @@ import EmailList from "./email-list/EmailList";
 import ToggleButton from "./toggles/toggleButton";
 
 const Footer = () => {
-    const [scrollPos, setScrollPos] = useState<number>(0);
-    const [footer, setFooter] = useState<boolean>(false);
+    // const [scrollPos, setScrollPos] = useState<number>(0);
+    // const [footer, setFooter] = useState<boolean>(false);
 
-    const HandleScroll = () => {
-        const height = 
-            document.documentElement.scrollHeight - 
-            document.documentElement.clientHeight;
-        const windowScroll = document.documentElement.scrollTop;
-        const scrolled = (windowScroll / height) * 100;
-        setScrollPos(scrolled);
-    }
+    // const HandleScroll = () => {
+    //     const height = 
+    //         document.documentElement.scrollHeight - 
+    //         document.documentElement.clientHeight;
+    //     const windowScroll = document.documentElement.scrollTop;
+    //     const scrolled = (windowScroll / height) * 100;
+    //     setScrollPos(scrolled);
+    // }
 
-    useEffect(() => {
-        window.addEventListener("scroll", HandleScroll, { passive: true });
-        return () => {
-            window.removeEventListener("scroll", HandleScroll);
-        };
-    }, []);
+    // useEffect(() => {
+    //     window.addEventListener("scroll", HandleScroll, { passive: true });
+    //     return () => {
+    //         window.removeEventListener("scroll", HandleScroll);
+    //     };
+    // }, []);
 
-    const showFooter = () => {
-        if (scrollPos > 95) {
-            setFooter(true)
-        } else {
-            setFooter(false)
-        }
-    };
+    // const showFooter = () => {
+    //     if (scrollPos > 95) {
+    //         setFooter(true)
+    //     } else {
+    //         setFooter(false)
+    //     }
+    // };
 
-    useEffect(() => {
-        showFooter();
-    }, [scrollPos])
+    // useEffect(() => {
+    //     showFooter();
+    // }, [scrollPos])
 
     return (
         <>
@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
             </div>
         </div>
-        <footer className={`mt-20 relative w-screen grid-cols-8 bg-white text-base text-black transition transition-all duration-300 h-fit ${footer ? "opacity-100" : "opacity-0"}`}>
+        <footer className={`mt-20 relative w-screen grid-cols-8 bg-white text-base text-black transition transition-all duration-300 h-fit`}>
             <div className="col-span-8 p-4">
                 {/* Email subscription list! */}
                 <div className="flex w-full justify-center items-center min-h-fit pt-8" id="newsletter">
