@@ -1,49 +1,36 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import EmailList from "./email-list/EmailList";
 import ToggleButton from "./toggles/toggleButton";
+import path from "path";
 
 const Footer = () => {
-    // const [scrollPos, setScrollPos] = useState<number>(0);
-    // const [footer, setFooter] = useState<boolean>(false);
+    const [clicked, setClicked] = useState<boolean>(false);
+    const pathname = usePathname().includes("lookbook");
 
-    // const HandleScroll = () => {
-    //     const height = 
-    //         document.documentElement.scrollHeight - 
-    //         document.documentElement.clientHeight;
-    //     const windowScroll = document.documentElement.scrollTop;
-    //     const scrolled = (windowScroll / height) * 100;
-    //     setScrollPos(scrolled);
-    // }
+    const nClicked = () => {
+        setClicked(true);
 
-    // useEffect(() => {
-    //     window.addEventListener("scroll", HandleScroll, { passive: true });
-    //     return () => {
-    //         window.removeEventListener("scroll", HandleScroll);
-    //     };
-    // }, []);
+        setTimeout(() => {
+            setClicked(false)
+        }, 5000);
+    };
 
-    // const showFooter = () => {
-    //     if (scrollPos > 95) {
-    //         setFooter(true)
-    //     } else {
-    //         setFooter(false)
-    //     }
-    // };
+    useEffect(() => {
 
-    // useEffect(() => {
-    //     showFooter();
-    // }, [scrollPos])
+    })
 
     return (
         <>
         <div className="fixed bottom-0 right-0 flex justify-end items-center w-16 h-16 z-1000">
-            <div className="newsletter-hover w-full h-full relative">
+            <div className="newsletter-hover w-full h-full relative rounded-md">
                 <Link 
                     className="opacity-60 hover:opacity-100 transition duration-500 ease w-full h-full"
                     href="#newsletter"
+                    onClick={nClicked}
                 >
                     <Image
                         src="/media/graphics/Yoyo happy fill.png"
@@ -53,21 +40,21 @@ const Footer = () => {
                     />
                 </Link>
                 <div 
-                    className="absolute flex justify-end items-center right-16 bottom-0 w-[80vw] h-12 nl-signup"
+                    className="absolute flex flex-col justify-center items-center right-16 bottom-0 w-64 lg:w-96 h-20 nl-signup bg-stone-50/80 text-start rounded-md"
                 >
-                    <p className="py-2 px-2 mx-2 h-full flex items-center text-center bg-stone-50/80 text-xs md:text-base">{`Sign up for the WoShi Cat Newsletter and get 10% off your next order!`}</p>
+                    <p className="rounded-md overflow-hidden px-2 mx-2 w-full flex items-center text-center text-xs md:text-lg">{`Sign up for the WoShi Cat Newsletter for 10% off your next order!`}</p>
                 </div>
             </div>
         </div>
-        <footer className={`mt-20 relative w-screen grid-cols-8 bg-white text-base text-black transition transition-all duration-300 h-fit`}>
-            <div className="col-span-8 p-4">
+        <footer className={`pt-20 relative w-screen grid-cols-8 ${pathname ? "bg-stone-900" : "bg-white"} text-base text-black transition transition-all duration-300 h-fit`}>
+            <div className="col-span-8 p-4 flex flex-col items-center justify-center">
                 {/* Email subscription list! */}
-                <div className="flex w-full justify-center items-center min-h-fit pt-8" id="newsletter">
-                    <EmailList />  
+                <div className={`flex w-fit justify-center items-center min-h-fit pt-8 ${pathname ? "text-white" : ""}`} id="newsletter">
+                    <EmailList clicked={clicked}/>  
                 </div>
                 <div className="border-t border-stone-400"/>
                 {/* Social Media */}
-                <div className='flex text-sm text-stone-400 justify-center items-center'>
+                <div className={`flex text-sm justify-center items-center ${pathname ? "invert text-stone-200" : "text-stone-400"}`}>
                     {/* Instagram */}
                     <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
                         <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-2">
@@ -117,7 +104,7 @@ const Footer = () => {
                 <ToggleButton />
                 <p className="text-xs">{`Experimental: Smooth Scroll`}</p>
             </div>
-            <div className="mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8">
+            <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 ${pathname ? "invert" : ""}`}>
                 {`WoShi Cat, LLC - 2024`}
             </div>
         </footer>

@@ -23,7 +23,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
         setLoading(true);
         const collectionInfo = await getCollectionInfoHelper();
         try {
-          setCollectionList(collectionInfo);
+          setCollectionList(collectionInfo.reverse());
         } catch (error) {
           console.error('Error fetching server component props:', error);
           setError(error);

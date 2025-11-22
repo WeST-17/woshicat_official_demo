@@ -72,7 +72,7 @@ const ProductCards = () => {
           return product.collection !== undefined;
         })
         setProducts(validProducts || []);
-        setCollectionList(collections || []);
+        setCollectionList(collections.reverse() || []);
         if (products[1].hasNextPage) {
           setCursor(products[1].endCursor);
           setNext(true);
@@ -155,12 +155,12 @@ const ProductCards = () => {
             <div className={`flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
               {/* Render product details */}
-              <div className='relative flex justify-center items-center aspect-9/10 h-full'>
+              <div className='relative flex justify-center items-center aspect-4/5 h-full'>
                 {/* Default product image */}
                 <img 
                   src={product.images[0].url} 
                   alt={product.images[0].altText} 
-                  className={`${!product.available ? 'grayscale-[0.75]' : ''} ${product.handle.includes('shirt', 'hoodie') ? 'object-contain bg-white' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                 />
                 
                 {/* Hover image */}
@@ -168,7 +168,7 @@ const ProductCards = () => {
                   (<img 
                   src={product.images[2].url} 
                   alt={product.images[2].altText} 
-                  className={`${!product.available ? 'grayscale-[0.75]' : ''} object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                 />)
                   }
               </div>

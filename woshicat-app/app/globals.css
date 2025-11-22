@@ -47,10 +47,6 @@ body {
   overflow-x: hidden;
 }
 
-img {
-  border-radius: 8px;
-}
-
 .disable-scrollbars::-webkit-scrollbar {
   background: transparent; /* Chrome/Safari/Webkit */
   width: 0px;
@@ -318,7 +314,7 @@ img {
 }
 
 .collapse-item.open {
-  max-height: 120px;
+  max-height: 160px;
 }
 
 .button-hover:hover .shop-item-button {
@@ -413,17 +409,48 @@ button:hover {
   }
 }
 
-@keyframes shimmer {
-   to {
-      background-position-x: 0%
-   }
+@media screen and (min-width: 2000px) {
+  table {
+    border: 2px solid rgb(209, 209, 209);
+    width: 85%;
+  }
 }
 
-.shimmer {
+@media screen and (max-width: 2000px) {
+  table {
+    border: 2px solid rgb(209, 209, 209);
+    width: 100%;
+  }
+}
+
+th {
+  padding: 5px;
+}
+
+tr {
+  border: 2px
+}
+
+td {
+  text-align: center;
+  padding: 1px;
+}
+
+/* shapes */
+
+.slant {
+  position: absolute;
+  bottom: 0;
+  width: 30px;
   height: 100%;
+  /* set height to pixels if you want angle to change with screen width */
+}
+
+.slant-h {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  background: linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%);
-  background-size: 300%;
-  background-position-x: 100%;
-  animation: shimmer 1s infinite linear;
+  height: 30px;
+  border-radius: 8px;
+  /* set height to pixels if you want angle to change with screen width */
 }

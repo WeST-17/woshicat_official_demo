@@ -259,7 +259,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </>
                 )}
                     
-                <div className={`sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-3 h-fit lg:h-1/3 w-full relative gap-4`}>
+                <div className={`sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-3 h-fit w-full relative gap-4`}>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -425,7 +425,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     {/* Product Description: Need to make components for product description and add to cart button */}
                     
                     <div className='w-full h-full mt-6 mb-3 flex flex-col items-start'>
-                        <MainProductDescription description={item.description}/>
+                        <MainProductDescription description={item.description} isApparel={item.tags.includes('apparel')} collectionHandle={item.collection.handle}/>
                     </div>
                 </div>
             </div>
@@ -454,13 +454,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 <img 
                                 src={product.images[0].url} 
                                 alt={product.images[0].altText} 
-                                className={`${product.handle.includes('shirt', 'hoodie', 'sweater') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                                className={`${product.handle.includes('shirt', 'hoodie', 'sweater') ? 'object-contain' : 'object-cover'} rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                                 />
                                 
                                 <img 
                                 src={product.images[1].url} 
                                 alt={product.images[1].altText} 
-                                className={`object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                                className={`rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                                 />
                             </div>
                             </Link>

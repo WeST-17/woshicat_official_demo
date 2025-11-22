@@ -97,7 +97,7 @@ export const productsQuery = (cursor?: string | null) => {
     }
   `
   )
-} ;
+};
 export const collectionNamesQuery = `
   query {
     collections(first: 10) {
@@ -131,6 +131,45 @@ export const collectionsInfoQuery = `
     }
   }
 `;
+export const featuredCollectionItems = (handle: string) => {
+  return (`
+    query {
+      collection(handle: "${handle}") {
+        id
+        handle
+        title
+        products(first: 4) {
+          edges {
+            node {
+              id
+              title
+              handle
+              totalInventory
+              priceRange {
+                maxVariantPrice {
+                  amount
+                }
+              }
+              images(first: 3) {
+                nodes {
+                  url
+                  altText
+                }
+              }
+              collections(first: 1) {
+                edges {
+                  node {
+                    handle
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+};
 export const collectionByHandle = (handle: string, cursor?: string | null) => {
   if (cursor) {
     return (`

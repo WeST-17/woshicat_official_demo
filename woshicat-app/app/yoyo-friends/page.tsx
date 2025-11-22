@@ -3,6 +3,7 @@ import React from "react";
 import ComicEps from "./comic";
 import Link from "next/link";
 import Image from "next/image";
+import FadeInImage from "../components/transitions-navigation/FadeInImages";
 
 const YoyoComic = () => {
   
@@ -16,7 +17,8 @@ const YoyoComic = () => {
           <h2 className="text-lg">{`Follow Yoyo and his friends as they tackle their corporate jobs and life head on!`}</h2>
             
         </div>
-        <div className="w-full flex flex-col">
+        <FadeInImage>
+        <div className="w-full flex flex-col gap-1">
           {ComicEps.toReversed().map((episode) => (
             <Link
               href={`/yoyo-friends/${episode.epID}`}
@@ -26,9 +28,9 @@ const YoyoComic = () => {
               <Image 
                 src={episode.thumbnail}
                 alt={`${episode.title} thumbnail`}
-                width={70}
+                width={200}
                 height={1}
-                className="w-16"
+                className="w-32 rounded-md"
               />
               <h2 className="text-sm w-1/2 lg:text-lg">{episode.title}</h2>
               <p className="text-end w-1/5 absolute right-0 text-xs">{episode.date}</p>
@@ -36,7 +38,7 @@ const YoyoComic = () => {
           ))}
           {/* Think about including pagination when number of comics gets over 10-15, code example in notes in testing */}
         </div>
-        
+        </FadeInImage>
       </div>
       
       

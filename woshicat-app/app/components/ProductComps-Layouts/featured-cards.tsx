@@ -13,10 +13,11 @@ interface FeaturedType {
     auto?: boolean
 }
 
-const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
+const FeaturedPhotos:React.FC<FeaturedType> = ({ folder }) => {
   const [photos, setPhotos] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [autoPlay, setAutoPlay] = useState<boolean>(false);
   
   useEffect(() => {
     setLoading(true);
@@ -25,6 +26,9 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
         const response = await getImagesCloudinary(folder);
         if (response.length > 0) {
           setPhotos(response);
+          if (response.length > 6) {
+            setAutoPlay(true)
+          }
         } else {
           setError('Failed to fetch images');
         }
@@ -52,10 +56,10 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
           (
             <div className='relative w-full'>
               { photos.length > 0 && (
-                  <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} length={photos.length} autoPlay={auto}>
+                  <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} length={photos.length} autoPlay={autoPlay}>
                   {photos.map((image: any, index: number) => {
                       return (
-                        <div className="relative flex justify-center items-center w-full mx-auto aspect-4/5" key={index}>
+                        <div className={`relative flex justify-center items-center w-full mx-auto aspect-4/5`} key={index}>
                             <Image 
                               src={image.secure_url}
                               alt={image.altText || 'images of prosperity/seredipity apparel and models'} 

@@ -9,7 +9,7 @@ export default function LookbookLayout({
     children: React.ReactNode
   }) {
     return ( 
-      <section className="flex justify-center">
+      <section className="relative flex flex-col items-center bg-stone-900 w-full min-h-[100vh] mx-auto pt-5 lg:pt-10">
         <Suspense fallback={
           <Loader />}>
                 {children}

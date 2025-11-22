@@ -38,7 +38,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           href: `/collections/${info.handle}`
         }
       })
-      setCollections(collections);
+      setCollections(collections.reverse());
     }
     getCollectionLinks();
   }, [])
@@ -80,7 +80,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
               'flex h-full w-3/4 lg:w-36 items-center justify-center text-end hover:text-white transition duration-450 ease-in-out relative hover:bg-red-900/85 px-2 max-lg:rounded-lg',
               {
                 'text-white bg-red-900/70': parentPath === link.href,
-                'text-black/50': parentPath !== link.href,
+                'text-black/60': parentPath !== link.href,
               }
             )}
           >

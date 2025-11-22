@@ -8,7 +8,7 @@ export default function ComicLayout({
     children: React.ReactNode
   }) {
     return ( 
-      <section className="flex justify-center mt-28">
+      <section className="flex justify-center mt-20">
         <Suspense fallback={
           <Loader/>}>
           {children}

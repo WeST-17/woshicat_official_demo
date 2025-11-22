@@ -24,6 +24,7 @@ const ProgressBar: React.FC = () => {
         <div 
             className={`h-full bg-[#CD000A] rounded-full transition-all duration-300 ease-in-out`} 
             style={{ width: `${progress}%`}}
+            role="progressbar"
         />
         </>
     )

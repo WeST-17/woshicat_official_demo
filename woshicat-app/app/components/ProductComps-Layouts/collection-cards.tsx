@@ -112,7 +112,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
     </div>
     <section className='w-full relative'>
     <div className='absolute w-full h-full bg-white/95 rounded-lg'/>
-    <div className={`pt-4 relative grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-4 gap-1 fade-in ${!loading ? 'show' : ''} `}>
+    <div className={`pt-4 relative grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}>
       {products.map((product) => (
         // Render each product item
         <FadeInImage key={product.handle}>
@@ -125,18 +125,18 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
           <div className={`bg-white flex justify-center overflow-hidden`}>
             <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
             {/* Render product details */}
-            <div className='relative aspect-9/10 flex justify-center items-center'>
+            <div className='relative aspect-4/5 flex justify-center items-center'>
               {/* Default product image */}
               <img 
                 src={product.images[0].url} 
                 alt={product.images[0].altText} 
-                className={`${!product.available ? 'grayscale-[0.75]' : ''} ${product.handle.includes('shirt', 'hoodie') ? 'object-contain' : 'object-cover'} h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
               />
               {/* Hover image */}
               { product.images[2] && (<img 
                 src={product.images[2].url} 
                 alt={product.images[2].altText} 
-                className={`${!product.available ? 'grayscale-[0.75]' : ''} object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
               />) }
             </div>
             </Link>

@@ -14,7 +14,8 @@ import {
   getCartQuery,
   updateCartQuery, 
   getCheckoutQuery,
-  productRecommendationsQuery
+  productRecommendationsQuery,
+  featuredCollectionItems
 } from './queries';
 
 const shopify_domain = process.env.SHOPIFY_STORE_DOMAIN;
@@ -180,6 +181,45 @@ async function getFeaturedCollection(): Promise<string[]> {
 export async function getFeaturedCollectionHelper() {
   const featuredCollection = await getFeaturedCollection();
   return featuredCollection;
+}
+
+async function getFeaturedProducts(handle: string) {
+  const collectionHandleQuery: string = featuredCollectionItems(handle);
+  const { data, errors } = await client.request(collectionHandleQuery);
+  try {
+    const products = data.collection.products.edges.map((product: any) => {
+      const info = product.node;
+      const itemPrice = Number(info.priceRange.maxVariantPrice.amount).toFixed(2);
+      const imageList = info.images.nodes.map((image: any) => {
+        return {
+          url: image.url,
+          altText: image.altText
+        }
+      })
+
+      return {
+        id: info.id,
+        title: info.title,
+        handle: info.handle,
+        available: Number(info.totalInventory) > 0,
+        lowStock: Number(info.totalInventory) < 20,
+        price: itemPrice,
+        images: imageList,
+        collection: handle,
+        collectionTitle: data.collection.title,
+      }
+    }
+  )
+    
+    return products
+  } catch (error) {
+    throw errors;
+  }
+}
+
+export async function featuredProductsHelper(handle: string) {
+  const products = await getFeaturedProducts(handle);
+  return products;
 }
 
 async function getCollectionByHandle(handle: string, cursor?: string | null): Promise<any[]> {

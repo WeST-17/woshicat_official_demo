@@ -4,7 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import AddEmailSubscriber from "./action-klaviyo";
 
-const EmailList = () => {
+interface EmailListProps {
+  clicked?: boolean
+}
+
+const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isSubmitted, SetIsSubmitted] = useState<boolean>(false);
@@ -70,14 +74,14 @@ const EmailList = () => {
           />
           <div className="absolute rounded-full bg-red-600 w-2 h-2 right-10 -top-8"></div>
         </div>
-        <div className={`z-999 flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600`}>
+        <div className={`z-999 flex w-full justify-center border-2 rounded-md bg-white focus:ring-2 focus:ring-inset focus:ring-stone-600 ${clicked ? 'outline-3 outline-sky-400' : 'outline-3 outline-transparent'} transition duration-500`}>
           <input
             id="email"
             name="email"
             type="email"
             autoComplete="email"
             placeholder="shop@woshicat.com"
-            className={`flex w-full text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6 ${!isEmailValid ? 'outline-2 outline-red-600' : ''}`}
+            className={`flex w-full text-center border-0 py-1 px-1.5 text-stone-700 placeholder:text-gray-400 sm:text-sm sm:leading-6 ${!isEmailValid ? 'outline-2 outline-red-600' : ''} `}
             onChange={handleEmailChange}
             required
           />

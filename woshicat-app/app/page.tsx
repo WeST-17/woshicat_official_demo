@@ -5,23 +5,41 @@ import Link from "next/link";
 import TwoOneRect from "./components/bento-layout/two-one-rect";
 import ShopNowButton from "./components/ShopNowButton";
 import CollectionListing from "./components/collection-listings/collectionListing";
-import { getFeaturedCollectionHelper } from "./server_actions/action";
+import { featuredProductsHelper, getFeaturedCollectionHelper } from "./server_actions/action";
 import AutoCarousel from "./components/carousels/autoCarousel";
 import Loader from "./components/transitions-navigation/LoadingScreen";
-import Notice from "./components/messageUpdates/websiteNotice";
+import FadeInImage from "./components/transitions-navigation/FadeInImages";
+// import Notice from "./components/messageUpdates/websiteNotice";
 import FeaturedCards from "./components/ProductComps-Layouts/featured-cards";
 // import VideoHero from "./components/ProductComps-Layouts/videoHero"; work in progress
 
 const Home = () => {
   const [featured, setFeatured] = useState<any[]>([]);
+  const [featuredItems, setFeaturedItems] = useState<any[]>([]);
+
+  const currFormat = new Intl.NumberFormat('default', {
+    style: 'currency',
+    currency: 'USD',
+  });
   
   useEffect(() => {
-    const getFeaturedCollection = async () => {
-      const featured = await getFeaturedCollectionHelper();
-      if (featured) {
-        setFeatured(featured);
+    const getFeaturedProducts = async (handle: string) => {
+      const featuredProducts = await featuredProductsHelper(handle);
+      if (featuredProducts) {
+        setFeaturedItems(featuredProducts);
+        console.log(featuredProducts);
       } else {
-        console.log("couldn't get featured collection...");
+        console.log(`couldn't get products from the featured collection...`)
+      }
+    }
+    
+    const getFeaturedCollection = async () => {
+      const featuredCollection = await getFeaturedCollectionHelper();
+      if (featuredCollection[0]) {
+        setFeatured(featuredCollection);
+        getFeaturedProducts((featuredCollection[0] as any).handle);
+      } else {
+        console.log(`couldn't get featured collection...`);
       }
     }
     
@@ -45,25 +63,25 @@ const Home = () => {
             >
                 <source src="https://cdn.shopify.com/videos/c/o/v/a3d1138f7a52457ead9278adff9de19a.mp4" type="video/mp4" data-v-f518367b="" />
             </video> 
-            <Link className="button-hover flex items-center justify-center absolute bottom-0 left-0 font-thin text-white w-full h-full p-12" href="/collections">
-              <div className="relative h-full w-full lg:w-2/4 p-2 flex flex-col items-center justify-center font-bold text-center gap-2 pointer-events-none z-1">
+            <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections/taiji">
+              <div className="relative h-full w-full lg:w-2/4 p-2 flex flex-col items-center justify-center font-bold text-center gap-10 pointer-events-none z-1">
                 <section className="w-full flex justify-center ">
-                  {/* <Image 
-                    // REPLACE WITH TAIJI LOGO
-                    src="/logo/Singularity logo light.png"
-                    alt="Logo for Taiji, our Fall 2025 Drop"
-                    width={2000}
+                  <Image 
+                    src="/logo/TAIJI_LOGO.png"
+                    alt="Logo for Taiji, our Winter 2025 Drop"
+                    width={1750}
                     height={1}
-                    className="w-4/5 object-contain"
-                  /> */}
-                  <p className="text-3xl lg:text-6xl">{`COMING SOON`}</p>
+                    className="w-4/5 object-contain brightness-0 invert"
+                  />
                 </section>
-                <div className="text-center">
-                  <p className="text-xl lg:text-2xl">{`WINTER SEASON DROP`}</p>
+                <div className="">
+                  <p className="lg:text-3xl font-thin"> {`WINTER 2025`}</p>
                 </div>
-                
               </div>
-              <div className="absolute bottom-0 left-0 w-full h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center" />
+              <div className="z-100 h-20 flex items-end justify-center font-bold mb-20">
+                <ShopNowButton />
+              </div>
+              <div className="absolute bottom-0 left-0 w-full h-full bg-black/60 hover:bg-black/30 transition duration-300 flex justify-center items-center" />
             </Link>
           </div>
 
@@ -75,13 +93,13 @@ const Home = () => {
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections/metro-daydreams">
-              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-5xl font-bold z-100 gap-2 pointer-events-none mx-auto">
+              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-7xl font-bold z-100 gap-2 pointer-events-none mx-auto">
                 <section className="w-full flex justify-center items-center gap-6">
                   <div className="flex justify-center items-center overflow-hidden">
                     <Image 
                       src="/logo/Logo Red Version Clean.png"
                       alt="WoShi Cat Seal Logo in white"
-                      width={80}
+                      width={120}
                       height={1}
                       className="object-contain brightness-0 invert"
                     />
@@ -92,14 +110,13 @@ const Home = () => {
                   </div>
                 </section>
               </div>
-              <div className="z-100 h-20 flex items-end justify-center font-bold mb-20 z-[-1]">
+              <div className="z-100 h-20 flex items-end justify-center font-bold mb-20">
                 <ShopNowButton />
               </div>
-              <div className="absolute bottom-0 left-0 w-screen h-full bg-black/35 hover:bg-black/60 transition duration-300 flex justify-center items-center z-[-1]" />
+              <div className="absolute bottom-0 left-0 w-screen h-full bg-black/60 hover:bg-black/30 transition duration-300 flex justify-center items-center" />
             </Link>
           </div>
         </AutoCarousel>
-        
       </div>
       
       <div className="relative flex flex-col w-full mx-auto col-span-9 bg-white/95 rounded-lg">
@@ -146,7 +163,7 @@ const Home = () => {
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
           <h3 className="ps-1">{`Featured Arrivals`}</h3>
           {/* Featured Collection Display */}
-          <div className={`relative w-full grid grid-cols-10 mb-10 mx-auto rounded-lg gap-1`}>
+          <div className={`relative w-full grid grid-cols-9 mb-10 mx-auto rounded-lg gap-1 p-0.5`}>
             {featured[0] ? (
               <>
                 <TwoOneRect
@@ -162,12 +179,50 @@ const Home = () => {
                 </TwoOneRect>
               </>
             ) : (
-            <div className="object-contain relative col-span-10 md:col-span-5 w-full overflow-hidden flex justify-center items-center">
+            <div className="object-contain relative col-span-9 lg:col-span-6 w-full overflow-hidden flex justify-center items-center">
               <Loader />
             </div>
           )}
-            <div className="relative col-span-10 md:col-span-5 h-full overflow-hidden rounded-lg flex items-center aspect-[3/2] md:aspect-[9/10]">
-              <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank" className="h-full w-full">
+            <div className="relative col-span-9 lg:col-span-3 h-full overflow-hidden rounded-lg bg-white/70 flex items-center grid grid-cols-2 gap-1">
+              {featuredItems && featuredItems.map((product, index: number) => (
+                <div className="col-span-1 flex flex-col h-full" key={index}>
+                  <FadeInImage key={product.handle}>
+                  <div className={`relative text-center h-full overflow-hidden`}  
+                    key={product.handle}
+                  >
+                    <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+                    <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
+                    
+                    <div className={`bg-white flex justify-center overflow-hidden`}>
+                      <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
+                      {/* Render product details */}
+                      <div className='relative aspect-4/5 flex justify-center items-center'>
+                        {/* Default product image */}
+                        <img 
+                          src={product.images[0].url} 
+                          alt={product.images[0].altText} 
+                          className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                        />
+                        {/* Hover image */}
+                        { product.images[2] && (<img 
+                          src={product.images[2].url} 
+                          alt={product.images[2].altText} 
+                          className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                        />) }
+                      </div>
+                      </Link>
+                    </div>
+                    <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
+                      <div className="me-auto lg:text-sm text-start">{product.title}</div>
+                      <div className="ms-auto lg:text-sm">{currFormat.format(product.price)}</div>
+                    </div>
+                  </div>
+                  </FadeInImage>
+                </div>
+              ))
+            }
+              
+              {/* <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank" className="h-full w-full">
                 <Image
                   src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
                   alt={'A guy sitting on a ledge, wearing the 5:06 Train Shirt'}
@@ -188,7 +243,7 @@ const Home = () => {
                   />
                   
                 </div>
-              </Link>
+              </Link> */}
             </div>
         </div>
       </div>
@@ -198,24 +253,21 @@ const Home = () => {
           {/* Rest of the Collections */}
           <Link href="/collections" className="w-full text-5xl font-normal ps-1 mb-2">
             {`Yoyo's Collection List`}
-          </Link>
-          
+          </Link>  
           <div className="relative w-full mx-auto flex">
-            {/* Begin section */}
               <CollectionListing addClass="w-full h-full"/>
-            {/* End section */}
           </div>
         </div>
 
         {/* Product Showcase */}
-        {/* <div className={`relative w-full col-span-9 mb-10 mx-auto flex flex-col justify-center items-center`}>
+        <div className={`relative w-full col-span-9 mb-10 mx-auto flex flex-col justify-center items-center`}>
           <div className="relative w-full lg:w-[90%] h-fit mb-2 mx-auto">
             <Link href="/collections" className="flex w-full text-5xl font-normal ps-1">
               {`Benji's Styling Inspo`}
             </Link>
           </div>
-          <FeaturedCards folder="styling-inspiration" auto={true}/>
-        </div> */}
+          <FeaturedCards folder="styling-inspiration" />
+        </div>
       </div>
     </main>
     </>
