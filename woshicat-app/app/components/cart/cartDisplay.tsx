@@ -117,7 +117,7 @@ const CartShow = () => {
                     <>
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`h-28 rounded-md cart-item p-2 gap-4 hover:bg-stone-200 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                            <div key={`b_${i}`} className={`h-36 rounded-md cart-item p-2 gap-4 hover:bg-stone-200 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                                 <motion.div
                                     custom={i}
                                     variants={perspective}

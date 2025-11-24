@@ -9,16 +9,16 @@ interface CarouselComponentProps {
     children: React.ReactNode,
     addClass?: string,
     numPerSlide: number,
-    length: number,
     mobileSlide: number,
     autoPlay?: boolean
 }
 
-const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, length, mobileSlide, autoPlay }) => {
+const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClass, numPerSlide, mobileSlide, autoPlay }) => {
     const [currIndex, setCurrIndex] = useState<number>(0);
     const childRef = useRef<HTMLDivElement | null>(null);
     const windowSize = useWindowDimensions();
     const [touchPosition, setTouchPosition] = useState<any>(null);
+    const [childCount, setChildCount] = useState<number>(0);
 
     useEffect(() => {
         window.addEventListener("touchstart", handleTouchStart, { passive: false });
@@ -69,13 +69,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
 
     const next = () => {
         if (windowSize.width && windowSize.width > 767) {
-            if ((currIndex < (Math.ceil(length / numPerSlide)) - 1)) {
+            if ((currIndex < (Math.ceil(childCount / numPerSlide)) - 1)) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
             }; 
         } else {
-            if (currIndex < (Math.ceil(length / mobileSlide) - 1)) {
+            if (currIndex < (Math.ceil(childCount / mobileSlide) - 1)) {
                 setCurrIndex(currIndex + 1);
             } else {
                 setCurrIndex(0);
@@ -88,17 +88,26 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
             if ((currIndex > 0)) {
                 setCurrIndex(currIndex - 1);
             } else {
-                setCurrIndex((Math.ceil(length / numPerSlide)) - 1);
+                setCurrIndex((Math.ceil(childCount / numPerSlide)) - 1);
             }; 
         } else {
             if (currIndex > 0) {
                 setCurrIndex(currIndex - 1);
             } else {
-                setCurrIndex((Math.ceil(length / mobileSlide) - 1));
+                setCurrIndex((Math.ceil(childCount / mobileSlide) - 1));
             }
         };
         
     };
+
+    useEffect(() => {
+        const getChildCount = async () => {
+            if (childRef.current) {
+                setChildCount(childRef.current?.childNodes.length);
+            }
+        } 
+        getChildCount();
+    }, [childRef.current])
 
     useEffect(() => {
         if (autoPlay) {
@@ -123,7 +132,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     return (
         <>
         <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-200 gap-1`}>
-            {windowSize.width >= 768 ? new Array(Math.ceil(length / numPerSlide)).fill("").map((_, i) => (
+            {windowSize.width >= 768 ? new Array(Math.ceil(childCount / numPerSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
@@ -134,7 +143,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         onClick={() => setCurrIndex(i)}
                     />
                 </div>
-            )) : new Array(Math.ceil(length / mobileSlide)).fill("").map((_, i) => (
+            )) : new Array(Math.ceil(childCount / mobileSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
                     className="flex justify-center items-center h-full w-fit"
@@ -149,15 +158,14 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         </section>
         <div className={`relative w-full overflow-hidden rounded-lg`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-0 h-3/4 z-100 bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-0 h-3/4 z-100 bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'lg:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
                 <div className="relative overflow-hidden w-full h-full touch-none">
                     <div
                         className={`touch-pan-y flex transition transition-all duration-500 ease-in-out carousels ${addClass}`}
                         style={{
-                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) - (currIndex === (Math.ceil(length / numPerSlide) - 1) && (length % Math.floor(numPerSlide) > 0) ? (100 * Math.abs((length % Math.floor(numPerSlide)) - Math.floor(numPerSlide))) : 0) 
-                                : 100 * Math.floor(mobileSlide)))}%)`,
+                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) * (childCount % 3 > 0 && (childCount % Math.floor(numPerSlide) > 0 && currIndex === Math.floor(childCount / Math.floor(Math.floor(numPerSlide)))) ? (1 - (0.16667 * (Math.floor(numPerSlide) - (childCount % (Math.floor(numPerSlide)))))) : 1) : 100 * Math.floor(mobileSlide)))}%)`,
                             width: `calc(${100 / (windowSize.width >= 768 ? numPerSlide : mobileSlide)}%)`
                         }}
                         ref={childRef}
@@ -165,10 +173,11 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                         onTouchMove={handleTouchMove}
                         >
                         {children}
+                        
                     </div>
 
                 </div>
-                <button className={`absolute h-3/4 right-0 z-100 bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${length > (2) ? '' : 'hidden'} ${length <= numPerSlide ? 'md:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-3/4 right-0 z-100 bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'md:hidden' : ''} ${autoPlay === true ? 'hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>
