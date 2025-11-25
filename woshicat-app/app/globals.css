@@ -310,7 +310,7 @@ body {
 .collapse-item {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
+  transition: max-height 0.35s ease-in-out;
 }
 
 .collapse-item.open {

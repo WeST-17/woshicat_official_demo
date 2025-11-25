@@ -19,13 +19,13 @@ const MainProductDescription: React.FC<Description> = ({ description, isApparel,
 
     return (
         <>
-            <span className='w-full h-px bg-stone-600/50 rounded-full' />
+            <span className='w-full bg-stone-600/50 rounded-full' />
             <div className="w-full my-2 text-sm">
                 <p className="mb-2 text-xl">Description</p>
                 {updateDesc[0]}
             </div>
             
-            <div className="relative w-full mt-8">
+            <div className="relative w-full mt-4">
                 {splitDetails.map((lines: string, index) => (
                     
                     <div className="relative w-full" key={index}>

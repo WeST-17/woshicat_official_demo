@@ -34,21 +34,6 @@ const LookbookSlug = () => {
     fetchImages();
   }, [])
 
-  // useEffect(() => {
-  //   const filterImg = async () => {
-  //     for (var i = 0; i < images.length; i++) {
-  //       if (images[i].width > images[i].height) {
-  //         let temp: any = landscapeImgs.push(images[i])
-  //         setLandscapeImgs(temp);
-  //       } else {
-  //         let temp: any = portrait.push(images[i])
-  //         setPortrait(temp);
-  //       }
-  //     };
-  //   }
-  //   filterImg();
-  // }, [images])
-
   if (pageLoad) {
     return (
     <Loader />
@@ -65,17 +50,17 @@ const LookbookSlug = () => {
     <main className="flex justify-center w-screen mt-20">
       {/* */}
       { images.length > 0 && (
-        <div className="relative flex flex-col grid grid-cols-2 lg:grid-cols-3 w-full p-2 lg:w-[90vw] mx-auto gap-1">
+        <div className="relative flex grid grid-cols-2 lg:grid-cols-4 w-full p-2 lg:w-[90vw] mx-auto gap-1 flex-wrap grow">
         {images.map((image: any, index: number) => {
             return (
-              <div className={`flex justify-center items-center overflow-hidden h-full`} key={index}>
+              <div className={`flex justify-center items-center overflow-hidden w-full ${image.width > image.height ? "col-span-2" : "col-span-1"}`} key={index}>
               <FadeInImage>
                   <Image 
                     src={image.secure_url}
                     alt={image.altText} 
                     width={image.width} 
                     height={1} 
-                    className={`object-cover h-full aspect-9/10`}
+                    className={`object-cover h-full ${image.width > image.height ? "aspect-8/5" : "aspect-4/5"}`}
                   />
               </FadeInImage>
               </div>

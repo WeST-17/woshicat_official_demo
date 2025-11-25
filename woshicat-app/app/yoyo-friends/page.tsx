@@ -11,7 +11,7 @@ const YoyoComic = () => {
     <>
     <main className="flex justify-center w-screen">
       {/* */}
-      <div className="relative flex flex-col gap-4 w-full min-h-[75vh] md:w-1/2 mx-auto p-2">
+      <div className="relative flex flex-col gap-4 w-full min-h-[75vh] lg:w-1/2 mx-auto p-2">
         <h1 className="text-4xl pt-4">{`Yoyo & Friends!`}</h1>
         <div className="flex flex-col gap-2">
           <h2 className="text-lg">{`Follow Yoyo and his friends as they tackle their corporate jobs and life head on!`}</h2>
@@ -30,7 +30,7 @@ const YoyoComic = () => {
                 alt={`${episode.title} thumbnail`}
                 width={200}
                 height={1}
-                className="w-32 rounded-md"
+                className="w-20 lg:w-28 rounded-md"
               />
               <h2 className="text-sm w-1/2 lg:text-lg">{episode.title}</h2>
               <p className="text-end w-1/5 absolute right-0 text-xs">{episode.date}</p>

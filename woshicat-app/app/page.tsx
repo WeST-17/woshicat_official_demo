@@ -53,7 +53,7 @@ const Home = () => {
       {/* <Notice /> */}
 
       {/* Top of website */}
-      <div className={`relative col-span-9 sticky top-0 transition transition-all duration-500 ease-in-out`}
+      <div className={`relative col-span-9 sticky top-0 transition transition-all duration-800 ease-in-out`}
       >
         <AutoCarousel>
           {/* Taiji - Fall 2025 */}
@@ -140,9 +140,9 @@ const Home = () => {
                 alt={'Chinese Phonetics: Wo Shi Cat'}
                 className="image"
               />
-              <div className="w-full md:text-2xl flex flex-col justify-center items-center text-center p-2">
-                <p className="text-2xl md:text-3xl font-bold">{`Breaking the cycle, day by day.`}</p>
-                <div className="">
+              <div className="w-full lg:w-4/5 flex flex-col justify-center items-center text-center p-2">
+                <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
+                <div className="text-base md:text-xl">
                 {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
                 </div>
               </div>
@@ -266,7 +266,7 @@ const Home = () => {
               {`Benji's Styling Inspo`}
             </Link>
           </div>
-          <FeaturedCards folder="styling-inspiration" />
+          <FeaturedCards folder="styling-inspiration" auto={true}/>
         </div>
       </div>
     </main>

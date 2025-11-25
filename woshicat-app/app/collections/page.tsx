@@ -52,11 +52,11 @@ const Collections = () => {
             />
           </div>
         </div>
-        <div className="w-full md:w-[90vw] mx-auto flex relative">
+        <div className="w-full lg:w-[90vw] mx-auto flex relative">
           {/* Begin section */}
-            
-            <CollectionListing addClass="w-full h-full"/>
-            
+            <div className="relative w-full mx-auto flex">
+              <CollectionListing addClass="w-full h-full"/>
+            </div>
           {/* End section */}
         </div>
         {/* Show All Products */}

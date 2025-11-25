@@ -192,7 +192,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     return (
         <>
-        <div className={`relative flex justify-center items-center h-[50vh] w-screen bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
+        <div className={`relative sticky top-0 flex justify-center items-center h-[50vh] w-screen bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product.*/}
             <div className='absolute w-full h-full bg-black/25 z-100 flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-4xl lg:text-7xl mt-[70px]'>{item.title}</h1>
@@ -205,6 +205,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 className='object-cover w-full'
             />
         </div>
+        <div className="relative flex flex-col w-full mx-auto bg-white/95 rounded-lg pt-8">
         <div className='relative h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
             <div className='relative flex justify-center items-start grid lg:grid-cols-8 mb-20 gap-4'>
                 {/* Apparel Images */}
@@ -235,7 +236,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </div>
 
                     {/* Large screen size and up */}
-                    <div className='relative col-span-5 rounded-md max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
+                    <div className='relative col-span-4 rounded-md overflow-hidden max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
                         {/* Render product details */}
                             {item.images.map((image: {url: string, altText: string}, index: number) => (
                                 <div key={index} className={`w-full h-full aspect-5/7 flex justify-center items-center relative`}>
@@ -259,7 +260,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </>
                 )}
                     
-                <div className={`sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-3 h-fit w-full relative gap-4`}>
+                <div className={`sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-3`}>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -475,6 +476,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 </ScrollingCarousel>
             </div>
             </FadeInImage>
+        </div>
         </div>
         </>
     );

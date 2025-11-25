@@ -1,8 +1,7 @@
 'use client';
-// ProductCards.tsx
+// featured-cards.tsx
 import React, { useEffect, useState } from 'react';
 import { getImagesCloudinary } from '../cloudinaryImages/cloudinary';
-import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
 import ScrollingCarousel from '../carousels/Carousel';
@@ -13,11 +12,10 @@ interface FeaturedType {
     auto?: boolean
 }
 
-const FeaturedPhotos:React.FC<FeaturedType> = ({ folder }) => {
+const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
   const [photos, setPhotos] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [autoPlay, setAutoPlay] = useState<boolean>(false);
   
   useEffect(() => {
     setLoading(true);
@@ -26,9 +24,6 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder }) => {
         const response = await getImagesCloudinary(folder);
         if (response.length > 0) {
           setPhotos(response);
-          if (response.length > 6) {
-            setAutoPlay(true)
-          }
         } else {
           setError('Failed to fetch images');
         }
@@ -56,7 +51,7 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder }) => {
           (
             <div className='relative w-full'>
               { photos.length > 0 && (
-                  <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} autoPlay={autoPlay}>
+                  <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} autoPlay={auto}>
                   {photos.map((image: any, index: number) => {
                       return (
                         <div className={`relative flex justify-center items-center w-full mx-auto aspect-4/5`} key={index}>
