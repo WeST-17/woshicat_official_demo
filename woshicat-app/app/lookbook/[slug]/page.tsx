@@ -47,20 +47,21 @@ const LookbookSlug = () => {
 
   return (
     <>
-    <main className="flex justify-center w-screen mt-20">
+    <main className="flex flex-col justify-center w-screen mt-20 gap-1">
       {/* */}
+
       { images.length > 0 && (
-        <div className="relative flex grid grid-cols-2 lg:grid-cols-4 w-full p-2 lg:w-[90vw] mx-auto gap-1 flex-wrap grow">
+        <div className="relative flex grid grid-cols-2 md:grid-cols-4 2xl:grid-cols-6 grid-rows-auto w-full lg:w-[90vw] mx-auto gap-1 flex-wrap grow rounded-lg overflow-hidden">
         {images.map((image: any, index: number) => {
             return (
-              <div className={`flex justify-center items-center overflow-hidden w-full ${image.width > image.height ? "col-span-2" : "col-span-1"}`} key={index}>
+              <div className={`flex justify-center items-center overflow-hidden w-full relative ${image.width > image.height ? "col-span-2" : ""} ${images[index + 1] && images[index + 1].width > images[index + 1].height ? "row-span-2 col-span-2" : ""}`} key={index}>
               <FadeInImage>
                   <Image 
                     src={image.secure_url}
                     alt={image.altText} 
                     width={image.width} 
                     height={1} 
-                    className={`object-cover h-full ${image.width > image.height ? "aspect-8/5" : "aspect-4/5"}`}
+                    className={`z-1 object-cover h-full ${image.width > image.height ? "aspect-8/5" : "aspect-4/5"}`}
                   />
               </FadeInImage>
               </div>

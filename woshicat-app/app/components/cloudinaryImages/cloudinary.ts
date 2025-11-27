@@ -38,7 +38,7 @@ export async function getImagesCloudinary(folder: string): Promise<CloudinaryIma
             
           };
         });
-        // console.log(cloudinaryPass.sort())
+        // return cloudinaryPass.sort()
         return cloudinaryPass.sort((a, b) => (a['public_id'] > b['public_id'] ? 1 : -1));
       } catch (error) {
         console.error('Error fetching Cloudinary images:', error);
