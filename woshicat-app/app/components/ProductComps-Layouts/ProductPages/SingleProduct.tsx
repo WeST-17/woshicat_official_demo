@@ -283,8 +283,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         <button
                                             key={index}
                                             style={{ backgroundColor: color }}
-                                            className={`bg-[${color}] rounded-full border-2 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-xs hover:bg-stone-300 transition duration-300 focus-visible:outline-solid focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
-                                                selectedColor === variant?.color ? 'border-stone-700' : 'border-stone-300'
+                                            className={`bg-[${color}] rounded-full border-3 me-2 p-2 w-10 h-10 text-sm font-semibold text-black shadow-xs hover:border-stone-800 transition duration-300 focus-visible:outline-solid focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${
+                                                selectedColor === variant?.color ? 'border-stone-800' : 'border-stone-300'
                                             }`}
                                             onClick={
                                                 () => {
@@ -363,7 +363,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-stone-400 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-stone-500' : 'opacity-50 pointer-events-none'}`}
+                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-red-800/50 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-red-800' : 'opacity-50 pointer-events-none'}`}
                                 disabled={
                                     item.variants && item.variants.length === 0 
                                     ? (!selectedSize || !selectedColor) 
@@ -407,7 +407,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </select>
                             </div>
                             <button
-                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 bg-stone-400 w-3/5 p-2 text-md font-semibold text-white shadow-xs hover:bg-stone-500 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
+                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 bg-red-800/50 w-3/5 p-2 text-md font-semibold text-white shadow-xs hover:bg-red-800 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${quantity === 0 || item.quantity < quantity ? 'opacity-50 pointer-events-none':'opacity-100'}`}
                                 disabled={
                                     item.quantity < quantity
                                 }
