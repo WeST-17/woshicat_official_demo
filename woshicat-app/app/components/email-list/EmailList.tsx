@@ -67,7 +67,7 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
           <h2>WoShi Cat Newsletter!</h2> 
           <Image 
             src={'/media/graphics/Yoyo Single Shot.png'}
-            alt={'Yoyo is slightly smiling...'}
+            alt={'Yoyo is jumping for a laser point on the webpage...'}
             width={80}
             height={1}
             className="translate-y-5 hover:translate-y-0 transition duration-300 ease"
