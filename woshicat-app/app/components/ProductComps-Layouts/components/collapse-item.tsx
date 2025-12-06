@@ -23,7 +23,7 @@ const Collapse: React.FC<CollapseProps> = ({ children, title, classProp}) => {
                     onClick={toggleItem} 
                     className={`relative w-full flex justify-start transition transition-all duration-200 ${!openItem ? 'font-medium' : 'font-bold'}`}
                 >
-                    <p className='text-black w-4/5 h-fit flex justify-start'>{title}</p> 
+                    <p className='text-black w-4/5 h-fit flex justify-start text-start'>{title}</p> 
                     <div className='w-1/5 flex justify-end items-center'>{openItem ? "-" : "+"}</div>
                 </button>
                 <div className={`collapse-item flex flex-col justify-start items-center w-full h-fit ${openItem ? 'open' : ''}`}>

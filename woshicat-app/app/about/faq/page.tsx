@@ -15,9 +15,9 @@ const BrandFAQ = () => {
           
           {/* FAQ List */}
           {FAQ.map((question) => (
-            <div className="flex flex-col justify-start w-full h-fit transition duration-300" key={question.link}>
-              <Collapse classProp="text-base -translate-y-5 flex justify-start items-center" title={`${question.q}`}>
-                <p className="mb-2 w-full flex justify-start text-start">
+            <div className="flex flex-col justify-start w-full min-h-fit transition duration-300" key={question.link}>
+              <Collapse classProp="text-base flex justify-start items-center" title={`${question.q}`}>
+                <p className="mb-2 w-full flex justify-start text-start text-sm lg:text-base">
                   {question.a}
                 </p>
               </Collapse>
