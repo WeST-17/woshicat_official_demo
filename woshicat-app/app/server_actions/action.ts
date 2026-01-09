@@ -24,7 +24,7 @@ const shopify_token = process.env.SHOPIFY_TOKEN;
 const client = shopify({
   storeDomain: shopify_domain!,
   publicAccessToken: shopify_token!,
-  apiVersion: '2025-01',
+  apiVersion: '2026-04',
 });
 
 
