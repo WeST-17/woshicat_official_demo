@@ -105,7 +105,7 @@ const Footer = () => {
                 <p className="text-xs">{`Experimental: Smooth Scroll`}</p>
             </div>
             <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 ${pathname ? "invert" : ""}`}>
-                {`WoShi Cat, LLC - 2024`}
+                {`WoShi Cat, LLC - 2026`}
             </div>
         </footer>
         </>
