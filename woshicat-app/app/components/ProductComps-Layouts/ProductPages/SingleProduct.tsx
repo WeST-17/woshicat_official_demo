@@ -80,6 +80,14 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         fetchRecommendationData();
     }, []);
 
+    // handle single color case
+    useEffect(() => {
+        if (colors.size === 1) {
+            let [head] = colors;
+            setSelectedColor(head);
+        }
+    }, [colors]);
+
     
 // --------------------------------------------------------------------------------------------------------------------------
 

@@ -1,4 +1,6 @@
 'use client';
+import PeopleInfoCard from "../components/peoples/peoplesInfo";
+import Image from "next/image";
 
 const About = () => {
   
@@ -6,9 +8,8 @@ const About = () => {
     <>
     <main className="relative w-full h-full">
       {/* */}
-      <div className="flex h-full w-full bg-white/85 absolute right-0"/>
-      <div className="relative flex justify-center items-center max-lg:flex-col w-full h-full">
-        
+      <div className="relative flex justify-center items-center max-lg:flex-col w-full h-[60vh]">
+        <div className="flex h-[60.1vh] w-full bg-white/85 absolute right-0"/>
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
@@ -25,7 +26,7 @@ const About = () => {
           </video> 
         </div>
 
-        <div className="relative flex justify-start mt-20 lg:mt-32 h-screen w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
+        <div className="relative flex justify-start h-fit w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
           
           <div className="flex flex-col items-start justify-start gap-3">
             <h1 className="text-xl lg:text-3xl font-bold">{`WoShi Cat:`}</h1>
@@ -44,7 +45,59 @@ const About = () => {
           </section>
         </div>
       </div>
+      <div className="w-full flex justify-start overflow-hidden">
+        <Image
+            src={'/media/corner-bright.png'}
+            width={120}
+            height={1}
+            alt="Chinese style corner frame decoration/design"
+            className="me-auto"
+        />
+        <Image
+            src={'/media/corner-bright.png'}
+            width={120}
+            height={1}
+            alt="Chinese style corner frame decoration/design"
+            className="ms-auto rotate-90"
+        />
+      </div>
+      {/* <div className="w-full flex flex-col justify-center lg:w-1/2 mx-auto">
+        
+        <PeopleInfoCard
+          imageUrl="https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopifydc2025-02.jpg?v=1762923036"
+          imageAlt="picture of alvin sitting at a desk slaving away"
+          description={`alvin's the founder of woshi cat, and outsources his work to friendos (web dev here, this is true -wes)`}
+          imgAlignment="left"
+          name="alvin"
+          title="founder/ceo/yoyo inspo"
+        />
 
+        <PeopleInfoCard
+          imageUrl="https://cdn.shopify.com/s/files/1/0901/4794/6795/files/shopify_cd_2025-059.jpg?v=1764742990"
+          imageAlt="picture of alvin sitting at a desk slaving away"
+          description={`alvin's the founder of woshi cat, and outsources his work to friendos (web dev here, this is true -wes)`}
+          imgAlignment="right"
+          name="alvin"
+          title="founder/ceo/yoyo inspo"
+        />
+      </div> */}
+      <div className="w-full flex justify-end">
+        <Image
+          src={'/media/corner-bright.png'}
+          width={120}
+          height={1}
+          alt="Chinese style corner frame decoration/design"
+          className="me-auto -rotate-90"
+        />
+        <Image
+          src={'/media/corner-bright.png'}
+          width={120}
+          height={1}
+          alt="Chinese style corner frame decoration/design"
+          className="ms-auto rotate-180"
+        />
+        
+      </div>
     </main>
     </>
   );
