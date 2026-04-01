@@ -20,7 +20,11 @@ const CartPage = () => {
         }
 
         calcTotal();
-    }, [cartItems])
+    }, [cartItems]);
+
+    useEffect(() => {
+        return () => {};
+    }, []);
 
     const checkout = async () => {
         const checkoutUrl = await FinalCheckout();

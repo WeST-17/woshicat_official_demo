@@ -7,6 +7,7 @@ import TransitionSlide from "./components/transitions-navigation/transitionWipe"
 import { CartProvider } from "./components/cart/cartContext";
 import { ToggleProvider } from "./components/toggles/toggleContext";
 import SmoothScroll from "./components/toggles/SmoothScroll";
+import MetaPixel from "./components/metaPixel";
 
 
 const lato = Lato({
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </ToggleProvider>
             </CartProvider>
         <TransitionSlide />
+        <MetaPixel />
       </body>
     </html>
   );

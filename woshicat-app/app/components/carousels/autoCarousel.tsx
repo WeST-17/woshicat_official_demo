@@ -112,7 +112,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                         </div>
                     ))}
                 </section>
-                <button className="px-2 opacity-50 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-20 left-5 m-2 z-1000 text-white flex items-center gap-2 text-sm h-10 md:w-36" onClick={playControls} aria-description="play and pause control button for carousel" disabled={childCount <= 1}>
+                <button className="px-2 opacity-50 hover:opacity-100 hover:bg-white/40 transition duration-450 rounded-md absolute bottom-0 left-5 m-2 z-1000 text-white flex items-center gap-2 text-sm h-10 w-fit" onClick={playControls} aria-description="play and pause control button for carousel" disabled={childCount <= 1}>
                     {auto ? 
                         <>
                         <Image 

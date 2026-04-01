@@ -30,6 +30,8 @@ const CartShow = () => {
         }
 
         calcTotal();
+
+        return () => { console.log("unmount / cleanup") };
     }, [cartItems])
 
     
@@ -60,7 +62,7 @@ const CartShow = () => {
                 duration: 0.65, 
                 delay: 0.5 + (i * 0.1), 
                 ease: [0.76, 0, 0.24, 1],
-                opacity: { duration: 1.05, ease: [0.76, 0, 0.24, 1]},
+                opacity: { duration: 1, ease: [0.76, 0, 0.24, 1]},
             }
         }),
         exit: {
@@ -96,13 +98,14 @@ const CartShow = () => {
             
             {/* Cart Modal (Always Rendered) */}
             <div
-                className={`relative z-[3002] cart-container overflow-y-scroll overscroll-contain rounded-lg ${cartOpen ? 'open-cart' : ''}`}
+                className={`relative z-[3002] cart-container overscroll-none overflow-hidden rounded-lg ${cartOpen ? 'open-cart' : ''}`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
-                <div className="relative sticky top-0 w-full h-20 flex justify-center items-center bg-white/50">
+                
+                <div className={`sticky top-0 w-full h-16 flex justify-center items-center bg-white duration-800 ${cartOpen ? 'opacity-100' : 'opacity-0'}`}>
                     
-                    <Link href={"/cart"} className="me-auto top-3 p-4 text-2xl font-medium" onClick={toggle}>
+                    <Link href={"/cart"} className={`me-auto top-3 p-4 text-2xl font-medium`} onClick={toggle}>
                         <p>{`Shopping Cart`}</p>
                     </Link>
                     <button onClick={toggle} className="ms-auto my-4 mx-4 text-stone-400">
@@ -112,12 +115,12 @@ const CartShow = () => {
                     </button>
                 </div>
                 
-                <div className={`w-full h-4/5 p-1 rounded-lg touch-pan-y overflow-auto`}>
+                <div className={`w-full h-[520px] flex flex-col justify-start p-1 rounded-lg touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain bg-transparent`}>
                 {cartItems.length > 0 ? (
                     <>
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`h-36 rounded-md cart-item p-2 gap-4 hover:bg-stone-200 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
+                            <div key={`b_${i}`} className={`h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
                                 <motion.div
                                     custom={i}
                                     variants={perspective}
@@ -126,7 +129,7 @@ const CartShow = () => {
                                     exit={"exit"}
                                     className={`flex h-full w-full gap-2 overflow-hidden`}
                                 >
-                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full">
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full aspect-square">
                                     <img
                                         src={item.imageUrl}
                                         alt={item.handle}
@@ -134,30 +137,34 @@ const CartShow = () => {
                                     />
                                 </Link>
                                 <div className="ms-auto w-full p-2 flex flex-col justify-center h-full">
-                                    <h2 className='h-full w-full mb-1 text-base lg:text-lg'>{item.title}</h2>
+                                    <h2 className='h-fit w-full mb-1 text-sm'>{item.title}</h2>
                                     <h3 className="text-xs font-thin mb-1 opacity-80">
                                         {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
                                     </h3>
-                                    <p className='text-sm font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
-                                    <QuantityAdjuster
-                                        variantId={item.variantId}
-                                        initialQuantity={item.quantity}
-                                        onQuantityChange={(newQuantity) => {
-                                            console.log('Quantity changed to:', newQuantity);
-                                        }}
-                                    />
+                                    <p className='text-xs font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
                                 </div>
+                                <QuantityAdjuster
+                                    variantId={item.variantId}
+                                    initialQuantity={item.quantity}
+                                    onQuantityChange={(newQuantity) => {
+                                        console.log('Quantity changed to:', newQuantity);
+                                    }}
+                                />
                                 </motion.div>
                             </div>
                         )})}
                     </>
                     
-                ) : cartItemsLoading ? (
-                    <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
-                        <Loader />
-                    </div>
-                    ) : (
-                    <p className="textbase text-gray-600 text-start p-4">Your cart is empty.</p>
+                    ) : cartItemsLoading ? (
+                        <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
+                            <Loader />
+                        </div>
+                        ) : ( 
+                        <>
+                        <div className="absolute top-0 right-0 bottom-0 w-full h-full flex justify-center items-center z-[-1]">
+                            test
+                        </div>
+                        </> 
                     )}
                 </div>
                 <div className="flex flex-col w-full sticky bottom-0 p-1 bg-white/75">

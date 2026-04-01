@@ -59,6 +59,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         };
 
         fetchData();
+
+        return () => { console.log("unmount / cleanup") };
     }, []);
 
     // Product recommendations fetching
@@ -78,6 +80,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         };
 
         fetchRecommendationData();
+
+        return () => { console.log("unmount / cleanup") };
     }, []);
 
     // handle single color case
@@ -86,6 +90,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             let [head] = colors;
             setSelectedColor(head);
         }
+
+        return () => { console.log("unmount / cleanup") };
     }, [colors]);
 
     

@@ -57,6 +57,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
 
     fetchCartItems(); 
+
+    return () => { console.log("unmount / cleanup") };
   }, [cartUpdated]);
 
   useEffect(() => {
@@ -64,6 +66,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       document.body.classList.toggle('overflow-hidden');
     };
     setBodyOverflow();
+
+    return () => { console.log("unmount / cleanup") };
   }, [cartOpen]);
 
   

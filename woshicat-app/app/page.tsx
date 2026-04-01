@@ -44,6 +44,7 @@ const Home = () => {
     }
     
     getFeaturedCollection();
+    return () => { console.log("unmount / cleanup") };
   }, [])
 
   return (

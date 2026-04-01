@@ -41,12 +41,15 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
       setCollections(collections.reverse());
     }
     getCollectionLinks();
+    return () => {
+      console.log("component unmounted")
+    };
   }, [])
 
   const links = [
     { name: 'Home', href: '/' },
     { 
-      name: 'Shop Collections', 
+      name: 'Shop', 
       href: '/collections', 
       subLinks: collections
     },
@@ -68,7 +71,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
       {links.map((link) => (
         <div
           key={link.name}
-          className="relative h-16 lg:h-full flex justify-center items-center"
+          className="relative h-12 mx-0.5 lg:h-full flex justify-center items-center bg-transparent"
         >
           <Link
             onClick={closeMenu}
@@ -77,9 +80,9 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             onMouseEnter={() => link.subLinks && handleMouseEnter(link.name)}
             onMouseLeave={handleMouseLeave}
             className={clsx(
-              'flex h-full w-3/4 lg:w-36 items-center justify-center text-end hover:text-white transition duration-450 ease-in-out relative hover:bg-red-900/85 px-2 max-lg:rounded-lg',
+              'flex h-full w-3/4 lg:w-32 items-center justify-center text-center transition duration-450 ease-in-out relative hover:text-red-800 px-2 max-lg:rounded-lg',
               {
-                'text-white bg-red-900/70': parentPath === link.href,
+                'text-red-800': parentPath === link.href,
                 'text-black/60': parentPath !== link.href,
               }
             )}
@@ -90,7 +93,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute lg:left-0 lg:w-64 w-3/4 top-full text-sm bg-white z-10 text-end transition-opacity duration-450 ease-in-out max-lg:rounded-lg",
+              "absolute right-0 lg:left-0 w-44 top-full text-sm z-10 text-end bg-white transition-opacity duration-450 ease-in-out rounded-md",
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,
@@ -105,12 +108,12 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
                 onMouseEnter={() => link.subLinks && handleMouseEnter(link.name)}
                 onMouseLeave={handleMouseLeave}
                 className={clsx(
-                  'block p-3 text-black/70 hover:text-white hover:bg-red-900/85 transition duration-450 max-lg:rounded-lg',
+                  'block p-3 text-black/70 hover:text-red-800 transition duration-450 rounded-lg',
                   
                 )}
                 onClick={closeMenu}
               >
-                <p className="flex justify-center items-center text-base lg:text-sm">{subLink.name}</p>
+                <p className="flex justify-end items-center text-base lg:text-sm">{subLink.name}</p>
               </Link>
             ))}
           </div>

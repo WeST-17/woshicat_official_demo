@@ -19,10 +19,6 @@ const Footer = () => {
         }, 5000);
     };
 
-    useEffect(() => {
-
-    })
-
     return (
         <>
         <div className="fixed bottom-0 right-0 flex justify-end items-center w-16 h-16 z-1000">

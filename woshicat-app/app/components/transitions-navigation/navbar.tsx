@@ -5,7 +5,7 @@ import MobileMenu from "../MenuComponents/MobileMenu";
 export default function Navigation() {
     return (
         <>
-        <div className="hidden lg:flex h-[70px] ">
+        <div className="hidden lg:flex h-[70px]">
             <NavLinks />
         </div>
         

@@ -95,26 +95,25 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
   }
   
   return (
-    <div className="flex items-center justify-start w-full gap-2">
-      <p className='text-sm'>Quantity</p>
+    <div className="flex items-center justify-end w-full h-24">
       <button
         onClick={handleDecrement}
-        className={`px-2 text-black transition duration-300 rounded-md ${itemQuantLoad === false ? 'opacity-100 hover:bg-black/25' : 'opacity-10 pointer-events-none'}`}
+        className={`flex justify-center items-center h-6 w-6 text-black transition duration-300 rounded-l-md ${itemQuantLoad === false ? 'opacity-100 hover:bg-black/25' : 'opacity-10 pointer-events-none'}`}
         disabled={itemQuantLoad === true}
       >
         -
       </button>
-      <span className="text-sm w-6 flex justify-center">{itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}</span>
+      <span className="text-sm w-6 h-6 flex justify-center items-center border-[0.5px] rounded-sm">{itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}</span>
       <button
         onClick={handleIncrement}
-        className={`px-1 transition duration-300 rounded-md ${!checkInventory() && itemQuantLoad === false ? 'text-black opacity-100 hover:bg-black/25' : 'opacity-40 pointer-events-none'}`}
+        className={`flex justify-center items-center h-6 w-6 transition duration-300 rounded-r-md ${!checkInventory() && itemQuantLoad === false ? 'text-black opacity-100 hover:bg-black/25' : 'opacity-40 pointer-events-none'}`}
         disabled={itemQuantLoad === true || checkInventory()}
       >
         +
       </button>
       <button
         onClick={handleDeleteItem}
-        className={`ms-auto flex flex-col justify-center items-center text-black hover:bg-stone-400/25 transition duration-300 text-xs px-2 py-1 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
+        className={`flex flex-col justify-center items-center text-black hover:bg-stone-200/35 transition duration-300 text-[0.5rem] h-12 w-12 ms-3 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
         disabled={itemQuantLoad === true}
       >
         <Image

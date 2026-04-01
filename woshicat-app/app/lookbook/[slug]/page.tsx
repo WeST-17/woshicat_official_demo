@@ -32,6 +32,8 @@ const LookbookSlug = () => {
       }
     };
     fetchImages();
+
+    return () => { console.log("unmount / cleanup") };
   }, [])
 
   if (pageLoad) {

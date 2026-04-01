@@ -33,6 +33,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
       
       fetchData();
       console.log('Products Gallery loaded.');
+      return () => { console.log("unmount / cleanup") };
     }, []);
 
   return (
