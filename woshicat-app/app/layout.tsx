@@ -9,7 +9,6 @@ import { ToggleProvider } from "./components/toggles/toggleContext";
 import SmoothScroll from "./components/toggles/SmoothScroll";
 import Script from "next/script";
 import { PIXEL_ID } from "./scripts/pixel";
-import MetaPixel from "./components/metaPixel";
 
 
 const lato = Lato({
