@@ -13,13 +13,14 @@ const MetaPixel = () => {
     if (!loaded) return;
 
     pixel.pageview();
+    console.log("run");
   }, [pathname, loaded]);
 
   return (
     <div>
       <Script
         id="fb-pixel"
-        src="/scripts/pixel.js"
+        src="/scripts/pixel.ts"
         strategy="afterInteractive"
         onLoad={() => setLoaded(true)}
         data-pixel-id={pixel.FB_PIXEL_ID}
