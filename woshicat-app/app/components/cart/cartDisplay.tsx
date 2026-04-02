@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import ProgressBar from "./progressBar";
@@ -50,27 +50,27 @@ const CartShow = () => {
         currency: 'USD',
     });
 
-    const perspective: {} = {
-        initial: {
-            opacity: 0,
-            translateY: 80,
-        },
-        enter: (i: number) => ({
-            opacity: 1,
-            translateY: 0,
-            transition: {
-                duration: 0.65, 
-                delay: 0.5 + (i * 0.1), 
-                ease: [0.76, 0, 0.24, 1],
-                opacity: { duration: 1, ease: [0.76, 0, 0.24, 1]},
-            }
-        }),
-        exit: {
-            opacity: 0,
-            translateY: 80,
-            transition: { duration: 1, type: "linear", ease: [0.76, 0, 0.24, 1]}
-        }
-    }
+    // const perspective: {} = {
+    //     initial: {
+    //         opacity: 0,
+    //         translateY: 80,
+    //     },
+    //     enter: (i: number) => ({
+    //         opacity: 1,
+    //         translateY: 0,
+    //         transition: {
+    //             duration: 0.65, 
+    //             delay: 0.5 + (i * 0.1), 
+    //             ease: [0.76, 0, 0.24, 1],
+    //             opacity: { duration: 1, ease: [0.76, 0, 0.24, 1]},
+    //         }
+    //     }),
+    //     exit: {
+    //         opacity: 0,
+    //         translateY: 80,
+    //         transition: { duration: 1, type: "linear", ease: [0.76, 0, 0.24, 1]}
+    //     }
+    // }
 
     return (
         <>
@@ -120,13 +120,8 @@ const CartShow = () => {
                     <>
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''}`}>
-                                <motion.div
-                                    custom={i}
-                                    variants={perspective}
-                                    initial={"initial"}
-                                    animate={"enter"}
-                                    exit={"exit"}
+                            <div key={`b_${i}`} className={`fade-in h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''}`}>
+                                <div
                                     className={`flex h-full w-full gap-2 overflow-hidden`}
                                 >
                                 <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full aspect-square">
@@ -150,7 +145,7 @@ const CartShow = () => {
                                         console.log('Quantity changed to:', newQuantity);
                                     }}
                                 />
-                                </motion.div>
+                                </div>
                             </div>
                         )})}
                     </>
@@ -161,7 +156,8 @@ const CartShow = () => {
                         </div>
                         ) : ( 
                         <>
-                        <div className="absolute top-0 right-0 bottom-0 w-full h-full flex justify-center items-center z-[-1]">
+                        <div className="gap-2 absolute top-0 right-0 bottom-0 w-full h-full flex flex-col justify-center items-center z-[-1] text-center">
+                            <div className="scale-[1.5]">{`( ・∇・)`}</div>
                             
                         </div>
                         </> 

@@ -1,10 +1,10 @@
 'use client';
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getImagesCloudinary } from "@/app/components/cloudinaryImages/cloudinary";
 import FadeInImage from "@/app/components/transitions-navigation/FadeInImages";
-import NotFound from "@/app/not-found";
 import Loader from "@/app/components/transitions-navigation/LoadingScreen";
 
 const LookbookSlug = () => {
@@ -44,7 +44,7 @@ const LookbookSlug = () => {
 
       // Error handling
   if (error) {
-    return <NotFound />;
+    notFound();
   }
 
   return (

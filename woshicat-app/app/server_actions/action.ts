@@ -317,14 +317,19 @@ async function getProductByHandle(handle: string): Promise<any> {
     }
 
     const variantOptions = data.product.variants.edges.map((option: any) => {
+      const sizeOption = option.node.selectedOptions.filter((variantType: any) => variantType.name === 'Size');
+      const colorOption = option.node.selectedOptions.filter((variantType: any) => variantType.name === 'Color');
+      // console.log("check", option.node.image.url)
       return {
         id: option.node.id,
         title: option.node.title,
         quantity: option.node.quantityAvailable,
-        size: option.node.selectedOptions[0].value,
-        color: option.node.selectedOptions[1].value
+        size: sizeOption[0]?.value || null,
+        color: colorOption[0]?.value || null,
+        image: option.node.image.url
       };
     });
+    
     
     return {
       id: data.product.id,

@@ -1,23 +1,38 @@
 'use client';
-import React from 'react';
+
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { setup } from 'meta-pixel'
 import { PIXEL_ID } from './pixel';
+// import Script from 'next/script';
+import Image from 'next/image';
 
-interface MetaProps {
-    children: React.ReactNode
-}
 
-const MetaPixel:React.FC<MetaProps> = ({ children }) => {
+const MetaPixel = () => {
+    const [loaded, setLoaded] = useState(false);
+    const pathname = usePathname();
 
-    const { $fbq } = setup()
-    .init(`${PIXEL_ID}`)
-    .pageView()
+    useEffect(() => {
+        const { $fbq } = setup()
+        .init(`${PIXEL_ID}`)
+        .pageView()
 
-    $fbq('track', 'CompleteRegistration')
+        $fbq('track', 'CompleteRegistration');
+        // console.log('run complete');
+        
+    }, [pathname, loaded]);
+    
 
     return (
         <>
-            {children}
+            <Image
+                alt="meta-pixel"
+                height={1}
+                width={1}
+                style={{ display: 'none' }}
+                src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+                onLoad={() => setLoaded(true)}
+            />
         </>
     )
 };

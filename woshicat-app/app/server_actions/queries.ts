@@ -310,6 +310,9 @@ export const productByHandle = (handle: string) => {
                   name
                   value
                 }
+                image {
+                  url
+                }
               }
             }
           }

@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useCart } from '../../cart/cartContext';
 import LoadingIcon from '../../transitions-navigation/loading';
 import Loader from '../../transitions-navigation/LoadingScreen';
-import NotFound from '@/app/not-found';
+import { notFound } from 'next/navigation';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
@@ -126,9 +126,27 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             (variant: { title: string; }) => variant.title === `${selectedSize} / ${selectedColor}`
         );
 
-        return selectedVariant ? selectedVariant.id : null;
+        if (selectedVariant) {
+            return selectedVariant.id;
+        };
+        
+        return null;
 
     },[selectedSize, selectedColor]);
+
+    // Return selected variant to add to cart
+    const selectVariantByColorID = useMemo(() => {
+        
+        if (!selectedColor) return null;
+
+        console.log(selectedColor)
+        const itemColorOnly = item.variants.filter(
+            (variant: any) => variant.title === `${selectedColor}`
+        )
+        
+        return itemColorOnly ? itemColorOnly[0].id : null;
+
+    },[selectedColor]);
 
     function selectAccessoryID(): string {
         console.log(item.variants.id)
@@ -139,11 +157,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const hasNoVariants = () => {
         const noVariants: boolean = item.tags.includes('no-variants');
         return noVariants;
-    }
-
-    const hasNoSizeOptions = () => {
-        const noSizings: boolean = item.tags.includes('no-sizings');
-        return noSizings;
     }
 
     const scrollToCart = () => {
@@ -160,18 +173,26 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             const selectedItem = selectAccessoryID();
             await addToCart(selectedItem, quantity);
             console.log(selectedItem)
-            setCartUpdated(true);
-            setIsLoading(false);
-            setCartItemsLoading(false);
         } else {
-            const selectedItem = await selectVariantByID;
-            console.log(selectedItem);
-            await addToCart(selectedItem, quantity);
-            console.log(selectedItem)
-            setCartUpdated(true);
-            setIsLoading(false);
-            setCartItemsLoading(false);
+            if (selectVariantByID) {
+                const selectedItem = await selectVariantByID;
+                console.log(selectedItem);
+                await addToCart(selectedItem, quantity);
+                console.log(selectedItem)
+            }
+
+            if (selectVariantByColorID !== null) {
+                const selectedItem = await selectVariantByColorID;
+                console.log(selectedItem);
+                await addToCart(selectedItem, quantity);
+                console.log(selectedItem)
+            }
+            
+            
         }
+        setCartUpdated(true);
+        setIsLoading(false);
+        setCartItemsLoading(false);
         setItemAdded(true);
         setCartOpen(true);
         scrollToCart();
@@ -194,7 +215,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
     // Error handling
     if (error) {
-        return <NotFound />;
+        notFound();
     }
 
     if (!item || !item.images) {
@@ -233,7 +254,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 <div key={index} className='w-full h-full aspect-4/5 flex justify-center items-center relative'>
                                     <img
                                         src={image.url}
-                                        alt={image.altText || `Image of the ${item.title}`}
+                                        alt={image.altText}
                                         className='pointer-events-none object-contain w-full h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
@@ -282,7 +303,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </div>
                 
                     {/* Apparel Colors */}
-                    {item.variants?.length > 0 && !hasNoVariants() && (
+                    {item.variants?.length > 0 && item.variants[0].color !== null && (
                         <>
                             <div className={`flex items-center text-lg gap-2`}>
                                 {`Color: `}
@@ -314,7 +335,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         </>
                     )}
                 
-                    {item.variants?.length > 0 && !hasNoVariants() && (
+                    {item.variants?.length > 0 && item.variants[0].size && (
                         <>
                             <div className={`flex items-center text-lg gap-2`}>
                                 {`Size: `}
@@ -362,26 +383,50 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 {[...Array(5)].map((_, i) => {
                                     const quantity = i + 1;
                                     const inventory = item.variants.filter((variant: any) => variant.title === `${selectedSize} / ${selectedColor}`);
+
+                                    const inventoryByColorOnly = item.variants.filter((variant: any) => variant.title === `${selectedColor}`);
                                     
-                                    return (
-                                        <option
-                                        key={quantity}
-                                        value={quantity}
-                                        disabled={(!selectedColor && !selectedSize) || (inventory[0] && inventory[0].quantity < quantity)}
-                                        >
-                                        {quantity}
-                                        </option>
-                                    );
+                                    if (inventory) {
+                                        return (
+                                            <option
+                                            key={quantity}
+                                            value={quantity}
+                                            disabled={(!selectedColor && !selectedSize) || (inventory[0] && inventory[0].quantity < quantity)}
+                                            >
+                                            {quantity}
+                                            </option>
+                                        );
+                                    }
+                                    
+                                    if (inventoryByColorOnly) {
+                                        return (
+                                            <option
+                                            key={quantity}
+                                            value={quantity}
+                                            disabled={(!selectedColor) || (inventoryByColorOnly[0] && inventoryByColorOnly[0].quantity < quantity)}
+                                            >
+                                            {quantity}
+                                            </option>
+                                        );
+                                    }
+                                    
                                     })}
 
                                 </select>
                             </div>
                             <button
-                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-red-800/50 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 ${selectedColor && selectedSize ? 'opacity-100 hover:bg-red-800' : 'opacity-50 pointer-events-none'}`}
+                                className={`rounded-lg flex items-center justify-center grid grid-cols-6 w-2/5 p-2 text-md font-semibold text-white shadow-xs bg-red-800/50 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600 
+                                    ${
+                                        item.variants[0].size && item.variants[0].color 
+                                            ? ((!selectedColor || !selectedSize) ? 'opacity-50 pointer-events-none' : 'opacity-100 hover:bg-red-800') : (!selectedColor) ? 'opacity-50 pointer-events-none' : 'opacity-100 hover:bg-red-800' }`}
                                 disabled={
-                                    item.variants && item.variants.length === 0 
-                                    ? (!selectedSize || !selectedColor) 
-                                    : !selectedSize || !selectedColor
+                                    item.variants[0].size && item.variants[0].color ?
+                                    (item.variants && 
+                                        item.variants.length === 0
+                                            ? (!selectedSize && !selectedColor) 
+                                                : !selectedColor || !selectedSize)
+                                        : !selectedColor
+                                    
                                 }
                                 onClick={(e) => {
                                     e.preventDefault();

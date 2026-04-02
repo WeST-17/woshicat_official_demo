@@ -6,7 +6,7 @@ import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
 import CoverHeader from './components/heroImageInsert';
-import CollectionListing from '../collection-listings/collectionListing';
+import { notFound } from 'next/navigation';
 
 interface CollectionType {
     collectionHandle: string | any
@@ -97,7 +97,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   }
 
   if (error != null) {
-    return <div className='flex justify-center w-screen h-[50vh] mt-64'>Something happened on our end!</div>;
+    notFound();
   }
 
 

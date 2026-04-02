@@ -29,7 +29,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={`${lato.className} text-black w-full mx-auto bg-white`}>
-        <MetaPixel>  
             <CartProvider>
             <ToggleProvider>
             <Header />
@@ -40,7 +39,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </ToggleProvider>
             </CartProvider>
           <TransitionSlide />
-        </MetaPixel>
+        <MetaPixel />
       </body>
     </html>
   );
