@@ -21,8 +21,8 @@ const Header = () => {
             document.documentElement.clientHeight;
         const windowScroll = document.documentElement.scrollTop;
         const scrolled = (windowScroll / height) * 100;
-
-        if ((scrolled - scrollPos) < 0) {
+        
+        if ((scrolled - scrollPos) <= 0 || windowScroll <= 20) {
             setIsVisible(true);
         } else {
             setIsVisible(false);

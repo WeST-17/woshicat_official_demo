@@ -144,7 +144,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             (variant: any) => variant.title === `${selectedColor}`
         )
         
-        return itemColorOnly ? itemColorOnly[0].id : null;
+        return itemColorOnly ? itemColorOnly.id : null;
 
     },[selectedColor]);
 
@@ -255,7 +255,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                     <img
                                         src={image.url}
                                         alt={image.altText}
-                                        className='pointer-events-none object-contain w-full h-full'
+                                        className='pointer-events-none object-contain w-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
                                         <div className='bg-white/60 rounded-md flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm p-1'>
@@ -303,7 +303,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </div>
                 
                     {/* Apparel Colors */}
-                    {item.variants?.length > 0 && item.variants[0].color !== null && (
+                    {item.variants?.length > 0 && item.variants[0].color && (
                         <>
                             <div className={`flex items-center text-lg gap-2`}>
                                 {`Color: `}
@@ -370,7 +370,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         </>
                     )}
                     <div className='w-full flex gap-2 mt-8'>
-                        {!hasNoVariants() && (
+                        {(!hasNoVariants() || (item.variants[0]?.color || item.variants[0]?.size)) && (
                             <>
                             <div className="flex items-center">
                                 <select
@@ -386,7 +386,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 
                                     const inventoryByColorOnly = item.variants.filter((variant: any) => variant.title === `${selectedColor}`);
                                     
-                                    if (inventory) {
+                                    if (inventory && item.variants[0].size && item.variants[0].color) {
                                         return (
                                             <option
                                             key={quantity}
@@ -398,7 +398,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         );
                                     }
                                     
-                                    if (inventoryByColorOnly) {
+                                    if (inventoryByColorOnly && !item.variants[0].size && item.variants[0].color) {
                                         return (
                                             <option
                                             key={quantity}
@@ -439,7 +439,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                             </button>
                             </>
                         )}
-                        {hasNoVariants() && (
+                        {(hasNoVariants() || (!item.variants[0].size && !item.variants[0].color)) && (
                             <>
                             <div className="flex items-center">
                                 <select

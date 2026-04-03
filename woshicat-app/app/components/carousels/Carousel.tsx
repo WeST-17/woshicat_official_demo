@@ -161,7 +161,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 <button className={`absolute left-0 h-3/4 z-100 bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
-                <div className="relative overflow-hidden w-full h-full touch-none">
+                <div className="relative overflow-hidden w-full h-full touch-x-none">
                     <div
                         className={`touch-pan-y flex transition transition-all ${childCount >= 5 ? 'duration-850' : 'duration-500'} ease-in-out carousels ${addClass}`}
                         style={{

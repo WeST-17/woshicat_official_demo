@@ -8,8 +8,8 @@ const About = () => {
     <>
     <main className="relative w-full h-full">
       {/* */}
-      <div className="relative flex justify-center items-center max-lg:flex-col w-full h-[60vh]">
-        <div className="flex h-[60.1vh] w-full bg-white/85 absolute right-0"/>
+      <div className="relative flex justify-center items-center max-lg:flex-col w-full h-fit md:h-screen">
+        <div className="flex h-full w-full bg-white/85 absolute right-0"/>
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
@@ -26,13 +26,13 @@ const About = () => {
           </video> 
         </div>
 
-        <div className="relative flex justify-start h-fit w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
+        <div className="relative flex justify-start h-fit w-full ms-auto max-md:mt-[80px] lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
           
           <div className="flex flex-col items-start justify-start gap-3">
             <h1 className="text-xl lg:text-3xl font-bold">{`WoShi Cat:`}</h1>
             <h1 className="text-xl lg:text-3xl">{`What's beyond the cycle?`}</h1>
           </div>
-          <section className="flex flex-col justify-center items-center gap-2 text-black text-sm lg:text-base">
+          <section className="h-full flex flex-col justify-center items-center gap-2 text-black text-lg lg:text-base">
             <p>
               {`WoShi Cat (我是貓) was founded as an exploration into the pocket where Taiwanese-inspired streetwear, frustration with the cyclical nature of corporate life, and a love of cats can intertwine. "Wǒ shì," or “I am" in Mandarin, is more than a self-introduction; it encompasses limitless multifaceted identities that can exist in tandem, whether professional or personal. No one is confined to playing only one role in life—not even a cat.`}
             </p>
