@@ -5,12 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import EmailList from "./email-list/EmailList";
 import ToggleButton from "./toggles/toggleButton";
-import { useMetaPixel } from "../meta-pixels/PixelContext";
 
 const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
     const pathname = usePathname().includes("lookbook");
-    const { setHideNotice } = useMetaPixel();
 
     const nClicked = () => {
         setClicked(true);
@@ -98,7 +96,6 @@ const Footer = () => {
                 <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
                 <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
                 <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
-                <button className="hover:text-black transition duration-250" onClick={() => setHideNotice(false)}>Privacy Preferences</button>
             </div>
             <div className="absolute bottom-0 left-0 m-3 flex flex-col gap-1 justify-center items-start text-start text-stone-500 max-md:hidden">
                 <ToggleButton />

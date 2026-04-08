@@ -9,13 +9,11 @@ import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
 import Image from "next/image";
-import { useMetaPixel } from "@/app/meta-pixels/PixelContext";
 
 
 const CartShow = () => {
     const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
-    const { fbq, consent } = useMetaPixel();
 
     const toggle = () => {
         setCartOpen(!cartOpen);
@@ -40,9 +38,6 @@ const CartShow = () => {
     const checkout = async () => {
         const checkoutUrl: string | null = await FinalCheckout();
         if (checkoutUrl && cartItems.length > 0) {
-            if (consent === true && fbq) {
-                fbq('track', 'InitiateCheckout');
-            };
             window.location.href = checkoutUrl;
         } else {
             console.log("Cart, not cart. Noodles, not noodles...")

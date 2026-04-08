@@ -12,7 +12,6 @@ import { notFound } from 'next/navigation';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
-import { useMetaPixel } from '@/app/meta-pixels/PixelContext';
 
 interface Handle {
     handle: string
@@ -20,7 +19,6 @@ interface Handle {
 
 const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const { setCartUpdated, setCartItemsLoading, colorList, setItemAdded, setCartOpen } = useCart();
-    const { consent, fbq } = useMetaPixel();
     const [item, setItem] = useState<any>(null);
     const [error, setError] = useState<any>(null);
     const [pageLoad, setPageLoading] = useState<boolean>(false);
@@ -52,10 +50,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         variantAvailable.set(variant.title, variant.quantity)
                     });
                 }
-
-                if (fbq && consent) {
-                    fbq('track', 'PageView');
-                };
                 
             } catch (error) {
                 console.error('Something went wrong!', error);
@@ -178,15 +172,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const addItemToCart = async () => {
         setIsLoading(true);
         setCartItemsLoading(true);
-
-        if ((consent === true && fbq) && item) {
-            fbq('track', 'AddToCart', {
-                content_name: item.title!,
-                content_ids: [optionSelected!],
-                currency: 'USD',
-                value: item.price!
-            })
-        }
 
         if (hasNoVariants()) {
             const selectedItem = selectAccessoryID();
