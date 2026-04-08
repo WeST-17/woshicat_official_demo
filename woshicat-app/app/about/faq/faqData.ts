@@ -5,6 +5,11 @@ export const FAQ = [
         link: 'yoyo'
     },
     { 
+        q: 'What about Benji?',
+        a: 'A Bengal!',
+        link: 'benji'
+    },
+    { 
         q: 'What payment methods do you accept?',
         a: 'We accept most major credit cards (Visa, MasterCard, Discover, American Express), as well as Google Pay, Apple Pay and ShopPay. All transactions are secure.',
         link: 'payment'
@@ -56,7 +61,7 @@ export const FAQ = [
     },
     { 
         q: 'How can I find out about new arrivals?',
-        a: 'Stay updated on new arrivals by subscribing to our newsletter or following us on social media, where we regularly post updates.',
+        a: 'Stay updated on new arrivals by subscribing to our newsletter or following us on social media, where we regularly post updates. You can subscribe to our newsletter and/or follow us on IG/YouTube/Tiktok through the links in our website footer!',
         link: 'updates'
     },
     { 

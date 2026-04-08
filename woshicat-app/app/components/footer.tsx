@@ -1,22 +1,25 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import EmailList from "./email-list/EmailList";
 import ToggleButton from "./toggles/toggleButton";
-import path from "path";
+import { useMetaPixel } from "../meta-pixels/PixelContext";
 
 const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
     const pathname = usePathname().includes("lookbook");
+    const { setHideNotice } = useMetaPixel();
 
     const nClicked = () => {
         setClicked(true);
 
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setClicked(false)
         }, 5000);
+
+        clearTimeout(timeout);
     };
 
     return (
@@ -95,12 +98,13 @@ const Footer = () => {
                 <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
                 <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
                 <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
+                <button className="hover:text-black transition duration-250" onClick={() => setHideNotice(false)}>Privacy Preferences</button>
             </div>
             <div className="absolute bottom-0 left-0 m-3 flex flex-col gap-1 justify-center items-start text-start text-stone-500 max-md:hidden">
                 <ToggleButton />
                 <p className="text-xs">{`Experimental: Smooth Scroll`}</p>
             </div>
-            <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 ${pathname ? "invert" : ""}`}>
+            <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 text-stone-400 ${pathname ? "invert" : ""}`}>
                 {`WoShi Cat, LLC - 2026`}
             </div>
         </footer>

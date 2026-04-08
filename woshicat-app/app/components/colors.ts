@@ -6,8 +6,12 @@ const colors = new Map([
     ['White', '#fffffff'],
     ['inactiveText', 'text-stone-400'],
     ['hoverText', 'text-stone-900'],
+    // Themed and character colors below
     ['Benji', '#F89870'],
-    ['Yoyo', '#516497']
+    ['Yoyo', '#516497'],
+    ['Ben-yaki', '#F89870'],
+    ['Pop-yo(yo)', '#516497'],
+    ['Melty-yo', '#516497']
 ]);
 
 export default colors;

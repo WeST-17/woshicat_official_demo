@@ -1,38 +1,45 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { setup } from 'meta-pixel'
+import { useEffect } from 'react';
 import { PIXEL_ID } from './pixel';
-// import Script from 'next/script';
 import Image from 'next/image';
+import { useMetaPixel } from './PixelContext';
 
 
 const MetaPixel = () => {
-    const [loaded, setLoaded] = useState(false);
-    const pathname = usePathname();
+    const { consent, fbq, loaded, setLoaded } = useMetaPixel();
 
     useEffect(() => {
-        const { $fbq } = setup()
-        .init(`${PIXEL_ID}`)
-        .pageView()
-
-        $fbq('track', 'CompleteRegistration');
-        // console.log('run complete');
+        if (!loaded) return;
+        if (consent === false) {
+            // console.log('user rejected analytics tracking.');
+            return () => {};
+        };
         
-    }, [pathname, loaded]);
+        if (consent === true && fbq) {
+            fbq('track', 'PageView');
+            fbq('track', 'InitiateCheckout');
+        } 
+        
+
+        return () => { console.log('cleanup') };
+        
+    }, [loaded, consent, fbq]);
     
 
     return (
         <>
+        { consent && (
             <Image
                 alt="meta-pixel"
                 height={1}
                 width={1}
                 style={{ display: 'none' }}
+                className=''
                 src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
-                onLoad={() => setLoaded(true)}
+                onLoad={() => { if (consent === true) {setLoaded(true)} }}
             />
+        )}
         </>
     )
 };

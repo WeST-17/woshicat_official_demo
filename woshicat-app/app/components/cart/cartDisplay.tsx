@@ -9,11 +9,13 @@ import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
 import Image from "next/image";
+import { useMetaPixel } from "@/app/meta-pixels/PixelContext";
 
 
 const CartShow = () => {
     const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const cartContainerRef = useRef<HTMLDivElement>(null);
+    const { fbq, consent } = useMetaPixel();
 
     const toggle = () => {
         setCartOpen(!cartOpen);
@@ -36,8 +38,11 @@ const CartShow = () => {
 
     
     const checkout = async () => {
-        const checkoutUrl = await FinalCheckout();
+        const checkoutUrl: string | null = await FinalCheckout();
         if (checkoutUrl && cartItems.length > 0) {
+            if (consent === true && fbq) {
+                fbq('track', 'InitiateCheckout');
+            };
             window.location.href = checkoutUrl;
         } else {
             console.log("Cart, not cart. Noodles, not noodles...")
@@ -157,7 +162,7 @@ const CartShow = () => {
                         ) : ( 
                         <>
                         <div className="gap-2 absolute top-0 right-0 bottom-0 w-full h-full flex flex-col justify-center items-center z-[-1] text-center">
-                            <div className="scale-[1.5]">{`( ・∇・)`}</div>
+                            <div className="scale-[1.5]">{`o( ・∇・)o`}</div>
                             
                         </div>
                         </> 

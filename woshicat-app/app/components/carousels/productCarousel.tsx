@@ -92,7 +92,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                         >
                             <Image
                                 src={images[i].url}
-                                alt={images[i].alt}
+                                alt={images[i].altText}
                                 height={100}
                                 width={100}
                                 className="object-cover bg-white/80 aspect-square rounded-xs"
@@ -115,7 +115,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                         >
                             <Image
                                 src={images[i].url}
-                                alt={images[i].alt}
+                                alt={images[i].altText}
                                 width={100}
                                 height={1}
                                 className="object-cover bg-white/80 aspect-square rounded-xs"

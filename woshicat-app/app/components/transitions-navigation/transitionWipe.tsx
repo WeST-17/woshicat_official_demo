@@ -14,7 +14,7 @@ export default function TransitionSlide() {
             animate={{ opacity: 0, transition: { duration: 0.5, ease: "circOut" } }}
             exit={{ opacity: 0, transition: { duration: 0.5, ease: "circIn" } }}
             style={{ originX: isPresent ? 0 : 1 }}
-            className="privacy-screen"
+            className="privacy-screen w-screen h-screen flex justify-center items-center"
             key={pathname}
         >
             <Loader />

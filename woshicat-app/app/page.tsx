@@ -162,7 +162,7 @@ const Home = () => {
 
         {/* Featured Collection Header */}
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
-          <h3 className="ps-1">{`Featured Arrivals`}</h3>
+          <h3 className="ps-1">{`Featured Collection`}</h3>
           {/* Featured Collection Display */}
           <div className={`relative w-full grid grid-cols-9 mb-10 mx-auto rounded-lg gap-1 p-0.5`}>
             {featured[0] ? (

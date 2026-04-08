@@ -168,7 +168,7 @@ const ProductCards = () => {
                   (<img 
                   src={product.images[2].url} 
                   alt={product.images[2].altText} 
-                  className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                 />)
                   }
               </div>

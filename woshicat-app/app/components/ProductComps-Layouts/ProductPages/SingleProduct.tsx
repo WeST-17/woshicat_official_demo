@@ -12,6 +12,7 @@ import { notFound } from 'next/navigation';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
+import { useMetaPixel } from '@/app/meta-pixels/PixelContext';
 
 interface Handle {
     handle: string
@@ -19,6 +20,7 @@ interface Handle {
 
 const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const { setCartUpdated, setCartItemsLoading, colorList, setItemAdded, setCartOpen } = useCart();
+    const { consent, fbq } = useMetaPixel();
     const [item, setItem] = useState<any>(null);
     const [error, setError] = useState<any>(null);
     const [pageLoad, setPageLoading] = useState<boolean>(false);
@@ -26,6 +28,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const [quantity, setQuantity] = useState(1);
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const [optionSelected, setOptionSelected] = useState<string | null>(null);
     const [recommendations, setRecommendations] = useState<any[]>([]);
     
     const colors: Set<string> = new Set();
@@ -49,6 +52,10 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                         variantAvailable.set(variant.title, variant.quantity)
                     });
                 }
+
+                if (fbq && consent) {
+                    fbq('track', 'PageView');
+                };
                 
             } catch (error) {
                 console.error('Something went wrong!', error);
@@ -127,6 +134,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         );
 
         if (selectedVariant) {
+            setOptionSelected(selectedVariant.id);
             return selectedVariant.id;
         };
         
@@ -144,12 +152,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             (variant: any) => variant.title === `${selectedColor}`
         )
         
+        setOptionSelected(itemColorOnly.id!);
         return itemColorOnly ? itemColorOnly.id : null;
 
     },[selectedColor]);
 
     function selectAccessoryID(): string {
-        console.log(item.variants.id)
+        console.log(item.variants.id);
         return item.variants.id;
     }
 // --------------------------------------------------------------------------------------------------------------------------
@@ -169,6 +178,16 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const addItemToCart = async () => {
         setIsLoading(true);
         setCartItemsLoading(true);
+
+        if ((consent === true && fbq) && item) {
+            fbq('track', 'AddToCart', {
+                content_name: item.title!,
+                content_ids: [optionSelected!],
+                currency: 'USD',
+                value: item.price!
+            })
+        }
+
         if (hasNoVariants()) {
             const selectedItem = selectAccessoryID();
             await addToCart(selectedItem, quantity);
@@ -198,9 +217,11 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         scrollToCart();
 
 
-        setTimeout(() => {
+        const itemAddTimeout = setTimeout(() => {
             setItemAdded(false);
-        }, 5000);
+        }, 3000);
+
+        return () => { clearTimeout(itemAddTimeout) };
     }
 // --------------------------------------------------------------------------------------------------------------------------
     if (pageLoad) {
@@ -234,7 +255,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             </div>
             <Image 
                 src={item.images[2] ? item.images[2].url : item.images[0].url}
-                alt={`Image of the ${handle}`}
+                alt={item.images[2] ? item.images[2].altText : item.images[0].altText}
                 fill={true}
                 priority
                 className='object-cover w-full'
@@ -493,7 +514,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             {/* Product Recommendations */}
             <div className='h-fit w-full text-lg mx-auto hidden lg:flex items-start mb-6 px-1'>
                 <div className="w-full text-3xl font-normal">
-                    {`Yoyo's Recommendations`}
+                    {`Yoyo thinks you'll also like: `}
                 </div>
             </div>
             <FadeInImage>
@@ -514,13 +535,13 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 <img 
                                 src={product.images[0].url} 
                                 alt={product.images[0].altText} 
-                                className={`${product.handle.includes('shirt', 'hoodie', 'sweater') ? 'object-contain' : 'object-cover'} rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                                className={`${'object-cover'} rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                                 />
                                 
                                 <img 
                                 src={product.images[1].url} 
                                 alt={product.images[1].altText} 
-                                className={`rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                                className={`rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                                 />
                             </div>
                             </Link>

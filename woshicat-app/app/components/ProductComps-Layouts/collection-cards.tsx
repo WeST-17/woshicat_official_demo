@@ -131,14 +131,19 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
                 <img 
                   src={product.images[0].url} 
                   alt={product.images[0].altText} 
-                  className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} z-1 bg-transparent object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                 />
                 {/* Hover image */}
                 { product.images[2] && (<img 
                   src={product.images[2].url} 
                   alt={product.images[2].altText} 
-                  className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} z-1 rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                 />) }
+                {/* { product.images[0] && (<img 
+                  src={product.images[0].url} 
+                  alt={'bg-blur for product items'} 
+                  className={`${!product.available ? 'grayscale-[0.75]' : ''} z-[0] rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-50 transition-opacity duration-125 ease-in-out bg-transparent blur-lg`}
+                />) } */}
               </div>
               </Link>
             </div>
