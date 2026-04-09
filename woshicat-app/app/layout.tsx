@@ -41,10 +41,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <Footer />
         </ToggleProvider>
         </CartProvider>
-          <MetaPixel />
           <UserConsent />
-        </PixelProvider>
         <TransitionSlide />
+        <MetaPixel />
+        </PixelProvider>
       </body>
     </html>
   );
