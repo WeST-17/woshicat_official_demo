@@ -12,7 +12,7 @@ export default function setCSPHeader(
         default-src 'self';
         script-src 'self' https: http: 'unsafe-inline' ${process.env.NODE_ENV === 'production' ? '' : `'unsafe-eval'`};
         style-src 'self' 'unsafe-inline';
-        img-src 'self' *.shopify.com cdn.shopify.com res.cloudinary.com blob: data:;
+        img-src 'self' *.shopify.com cdn.shopify.com res.cloudinary.com *.facebook.com blob: data:;
         frame-src 'self' *.shopify.com cdn.shopify.com blob: data:;
         media-src 'self' *.shopify.com cdn.shopify.com data:;
         font-src 'self';
