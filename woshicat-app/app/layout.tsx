@@ -42,6 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         </ToggleProvider>
         </CartProvider>
           <MetaPixel />
+          <UserConsent />
         </PixelProvider>
         <TransitionSlide />
       </body>

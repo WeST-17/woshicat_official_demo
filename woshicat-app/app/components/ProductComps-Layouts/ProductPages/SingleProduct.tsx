@@ -12,8 +12,6 @@ import { notFound } from 'next/navigation';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
-import MetaPixel from '../../MetaPixel/metaPixel';
-import { option } from 'framer-motion/client';
 
 interface Handle {
     handle: string
@@ -546,9 +544,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             </FadeInImage>
         </div>
         </div>
-        <MetaPixel 
-            event_type='AddToCart' 
-        />
         </>
     );
 }

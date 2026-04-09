@@ -1,47 +1,44 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import Script from "next/script";
-import React, { useEffect, useState } from "react";
-import { addScriptDefault } from "./mpixel_script";
-import { useMetaPixel } from "./PixelContext";
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { setup } from 'meta-pixel'
+import { useMetaPixel } from './PixelContext';
+import Image from 'next/image';
 
-const META_PIXEL_ID = process.env.FB_PIXEL_ID!;
+const PIXEL_ID = process.env.FB_PIXEL_ID;
 
-interface FacebookPixelProps {
-    event_type?: string,
-};
+const MetaPixel = () => {
+    const [loaded, setLoaded] = useState(false);
+    const pathname = usePathname();
+    const { consent } = useMetaPixel();
 
-const MetaPixel:React.FC<FacebookPixelProps> = ({ event_type }) => {
-  const [loaded, setLoaded] = useState(false);
-  const { consent } = useMetaPixel();
-  const pathname = usePathname();
+    useEffect(() => {
+        if (!loaded || consent === 'revoke') return;
 
-  useEffect(() => {
-    if (!loaded) return;
-    const fbq = addScriptDefault();
-    fbq('consent', 'revoke');
-    fbq('init', META_PIXEL_ID);
-    fbq('track', 'PageView');
-    if (event_type === 'AddToCart') fbq('track', event_type);
-    if (event_type === 'InitiateCheckout') fbq('track', event_type);
-    if(consent === 'grant') fbq('consent', consent);
+        const { $fbq } = setup()
+        .init(`${PIXEL_ID}`)
+        .pageView()
 
-    return () => {};
+        $fbq('track', 'InitiateCheckout');
+        console.log('run complete');
+        
+    }, [pathname, loaded]);
+    
 
-  }, [pathname, loaded, consent]);
-
-  return (
-    <div>
-      <Script
-        id="fb-pixel"
-        src="/scripts/mpixel_script.ts"
-        strategy="afterInteractive"
-        onLoad={() => setLoaded(true)}
-        data-pixel-id={META_PIXEL_ID}
-      />
-    </div>
-  );
+    return (
+        <>
+            {consent === 'grant' && (<Image
+                alt="meta-pixel"
+                height={1}
+                width={1}
+                style={{ display: 'none' }}
+                // className='border-test'
+                src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+                onLoad={() => setLoaded(true)}
+            />)}
+        </>
+    )
 };
 
 export default MetaPixel;
