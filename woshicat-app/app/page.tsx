@@ -27,7 +27,7 @@ const Home = () => {
       const featuredProducts = await featuredProductsHelper(handle);
       if (featuredProducts) {
         setFeaturedItems(featuredProducts);
-        console.log(featuredProducts);
+        //console.log(featuredProducts);
       } else {
         console.log(`couldn't get products from the featured collection...`)
       }

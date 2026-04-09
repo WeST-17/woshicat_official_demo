@@ -1,0 +1,1 @@
+export const PIXEL_ID = process.env.FB_PIXEL_ID;

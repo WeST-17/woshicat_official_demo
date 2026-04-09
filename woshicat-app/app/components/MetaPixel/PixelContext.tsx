@@ -20,8 +20,11 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     if (!path) return;
     
-    const previousDate: number = parseInt(localStorage.getItem('DatePermissions')!);
-    if ((previousDate / 864000) >= 10) {
+    const previousDate = (): boolean | null => {
+        return parseInt(localStorage.getItem('DatePermissions')!) / 864000 >= 10 || null;
+    };
+
+    if (previousDate()) {
       localStorage.removeItem('DatePermissions');
       setConsent(null);
       setHideNotice(false);
@@ -53,8 +56,15 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         localStorage.setItem('DatePermissions', currentDate);
         setHideNotice(true);
     } else {
-        console.log('user accepted analytics tracking.', currentDate);
-        localStorage.setItem('DatePermissions', currentDate);
+        const pastDateConsent = parseInt(localStorage.getItem('DatePermissions')!);
+        const previousDate = (): boolean | null => {
+            return pastDateConsent / 86400000 >= 30;
+        };
+
+        if (previousDate()) {
+            localStorage.setItem('DatePermissions', currentDate);
+        };
+    
         setHideNotice(true);
     };
 
