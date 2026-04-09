@@ -12,6 +12,8 @@ import { notFound } from 'next/navigation';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
+import MetaPixel from '../../MetaPixel/metaPixel';
+import { option } from 'framer-motion/client';
 
 interface Handle {
     handle: string
@@ -146,13 +148,14 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             (variant: any) => variant.title === `${selectedColor}`
         )
         
-        setOptionSelected(itemColorOnly.id!);
+        if (itemColorOnly) setOptionSelected(itemColorOnly.id);
         return itemColorOnly ? itemColorOnly.id : null;
 
     },[selectedColor]);
 
     function selectAccessoryID(): string {
         console.log(item.variants.id);
+        setOptionSelected(item.variants.id);
         return item.variants.id;
     }
 // --------------------------------------------------------------------------------------------------------------------------
@@ -543,6 +546,9 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             </FadeInImage>
         </div>
         </div>
+        <MetaPixel 
+            event_type='AddToCart' 
+        />
         </>
     );
 }

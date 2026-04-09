@@ -9,6 +9,7 @@ import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
 import Image from "next/image";
+import MetaPixel from "../MetaPixel/metaPixel";
 
 
 const CartShow = () => {
@@ -187,6 +188,7 @@ const CartShow = () => {
                     
                 </div>
             </div>
+            <MetaPixel event_type="InitiateCheckout"/>
         </>
     )
 };
