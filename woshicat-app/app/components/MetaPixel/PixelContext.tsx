@@ -18,8 +18,6 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const currentDate = Date.now().toString();
 
   useEffect(() => {
-    if (!path) return;
-    
     const previousDate = (): boolean | null => {
         return parseInt(localStorage.getItem('DatePermissions')!) / 864000 >= 10 || null;
     };
@@ -34,7 +32,6 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   },[path]);
   
   useEffect(() => {
-    if (!path) return;
     const getConsentHeader = localStorage.getItem('consent');
     if (getConsentHeader === null) {
       setConsent(null);
