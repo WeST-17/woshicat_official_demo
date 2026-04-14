@@ -21,6 +21,8 @@ interface CartContextType {
   colorList: Map<any, string>;
   itemAdded: boolean;
   setItemAdded: React.Dispatch<React.SetStateAction<boolean>>;
+  currentItem: {'name': string, 'quantity': number} | null;
+  setCurrentItem: React.Dispatch<React.SetStateAction<{'name': string, 'quantity': number} | null>>;
 }
 
 interface CartItems {
@@ -44,6 +46,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [cartTotal, setCartTotal] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [itemAdded, setItemAdded] = useState<boolean>(false);
+  const [currentItem, setCurrentItem] = useState<{'name': string, 'quantity': number} | null>(null);
   const colorList = colors;
   
   
@@ -73,7 +76,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   
 
   return (
-    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress, colorList, itemAdded, setItemAdded }}>
+    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress, colorList, itemAdded, setItemAdded, currentItem, setCurrentItem }}>
       {children}
     </CartContext.Provider>
   );

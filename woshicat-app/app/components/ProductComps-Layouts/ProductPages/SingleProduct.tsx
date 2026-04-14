@@ -18,7 +18,7 @@ interface Handle {
 }
 
 const SingleProductCard: React.FC<Handle> = ({ handle }) => {
-    const { setCartUpdated, setCartItemsLoading, colorList, setItemAdded, setCartOpen } = useCart();
+    const { setCartUpdated, setCartItemsLoading, colorList, setItemAdded, setCartOpen, setCurrentItem } = useCart();
     const [item, setItem] = useState<any>(null);
     const [error, setError] = useState<any>(null);
     const [pageLoad, setPageLoading] = useState<boolean>(false);
@@ -26,7 +26,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const [quantity, setQuantity] = useState(1);
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
-    const [optionSelected, setOptionSelected] = useState<string | null>(null);
     const [recommendations, setRecommendations] = useState<any[]>([]);
     
     const colors: Set<string> = new Set();
@@ -128,7 +127,6 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         );
 
         if (selectedVariant) {
-            setOptionSelected(selectedVariant.id);
             return selectedVariant.id;
         };
         
@@ -146,14 +144,12 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             (variant: any) => variant.title === `${selectedColor}`
         )
         
-        if (itemColorOnly) setOptionSelected(itemColorOnly.id);
         return itemColorOnly ? itemColorOnly.id : null;
 
     },[selectedColor]);
 
     function selectAccessoryID(): string {
-        console.log(item.variants.id);
-        setOptionSelected(item.variants.id);
+        // console.log(item.variants.id);
         return item.variants.id;
     }
 // --------------------------------------------------------------------------------------------------------------------------
@@ -173,6 +169,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const addItemToCart = async () => {
         setIsLoading(true);
         setCartItemsLoading(true);
+        setCurrentItem({'name': handle, 'quantity': quantity});
 
         if (hasNoVariants()) {
             const selectedItem = selectAccessoryID();
@@ -194,7 +191,8 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
             }
             
             
-        }
+        };
+        
         setCartUpdated(true);
         setIsLoading(false);
         setCartItemsLoading(false);

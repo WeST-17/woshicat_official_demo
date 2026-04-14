@@ -25,9 +25,9 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
     }
     
     if (initialQuantity != quantity) {
-      console.log("old: ", initialQuantity);
-      console.log('new: ', quantity);
+      console.log("previous item quantity - ", quantity);
       updateQuantity();
+      console.log('new - ', variantId, ": ",initialQuantity);
     }
     setTimeout(() => {
       setItemQuantLoad(false); // Delay resetting to false
@@ -78,8 +78,9 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
         console.log("Item removed from your cart!")
         await updateCartQuantity(variantId, 0);
         // Handle cart update logic here if needed
+      
       } else {
-        return
+        return;
       }
       setCartUpdated(true);
       setItemQuantLoad(false);

@@ -6,20 +6,26 @@ interface PixelContextType {
   consent: string | null | undefined,
   setConsent: React.Dispatch<React.SetStateAction<string | null | undefined>>,
   hideNotice: boolean,
-  setHideNotice: React.Dispatch<React.SetStateAction<boolean>>
+  setHideNotice: React.Dispatch<React.SetStateAction<boolean>>,
+  pixelActive: boolean,
+  setPixelActive: React.Dispatch<React.SetStateAction<boolean>>,
+  checkoutClick: number,
+  setCheckoutClick: React.Dispatch<React.SetStateAction<number>>
 };
 
 const PixelContext = createContext<PixelContextType | undefined>(undefined);
 
 export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [consent, setConsent] = useState<string | null | undefined>();
+  const [consent, setConsent] = useState<string | null | undefined>(null);
   const [hideNotice, setHideNotice] = useState<boolean>(true);
+  const [pixelActive, setPixelActive] = useState<boolean>(false);
+  const [checkoutClick, setCheckoutClick] = useState<number>(0);
   const path = usePathname();
   const currentDate = Date.now().toString();
 
   useEffect(() => {
     const previousDate = (): boolean | null => {
-        return parseInt(localStorage.getItem('DatePermissions')!) / 864000 >= 10 || null;
+        return (parseInt(localStorage.getItem('DatePermissions')!) / 86400000) > 10 || null;
     };
 
     if (previousDate()) {
@@ -33,7 +39,7 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   
   useEffect(() => {
     const getConsentHeader = localStorage.getItem('consent');
-    if (getConsentHeader === null) {
+    if (getConsentHeader === null || '') {
       setConsent(null);
       return;
     };
@@ -43,7 +49,7 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [path]);
 
   useEffect(() => {
-    if (consent === null || consent === undefined) {
+    if (consent === null || consent === '') {
         setHideNotice(false);
         return () => { console.log('cleanup'); };
     };
@@ -55,7 +61,7 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     } else {
         const pastDateConsent = parseInt(localStorage.getItem('DatePermissions')!);
         const previousDate = (): boolean | null => {
-            return pastDateConsent / 86400000 >= 30;
+            return pastDateConsent / 86400000 >= 10;
         };
 
         if (previousDate()) {
@@ -70,7 +76,7 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [consent]);
 
   return (
-    <PixelContext.Provider value={{ consent, setConsent,hideNotice, setHideNotice }}>
+    <PixelContext.Provider value={{ consent, setConsent,hideNotice, setHideNotice, pixelActive, setPixelActive, checkoutClick, setCheckoutClick }}>
       {children}
     </PixelContext.Provider>
   );

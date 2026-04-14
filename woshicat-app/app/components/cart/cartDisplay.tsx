@@ -8,11 +8,13 @@ import Loader from "../transitions-navigation/LoadingScreen";
 import QuantityAdjuster from "./cartItemModify";
 import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
+import { useMetaPixel } from "../MetaPixel/PixelContext";
 import Image from "next/image";
 
 
 const CartShow = () => {
     const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
+    const { checkoutClick, setCheckoutClick } = useMetaPixel();
     const cartContainerRef = useRef<HTMLDivElement>(null);
 
     const toggle = () => {
@@ -37,13 +39,18 @@ const CartShow = () => {
     
     const checkout = async () => {
         const checkoutUrl: string | null = await FinalCheckout();
+        if (checkoutUrl) {
+            const checkoutCounter: number = checkoutClick + 1;
+            setCheckoutClick(checkoutCounter);
+        };
+
         if (checkoutUrl && cartItems.length > 0) {
             window.location.href = checkoutUrl;
         } else {
             console.log("Cart, not cart. Noodles, not noodles...")
             return;
-        }
-    }
+        };
+    };
 
     const currFormat = new Intl.NumberFormat('default', {
         style: 'currency',
