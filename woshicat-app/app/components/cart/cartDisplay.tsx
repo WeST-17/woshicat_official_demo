@@ -1,6 +1,6 @@
 'use client';
 
-// import { motion } from "framer-motion";
+// import { motion } from "framer-motion"; 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import ProgressBar from "./progressBar";
