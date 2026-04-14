@@ -1,0 +1,40 @@
+{
+  "name": "meta-pixel-custom-wt-2026",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "tanukijs <tanuki.contact@gmail.com>",
+  "description": "Wrapper for meta pixels",
+  "keywords": [
+    "meta",
+    "pixel",
+    "facebook",
+    "fbq",
+    "sdk"
+  ],
+  "homepage": "https://github.com/tanukijs/meta-pixel#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tanukijs/meta-pixel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tanukijs/meta-pixel/issues"
+  },
+  "main": "lib/meta-pixel.js",
+  "types": "lib/meta-pixel.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "volta": {
+    "extends": "../../package.json"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.10",
+    "typescript": "^5.4.3"
+  }
+}

@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect } from 'react';
-import { addScriptDefault } from 'meta-pixel';
+import { addScriptDefault } from 'meta-pixel-custom-wt-2026';
 import { useMetaPixel } from './PixelContext';
 import { usePathname } from 'next/navigation';
 import { useCart } from '../cart/cartContext';
