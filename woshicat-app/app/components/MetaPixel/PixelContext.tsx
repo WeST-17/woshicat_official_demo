@@ -21,11 +21,11 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [pixelActive, setPixelActive] = useState<boolean>(false);
   const [checkoutClick, setCheckoutClick] = useState<number>(0);
   const path = usePathname();
-  const currentDate = Date.now().toString();
+  const currentDate = Date.now();
 
   useEffect(() => {
     const previousDate = (): boolean | null => {
-        return (parseInt(localStorage.getItem('DatePermissions')!) / 86400000) > 10 || null;
+        return ((currentDate - parseInt(localStorage.getItem('DatePermissions')!)) / 86400000) > 10 || null;
     };
 
     if (previousDate()) {
@@ -56,16 +56,18 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
     if (consent === 'revoke') {
         console.log('user rejected analytics tracking.', currentDate);
-        localStorage.setItem('DatePermissions', currentDate);
+        if (localStorage.getItem('DatePermissions') === null || '') { 
+          localStorage.setItem('DatePermissions', currentDate.toString());
+        };
         setHideNotice(true);
     } else {
         const pastDateConsent = parseInt(localStorage.getItem('DatePermissions')!);
         const previousDate = (): boolean | null => {
-            return pastDateConsent / 86400000 >= 10;
+            return ((currentDate - pastDateConsent)) / 86400000 >= 10;
         };
 
         if (previousDate()) {
-            localStorage.setItem('DatePermissions', currentDate);
+            localStorage.setItem('DatePermissions', currentDate.toString());
         };
     
         setHideNotice(true);
