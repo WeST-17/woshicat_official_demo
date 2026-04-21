@@ -21,9 +21,9 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [pixelActive, setPixelActive] = useState<boolean>(false);
   const [checkoutClick, setCheckoutClick] = useState<number>(0);
   const path = usePathname();
-  const currentDate = Date.now();
 
   useEffect(() => {
+    const currentDate = Date.now();
     const previousDate = (): boolean | null => {
         return ((currentDate - parseInt(localStorage.getItem('DatePermissions')!)) / 86400000) > 10 || null;
     };
@@ -49,6 +49,7 @@ export const PixelProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, [path]);
 
   useEffect(() => {
+    const currentDate = Date.now();
     if (consent === null || consent === '') {
         setHideNotice(false);
         return () => { console.log('cleanup'); };

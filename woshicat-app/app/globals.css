@@ -323,6 +323,24 @@ body {
   transition: color 0.15s ease, background-color 0.3s ease;
 }
 
+.hover-rise {
+  transform: translateY(75%);
+}
+
+.button-hover:hover .hover-rise {
+  transform:translateY(0%);
+}
+
+.text-hover-rise {
+  transform: translateY(0%);
+  transition: transform 0.5s ease;
+}
+
+.button-hover:hover .text-hover-rise {
+ transform: translateY(45%);
+ 
+}
+
 /* Email list modal pop up */
 .modal.open {
   display: flex;

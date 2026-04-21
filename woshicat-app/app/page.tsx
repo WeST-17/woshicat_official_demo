@@ -10,7 +10,7 @@ import AutoCarousel from "./components/carousels/autoCarousel";
 import Loader from "./components/transitions-navigation/LoadingScreen";
 import FadeInImage from "./components/transitions-navigation/FadeInImages";
 // import Notice from "./components/messageUpdates/websiteNotice";
-import FeaturedCards from "./components/ProductComps-Layouts/featured-cards";
+import FeaturedPhotos from "./components/ProductComps-Layouts/featured-cards";
 // import VideoHero from "./components/ProductComps-Layouts/videoHero"; work in progress
 
 const Home = () => {
@@ -76,7 +76,7 @@ const Home = () => {
                   />
                 </section>
                 <div className="">
-                  <p className="lg:text-3xl font-thin"> {`WINTER 2025`}</p>
+                  <p className="lg:text-lg font-thin"> {`2025-26 Winter Collection`}</p>
                 </div>
               </div>
               <div className="z-100 h-20 flex items-end justify-center font-bold mb-20">
@@ -94,7 +94,7 @@ const Home = () => {
                 <source src="https://cdn.shopify.com/videos/c/o/v/002d5285f13644a3a4b4ae49a2dc2d8e.mov" type="video/mp4" data-v-f518367b="" />
             </video> 
             <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections/metro-daydreams">
-              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-7xl font-bold z-100 gap-2 pointer-events-none mx-auto">
+              <div className="w-full lg:w-2/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-6xl font-bold z-100 gap-2 pointer-events-none mx-auto">
                 <section className="w-full flex justify-center items-center gap-6">
                   <div className="flex justify-center items-center overflow-hidden">
                     <Image 
@@ -267,7 +267,7 @@ const Home = () => {
               {`Benji's Styling Inspo`}
             </Link>
           </div>
-          <FeaturedCards folder="styling-inspiration" auto={true}/>
+          <FeaturedPhotos folder="styling-inspiration" auto={true}/>
         </div>
       </div>
     </main>

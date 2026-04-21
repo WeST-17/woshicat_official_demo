@@ -23,9 +23,11 @@ const Square: React.FC<SquareProps> = ({ children, link, collectionName, shopNow
                 { shopNow && 
                 (
                 <>
-                    <div className="absolute bottom-0 left-0 p-3 mx-2 mx-auto text-white bg-black/45 w-full z-100">
-                        <h2 className="text-lg lg:text-2xl ">{collectionName}</h2>
+                    <div className="hover-rise absolute bottom-0 left-0 p-3 mx-2 mx-auto text-white bg-black/45 flex flex-col justify-start items-start w-full h-full transition-all duration-500 z-100 rounded-t-[8px]">
+                        <div className="flex flex-col h-full text-hover-rise">
+                        <h2 className="text-lg lg:text-2xl">{collectionName}</h2>
                         <ShopNowButton />
+                        </div>
                     </div>
                     <div className="absolute bottom-0 left-0 text-white w-full h-full"/>
                 </>

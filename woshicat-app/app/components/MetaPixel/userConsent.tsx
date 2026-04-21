@@ -19,9 +19,9 @@ const UserConsent = () => {
                 <section className={`z-[3100] bg-white/90 p-8 fixed bottom-0 w-full lg:w-half h-fit flex flex-col justify-end items-center transition-all duration-500 gap-4 ${hideNotice ? 'hidden' : ''}`}>
                     <div className="w-full flex justify-center items-center">
                         <h2 className="w-full text-sm">
-                        {`This website utilizes third party analytics tracking to enhance web navigation, analyze website usage, and support our marketing and advertising efforts. No identifiable user data is shared with third party providers. Your data is processed in accordance to our `} 
+                        {`This website utilizes third party analytics tracking to enhance web navigation, analyze website usage, and support our marketing and advertising efforts. Although we do not sell personal information in exchange for money, some of the ways in which we share personal information for targeted advertising or analytics may be considered “sales” or “sharing” for targeted advertising under U.S. state privacy laws. Your data is processed in accordance to our `} 
                         <Link href={'https://woshicat.com/privacy-policy'} className="transition duration-500 hover:text-[#CD000A]">{`privacy policy, linked here. `}</Link> 
-                        {`You can opt-in to our analytics tracking to support our team and our website by clicking 'Accept'. Thanks for supporting WoShi Cat!`}
+                        {`You can OPT-IN to our analytics tracking to support our team and our website by clicking 'Accept'. You can change your preferences at any time. Thanks for supporting WoShi Cat!`}
                         </h2>
 
                         <div className="relative w-full flex justify-center items-center text-base transition-all duration-500 gap-1">

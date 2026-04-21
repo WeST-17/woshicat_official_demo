@@ -4,11 +4,17 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import EmailList from "./email-list/EmailList";
-import ToggleButton from "./toggles/toggleButton";
+import SmoothScrollToggleButton from "./toggles/toggleButton";
+import PrivacyToggleButton from "./toggles/privacyToggle";
+import { useMetaPixel } from "./MetaPixel/PixelContext";
+import ToggleButton from "./toggles/templateToggle";
 
 const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
+    const [openPref, setOpenPref] = useState<boolean>(false);
+    const [features, setFeatures] = useState<boolean>(false);
     const pathname = usePathname().includes("lookbook");
+    const { consent } = useMetaPixel();
 
     const nClicked = () => {
         setClicked(true);
@@ -43,6 +49,35 @@ const Footer = () => {
                 </div>
             </div>
         </div>
+        
+        <div className={`z-[3000] fixed inset-0 w-screen h-screen flex flex-col justify-center items-center text-start text-black transition-all duration-350 ${openPref ? "" : "opacity-0 pointer-events-none"}`}>
+            <div className={`fixed inset-0 z-[-1] w-full h-full bg-black/50 ${openPref ? "opacity-100" : "opacity-0 pointer-events-none"}`} onClick={() => {setOpenPref(false)}} />
+            <div className="flex flex-col w-fit lg:w-96 h-fit p-8 items-start justify-center gap-6 bg-white rounded-sm relative">
+                <p className="text-sm">{`Privacy, Cookies, and Third-Party Analytics Tracking Preferences: `}</p>
+                <button className="absolute top-0 right-0 m-2 text-black/45 text-xs hover:text-black" onClick={() => {setOpenPref(false)}}>close</button>
+                <div className="flex items-center w-fit gap-4">
+                    <PrivacyToggleButton />
+                    <p className="text-sm">Analytics + Marketing Tracking: {consent?.toUpperCase()}{`${consent === 'grant' ? 'ED' : 'D'}`}</p>
+                </div>
+                <div className="flex items-center w-fit gap-4">
+                    <ToggleButton alwaysOn={true} switch_id="functional"/>
+                    <p className="text-sm">Functional Website Cookies</p>
+                </div>
+            </div>
+        </div>
+
+        <div className={`z-[3000] fixed inset-0 w-screen h-screen flex flex-col justify-center items-center text-start text-black transition-all duration-350 ${features ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+            <div className={`fixed inset-0 z-[-1] w-full h-full bg-black/50 ${features ? "opacity-100" : "opacity-0 pointer-events-none"}`} onClick={() => {setFeatures(false)}} />
+            <div className={`flex flex-col w-fit lg:w-96 h-fit p-5 items-start justify-center gap-4 bg-white rounded-sm relative`}>
+                <p className="text-sm">{`Experimental Website Features: `}</p>
+                <button className="absolute top-0 right-0 m-2 text-black/65 hover:text-black" onClick={() => {setFeatures(false)}}>close</button>
+                <div className="flex w-fit gap-4">
+                    <SmoothScrollToggleButton />
+                    <p className="text-xs">{`Experimental: Smooth Scroll [ Desktop Only ]`}</p>
+                </div>
+            </div>
+        </div>
+
         <footer className={`pt-20 relative w-screen grid-cols-8 ${pathname ? "bg-stone-900" : "bg-white"} text-base text-black transition transition-all duration-300 h-fit`}>
             <div className="col-span-8 p-4 flex flex-col items-center justify-center">
                 {/* Email subscription list! */}
@@ -91,16 +126,21 @@ const Footer = () => {
                 </div>
             </div>
             
-            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400">
+            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400 mb-4">
                 <Link href={'/privacy-policy'} className="hover:text-black transition duration-250">Privacy Policy</Link>
                 <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
                 <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
                 <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
             </div>
-            <div className="absolute bottom-0 left-0 m-3 flex flex-col gap-1 justify-center items-start text-start text-stone-500 max-md:hidden">
-                <ToggleButton />
-                <p className="text-xs">{`Experimental: Smooth Scroll`}</p>
+            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400">
+                <button className="hover:text-black transition duration-250" onClick={() => { setOpenPref(true) }}>
+                    Privacy Preferences
+                </button>
+                <button className="hover:text-black transition duration-250" onClick={() => { setFeatures(true) }}>
+                    Experimental Features
+                </button>
             </div>
+            
             <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 text-stone-400 ${pathname ? "invert" : ""}`}>
                 {`WoShi Cat, LLC - 2026`}
             </div>

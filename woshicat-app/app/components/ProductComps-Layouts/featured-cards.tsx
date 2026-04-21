@@ -36,7 +36,7 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
       }
     };
     fetchImages();
-  }, [])
+  }, [folder])
   
 
   if (error) {

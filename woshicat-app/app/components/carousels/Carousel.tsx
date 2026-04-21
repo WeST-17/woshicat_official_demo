@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useWindowDimensions from "../transitions-navigation/useWindowDimension";
 import Loader from "../transitions-navigation/LoadingScreen";
+import { usePathname } from "next/navigation";
 
 interface CarouselComponentProps {
     children: React.ReactNode,
@@ -19,6 +20,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const windowSize = useWindowDimensions();
     const [touchPosition, setTouchPosition] = useState<any>(null);
     const [childCount, setChildCount] = useState<number>(0);
+    const pathname = usePathname();
 
     useEffect(() => {
         window.addEventListener("touchstart", handleTouchStart, { passive: false });
@@ -110,15 +112,15 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     }, [childRef.current])
 
     useEffect(() => {
-        if (autoPlay) {
+        if (autoPlay === true) {
             const timeout = 
             setTimeout(() => {
                 next();
-            }, 6000);
+            }, 8000);
             return () => clearTimeout(timeout);
         }   
         
-    }, [currIndex, autoPlay])
+    }, [currIndex, pathname])
 
     if (windowSize.width === undefined) {
         
@@ -158,14 +160,14 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         </section>
         <div className={`relative w-full overflow-hidden rounded-lg`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-0 h-3/4 z-100 bg-white px-4 rounded-md opacity-10 hover:opacity-80 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-0 h-1/2 z-100 bg-white px-4 rounded-md opacity-40 hover:opacity-90 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
                 <div className="relative overflow-hidden w-full h-full touch-x-none">
                     <div
                         className={`touch-pan-y flex transition transition-all ${childCount >= 5 ? 'duration-850' : 'duration-500'} ease-in-out carousels ${addClass}`}
                         style={{
-                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) * (childCount % 3 > 0 && (childCount % Math.floor(numPerSlide) > 0 && currIndex === Math.floor(childCount / Math.floor(Math.floor(numPerSlide)))) ? (1 - (0.16667 * (Math.floor(numPerSlide) - (childCount % (Math.floor(numPerSlide)))))) : 1) : 100 * Math.floor(mobileSlide)))}%)`,
+                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) * (childCount % 3 > 0 && (childCount % Math.floor(numPerSlide) > 0 && currIndex === Math.floor(childCount / Math.floor(Math.floor(numPerSlide)))) ? (1 - ((1/6) * (Math.floor(numPerSlide) - (childCount % (Math.floor(numPerSlide)))))) : 1) : 100 * Math.floor(mobileSlide)))}%)`,
                             width: `calc(${100 / (windowSize.width >= 768 ? numPerSlide : mobileSlide)}%)`
                         }}
                         ref={childRef}
@@ -177,7 +179,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-3/4 right-0 z-100 bg-white rounded-md px-4 opacity-10 hover:opacity-80 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'md:hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-1/2 right-0 z-100 bg-white rounded-md px-4 opacity-40 hover:opacity-90 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'md:hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>
