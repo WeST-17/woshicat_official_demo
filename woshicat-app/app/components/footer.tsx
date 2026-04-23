@@ -57,11 +57,11 @@ const Footer = () => {
                 <button className="absolute top-0 right-0 m-2 text-black/45 text-xs hover:text-black" onClick={() => {setOpenPref(false)}}>close</button>
                 <div className="flex items-center w-fit gap-4">
                     <PrivacyToggleButton />
-                    <p className="text-sm">Analytics + Marketing Tracking: {consent?.toUpperCase()}{`${consent === 'grant' ? 'ED' : 'D'}`}</p>
+                    <p className="text-sm">Analytics + Marketing Tracking: {consent?.toUpperCase()}{`${consent === 'grant' ? 'ED' : `${consent === 'revoke' ? 'D' : 'NONE SET'}`}`}</p>
                 </div>
                 <div className="flex items-center w-fit gap-4">
                     <ToggleButton alwaysOn={true} switch_id="functional"/>
-                    <p className="text-sm">Functional Website Cookies</p>
+                    <p className="text-sm">Strictly Necessary Website Function Cookies</p>
                 </div>
             </div>
         </div>

@@ -117,6 +117,38 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-screen h-full bg-black/60 hover:bg-black/30 transition duration-300 flex justify-center items-center" />
             </Link>
           </div>
+
+          {/* SUMMER DREAM STATIONERY */}
+          <div className="flex relative justify-center items-end h-screen w-screen">
+            <video className="object-cover h-full w-full z-[-1]" 
+              autoPlay loop muted playsInline={true} data-v-f518367b="" preload="metadata"
+            >
+                <source src="https://cdn.shopify.com/videos/c/o/v/838472fb185d4523808a4c785558a068.mov" type="video/mp4" data-v-f518367b="" />
+            </video> 
+            <Link className="button-hover flex flex-col items-center justify-center absolute bottom-0 left-0 text-white w-full h-full p-12" href="/collections/summer-dream-stationery">
+              <div className="w-full lg:w-3/4 h-full flex flex-col justify-center items-center text-2xl text-center lg:text-6xl font-bold z-100 gap-2 pointer-events-none mx-auto">
+                <section className="w-full flex justify-center items-center gap-6">
+                  <div className="flex justify-center items-center overflow-hidden">
+                    {/* <Image 
+                      src="/logo/Logo Red Version Clean.png"
+                      alt="WoShi Cat Seal Logo in white"
+                      width={120}
+                      height={1}
+                      className="object-contain brightness-0 invert"
+                    /> */}
+                  </div>
+                  <div className="text-center z-[-1]">
+                    <p>{`SUMMER DREAM`}</p>
+                    <p className="text-base">{`SUMMER STATIONERY COLLECTION`}</p>
+                  </div>
+                </section>
+              </div>
+              <div className="z-100 h-20 flex items-end justify-center font-bold mb-20">
+                <ShopNowButton />
+              </div>
+              <div className="absolute bottom-0 left-0 w-screen h-full bg-black/60 hover:bg-black/30 transition duration-300 flex justify-center items-center" />
+            </Link>
+          </div>
         </AutoCarousel>
       </div>
       
@@ -162,9 +194,9 @@ const Home = () => {
 
         {/* Featured Collection Header */}
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
-          <h3 className="ps-1">{`Featured Collection`}</h3>
           {/* Featured Collection Display */}
           <div className={`relative w-full grid grid-cols-9 mb-10 mx-auto rounded-lg gap-1 p-0.5`}>
+            <h3 className="ps-1 col-span-9">{`Featured Collections`}</h3>
             {featured[0] ? (
               <>
                 <TwoOneRect
@@ -184,7 +216,7 @@ const Home = () => {
               <Loader />
             </div>
           )}
-            <div className="relative col-span-9 lg:col-span-3 h-full overflow-hidden rounded-lg bg-white/70 flex items-center grid grid-cols-2 gap-1">
+            <div className="relative col-span-9 lg:col-span-3 h-full overflow-hidden rounded-lg bg-white/95 flex items-center grid grid-cols-2 gap-1">
               {featuredItems && featuredItems.map((product, index: number) => (
                 <div className="col-span-1 flex flex-col h-full" key={index}>
                   <FadeInImage key={product.handle}>
@@ -197,7 +229,7 @@ const Home = () => {
                     <div className={`bg-white flex justify-center overflow-hidden`}>
                       <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
                       {/* Render product details */}
-                      <div className='relative aspect-4/5 flex justify-center items-center'>
+                      <div className='relative aspect-9/10 flex justify-center items-center'>
                         {/* Default product image */}
                         <img 
                           src={product.images[0].url} 
@@ -208,7 +240,7 @@ const Home = () => {
                         { product.images[2] && (<img 
                           src={product.images[2].url} 
                           alt={product.images[2].altText} 
-                          className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-contain max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                          className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                         />) }
                       </div>
                       </Link>

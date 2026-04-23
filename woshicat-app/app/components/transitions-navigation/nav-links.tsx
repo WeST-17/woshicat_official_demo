@@ -93,7 +93,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute right-0 lg:left-0 w-44 top-full text-sm z-10 text-end bg-white transition-opacity duration-450 ease-in-out rounded-md",
+              "absolute right-0 lg:left-0 w-48 top-full text-sm z-10 text-end bg-white transition-opacity duration-450 ease-in-out rounded-md",
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,

@@ -113,7 +113,7 @@ export const collectionNamesQuery = `
 `;
 export const collectionsInfoQuery = `
   query {
-    collections(first: 10) {
+    collections(first: 12) {
       edges {
         node {
           id
@@ -138,7 +138,7 @@ export const featuredCollectionItems = (handle: string) => {
         id
         handle
         title
-        products(first: 4) {
+        products(first: 10) {
           edges {
             node {
               id
