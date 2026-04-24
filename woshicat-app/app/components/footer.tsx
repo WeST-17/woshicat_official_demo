@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -13,8 +13,13 @@ const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
     const [openPref, setOpenPref] = useState<boolean>(false);
     const [features, setFeatures] = useState<boolean>(false);
+    //const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
     const pathname = usePathname().includes("lookbook");
     const { consent } = useMetaPixel();
+
+    // useEffect(() => {
+    //     const 
+    // })
 
     const nClicked = () => {
         setClicked(true);

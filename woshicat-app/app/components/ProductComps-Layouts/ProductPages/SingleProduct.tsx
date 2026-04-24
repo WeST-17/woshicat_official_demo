@@ -140,7 +140,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
         if (!selectedColor) return null;
 
         console.log(selectedColor)
-        const itemColorOnly = item.variants.filter(
+        const itemColorOnly = item.variants.find(
             (variant: any) => variant.title === `${selectedColor}`
         )
         
