@@ -122,24 +122,24 @@ const CartShow = () => {
                     </button>
                 </div>
                 
-                <div className={`w-full h-[520px] flex flex-col justify-start p-1 rounded-lg touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain bg-transparent`}>
+                <div className={`w-full h-[400px] lg:h-[485px] flex flex-col justify-start p-1 rounded-lg touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain bg-transparent`}>
                 {cartItems.length > 0 ? (
                     <>
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`fade-in h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''}`}>
+                            <div key={`b_${i}`} className={`fade-in h-32 lg:h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''}`}>
                                 <div
-                                    className={`flex h-full w-full gap-2 overflow-hidden`}
+                                    className={`flex justify-center h-full w-full gap-1 overflow-hidden`}
                                 >
-                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full aspect-square">
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full aspect-square flex justify-center items-center">
                                     <img
                                         src={item.imageUrl}
                                         alt={item.handle}
-                                        className="h-full object-cover bg-white aspect-square rounded-lg mr-2"
+                                        className="h-2/3 lg:h-full object-cover bg-white aspect-square rounded-lg"
                                     />
                                 </Link>
-                                <div className="ms-auto w-full p-2 flex flex-col justify-center h-full">
-                                    <h2 className='h-fit w-full mb-1 text-sm'>{item.title}</h2>
+                                <div className="ms-auto w-full p-1 gap-1 flex flex-col justify-center h-full">
+                                    <h2 className='h-fit w-full text-xs md:text-sm'>{item.title}</h2>
                                     <h3 className="text-xs font-thin mb-1 opacity-80">
                                         {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
                                     </h3>

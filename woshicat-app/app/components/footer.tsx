@@ -13,13 +13,9 @@ const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
     const [openPref, setOpenPref] = useState<boolean>(false);
     const [features, setFeatures] = useState<boolean>(false);
-    //const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
+    const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
     const pathname = usePathname().includes("lookbook");
     const { consent } = useMetaPixel();
-
-    // useEffect(() => {
-    //     const 
-    // })
 
     const nClicked = () => {
         setClicked(true);
@@ -155,3 +151,4 @@ const Footer = () => {
 }
 
 export default Footer;
+

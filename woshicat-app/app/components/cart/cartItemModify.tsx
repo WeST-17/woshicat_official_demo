@@ -96,7 +96,8 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
   }
   
   return (
-    <div className="flex items-center justify-end w-full h-24">
+    <div className="flex max-md:flex-col items-center justify-center w-fit h-full">
+      <div className='flex justify-center'>
       <button
         onClick={handleDecrement}
         className={`flex justify-center items-center h-6 w-6 text-black transition duration-300 rounded-l-md ${itemQuantLoad === false ? 'opacity-100 hover:bg-black/25' : 'opacity-10 pointer-events-none'}`}
@@ -112,9 +113,10 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
       >
         +
       </button>
+      </div>
       <button
         onClick={handleDeleteItem}
-        className={`flex flex-col justify-center items-center text-black hover:bg-stone-200/35 transition duration-300 text-[0.5rem] h-12 w-12 ms-3 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
+        className={`flex flex-col justify-center items-center text-black hover:bg-stone-200/35 transition duration-300 text-[0.5rem] h-10 w-10 lg:h-12 lg:w-12 max-lg:mt-2 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'}`}
         disabled={itemQuantLoad === true}
       >
         <Image

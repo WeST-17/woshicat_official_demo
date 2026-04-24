@@ -1,8 +1,9 @@
 'use client';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AddEmailSubscriber from "./action-klaviyo";
+// import { getCustomerNewsletterStatus } from "./action-klaviyo";
 
 interface EmailListProps {
   clicked?: boolean
@@ -12,6 +13,17 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isSubmitted, SetIsSubmitted] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   const check = async () => {
+  //     const custStatus = await getCustomerNewsletterStatus(email);
+      
+  //   }
+
+  //   check();
+
+  //   return () => {};
+  // }, [isSubmitted]);
 
   const validateEmail = (email: string) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -24,7 +36,7 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
     setIsEmailValid(validateEmail(value));
   };
 
-  const joinNewsletter = (e: React.FormEvent) => {
+  const joinNewsletter = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent form submission
 
     if (isEmailValid && email !== '') {

@@ -4,16 +4,14 @@ const KlaviyoAPIKey = process.env.KLAVIYO_PRIVATE_EMAIL_LIST_TOKEN;
 const url = 'https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/';
 
 export default async function AddEmailSubscriber(email: string) {
-  const now = new Date();
-  const datetime = now.toISOString();
 
   const subscribeOptions = {
     method: 'POST',
     headers: {
-      accept: 'application/vnd.api+json',
-      revision: '2026-04-15',
+      'accept': 'application/vnd.api+json',
+      'revision': '2026-04-15',
       'content-type': 'application/vnd.api+json',
-      Authorization: `Klaviyo-API-Key ${KlaviyoAPIKey!}`
+      'Authorization': `Klaviyo-API-Key ${KlaviyoAPIKey!}`
     },
       
     body: JSON.stringify({
@@ -28,7 +26,7 @@ export default async function AddEmailSubscriber(email: string) {
                   attributes: {
                     email: `${email!}`,
                     subscriptions: {
-                      email: {marketing: {consent: 'SUBSCRIBED', consented_at: datetime}}
+                      email: {marketing: {consent: 'SUBSCRIBED'}}
                     },
                   }
                 }
@@ -42,7 +40,6 @@ export default async function AddEmailSubscriber(email: string) {
   
   try {
     const res = await fetch(url, subscribeOptions);
-    // console.log("Response: ", res);
 
     if (!res.ok) {
       console.error("Error:", res);
@@ -54,3 +51,28 @@ export default async function AddEmailSubscriber(email: string) {
   }
 };
 
+export async function getCustomerNewsletterStatus(email: string) {
+  const url = `https://a.klaviyo.com/api/profiles/?fields[profile]=email&filter=equals%28email%2C%27${email.replace('@', '%40')}%27%29&page[size]=1`;
+  const options = {
+    method: 'GET',
+    headers: {
+      revision: '2026-04-15',
+      accept: 'application/vnd.api+json',
+      Authorization: `Klaviyo-API-Key ${KlaviyoAPIKey!}`
+    }
+  };
+
+  try {
+    const res = await fetch(url, options);
+    
+    if (res.ok === false) {
+      console.error("Error:", res);
+    } else {
+      console.log('getting profile', res.body);
+    }
+
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    throw error;
+  }
+};
