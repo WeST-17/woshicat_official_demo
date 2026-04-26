@@ -122,7 +122,7 @@ const CartShow = () => {
                     </button>
                 </div>
                 
-                <div className={`w-full h-[400px] lg:h-[485px] flex flex-col justify-start p-1 rounded-lg touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain bg-transparent`}>
+                <div className={`w-full h-full flex flex-col justify-start p-1 rounded-lg touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain bg-transparent`}>
                 {cartItems.length > 0 ? (
                     <>
                         {cartItems.map((item: any, i) => {
@@ -155,6 +155,7 @@ const CartShow = () => {
                                 </div>
                             </div>
                         )})}
+                       
                     </>
                     
                     ) : cartItemsLoading ? (
@@ -165,12 +166,15 @@ const CartShow = () => {
                         <>
                         <div className="gap-2 absolute top-0 right-0 bottom-0 w-full h-full flex flex-col justify-center items-center z-[-1] text-center">
                             <div className="scale-[1.5]">{`o( ・∇・)o`}</div>
-                            
+                            {/* <Image src="/media/stickers/Subway2_Sticker.png" alt="Sad Metro Daydreams Sticker Yoyo"
+                                width={300} height={1}
+                            /> */}
                         </div>
                         </> 
                     )}
+                    
                 </div>
-                <div className="flex flex-col w-full sticky bottom-0 p-1 bg-white/75">
+                <div className="h-32 flex flex-col w-full sticky bottom-1 p-1 bg-white/75">
                     <div className="h-full flex flex-col w-full justify-end items-center p-1 gap-1">
                         <div className="w-full flex justify-end items-center text-xl me-2">
                             <p className={`text-xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
@@ -183,7 +187,7 @@ const CartShow = () => {
                         <div className="w-full flex justify-end">
                             <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
                             </p>
-                            <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Yoyo's excited! You got free shipping!`}
+                            <p className={`${progress >= 100 ? '' : 'hidden'}`}>{`Free shipping for your order!`}
                             </p>
                         </div>
                         

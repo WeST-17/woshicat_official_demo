@@ -14,7 +14,7 @@ export default function setCSPHeader(
         style-src 'self' 'unsafe-inline';
         img-src 'self' *.shopify.com cdn.shopify.com res.cloudinary.com *.facebook.com blob: data:;
         frame-src 'self' *.shopify.com cdn.shopify.com blob: data:;
-        media-src 'self' *.shopify.com cdn.shopify.com data:;
+        media-src 'self' *.shopify.com cdn.shopify.com shop.woshicat.com data:;
         font-src 'self';
         object-src 'none';
         base-uri 'self';

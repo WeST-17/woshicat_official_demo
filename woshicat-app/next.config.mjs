@@ -12,11 +12,11 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/**'
       },
-      // {
-      //   protocol: 'https',
-      //   hostname: '*.cdn.instagram.com',
-      //   port: ''
-      // },
+      {
+        protocol: 'https',
+        hostname: 'shop.woshicat.com',
+        pathname: '/cdn/shop/videos/**'
+      },
       {
         protocol: 'https',
         hostname: 'www.facebook.com',

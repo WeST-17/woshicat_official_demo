@@ -51,7 +51,7 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
           (
             <div className='relative w-full'>
               { photos.length > 0 && (
-                  <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} autoPlay={auto}>
+                  <ScrollingCarousel addClass="" numPerSlide={5} mobileSlide={2} autoPlay={auto!}>
                   {photos.map((image: any, index: number) => {
                       return (
                         <div className={`relative flex justify-center items-center w-full mx-auto aspect-4/5`} key={index}>
@@ -61,6 +61,7 @@ const FeaturedPhotos:React.FC<FeaturedType> = ({ folder, auto }) => {
                               width={image.width}
                               height={1}
                               className={`object-cover h-full`}
+                              loading='eager'
                             />
                         </div>
                       )

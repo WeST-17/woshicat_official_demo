@@ -5,6 +5,7 @@ import ProductCarousel from '../../carousels/productCarousel';
 import ScrollingCarousel from '../../carousels/Carousel';
 import { getProductRecommendationsHelper } from '@/app/server_actions/action';
 import Image from 'next/image';
+import { Suspense } from 'react';
 import { useCart } from '../../cart/cartContext';
 import LoadingIcon from '../../transitions-navigation/loading';
 import Loader from '../../transitions-navigation/LoadingScreen';
@@ -12,6 +13,7 @@ import { notFound } from 'next/navigation';
 import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
+import VideoComponent from '../components/VideoComponent';
 
 interface Handle {
     handle: string
@@ -232,9 +234,9 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     return (
         <>
-        <div className={`relative sticky top-0 flex justify-center items-center h-[50vh] w-screen bg-stone-200 mb-8 fade-in ${!pageLoad ? 'show' : ''}`}>
+        <div className={`relative sticky top-0 flex justify-center items-center h-[35vh] w-screen bg-stone-200 mb-5 fade-in rounded-b-[8px] overflow-hidden ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product.*/}
-            <div className='absolute w-full h-full bg-black/25 z-100 flex items-center justify-center'>
+            <div className='absolute w-full h-full bg-black/65 z-100 flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-4xl lg:text-7xl mt-[70px]'>{item.title}</h1>
             </div>
             <Image 
@@ -242,12 +244,12 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 alt={item.images[2] ? item.images[2].altText : item.images[0].altText}
                 fill={true}
                 priority
-                className='object-cover w-full'
+                className='object-cover w-full opacity-70'
             />
         </div>
-        <div className="relative flex flex-col w-full mx-auto bg-white/95 rounded-lg pt-8">
+        <div className="relative flex flex-col w-full mx-auto bg-white/98 rounded-t-[8px]">
         <div className='relative h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
-            <div className='relative flex justify-center items-start grid lg:grid-cols-8 mb-20 gap-4'>
+            <div className='mt-5 relative flex justify-center items-start grid lg:grid-cols-8 mb-3 gap-4'>
                 {/* Apparel Images */}
                 {item.images.length > 0 && (
                     <>
@@ -260,7 +262,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                     <img
                                         src={image.url}
                                         alt={image.altText}
-                                        className='pointer-events-none object-contain w-full'
+                                        className='pointer-events-none object-cover w-full h-full'
                                     />
                                     {image.altText && image.altText.includes('Size') && (
                                         <div className='bg-white/60 rounded-md flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-sm p-1'>
@@ -273,34 +275,46 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                 </div>
                             ))}
                         </ProductCarousel>
+                        
                     </div>
 
                     {/* Large screen size and up */}
-                    <div className='relative col-span-4 rounded-md overflow-hidden max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
+                    <div className='relative col-span-4 rounded-lg overflow-hidden max-lg:hidden grid grid-cols-2 flex justify-center items-center'>
                         {/* Render product details */}
-                            {item.images.map((image: {url: string, altText: string}, index: number) => (
-                                <div key={index} className={`w-full h-full aspect-5/7 flex justify-center items-center relative`}>
-                                    <img
-                                        src={image.url}
-                                        alt={image.altText || `Image of the ${item.title}`}
-                                        className='mx-auto pointer-events-none object-cover h-full w-full'
-                                    />
-                                    {image.altText && image.altText.includes('Size') && (
-                                        <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-xs p-1 bg-white/60 rounded-md'>
-                                            {image.altText.split('/')[0]}
-                                            <br></br>
-                                            {image.altText.split('/')[1]}
-                                        </div>
-                                    )}
-                                    
-                                </div>
-                            ))}
-                        
+                        {item.images.map((image: {url: string, altText: string, width: number, height: number}, index: number) => (
+                            <div key={index} className={`w-full h-full ${image.height > image.width ? 'aspect-5/7' : 'aspect-10/7' } flex justify-center items-center relative`}>
+                                <img
+                                    src={image.url}
+                                    alt={image.altText || `Image of the ${item.title}`}
+                                    className='mx-auto pointer-events-none object-cover h-full w-full'
+                                />
+                                {image.altText && image.altText.includes('Size') && (
+                                    <div className='flex justify-end items-center absolute bottom-0 right-0 h-fit w-fit text-xs p-1 bg-white/60 rounded-md'>
+                                        {image.altText.split('/')[0]}
+                                        <br></br>
+                                        {image.altText.split('/')[1]}
+                                    </div>
+                                )}
+                                
+                            </div>
+                        ))}
+                        {item.video !== undefined && (
+                    <section className={`overflow-hidden w-full h-full ${item.images.length % 2 === 0 ? "col-span-2 aspect-5/6" : ""} ${(item.video.width > item.video.height) ? "col-span-2 aspect-10/9" : "aspect-5/6"}`}>
+                            <Suspense fallback={<p className='h-full w-full flex justify-center items-center text-center'>Loading video...</p>}>
+                                <VideoComponent 
+                                    url={item.video.url} 
+                                    alt={item.video.alt} 
+                                    width={item.video.width}
+                                    height={item.video.height}
+                                    type={'video/mp4'}/>
+                            </Suspense>
+                        </section>
+                        )}
                     </div>
                     </>
                 )}
                     
-                <div className={`sticky top-20 max-lg:mt-16 p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-3`}>
+                <div className={`sticky top-[70px] p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-3`}>
                     <div className='w-full'>
                         <h3 className="text-3xl font-bold text-black">{item.title}</h3>
                         <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
@@ -494,13 +508,30 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </div>
                 </div>
             </div>
+            {/* <div className='col-span-8 flex justify-center items-center'>
+                <section className='lg:w-1/2 h-full border-test'>get it now</section>
+                {item.video !== undefined && (
+                <section className={`overflow-hidden w-full lg:w-1/2 h-full rounded-lg ${item.video.width > item.video.height ? "aspect-16/9" : "aspect-4/5"}`}>
+                    <Suspense fallback={<p className='h-full w-full flex justify-center items-center text-center'>Loading video...</p>}>
+                        <VideoComponent 
+                            url={item.video.url} 
+                            alt={item.video.alt} 
+                            width={item.video.width}
+                            height={item.video.height}
+                            type={'video/mp4'}/>
+                    </Suspense>
+                </section>
+                )}
+            </div> */}
+            
             {/*  */}
             {/* Product Recommendations */}
-            <div className='h-fit w-full text-lg mx-auto hidden lg:flex items-start mb-6 px-1'>
-                <div className="w-full text-3xl font-normal">
+            <div className='h-fit w-full text-lg mx-auto flex items-start mt-12 mb-3 px-1'>
+                <div className="w-full text-xl lg:text-3xl font-normal">
                     {`Yoyo thinks you'll also like: `}
                 </div>
             </div>
+            <div className={`w-1/3 h-0.75 bg-black/10 mb-2 ms-2 rounded-xl me-auto`} id="divider"/>
             <FadeInImage>
             <div className={`grid grid-cols-1 h-full w-full text-lg mx-auto flex justify-center items-start`}>
                 <ScrollingCarousel addClass='' numPerSlide={5} mobileSlide={2}>

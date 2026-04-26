@@ -266,6 +266,7 @@ export const collectionByHandle = (handle: string, cursor?: string | null) => {
   `)
 };
 export const productByHandle = (handle: string) => {
+  
   return (
     ` query {
         product(handle: "${handle}") {
@@ -280,6 +281,25 @@ export const productByHandle = (handle: string) => {
               node {
                 url
                 altText
+                width
+                height
+              }
+            }
+          }
+          media(first:15, reverse:true) {
+            edges {
+              node {
+                ... on Video {
+                  id
+                  alt
+                  mediaContentType
+                  sources {
+                    url
+                    width
+                    height
+                    mimeType
+                  }
+                }
               }
             }
           }

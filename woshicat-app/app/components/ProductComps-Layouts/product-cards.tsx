@@ -1,6 +1,6 @@
 'use client'
 // ProductCards.tsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getCollectionNamesHelper, getAllProductsHelper } from '../../server_actions/action';
 import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
@@ -16,6 +16,7 @@ const ProductCards = () => {
   const [hasNextPage, setNext] = useState<boolean | null>(null);
   const [filter, setFilter] = useState<string>('All Products');
   const [scrollPos, setScrollPos] = useState<number>(0);
+  
   const HandleScroll = () => {
       const height = 
           document.documentElement.scrollHeight - 
@@ -34,6 +35,7 @@ const ProductCards = () => {
 
   const filterClick = ( value: string ) => {
     setFilter(value);
+
   }
 
   const currFormat = new Intl.NumberFormat('default', {
@@ -55,21 +57,20 @@ const ProductCards = () => {
     }
     const productsPlusNext = products.concat(nextPageProducts[0]);
     setProducts(productsPlusNext);
-  }
+  };
 
   useEffect(() => {
-    if (scrollPos > 75 && hasNextPage === true) getNextPage();
+    if (scrollPos > 65 && hasNextPage === true) getNextPage();
   }, [scrollPos]);
   
   useEffect(() => {
-
     const fetchData = async () => {
       try { 
         setLoading(true);
         const products = await getAllProductsHelper();  
         const collections = await getCollectionNamesHelper();
-        const validProducts = products[0].filter((product: { collection: string | undefined; }) => {
-          return product.collection !== undefined;
+        const validProducts = products[0].filter((product: { collections: [] | undefined; }) => {
+          return (product.collections !== undefined || product.collections!.length > 0);
         })
         setProducts(validProducts || []);
         setCollectionList(collections.reverse() || []);
@@ -105,17 +106,23 @@ const ProductCards = () => {
     >
       {`Shop / ${filter}`}
     </div>
-    <div className='mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-8'>
-      <div className='w-full lg:w-1/2 flex flex-col justify-start items-start'>
-      <Collapse title={`Filter by Collection:`} classProp='w-full text-xl'>
-        <button onClick={() => filterClick('All Products')} className={`text-base w-full text-start border-transparent border-2 ${filter === 'All Products' ? '' : 'opacity-50'}`}>
+    <div className='mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-16 relative'>
+      <div className='w-full lg:w-1/2 flex flex-col justify-start items-start absolute top-0 z-1000 bg-stone-100/65 hover:bg-white transition transition-all duration-500 rounded-[8px]'>
+      <Collapse 
+        title={`Filter by Collection:`} 
+        classProp='w-full text-xl' 
+        divider={false}
+      >
+        <button onClick={() => filterClick('All Products')} className={`text-base w-full text-start border-transparent border-2 ${filter === 'All Products' ? '' : 'opacity-60'}`}>
           {`All Products`}
         </button>
         {collectionList.map((collection) => (
           <button 
             key={collection.id} 
-            onClick={() => filterClick(collection.title)}
-            className={`border-transparent border-2 w-full text-start text-base ${filter === collection.title ? '' : 'opacity-50'}`}
+            onClick={() => {
+              filterClick(collection.title);
+            }}
+            className={`border-transparent border-2 w-full text-start text-base ${filter === collection.title ? '' : 'opacity-60'}`}
           >
             {`${collection.title}`}
           </button>
@@ -138,12 +145,15 @@ const ProductCards = () => {
       >
         {/* Render your products here using the 'products' state */}
         {products.filter(product => {
-          // Show all if no filter is selected
-          if (filter === 'All Products') return true;
-
-          // Match the collection name
-          return product.collectionTitle === filter;
-        }).map((product) => (
+              // Show all if no filter is selected
+              if (filter === 'All Products') return true;
+              
+              // Match the collection name
+              return product.collections.find((collection: {title: string, handle: string}) => {
+                return collection.title === filter;
+              })
+            }
+          ).map((product) => (
           // Render each product item
           <FadeInImage key={product.id}>
           <div className={`relative text-center h-full overflow-hidden`} 
@@ -153,7 +163,7 @@ const ProductCards = () => {
             <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
             <div className={`flex justify-center overflow-hidden`}>
-              <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
+              <Link className='w-full flex justify-center' href={`/collections/${product.collections[0].handle}/${product.handle}`} passHref>
               {/* Render product details */}
               <div className='relative flex justify-center items-center aspect-4/5 h-full'>
                 {/* Default product image */}

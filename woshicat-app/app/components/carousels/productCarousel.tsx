@@ -79,7 +79,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
 
     return (
         <>
-            <section className="mx-3 rounded-xs h-fit w-14 hidden lg:flex flex-col gap-1 sm:gap-2 justify-center items-center z-1000">
+            <section className="py-1 rounded-xs mb-2 h-10 w-16 h-full gap-1 mx-auto flex flex-col justify-center items-center z-200">
                 {new Array(childCount).fill("").map((_, i) => (
                     <div 
                         key={i}
@@ -87,30 +87,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                     >
                         <span
                             key={i}
-                            className={`block flex justify-center items-center rounded-md h-10 cursor-pointer transition-all content-[''] ${currIndex === i ? "w-12 opacity-100" : "w-10 opacity-50"}`}
-                            onClick={() => setCurrIndex(i)}
-                        >
-                            <Image
-                                src={images[i].url}
-                                alt={images[i].altText}
-                                height={100}
-                                width={100}
-                                className="object-cover bg-white/80 aspect-square rounded-xs"
-                            />
-                        </span>
-                    </div>
-                ))}
-            </section>
-
-            <section className="lg:hidden py-1 px-2 rounded-xs absolute -bottom-12 mb-2 h-12 w-full gap-1 mx-auto flex justify-center items-end z-200">
-                {new Array(childCount).fill("").map((_, i) => (
-                    <div 
-                        key={i}
-                        className="flex justify-center items-center"
-                    >
-                        <span
-                            key={i}
-                            className={`block flex justify-center items-center rounded-md h-1 cursor-pointer transition-all content-[''] ${currIndex === i ? "opacity-100 w-12" : "opacity-50 w-8"}`}
+                            className={`block flex justify-center items-center rounded-md h-full cursor-pointer transition-all content-[''] ${currIndex === i ? "opacity-100 w-12" : "opacity-50 w-8"}`}
                             onClick={() => setCurrIndex(i)}
                         >
                             <Image
@@ -118,7 +95,7 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                                 alt={images[i].altText}
                                 width={100}
                                 height={1}
-                                className="object-cover bg-white/80 aspect-square rounded-xs"
+                                className="object-cover w-full h-full bg-white/80 aspect-square rounded-xs"
                             />
                         </span>
                     </div>
@@ -126,11 +103,11 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
             </section>
 
             <div className={`bg-white w-full flex relative items-center justify-center overflow-hidden rounded-lg touch-x-none`} >                
-                <button className={`absolute left-0 h-3/4 z-100 p-2 rounded-md opacity-10 hover:opacity-80 transition duration-300`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
-                    <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={20} height={1}/>
+                <button className={`absolute left-1 h-1/2 z-100 p-2 rounded-md opacity-10 hover:opacity-80 transition duration-300 bg-white`} onClick={prev} aria-description="previous slide button" disabled={childCount <= 1}>
+                    <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={10} height={1}/>
                 </button>
                 <div
-                    className={`touch-pan-y carousel-auto relative w-full h-full flex transition transition-all duration-500 ease-in-out`}
+                    className={`touch-pan-y carousel-auto relative w-full h-full flex transition transition-all duration-500 ease-in-out rounded-[8px]`}
                     style={{
                         transform: `translateX(-${currIndex * (100)}%)`,
                     }}
@@ -140,8 +117,8 @@ const ProductCarousel: React.FC<CarouselProps> = ({ children, images }) => {
                     >
                     {children}
                 </div>
-                <button className={`absolute h-3/4 right-0 z-100 rounded-md p-2 opacity-10 hover:opacity-80 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
-                    <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={20} height={1}/>
+                <button className={`absolute h-1/2 bg-white right-1 z-100 rounded-md p-2 opacity-10 hover:opacity-80 transition duration-350`} onClick={next} aria-description="next slide button" disabled={childCount <= 1}>
+                    <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={10} height={1}/>
                 </button>
             </div>
         </>

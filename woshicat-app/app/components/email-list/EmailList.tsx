@@ -1,7 +1,8 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Form from 'next/form';
 import AddEmailSubscriber from "./action-klaviyo";
 // import { getCustomerNewsletterStatus } from "./action-klaviyo";
 
@@ -14,17 +15,6 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
   const [isEmailValid, setIsEmailValid] = useState(true);
   const [isSubmitted, SetIsSubmitted] = useState<boolean>(false);
 
-  // useEffect(() => {
-  //   const check = async () => {
-  //     const custStatus = await getCustomerNewsletterStatus(email);
-      
-  //   }
-
-  //   check();
-
-  //   return () => {};
-  // }, [isSubmitted]);
-
   const validateEmail = (email: string) => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
@@ -36,7 +26,16 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
     setIsEmailValid(validateEmail(value));
   };
 
-  const joinNewsletter = (e: React.MouseEvent) => {
+  const joinNewsletter = (e: React.SubmitEvent) => {
+    e.preventDefault(); // Prevent form submission
+
+    if (isEmailValid && email !== '') {
+      AddEmailSubscriber(email);
+    }
+    SetIsSubmitted(true);
+  };
+
+   const joinNewsletterClick = (e: React.MouseEvent) => {
     e.preventDefault(); // Prevent form submission
 
     if (isEmailValid && email !== '') {
@@ -74,6 +73,7 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
       </div>
       <form
         className="relative w-[320px] h-[150px] text-start flex flex-col justify-start items-center mb-3"
+        onSubmit={joinNewsletter}
       >
         <div className="relative text-xl flex justify-center items-center gap-3 w-full">
           <h2>WoShi Cat Newsletter!</h2> 
@@ -103,7 +103,7 @@ const EmailList: React.FC<EmailListProps> = ({ clicked }) => {
               !isEmailValid || email === '' ? 'bg-stone-100' : 'bg-stone-400 hover:bg-stone-500'
             }`}
             disabled={!isEmailValid || email === ''}
-            onClick={joinNewsletter}
+            onClick={joinNewsletterClick}
           >
             <Image
               src={'/icons/paper-plane-regular.svg'}

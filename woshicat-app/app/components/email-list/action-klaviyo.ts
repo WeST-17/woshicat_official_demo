@@ -50,29 +50,3 @@ export default async function AddEmailSubscriber(email: string) {
     throw error;
   }
 };
-
-export async function getCustomerNewsletterStatus(email: string) {
-  const url = `https://a.klaviyo.com/api/profiles/?fields[profile]=email&filter=equals%28email%2C%27${email.replace('@', '%40')}%27%29&page[size]=1`;
-  const options = {
-    method: 'GET',
-    headers: {
-      revision: '2026-04-15',
-      accept: 'application/vnd.api+json',
-      Authorization: `Klaviyo-API-Key ${KlaviyoAPIKey!}`
-    }
-  };
-
-  try {
-    const res = await fetch(url, options);
-    
-    if (res.ok === false) {
-      console.error("Error:", res);
-    } else {
-      console.log('getting profile', res.body);
-    }
-
-  } catch (error) {
-    console.error('Error fetching profile:', error);
-    throw error;
-  }
-};

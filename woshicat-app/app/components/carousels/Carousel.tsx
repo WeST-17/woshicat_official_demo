@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useWindowDimensions from "../transitions-navigation/useWindowDimension";
 import Loader from "../transitions-navigation/LoadingScreen";
-import { usePathname } from "next/navigation";
 
 interface CarouselComponentProps {
     children: React.ReactNode,
@@ -20,23 +19,13 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const windowSize = useWindowDimensions();
     const [touchPosition, setTouchPosition] = useState<any>(null);
     const [childCount, setChildCount] = useState<number>(0);
-    const pathname = usePathname();
-
-    useEffect(() => {
-        window.addEventListener("touchstart", handleTouchStart, { passive: false });
-        window.addEventListener("touchmove", handleTouchMove, { passive: false });
-        return () => {
-            window.removeEventListener("touchstart", handleTouchStart);
-            window.removeEventListener("touchmove", handleTouchMove);
-        };
-    }, []);
     
-    const handleTouchStart = (e: any) => {
+    const handleTouchStart = (e: React.TouchEvent) => {
         const touchDown = e.touches[0].clientX;
         setTouchPosition(touchDown);
     };
 
-    const handleTouchMove = (e: any) => {
+    const handleTouchMove = (e: React.TouchEvent) => {
         const touchDown = touchPosition
 
         if(touchDown === null) {
@@ -120,7 +109,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
             return () => clearTimeout(timeout);
         }   
         
-    }, [currIndex, pathname])
+    }, [childCount, currIndex])
 
     if (windowSize.width === undefined) {
         
@@ -133,7 +122,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     
     return (
         <>
-        <section className={`absolute left-1/4 -bottom-12 h-12 w-1/2 mx-auto flex justify-center items-center z-200 gap-1`}>
+        <section className={`absolute left-1/4 -bottom-8 h-5 w-1/2 mx-auto flex justify-center items-center z-2000 gap-1`}>
             {windowSize.width >= 768 ? new Array(Math.ceil(childCount / numPerSlide)).fill("").map((_, i) => (
                 <div 
                     key={i}
@@ -167,7 +156,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     <div
                         className={`touch-pan-y flex transition transition-all ${childCount >= 5 ? 'duration-850' : 'duration-500'} ease-in-out carousels ${addClass}`}
                         style={{
-                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) * (childCount % 3 > 0 && (childCount % Math.floor(numPerSlide) > 0 && currIndex === Math.floor(childCount / Math.floor(Math.floor(numPerSlide)))) ? (1 - ((1/6) * (Math.floor(numPerSlide) - (childCount % (Math.floor(numPerSlide)))))) : 1) : 100 * Math.floor(mobileSlide)))}%)`,
+                            transform: `translateX(-${currIndex * ((windowSize.width >= 768 ? 100 * Math.floor(numPerSlide) * (childCount % 3 > 0 && (childCount % Math.floor(numPerSlide) > 0 && currIndex === Math.floor(childCount / Math.floor(Math.floor(numPerSlide)))) ? (1 - ((1/9) * (Math.floor(numPerSlide) - (childCount % (Math.floor(numPerSlide)))))) : 1) : 100 * Math.floor(mobileSlide)))}%)`,
                             width: `calc(${100 / (windowSize.width >= 768 ? numPerSlide : mobileSlide)}%)`
                         }}
                         ref={childRef}

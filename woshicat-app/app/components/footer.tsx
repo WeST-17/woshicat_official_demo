@@ -127,13 +127,11 @@ const Footer = () => {
                 </div>
             </div>
             
-            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400 mb-4">
+            <div className="col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm text-stone-400 mb-4">
                 <Link href={'/privacy-policy'} className="hover:text-black transition duration-250">Privacy Policy</Link>
                 <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
                 <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
                 <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
-            </div>
-            <div className="col-span-8 flex max-md:flex-col gap-4 justify-center text-center text-sm text-stone-400">
                 <button className="hover:text-black transition duration-250" onClick={() => { setOpenPref(true) }}>
                     Privacy Preferences
                 </button>

@@ -11,24 +11,14 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
     const [auto, setAuto] = useState<boolean>(true);
     const childRef = useRef<HTMLDivElement | null>(null);
     const [childCount, setChildCount] = useState<number>(0);
-    const [touchPosition, setTouchPosition] = useState<any>(null);
+    const [touchPosition, setTouchPosition] = useState<any>(null); 
 
-    useEffect(() => {
-        window.addEventListener("touchstart", handleTouchStart, { passive: false });
-        window.addEventListener("touchmove", handleTouchMove, { passive: false });
-        return () => {
-            window.removeEventListener("touchstart", handleTouchStart);
-            window.removeEventListener("touchmove", handleTouchMove);
-        };
-      }, []);
-
-
-    const handleTouchStart = (e: any) => {
+    const handleTouchStart = (e: React.TouchEvent) => {
         const touchDown = e.touches[0].clientX;
         setTouchPosition(touchDown);
     };
 
-    const handleTouchMove = (e: any) => {
+    const handleTouchMove = (e: React.TouchEvent) => {
         const touchDown = touchPosition
         if(touchDown === null) {
             return
@@ -106,7 +96,7 @@ const AutoCarousel: React.FC<CarouselProps> = ({ children }) => {
                         >
                             <span
                                 key={i}
-                                className={`bg-white rounded-full flex justify-center items-center w-8 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
+                                className={`bg-white rounded-full flex justify-center items-center w-4 md:w-8 h-2 cursor-pointer transition-all ${currIndex === i ? "" : "opacity-50"}`}
                                 onClick={() => setCurrIndex(i)}
                             />
                         </div>

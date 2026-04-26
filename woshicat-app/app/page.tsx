@@ -154,7 +154,7 @@ const Home = () => {
       
       <div className="relative flex flex-col w-full mx-auto col-span-9 bg-white/95 rounded-lg">
         {/* Mid page Yoyo inspiration */}
-        <section className="relative flex flex-col w-full mx-auto col-span-9 mb-4">
+        <section className="relative flex flex-col w-full mx-auto mb-4">
           <div className="w-full flex justify-start overflow-hidden">
             <Image
               src={'/media/corner-bright.png'}
@@ -195,8 +195,8 @@ const Home = () => {
         {/* Featured Collection Header */}
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
           {/* Featured Collection Display */}
-          <div className={`relative w-full grid grid-cols-9 mb-10 mx-auto rounded-lg gap-1 p-0.5`}>
-            <h3 className="ps-1 col-span-9">{`Featured Collections`}</h3>
+          <div className={`relative w-full grid grid-cols-8 mb-10 mx-auto rounded-lg gap-1 p-0.5`}>
+            <h3 className="ps-2 w-full text-3xl sticky top-[50px] col-span-8">{`Shop Featured ฅ^•ﻌ•^ฅ`}</h3>
             {featured[0] ? (
               <>
                 <TwoOneRect
@@ -212,90 +212,67 @@ const Home = () => {
                 </TwoOneRect>
               </>
             ) : (
-            <div className="object-contain relative col-span-9 lg:col-span-6 w-full overflow-hidden flex justify-center items-center">
+            <div className="object-contain relative col-span-8 lg:col-span-4 w-full overflow-hidden flex justify-center items-center">
               <Loader />
             </div>
           )}
-            <div className="relative col-span-9 lg:col-span-3 h-full overflow-hidden rounded-lg bg-white/95 flex items-center grid grid-cols-2 gap-1">
-              {featuredItems && featuredItems.map((product, index: number) => (
-                <div className="col-span-1 flex flex-col h-full" key={index}>
-                  <FadeInImage key={product.handle}>
-                  <div className={`relative text-center h-full overflow-hidden`}  
-                    key={product.handle}
-                  >
-                    <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
-                    <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
-                    
-                    <div className={`bg-white flex justify-center overflow-hidden`}>
-                      <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
-                      {/* Render product details */}
-                      <div className='relative aspect-9/10 flex justify-center items-center'>
-                        {/* Default product image */}
-                        <img 
-                          src={product.images[0].url} 
-                          alt={product.images[0].altText} 
-                          className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
-                        />
-                        {/* Hover image */}
-                        { product.images[2] && (<img 
-                          src={product.images[2].url} 
-                          alt={product.images[2].altText} 
-                          className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
-                        />) }
-                      </div>
-                      </Link>
-                    </div>
-                    <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
-                      <div className="me-auto lg:text-sm text-start">{product.title}</div>
-                      <div className="ms-auto lg:text-sm">{currFormat.format(product.price)}</div>
-                    </div>
-                  </div>
-                  </FadeInImage>
-                </div>
-              ))
-            }
-              
-              {/* <Link href={'https://www.instagram.com/woshicatofficial'} target="_blank" className="h-full w-full">
-                <Image
-                  src={'/media/homepage/Alvin-WoshiCat-11.jpeg'}
-                  alt={'A guy sitting on a ledge, wearing the 5:06 Train Shirt'}
-                  fill={true}
-                  className="object-cover"
-                />
-                <div className="absolute top-0 right-0 w-full text-white h-full flex flex-col justify-center items-center p-8 bg-black/50 hover:bg-black/80 text-3xl md:text-xl transition duration-300 gap-4">
-                  <div className="flex flex-col text-center">
-                    <p>follow us for updates</p>
-                    <p>@woshicatofficial</p>
-                  </div>
-                  <Image 
-                    src={'/logo/instagram-white.svg'}
-                    alt={'Instagram - WoShi Cat Official!'}
-                    className=""
-                    width={40}
-                    height={1}
-                  />
+          <div className="relative col-span-8 lg:col-span-3 h-full overflow-hidden max-lg:pt-2 bg-white/95 flex items-center grid grid-cols-2 gap-1">
+            {featuredItems && featuredItems.map((product, index: number) => (
+              <div className="col-span-1 flex flex-col h-full" key={index}>
+                <FadeInImage key={product.handle}>
+                <div className={`relative text-center h-full overflow-hidden`}  
+                  key={product.handle}
+                >
+                  <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
+                  <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
                   
+                  <div className={`bg-white flex justify-center overflow-hidden`}>
+                    <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
+                    {/* Render product details */}
+                    <div className='relative aspect-9/10 flex justify-center items-center'>
+                      {/* Default product image */}
+                      <img 
+                        src={product.images[0].url} 
+                        alt={product.images[0].altText} 
+                        className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                      />
+                      {/* Hover image */}
+                      { product.images[2] && (<img 
+                        src={product.images[2].url} 
+                        alt={product.images[2].altText} 
+                        className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                      />) }
+                    </div>
+                    </Link>
+                  </div>
+                  <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
+                    <div className="me-auto lg:text-sm text-start">{product.title}</div>
+                    <div className="ms-auto lg:text-sm">{currFormat.format(product.price)}</div>
+                  </div>
                 </div>
-              </Link> */}
+                </FadeInImage>
+              </div>
+            ))
+            }
             </div>
         </div>
       </div>
 
         {/* Collection Carousel Display */}
-        <div className={`w-full lg:w-[90vw] col-span-9 mx-auto mb-10`}>
+        <div className={`w-full lg:w-[90vw] col-span-9 mx-auto mb-15`}>
           {/* Rest of the Collections */}
-          <Link href="/collections" className="w-full text-5xl font-normal ps-1 mb-2">
+          <Link href="/collections" className="w-full text-3xl font-normal ps-1 mb-2">
             {`Yoyo's Collection List`}
           </Link>  
           <div className="relative w-full mx-auto flex">
               <CollectionListing addClass="w-full h-full"/>
           </div>
         </div>
-
+        
         {/* Product Showcase */}
         <div className={`relative w-full col-span-9 mb-10 mx-auto flex flex-col justify-center items-center`}>
           <div className="relative w-full lg:w-[90%] h-fit mb-2 mx-auto">
-            <Link href="/collections" className="flex w-full text-5xl font-normal ps-1">
+            <Link href="/collections" className="flex w-full text-3xl font-normal ps-1">
               {`Benji's Styling Inspo`}
             </Link>
           </div>

@@ -32,15 +32,21 @@ async function getProducts(cursor?: string | null): Promise<any[]> {
   const { data, errors } = await client.request(productsQuery(cursor));
   try {
     const products = data.products.edges.map((item: any) => {
-      const collection = item.node.collections.edges[0];
+      const collectionsArray = item.node.collections.edges.map((col: any) => {
+        return {
+          title: col.node.title,
+          handle: col.node.handle
+        }
+      });
+      // console.log(collectionsArray)
       const price = item.node.priceRange.maxVariantPrice.amount;
       const images = item.node.images.edges.map((image: any) => ({
         url: image.node.url,
         altText: image.node.altText,
       }));
       
-      if (collection === undefined) {
-        return '';
+      if (collectionsArray === undefined) {
+        return [];
       }
 
       if (price === undefined) {
@@ -51,8 +57,7 @@ async function getProducts(cursor?: string | null): Promise<any[]> {
         id: item.node.id, //product id in shopify
         name: item.node.title, //product title in shopify
         handle: item.node.handle, // product handle in shopify
-        collection: collection.node.handle, //collection handle
-        collectionTitle: collection.node.title,
+        collections: collectionsArray,
         inventoryCount: item.node.totalInventory, //total inventory in stock
         available: item.node.totalInventory > 0, //checks if item is available
         lowStock: item.node.totalInventory < 20,
@@ -266,15 +271,44 @@ export async function getCollectionProductsHelper(handle: string, cursor?: strin
   return products;
 }
 
+interface SourceFilter {
+  id?: string,
+  url: string,
+  alt?: string,
+  width: number,
+  height: number,
+  mimeType?: string,
+}
+
 async function getProductByHandle(handle: string): Promise<any> {
   const singleProductQuery: string = productByHandle(handle);
   const { data, errors } = await client.request(singleProductQuery);
   try {
+    const videoMedia = data.product.media.edges
+      .filter((edge: any) => edge.node.mediaContentType === "VIDEO")
+      .map((video: any) => {
+        const source = video.node.sources?.find(
+          (s: SourceFilter) =>
+            s.url.includes('HD-1080p') && s.mimeType === "video/mp4"
+        );
+
+        return {
+          id: video.node.id,
+          url: source?.url,
+          alt: video.node.alt,
+          width: source?.width,
+          height: source?.height || 1,
+          mimeType: source?.mimeType,
+        };
+      });
+    //console.log(videoMedia);
     if (data.product.tags.includes('no-variants')) {
       const images = data.product.images.edges.map((image: any) => {
         return {
           url: image.node.url,
-          altText: image.node.altText
+          altText: image.node.altText,
+          width: image.node.width,
+          height: image.node.height
         }
       });
       const price = Number(data.product.priceRange.maxVariantPrice.amount).toFixed(2);
@@ -289,7 +323,7 @@ async function getProductByHandle(handle: string): Promise<any> {
         quantity: data.product.totalInventory
       };
 
-    
+      
       return {
         id: data.product.id,
         title: data.product.title,
@@ -300,16 +334,20 @@ async function getProductByHandle(handle: string): Promise<any> {
         variants: variantOptions,
         images: images,
         type: data.product.productType,
-        tags: data.product.tags
+        tags: data.product.tags,
+        video: videoMedia[0]
       };
     }
 
     const images = data.product.images.edges.map((image: any) => {
       return {
         url: image.node.url,
-        altText: image.node.altText
+        altText: image.node.altText,
+        width: image.node.width,
+        height: image.node.height
       }
     });
+
     const price = Number(data.product.priceRange.maxVariantPrice.amount).toFixed(2);
     const collection = {
       title: data.product.collections.edges[0].node.title,
@@ -341,7 +379,8 @@ async function getProductByHandle(handle: string): Promise<any> {
       variants: variantOptions,
       images: images,
       type: data.product.productType,
-      tags: data.product.tags
+      tags: data.product.tags,
+      video: videoMedia[0]
     };
   } catch(error) {
     console.log(error);
