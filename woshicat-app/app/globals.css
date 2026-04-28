@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --background-image-gradient-conic: conic-gradient(
@@ -28,8 +30,8 @@
 
 html {
   scroll-behavior: smooth;
-  color: black;
   margin: 0px;
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar {
@@ -40,6 +42,7 @@ html {
 
 body {
   color: black;
+  background-color: transparent;
   text-rendering: auto;
   font-weight: normal;
   margin: 0px;
@@ -70,6 +73,36 @@ body {
 
 .border-test {
   border: 5px solid red;
+}
+
+.light-text > * {
+  color: #1c1917;
+}
+
+.light-text > button:hover , p:hover {
+  color: black;
+  transition: color 0.25s
+}
+
+.dark-text > * {
+  color: #e7e5e4;
+}
+
+.dark-text > button:hover, p:hover {
+  color: #a8a29e;
+  transition: color 0.25s
+}
+
+.notice-feature {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.testing-feature-hover:hover + .notice-feature {
+  opacity: 100;
+  display: flex;
+  
 }
 
 @keyframes FadeOut {

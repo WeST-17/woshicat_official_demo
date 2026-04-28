@@ -54,7 +54,7 @@ const MobileCart = () => {
     return (
         <>
             <div
-                className={`relative overflow-y-visible h-full rounded-[16px] flex flex-col justify-start items-center bg-stone-200/20 w-full z-1000`}
+                className={`relative overflow-y-visible h-full rounded-[16px] flex flex-col justify-start items-center bg-stone-400/20 w-full z-1000`}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >

@@ -4,6 +4,8 @@ const colors = new Map([
     ['Black', '#000000'],
     ['WoshiRed', '#CD000A'],
     ['White', '#fffffff'],
+    ['DarkText', '#e7e5e4'], //tailwind css stone-200
+    ['Stone-500', '#78716c'],
     ['inactiveText', 'text-stone-400'],
     ['hoverText', 'text-stone-900'],
     // Themed and character colors below

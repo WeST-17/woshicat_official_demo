@@ -12,10 +12,12 @@ import FadeInImage from "./components/transitions-navigation/FadeInImages";
 // import Notice from "./components/messageUpdates/websiteNotice";
 import FeaturedPhotos from "./components/ProductComps-Layouts/featured-cards";
 // import VideoHero from "./components/ProductComps-Layouts/videoHero"; work in progress
+import { DarkMode } from "./components/toggles/Dark_Mode/darkModeContext";
 
 const Home = () => {
   const [featured, setFeatured] = useState<any[]>([]);
   const [featuredItems, setFeaturedItems] = useState<any[]>([]);
+  const { darkMode } = DarkMode();
 
   const currFormat = new Intl.NumberFormat('default', {
     style: 'currency',
@@ -152,7 +154,7 @@ const Home = () => {
         </AutoCarousel>
       </div>
       
-      <div className="relative flex flex-col w-full mx-auto col-span-9 bg-white/95 rounded-lg">
+      <div className={`relative flex flex-col w-full mx-auto col-span-9 rounded-lg ${darkMode ? 'dark-text bg-stone-900/95' : 'light-text bg-white/95'}`}>
         {/* Mid page Yoyo inspiration */}
         <section className="relative flex flex-col w-full mx-auto mb-4">
           <div className="w-full flex justify-start overflow-hidden">
@@ -161,7 +163,7 @@ const Home = () => {
               width={120}
               height={1}
               alt="Chinese style corner frame decoration/design"
-              className=""
+              className={``}
             />
           </div>
           <div className="w-full h-fit flex justify-center items-center text-center">
@@ -171,13 +173,13 @@ const Home = () => {
                 width={400}
                 height={1}
                 alt={'Chinese Phonetics: Wo Shi Cat'}
-                className="image"
+                className={`image ${darkMode ? 'invert' : ''}`}
               />
               <div className="w-full lg:w-4/5 flex flex-col justify-center items-center text-center p-2">
                 <p className="text-2xl font-bold">{`Breaking the cycle, day by day.`}</p>
-                <div className="text-base md:text-xl">
+                <p className="text-base md:text-xl">
                 {`Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge? Navigating the human world as a salarycat.`}
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -187,7 +189,7 @@ const Home = () => {
               width={120}
               height={1}
               alt="Chinese style corner frame decoration/design"
-              className="rotate-180"
+              className={`rotate-180`}
             />
           </div>
         </section>
@@ -195,7 +197,7 @@ const Home = () => {
         {/* Featured Collection Header */}
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
           {/* Featured Collection Display */}
-          <div className={`relative w-full grid grid-cols-8 mb-10 mx-auto rounded-lg gap-1 p-0.5`}>
+          <div className={`relative w-full grid grid-cols-8 mb-10 mx-auto rounded-lg gap-1 p-0.5 ${darkMode ? 'bg-stone-900/95' : 'bg-white/95'}`}>
             <h3 className="ps-2 w-full text-3xl sticky top-[50px] col-span-8">{`Shop Featured ฅ^•ﻌ•^ฅ`}</h3>
             {featured[0] ? (
               <>
@@ -211,36 +213,36 @@ const Home = () => {
                   />
                 </TwoOneRect>
               </>
-            ) : (
-            <div className="object-contain relative col-span-8 lg:col-span-4 w-full overflow-hidden flex justify-center items-center">
-              <Loader />
-            </div>
-          )}
-          <div className="relative col-span-8 lg:col-span-3 h-full overflow-hidden max-lg:pt-2 bg-white/95 flex items-center grid grid-cols-2 gap-1">
+              ) : (
+              <div className="object-contain relative col-span-8 lg:col-span-5 w-full overflow-hidden flex justify-center items-center">
+                <Loader />
+              </div>
+            )}
+          <div className={`relative col-span-8 rounded-[8px] lg:col-span-3 h-full overflow-hidden max-lg:pt-2 flex items-center grid grid-cols-2 gap-1 ${featuredItems ? "opacity-100" : "hidden"} ${darkMode ? 'bg-stone-900/95' : 'bg-white/95'}`}>
             {featuredItems && featuredItems.map((product, index: number) => (
-              <div className="col-span-1 flex flex-col h-full" key={index}>
+              <div className="col-span-1 flex flex-col h-full rounded-[8px] overflow-hidden" key={index}>
                 <FadeInImage key={product.handle}>
-                <div className={`relative text-center h-full overflow-hidden`}  
+                <div className={`relative text-center h-full rounded-[8px] overflow-hidden ${darkMode ? 'dark-text' : 'light-text'}`}  
                   key={product.handle}
                 >
                   <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
                   <div className={`text-base z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
                   
-                  <div className={`bg-white flex justify-center overflow-hidden`}>
+                  <div className={`flex justify-center overflow-hidden`}>
                     <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
                     {/* Render product details */}
-                    <div className='relative aspect-9/10 flex justify-center items-center'>
+                    <div className='relative aspect-9/10 flex justify-center items-center rounded-[8px]'>
                       {/* Default product image */}
                       <img 
                         src={product.images[0].url} 
                         alt={product.images[0].altText} 
-                        className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-md h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
+                        className={`${!product.available ? 'grayscale-[0.75]' : ''} object-cover rounded-[8px] h-full w-full transition-opacity duration-500 ease-in-out sm:hover:opacity-0`}
                       />
                       {/* Hover image */}
                       { product.images[2] && (<img 
                         src={product.images[2].url} 
                         alt={product.images[2].altText} 
-                        className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-md object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
+                        className={`${!product.available ? 'grayscale-[0.75]' : ''} rounded-[8px] object-cover max-sm:hidden absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-125 ease-in-out bg-white sm:hover:opacity-100`}
                       />) }
                     </div>
                     </Link>

@@ -10,12 +10,14 @@ import { useCart } from './cartContext';
 import { FinalCheckout } from "@/app/server_actions/action";
 import { useMetaPixel } from "../MetaPixel/PixelContext";
 import Image from "next/image";
+import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
 
 
 const CartShow = () => {
     const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
     const { checkoutClick, setCheckoutClick } = useMetaPixel();
     const cartContainerRef = useRef<HTMLDivElement>(null);
+    const { darkMode } = DarkMode();
 
     const toggle = () => {
         setCartOpen(!cartOpen);
@@ -110,24 +112,24 @@ const CartShow = () => {
                 ref={cartContainerRef}
             >
                 
-                <div className={`sticky top-0 w-full h-16 flex justify-center items-center bg-white duration-800 ${cartOpen ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`sticky top-0 w-full h-16 flex justify-center items-center ${darkMode ? 'bg-stone-900 text-stone-200' : 'bg-white'} duration-800 ${cartOpen ? 'opacity-100' : 'opacity-0'}`}>
                     
                     <Link href={"/cart"} className={`me-auto top-3 p-4 text-2xl font-medium`} onClick={toggle}>
                         <p>{`Shopping Cart`}</p>
                     </Link>
-                    <button onClick={toggle} className="ms-auto my-4 mx-4 text-stone-400">
-                        <div className="w-12 h-8 flex justify-center items-center relative hover:bg-black/15 transition duration-300 rounded-lg text-lg">
+                    <button onClick={toggle} className={`ms-auto my-4 mx-4 text-stone-400 rounded-lg overflow-hidden ${darkMode ? 'text-stone-200' : 'hover:bg-black/15'}`}>
+                        <div className="w-12 h-8 flex justify-center items-center relative transition duration-300 text-lg">
                             <p> {`close`}</p>
                         </div>
                     </button>
                 </div>
                 
-                <div className={`w-full h-full flex flex-col justify-start p-1 rounded-lg touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain bg-transparent`}>
+                <div className={`w-full h-full flex flex-col justify-start p-1 touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain ${darkMode ? 'text-stone-200 bg-stone-900' : 'bg-transparent'}`}>
                 {cartItems.length > 0 ? (
                     <>
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`fade-in h-32 lg:h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''}`}>
+                            <div key={`b_${i}`} className={`fade-in h-32 lg:h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full bg-transparent ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''} ${darkMode ? 'text-stone-200' : ''}`}>
                                 <div
                                     className={`flex justify-center h-full w-full gap-1 overflow-hidden`}
                                 >
@@ -135,7 +137,7 @@ const CartShow = () => {
                                     <img
                                         src={item.imageUrl}
                                         alt={item.handle}
-                                        className="h-2/3 lg:h-full object-cover bg-white aspect-square rounded-lg"
+                                        className="h-2/3 lg:h-full object-cover aspect-square rounded-lg"
                                     />
                                 </Link>
                                 <div className="ms-auto w-full p-1 gap-1 flex flex-col justify-center h-full">
@@ -164,26 +166,23 @@ const CartShow = () => {
                         </div>
                         ) : ( 
                         <>
-                        <div className="gap-2 absolute top-0 right-0 bottom-0 w-full h-full flex flex-col justify-center items-center z-[-1] text-center">
-                            <div className="scale-[1.5]">{`o( ・∇・)o`}</div>
-                            {/* <Image src="/media/stickers/Subway2_Sticker.png" alt="Sad Metro Daydreams Sticker Yoyo"
-                                width={300} height={1}
-                            /> */}
+                        <div className={`gap-2 absolute top-0 right-0 bottom-0 w-full h-full flex flex-col justify-center items-center z-[-1] text-center ${darkMode ? 'bg-stone-900 text-stone-200' : 'bg-white'}`}>
+                            <p className={`scale-[1.5] ${darkMode ? 'bg-stone-900 text-stone-200' : 'bg-white'}`}>{`o( ・∇・)o`}</p>
                         </div>
                         </> 
                     )}
                     
                 </div>
-                <div className="h-32 flex flex-col w-full sticky bottom-1 p-1 bg-white/75">
-                    <div className="h-full flex flex-col w-full justify-end items-center p-1 gap-1">
+                <div className={`h-40 flex flex-col w-full sticky bottom-0 rounded-t-[8px] p-2 ${darkMode ? 'bg-white/20 text-stone-200' : 'bg-white/75'}`}>
+                    <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-1">
                         <div className="w-full flex justify-end items-center text-xl me-2">
                             <p className={`text-xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                         </div>
                         <div className="w-full flex flex-col items-center justify-end gap-4">
-                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 text-white font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'}`}>Checkout</button>
+                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'} ${darkMode ? 'text-stone-200' : 'text-stone-900'}`}>Checkout</button>
                         </div>
                     </div>
-                    <div className="rounded-lg h-16 pe-2 w-full flex flex-col items-end justify-center gap-2">
+                    <div className="rounded-lg h-16 px-2 w-full flex flex-col items-end justify-center gap-2">
                         <div className="w-full flex justify-end">
                             <p className={`${progress < 100 ? '' : 'hidden'}`}>{`You're ${currFormat.format(75 - Number(cartTotal))} away from free shipping!`}
                             </p>

@@ -1,13 +1,14 @@
 'use client'
 // Set link to routed pages for individual items here
-import React from 'react';
 import LookBookCover from '../components/cloudinaryImages/lookbookCovers';
+import { DarkMode } from '../components/toggles/Dark_Mode/darkModeContext';
 
 const LookbookHome = () => {
+  const { darkMode } = DarkMode();
 
   return (
     <>
-    <div className='relative w-full h-fit'>
+    <div className='relative w-full h-fit mt-[70px]'>
       <section className='w-full flex max-lg:flex-col max-lg:gap-3'>
         <div className={`relative absolute left-0 w-full lg:w-1/2 h-fit flex justify-center items-center overflow-hidden rounded-l-lg`}>
           <LookBookCover 
@@ -18,7 +19,7 @@ const LookbookHome = () => {
             classExtra='h-full lg:translate-y-10'
           />
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" className='max-lg:hidden slant z-100 right-0 translate-y-10'>
-            <polygon fill="#1c1917" points="0,100 100,0 100,100"/>
+            <polygon fill={`${darkMode ? "#1c1917" : "#e7e5e4"}`} points="0,100 100,0 100,100"/>
           </svg>
         </div>
         <div className='relative absolute right-0 w-full lg:w-1/2 h-fit flex justify-center items-center overflow-hidden rounded-r-lg'>
@@ -30,7 +31,7 @@ const LookbookHome = () => {
             classExtra='h-full lg:-translate-y-10'
           />
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" className='max-lg:hidden slant z-100 left-0 rotate-180 -translate-y-10'>
-            <polygon fill="#1c1917" points="100,100 100,0 0,100"/>
+            <polygon fill={`${darkMode ? "#1c1917" : "#e7e5e4"}`} points="100,100 100,0 0,100"/>
           </svg>
         </div>
       </section>

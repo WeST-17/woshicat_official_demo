@@ -1,6 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import EmailList from "./email-list/EmailList";
@@ -8,14 +7,16 @@ import SmoothScrollToggleButton from "./toggles/toggleButton";
 import PrivacyToggleButton from "./toggles/privacyToggle";
 import { useMetaPixel } from "./MetaPixel/PixelContext";
 import ToggleButton from "./toggles/templateToggle";
+import { DarkMode } from "./toggles/Dark_Mode/darkModeContext";
+import DarkModeToggle from "./toggles/Dark_Mode/darkModeToggle";
 
 const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
     const [openPref, setOpenPref] = useState<boolean>(false);
     const [features, setFeatures] = useState<boolean>(false);
     const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
-    const pathname = usePathname().includes("lookbook");
     const { consent } = useMetaPixel();
+    const { darkMode } = DarkMode();
 
     const nClicked = () => {
         setClicked(true);
@@ -76,18 +77,25 @@ const Footer = () => {
                     <SmoothScrollToggleButton />
                     <p className="text-xs">{`Experimental: Smooth Scroll [ Desktop Only ]`}</p>
                 </div>
+                <div className="flex w-fit gap-4 testing-feature-hover relative">
+                    <DarkModeToggle />
+                    <p className="text-xs">{`Experimental: Dark Mode - `}{darkMode ? 'ON' : 'OFF'}</p>
+                </div>
+                <div className="bg-white/95 notice-feature absolute w-full h-fit p-2 rounded-[8px] left-0 -bottom-15">
+                    <div className="w-full text-xs">{`Dark Mode is an experimental feature. Please be understanding of any visual issues that may occur. Thanks!`}</div>
+                </div>
             </div>
         </div>
 
-        <footer className={`pt-20 relative w-screen grid-cols-8 ${pathname ? "bg-stone-900" : "bg-white"} text-base text-black transition transition-all duration-300 h-fit`}>
+        <footer className={`pt-20 relative w-screen grid-cols-8 ${darkMode ? "bg-stone-800/90" : "bg-white"} text-base text-black transition transition-all duration-300 h-fit`}>
             <div className="col-span-8 p-4 flex flex-col items-center justify-center">
                 {/* Email subscription list! */}
-                <div className={`flex w-fit justify-center items-center min-h-fit pt-8 ${pathname ? "text-white" : ""}`} id="newsletter">
+                <div className={`flex w-fit justify-center items-center min-h-fit pt-8 ${darkMode ? "text-white" : ""}`} id="newsletter">
                     <EmailList clicked={clicked}/>  
                 </div>
                 <div className="border-t border-stone-400"/>
                 {/* Social Media */}
-                <div className={`flex text-sm justify-center items-center ${pathname ? "invert text-stone-200" : "text-stone-400"}`}>
+                <div className={`flex text-sm justify-center items-center ${darkMode ? "invert text-stone-200" : "text-stone-400"}`}>
                     {/* Instagram */}
                     <div className="text-center rounded-md hover:text-stone-900 transition duration-300 p-2">
                         <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-2">
@@ -127,20 +135,20 @@ const Footer = () => {
                 </div>
             </div>
             
-            <div className="col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm text-stone-400 mb-4">
-                <Link href={'/privacy-policy'} className="hover:text-black transition duration-250">Privacy Policy</Link>
-                <Link href={'/terms-of-service'} className="hover:text-black transition duration-250">Terms of Service</Link>
-                <Link href={'/about/faq'} className="hover:text-black transition duration-250">FAQ</Link>
-                <Link href={'/contact-us'} className="hover:text-black transition duration-250">Contact Us</Link>
-                <button className="hover:text-black transition duration-250" onClick={() => { setOpenPref(true) }}>
+            <div className={`col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm  mb-4 ${darkMode ? 'dark-text' : 'light-text'}`}>
+                <Link href={'/privacy-policy'} className={``}>Privacy Policy</Link>
+                <Link href={'/terms-of-service'} className="">Terms of Service</Link>
+                <Link href={'/about/faq'} className="">FAQ</Link>
+                <Link href={'/contact-us'} className="">Contact Us</Link>
+                <button className=" " onClick={() => { setOpenPref(true) }}>
                     Privacy Preferences
                 </button>
-                <button className="hover:text-black transition duration-250" onClick={() => { setFeatures(true) }}>
+                <button className="" onClick={() => { setFeatures(true) }}>
                     Experimental Features
                 </button>
             </div>
             
-            <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 text-stone-400 ${pathname ? "invert" : ""}`}>
+            <div className={`mt-4 text-sm text-center w-full flex self-end items-center justify-center col-span-8 text-stone-400`}>
                 {`WoShi Cat, LLC - 2026`}
             </div>
         </footer>

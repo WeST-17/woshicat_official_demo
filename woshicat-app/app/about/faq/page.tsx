@@ -2,12 +2,13 @@
 import Collapse from "@/app/components/ProductComps-Layouts/components/collapse-item";
 import { FAQ } from "@/app/about/faq/faqData";
 import TransitionSlide from "@/app/components/transitions-navigation/transitionWipe";
+import { DarkMode } from "@/app/components/toggles/Dark_Mode/darkModeContext";
 
 const BrandFAQ = () => {
-  
+  const { darkMode } = DarkMode();
   return (
     <>
-      <main className="w-screen h-fit flex justify-center items-center grid grid-cols-1 mt-20 lg:mt-32">
+      <main className={`w-fit h-fit flex justify-center items-center grid grid-cols-1 py-20 ${darkMode ? 'bg-stone-900/95 dark-text' : 'bg-white/95 light-text'}`}>
         <div className="mx-auto flex flex-col w-full p-2 lg:w-1/2 h-fit">
           <div className="flex flex-col justify-center lg:justify-start w-full">
             <h1 className="text-5xl mb-8">Frequently Asked Questions:</h1>

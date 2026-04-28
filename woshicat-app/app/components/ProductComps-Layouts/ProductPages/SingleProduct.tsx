@@ -14,6 +14,7 @@ import FadeInImage from '../../transitions-navigation/FadeInImages';
 import Link from 'next/link';
 import MainProductDescription from '../components/main-product-description';
 import VideoComponent from '../components/VideoComponent';
+import { DarkMode } from '../../toggles/Dark_Mode/darkModeContext';
 
 interface Handle {
     handle: string
@@ -29,6 +30,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
     const [recommendations, setRecommendations] = useState<any[]>([]);
+    const { darkMode } = DarkMode();
     
     const colors: Set<string> = new Set();
     const sizes: Set<string> = new Set();
@@ -234,7 +236,7 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
 // --------------------------------------------------------------------------------------------------------------------------
     return (
         <>
-        <div className={`relative sticky top-0 flex justify-center items-center h-[35vh] w-screen bg-stone-200 mb-5 fade-in rounded-b-[8px] overflow-hidden ${!pageLoad ? 'show' : ''}`}>
+        <div className={`relative sticky top-0 flex justify-center items-center h-[57vh] w-screen fade-in rounded-b-[8px] overflow-hidden ${!pageLoad ? 'show' : ''}`}>
             {/* Insert hero image for each product.*/}
             <div className='absolute w-full h-full bg-black/65 z-100 flex items-center justify-center'>
                 <h1 className='text-[#FAF9F6] text-4xl lg:text-7xl mt-[70px]'>{item.title}</h1>
@@ -244,10 +246,10 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 alt={item.images[2] ? item.images[2].altText : item.images[0].altText}
                 fill={true}
                 priority
-                className='object-cover w-full opacity-70'
+                className='object-cover object_[50%_35%] w-full opacity-70'
             />
         </div>
-        <div className="relative flex flex-col w-full mx-auto bg-white/98 rounded-t-[8px]">
+        <div className={`relative flex flex-col w-full mx-auto ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'} rounded-t-[8px] pb-20`}>
         <div className='relative h-fit w-full text-lg lg:w-[90vw] mx-auto flex flex-col justify-start items-center' key={item.id}>
             <div className='mt-5 relative flex justify-center items-start grid lg:grid-cols-8 mb-3 gap-4'>
                 {/* Apparel Images */}
@@ -314,11 +316,11 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </>
                 )}
                     
-                <div className={`sticky top-[70px] p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-3`}>
+                <div className={`sticky top-[80px] p-2 lg:p-0 col-span-8 lg:col-span-4 h-fit w-full relative gap-3`}>
                     <div className='w-full'>
-                        <h3 className="text-3xl font-bold text-black">{item.title}</h3>
-                        <p className={`my-3 text-xl text-stone-900 ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
-                        <p className={`my-3 text-xl text-stone-900 ${Number(item.price) <= 0.00 ? '':'hidden'}`}>{`A Gift from Yoyo! a.k.a it's Free!`}</p>
+                        <h3 className="text-3xl font-bold">{item.title}</h3>
+                        <p className={`my-3 text-xl ${Number(item.price) > 0 ? '':'hidden'}`}>{currFormat.format(Number(item.price))}</p>
+                        <p className={`my-3 text-xl ${Number(item.price) <= 0.00 ? '':'hidden'}`}>{`A Gift from Yoyo! a.k.a it's Free!`}</p>
                     </div>
                 
                     {/* Apparel Colors */}
@@ -368,11 +370,11 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                                         return (
                                             <button
                                                 key={i}
-                                                className={`rounded-full border-2 border-stone-300 me-1 p-2 w-10 h-10 text-sm font-semibold shadow-xs 
+                                                className={`rounded-full border-2 ${darkMode ? 'border-stone-300' : 'border-stone-600'} me-1 p-2 w-10 h-10 text-sm font-semibold shadow-xs 
                                                 ${
-                                                    variant.quantity <= 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-stone-200 hover:bg-stone-500 transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600'
+                                                    variant.quantity <= 0 ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : `${darkMode ? "dark-text bg-stone-500 hover:bg-stone-800" : "light-text bg-stone-200 hover:bg-stone-500"} transition duration-300 focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-stone-600`
                                                 } ${
-                                                    selectedSize === sizing ? 'bg-stone-500 text-white' : ''
+                                                    selectedSize === sizing ? 'bg-stone-800 text-white' : ''
                                                 }`
                                                 }
                                                 disabled={!(variant.quantity > 0)}
@@ -503,11 +505,12 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                     </div>
                     {/* Product Description: Need to make components for product description and add to cart button */}
                     
-                    <div className='w-full h-full mt-6 mb-3 flex flex-col items-start'>
+                    <div className={`w-full h-full mt-6 mb-3 flex flex-col items-start`}>
                         <MainProductDescription description={item.description} isApparel={item.tags.includes('apparel')} collectionHandle={item.collection.handle}/>
                     </div>
                 </div>
             </div>
+            
             {/* <div className='col-span-8 flex justify-center items-center'>
                 <section className='lg:w-1/2 h-full border-test'>get it now</section>
                 {item.video !== undefined && (
@@ -523,10 +526,10 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                 </section>
                 )}
             </div> */}
-            
             {/*  */}
+            
             {/* Product Recommendations */}
-            <div className='h-fit w-full text-lg mx-auto flex items-start mt-12 mb-3 px-1'>
+            <div className={`h-fit w-full text-lg mx-auto flex items-start mt-12 mb-3 px-1 ${darkMode ? 'dark-text' : 'light-text'}`}>
                 <div className="w-full text-xl lg:text-3xl font-normal">
                     {`Yoyo thinks you'll also like: `}
                 </div>
@@ -561,9 +564,9 @@ const SingleProductCard: React.FC<Handle> = ({ handle }) => {
                             </div>
                             </Link>
                             </div>
-                            <div className='flex w-full p-1 text-sm gap-2'>
-                            <div className="text-stone-700 me-auto lg:text-sm text-start">{product.name}</div>
-                            <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
+                            <div className={`${darkMode ? 'dark-text' : 'light-text'} flex w-full p-1 text-sm gap-2`}>
+                                <div className="text-stone-700 me-auto lg:text-sm text-start">{product.name}</div>
+                                <div className="text-stone-700 ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
                             </div>
                         </div>
                     </div>

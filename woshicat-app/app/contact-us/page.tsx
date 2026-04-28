@@ -1,11 +1,13 @@
 'use client';
 import Link from "next/link";
 import TransitionSlide from "../components/transitions-navigation/transitionWipe";
+import { DarkMode } from "../components/toggles/Dark_Mode/darkModeContext";
 
 const Contact = () => {
+  const { darkMode } = DarkMode();
   return (
     <>
-      <main className="w-screen h-screen flex justify-center items-center">
+      <main className={`w-screen h-screen flex justify-center items-center ${darkMode ? 'bg-stone-900/95 dark-text' : 'bg-white light-text'}`}>
         <div className="flex flex-col mb-8 p-2 w-full lg:w-1/2 gap-2">
           <div className="flex flex-col justify-start w-full h-fit">
             <h1 className="text-5xl mb-4">Contact Us</h1>
@@ -21,7 +23,7 @@ const Contact = () => {
               </p>
               <p>
                 {`
-                  Email: help@woshicat.com
+                  Email: help@woshicat.com or respond to your order confirmation email from shop@woshicat.com
                 `}
               </p>
               <p>

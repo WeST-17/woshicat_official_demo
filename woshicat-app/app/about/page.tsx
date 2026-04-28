@@ -1,15 +1,31 @@
 'use client';
 import PeopleInfoCard from "../components/peoples/peoplesInfo";
 import Image from "next/image";
+import { DarkMode } from "../components/toggles/Dark_Mode/darkModeContext";
 
 const About = () => {
-  
+  const { darkMode } = DarkMode();
   return (
     <>
-    <main className="relative w-full h-full">
+    <main className={`relative w-full h-fit ${darkMode ? 'bg-stone-900/85' : 'bg-white/85'}`}>
       {/* */}
-      <div className="relative flex justify-center items-center max-lg:flex-col w-full h-fit md:h-screen">
-        <div className="flex h-full w-full bg-white/85 absolute right-0"/>
+      <div className={`relative flex justify-center items-center max-lg:flex-col w-full h-full min-h-screen py-28`}>
+        <div className={`w-full flex justify-start overflow-hidden bg-transparent absolute top-0`}>
+          <Image
+              src={'/media/corner-bright.png'}
+              width={120}
+              height={1}
+              alt="Chinese style corner frame decoration/design"
+              className="me-auto"
+          />
+          <Image
+              src={'/media/corner-bright.png'}
+              width={120}
+              height={1}
+              alt="Chinese style corner frame decoration/design"
+              className="ms-auto rotate-90"
+          />
+        </div>
         <div className="w-full absolute inset-0 z-[-1]">
           {/* {`About video or image`} */}
           <video 
@@ -26,7 +42,7 @@ const About = () => {
           </video> 
         </div>
 
-        <div className="relative flex justify-start h-fit w-full ms-auto max-md:mt-[80px] lg:w-1/2 lg:mx-auto flex-col p-4 gap-2">
+        <div className={`relative flex justify-start h-fit w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2 ${darkMode ? 'dark-text' : 'light-text'}`}>
           
           <div className="flex flex-col items-start justify-start gap-3">
             <h1 className="text-xl lg:text-3xl font-bold">{`WoShi Cat:`}</h1>
@@ -44,23 +60,25 @@ const About = () => {
             </p>
           </section>
         </div>
-      </div>
-      <div className="w-full flex justify-start overflow-hidden">
-        <Image
+        <div className={`w-full flex justify-end bg-transparent absolute bottom-0`}>
+          <Image
             src={'/media/corner-bright.png'}
             width={120}
             height={1}
             alt="Chinese style corner frame decoration/design"
-            className="me-auto"
-        />
-        <Image
+            className="me-auto -rotate-90"
+          />
+          <Image
             src={'/media/corner-bright.png'}
             width={120}
             height={1}
             alt="Chinese style corner frame decoration/design"
-            className="ms-auto rotate-90"
-        />
+            className="ms-auto rotate-180"
+          />
+          
+        </div>
       </div>
+      
       {/* <div className="w-full flex flex-col justify-center lg:w-1/2 mx-auto">
         
         <PeopleInfoCard
@@ -81,23 +99,7 @@ const About = () => {
           title="founder/ceo/yoyo inspo"
         />
       </div> */}
-      <div className="w-full flex justify-end">
-        <Image
-          src={'/media/corner-bright.png'}
-          width={120}
-          height={1}
-          alt="Chinese style corner frame decoration/design"
-          className="me-auto -rotate-90"
-        />
-        <Image
-          src={'/media/corner-bright.png'}
-          width={120}
-          height={1}
-          alt="Chinese style corner frame decoration/design"
-          className="ms-auto rotate-180"
-        />
-        
-      </div>
+      
     </main>
     </>
   );

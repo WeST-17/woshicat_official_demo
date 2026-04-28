@@ -6,6 +6,7 @@ import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
 import ScrollingCarousel from '../carousels/Carousel';
 import Loader from '../transitions-navigation/LoadingScreen';
+import { DarkMode } from '../toggles/Dark_Mode/darkModeContext';
 
 interface FeaturedType {
     folder: string,

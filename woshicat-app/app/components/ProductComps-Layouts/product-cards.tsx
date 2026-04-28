@@ -6,6 +6,7 @@ import Link from 'next/link';
 import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
 import Collapse from './components/collapse-item';
+import { DarkMode } from '../toggles/Dark_Mode/darkModeContext';
 
 const ProductCards = () => {
   const [products, setProducts] = useState<any[]>([]);
@@ -16,6 +17,7 @@ const ProductCards = () => {
   const [hasNextPage, setNext] = useState<boolean | null>(null);
   const [filter, setFilter] = useState<string>('All Products');
   const [scrollPos, setScrollPos] = useState<number>(0);
+  const { darkMode } = DarkMode();
   
   const HandleScroll = () => {
       const height = 
@@ -106,11 +108,11 @@ const ProductCards = () => {
     >
       {`Shop / ${filter}`}
     </div>
-    <div className='mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-16 relative'>
-      <div className='w-full lg:w-1/2 flex flex-col justify-start items-start absolute top-0 z-1000 bg-stone-100/65 hover:bg-white transition transition-all duration-500 rounded-[8px]'>
+    <div className='mx-auto w-full lg:w-[90vw] lg:flex max-md:items-start gap-4 items-center justify-start mb-16 relative '>
+      <div className={`w-full lg:w-1/2 flex flex-col justify-start items-start absolute top-0 z-1000 hover:bg-white transition transition-all duration-500 rounded-[8px]`}>
       <Collapse 
         title={`Filter by Collection:`} 
-        classProp='w-full text-xl' 
+        classProp={`w-full text-xl h-full ${darkMode ? 'bg-stone-700/95 dark-text' : 'light-text bg-stone-100/65'} rounded-[8px] overflow-hidden`}
         divider={false}
       >
         <button onClick={() => filterClick('All Products')} className={`text-base w-full text-start border-transparent border-2 ${filter === 'All Products' ? '' : 'opacity-60'}`}>
@@ -141,7 +143,7 @@ const ProductCards = () => {
         />
       </div> : 
       <div 
-        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-[90vw] mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}
+        className={`grid grid-cols-2 md:grid-cols-3 w-full md:w-[90vw] mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''}`}
       >
         {/* Render your products here using the 'products' state */}
         {products.filter(product => {
@@ -162,7 +164,7 @@ const ProductCards = () => {
             <div className={`z-101 w-1/2 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
             <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
-            <div className={`flex justify-center overflow-hidden`}>
+            <div className={`flex justify-center overflow-hidden ${darkMode ? 'dark-text' : 'light-text'}`}>
               <Link className='w-full flex justify-center' href={`/collections/${product.collections[0].handle}/${product.handle}`} passHref>
               {/* Render product details */}
               <div className='relative flex justify-center items-center aspect-4/5 h-full'>
@@ -193,7 +195,7 @@ const ProductCards = () => {
           ))}
     </div>}
     <Link 
-      className='w-full mx-auto flex flex-col gap-2 justify-center items-center mt-10 transition duration-500 ease-in-out opacity-35 hover:opacity-100 text-sm'
+      className={`w-full mx-auto flex flex-col gap-2 justify-center items-center mt-10 transition duration-500 ease-in-out opacity-35 hover:opacity-100 text-sm ${darkMode ? 'dark-text' : 'light-text'}`}
       href={'#top-products'}
     >
       <Image
@@ -201,9 +203,9 @@ const ProductCards = () => {
         alt='up arrow, back to top'
         width={30}
         height={1}
-        className='rotate-90 aspect-square'
+        className={`rotate-90 aspect-square ${darkMode ? 'invert' : ''}`}
       />
-      {`back to top`}
+      <p>{`back to top`}</p>
     </Link>
     </>
   );

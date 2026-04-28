@@ -1,6 +1,7 @@
 import React from "react"
 import Collapse from "./collapse-item";
 import { data, ApparelSizing } from "../ProductPages/apparelSizing";
+import { DarkMode } from "../../toggles/Dark_Mode/darkModeContext";
 
 interface Description {
     description: string,
@@ -16,6 +17,7 @@ const splitParagraph = (paragraph: string) => {
 const MainProductDescription: React.FC<Description> = ({ description, isApparel, collectionHandle }) => {
     const updateDesc = splitParagraph(description);
     const splitDetails = updateDesc.slice(1); // rest of array that contains remaining details about product
+    const { darkMode } = DarkMode();
 
     return (
         <>
@@ -25,11 +27,11 @@ const MainProductDescription: React.FC<Description> = ({ description, isApparel,
                 {updateDesc[0]}
             </div>
             
-            <div className="relative w-full mt-4">
+            <div className={`relative w-full mt-4`}>
                 {splitDetails.map((lines: string, index) => (
                     
                     <div className="relative w-full" key={index}>
-                        <Collapse title={`${lines.split('-')[0]}`} classProp="text-sm text-stone-600">
+                        <Collapse title={`${lines.split('-')[0]}`} classProp={`text-sm text-stone-600 ${darkMode ? "dark-text" : "light-text"}`}>
                             {lines.split('-').splice(1).map((line: string) => (
                                 <div className="w-full text-sm flex justify-start items-center" key={line}>
                                     {"- "}{line}
@@ -39,7 +41,7 @@ const MainProductDescription: React.FC<Description> = ({ description, isApparel,
                     </div>
                 ))}
                 {isApparel && (
-                    <div className="relative w-full">
+                    <div className={`relative w-full ${darkMode ? "dark-text" : "light-text"}`}>
                         <Collapse title={`Apparel Sizing Guide`} classProp="text-sm text-stone-600">
                                 <div className="w-full text-sm flex justify-start items-center mt-1">
                                     <table className="h-36 rounded-sm overflow-hidden">

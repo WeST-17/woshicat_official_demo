@@ -10,6 +10,7 @@ import SmoothScroll from "./components/toggles/SmoothScroll";
 import UserConsent from "./components/MetaPixel/userConsent";
 import { PixelProvider } from "./components/MetaPixel/PixelContext";
 import MetaPixel from "./components/MetaPixel/metaPixel";
+import { DarkModeProvider } from "./components/toggles/Dark_Mode/darkModeContext";
 
 
 const lato = Lato({
@@ -30,10 +31,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang="en">
-      <body className={`${lato.className} text-black w-full mx-auto bg-white`}>
+      
+      <body className={`${lato.className} w-full mx-auto`}>
         <PixelProvider>
+        <DarkModeProvider>
         <CartProvider>
         <ToggleProvider>
+          
           <Header />
           <SmoothScroll>
             <MetaPixel>
@@ -41,10 +45,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </MetaPixel>
           </SmoothScroll>
           <Footer />
+          
         </ToggleProvider>
         </CartProvider>
           <UserConsent />
         <TransitionSlide />
+        </DarkModeProvider>
         </PixelProvider>
       </body>
     </html>

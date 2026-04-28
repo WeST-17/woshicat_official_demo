@@ -7,6 +7,8 @@ import FadeInImage from '../transitions-navigation/FadeInImages';
 import Image from 'next/image';
 import CoverHeader from './components/heroImageInsert';
 import { notFound } from 'next/navigation';
+import Loader from '../transitions-navigation/LoadingScreen';
+import { DarkMode } from '../toggles/Dark_Mode/darkModeContext';
 
 interface CollectionType {
     collectionHandle: string | any
@@ -19,6 +21,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   const [cursor, setCursor] = useState<string | null>();
   const [scrollPos, setScrollPos] = useState<number>(0);
   const [hasNextPage, setNext] = useState<boolean | null>(null);
+  const { darkMode } = DarkMode();
   
   useEffect(() => {
 
@@ -85,13 +88,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
   if (loading) {
     return (
       <div className={`flex justify-center w-full lg:w-[90vw] mx-1 mx-auto gap-2`}>
-        <Image
-          src="/loading_assets/Yoyo_Walk_Cycle_Forward.gif"
-          alt="Yoyo walk cycle"
-          width={400}
-          height={1}
-          unoptimized={true}
-        />
+        <Loader />
       </div>
     );
   }
@@ -111,19 +108,18 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
         additional="w-full h-full"
       />
     </div>
-    <section className='w-full relative'>
-      <div className='absolute w-full h-full bg-white/95 rounded-lg'/>
+    <section className={`w-full relative ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'}`}>
       <div className={`pt-4 relative grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}>
         {products.map((product) => (
           // Render each product item
           <FadeInImage key={product.handle}>
-          <div className={`relative text-center h-full overflow-hidden`}  
+          <div className={`relative text-center h-full overflow-hidden rounded-[8px] ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'}`}  
             key={product.handle}
           >
             <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-red-800 pointer-events-none ${!product.available ? '' : 'hidden'}`}>Sold Out!</div>
             <div className={`z-101 rounded-md absolute top-0 right-0 p-2 m-1 text-white bg-amber-500 pointer-events-none ${product.lowStock && product.available ? '' : 'hidden'}`}>Only a few left!</div>
             
-            <div className={`bg-white flex justify-center overflow-hidden`}>
+            <div className={`flex justify-center overflow-hidden`}>
               <Link className='w-full flex justify-center' href={`/collections/${product.collection}/${product.handle}`} passHref>
               {/* Render product details */}
               <div className='relative aspect-4/5 flex justify-center items-center'>

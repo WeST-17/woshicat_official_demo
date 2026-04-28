@@ -4,6 +4,7 @@ import { Suspense, useState, useEffect } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { getCollectionNamesHelper } from "@/app/server_actions/action";
+import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
 
 interface NavLinkProps {
   closeMenu?: () => void;
@@ -17,6 +18,7 @@ const removeAfterFirstSlash = (url: string) => {
 const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
   const pathname = usePathname();
   const parentPath = removeAfterFirstSlash(pathname);
+  const { darkMode } = DarkMode();
 
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [collections, setCollections] = useState<{ name: string; href: string; }[]>([]);
@@ -80,7 +82,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             onMouseEnter={() => link.subLinks && handleMouseEnter(link.name)}
             onMouseLeave={handleMouseLeave}
             className={clsx(
-              'flex h-full w-3/4 lg:w-32 items-center justify-center text-center transition duration-450 ease-in-out relative hover:text-red-800 px-2 max-lg:rounded-lg',
+              `flex h-full w-3/4 lg:w-32 items-center justify-center text-center transition duration-450 ease-in-out relative hover:text-red-800 px-2 max-lg:rounded-lg ${darkMode ? 'dark-text' : 'light-text'}`,
               {
                 'text-red-800': parentPath === link.href,
                 'text-black/60': parentPath !== link.href,
@@ -93,7 +95,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
           {/* Always render dropdown */}
           <div
             className={clsx(
-              "absolute right-0 lg:left-0 w-48 top-full text-sm z-10 text-end bg-white transition-opacity duration-450 ease-in-out rounded-md",
+              `absolute right-0 lg:left-0 w-48 top-full text-sm z-10 text-end transition-opacity duration-450 ease-in-out rounded-md ${darkMode ? "bg-stone-900/95 dark-text" : "bg-white/95 light-text"}`,
               {
                 'opacity-100 visible': dropdownOpen === link.name,
                 'opacity-0 invisible': dropdownOpen !== link.name,

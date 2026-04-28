@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getImagesCloudinary } from "@/app/components/cloudinaryImages/cloudinary";
 import FadeInImage from "../transitions-navigation/FadeInImages";
+import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
 
 interface ComicSource {
     title: string;
@@ -18,7 +19,8 @@ interface ComicSource {
 const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, nextID, prevID}) => {
   const [images, setImages] = useState<any>([]);
   const [error, setError] = useState<any>(null);
-  const [pageLoad, setPageLoading] = useState<boolean>(false);  
+  const [pageLoad, setPageLoading] = useState<boolean>(false);
+  const { darkMode } = DarkMode();
   
   useEffect(() => {
     setPageLoading(true);
@@ -55,16 +57,16 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
   return (
     <>
     <div className="w-screen">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:w-1/2 mx-auto w-full h-fit gap-2" id={epID}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 lg:w-1/2 mx-auto w-full h-fit gap-2 ${darkMode ? 'dark-text' : 'light-text'}`} id={epID}>
         <Link 
             href={link || 'https://woshicat.com/collections'}
             target="_blank"
-            className="relative w-fit h-full md:col-span-2 flex flex-col justify-center items-center px-3 gap-1 text-stone-500 hover:text-black transition-all duration-300"
+            className={`relative w-fit h-full md:col-span-2 flex flex-col justify-center items-center px-3 gap-1 transition-all duration-300 ${darkMode ? 'dark-text' : 'light-text'}`}
         >
             <h2 className="text-4xl w-full text-start">{title}</h2>
             <p className="text-lg w-full text-start">{date}</p>
         </Link>
-        <div className="md:col-span-2 w-fit flex px-3 gap-3 py-1">
+        <div className={`md:col-span-2 w-fit flex px-3 gap-3 py-1 ${darkMode ? 'invert' : ''}`}>
             <Link href={`/yoyo-friends/${prevID}`} className={`flex gap-1 hover:opacity-100 transition-opacity duration-200 ease-in-out ${prevID ? 'opacity-80' : 'pointer-events-none opacity-10'}`}>
                 <Image src={'/icons/caret-left-solid.svg'} alt={'previous arrow'} width={10} height={1}/>
                 
@@ -77,19 +79,17 @@ const ComicHolder: React.FC<ComicSource> = ({title, date, folder, link, epID, ne
         </div>
         
         {images && images.map((image: any, index: number) => (
-            <>
-                <FadeInImage key={index}>
-                <Image 
-                src={image.secure_url}
-                alt={`Image ${index + 1}`} 
-                width={image.width} 
-                height={1} 
-                className={`aspect-square pointer-events-none`}
-                priority
-                />
-                </FadeInImage>
-            </>
-            ))}
+          <FadeInImage key={index}>
+            <Image 
+              src={image.secure_url}
+              alt={`Image ${index + 1}`} 
+              width={image.width} 
+              height={1} 
+              className={`aspect-square pointer-events-none`}
+              priority
+            />
+          </FadeInImage>
+        ))}
         
       </div>
     </div>

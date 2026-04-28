@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import useWindowDimensions from "../transitions-navigation/useWindowDimension";
 import Loader from "../transitions-navigation/LoadingScreen";
+import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
 
 interface CarouselComponentProps {
     children: React.ReactNode,
@@ -19,6 +20,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const windowSize = useWindowDimensions();
     const [touchPosition, setTouchPosition] = useState<any>(null);
     const [childCount, setChildCount] = useState<number>(0);
+    const { darkMode } = DarkMode();
     
     const handleTouchStart = (e: React.TouchEvent) => {
         const touchDown = e.touches[0].clientX;
@@ -130,7 +132,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 >
                     <span
                         key={i}
-                        className={`bg-red-900/50 rounded-full flex justify-center items-center h-2 cursor-pointer transition-all ${currIndex === i ? "w-6" : "w-2 opacity-50"} `}
+                        className={`${darkMode ? "bg-red-500/50" : "bg-red-900/50"} rounded-full flex justify-center items-center h-2 cursor-pointer transition-all ${currIndex === i ? "w-6" : "w-2 opacity-50"} `}
                         onClick={() => setCurrIndex(i)}
                     />
                 </div>
@@ -141,7 +143,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                 >
                     <span
                         key={i}
-                        className={`bg-red-900/50 rounded-full flex justify-center items-center h-2 cursor-pointer transition-all ${currIndex === i ? "w-6" : "w-2 opacity-50"} `}
+                        className={`${darkMode ? "bg-red-500/50" : "bg-red-900/50"} rounded-full flex justify-center items-center h-2 cursor-pointer transition-all ${currIndex === i ? "w-6" : "w-2 opacity-50"} `}
                         onClick={() => setCurrIndex(i)}
                     />
                 </div>

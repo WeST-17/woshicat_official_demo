@@ -1,5 +1,5 @@
 'use client';
-import React from "react";
+
 import ComicEps from "../comic";
 import ComicHolder from "@/app/components/comic-episodes/ComicEpisodeHolder";
 import { notFound, usePathname } from "next/navigation";
