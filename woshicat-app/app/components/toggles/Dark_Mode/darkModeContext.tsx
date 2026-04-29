@@ -23,9 +23,7 @@ export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   return (
     <DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
-      <div>
       {children}
-      </div>
     </DarkModeContext.Provider>
   );
 }

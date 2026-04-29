@@ -135,12 +135,12 @@ const Footer = () => {
                 </div>
             </div>
             
-            <div className={`col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm  mb-4 ${darkMode ? 'dark-text' : 'light-text'}`}>
-                <Link href={'/privacy-policy'} className={``}>Privacy Policy</Link>
-                <Link href={'/terms-of-service'} className="">Terms of Service</Link>
-                <Link href={'/about/faq'} className="">FAQ</Link>
-                <Link href={'/contact-us'} className="">Contact Us</Link>
-                <button className=" " onClick={() => { setOpenPref(true) }}>
+            <div className={`col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm mb-4 ${darkMode ? 'dark-text' : 'light-text'}`}>
+                <Link href={'/privacy-policy'} className={`link-button`}>Privacy Policy</Link>
+                <Link href={'/terms-of-service'} className="link-button">Terms of Service</Link>
+                <Link href={'/about/faq'} className="link-button">FAQ</Link>
+                <Link href={'/contact-us'} className="link-button">Contact Us</Link>
+                <button className="" onClick={() => { setOpenPref(true) }}>
                     Privacy Preferences
                 </button>
                 <button className="" onClick={() => { setFeatures(true) }}>
