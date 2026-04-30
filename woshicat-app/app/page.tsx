@@ -197,7 +197,7 @@ const Home = () => {
         {/* Featured Collection Header */}
         <div className={`relative w-full lg:w-[90vw] col-span-9 mx-auto gap-2 mb-2 text-5xl font-normal flex flex-col`}>
           {/* Featured Collection Display */}
-          <div className={`relative w-full grid grid-cols-8 mb-10 mx-auto rounded-lg gap-1 p-0.5 ${darkMode ? 'bg-stone-900/95' : 'bg-white/95'}`}>
+          <div className={`relative w-full grid grid-cols-8 mb-10 mx-auto rounded-lg gap-1 p-0.5 ${darkMode ? 'bg-stone-900/95 lg:bg-transparent' : 'bg-white/95 lg:bg-transparent'}`}>
             <h3 className="ps-2 w-full text-3xl sticky top-[50px] col-span-8">{`Shop Featured ฅ^•ﻌ•^ฅ`}</h3>
             {featured[0] ? (
               <>
@@ -218,7 +218,7 @@ const Home = () => {
                 <Loader />
               </div>
             )}
-          <div className={`relative col-span-8 rounded-[8px] lg:col-span-3 h-full overflow-hidden max-lg:pt-2 flex items-center grid grid-cols-2 gap-1 ${featuredItems ? "opacity-100" : "hidden"} ${darkMode ? 'bg-stone-900/95' : 'bg-white/95'}`}>
+          <div className={`rounded-[12px] relative col-span-8 rounded-[8px] lg:col-span-3 h-full overflow-hidden max-lg:pt-2 flex items-center grid grid-cols-2 gap-1 ${featuredItems ? "opacity-100" : "hidden"} ${darkMode ? 'bg-stone-900/95 lg:bg-transparent' : 'bg-white/95 lg:bg-transparent'}`}>
             {featuredItems && featuredItems.map((product, index: number) => (
               <div className="col-span-1 flex flex-col h-full rounded-[8px] overflow-hidden" key={index}>
                 <FadeInImage key={product.handle}>
@@ -247,9 +247,9 @@ const Home = () => {
                     </div>
                     </Link>
                   </div>
-                  <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
-                    <div className="me-auto lg:text-sm text-start">{product.title}</div>
-                    <div className="ms-auto lg:text-sm">{currFormat.format(product.price)}</div>
+                  <div className={`flex flex-col w-full p-2 text-xs gap-1 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
+                    <div className="lg:text-sm text-start">{product.title}</div>
+                    <div className="lg:text-xs text-start">{currFormat.format(product.price)}</div>
                   </div>
                 </div>
                 </FadeInImage>

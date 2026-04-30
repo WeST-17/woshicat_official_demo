@@ -36,9 +36,10 @@ const ProductCards = () => {
   }, []);
 
   const filterClick = ( value: string ) => {
-    setFilter(value);
-
-  }
+    setTimeout(() => {
+      setFilter(value);
+    }, 100);
+  };
 
   const currFormat = new Intl.NumberFormat('default', {
     style: 'currency',
@@ -112,7 +113,7 @@ const ProductCards = () => {
       <div className={`w-full lg:w-1/2 flex flex-col justify-start items-start absolute top-0 z-1000 hover:bg-white transition transition-all duration-500 rounded-[8px]`}>
       <Collapse 
         title={`Filter by Collection:`} 
-        classProp={`w-full text-xl h-full ${darkMode ? 'bg-stone-700/95 dark-text' : 'light-text bg-stone-100/65'} rounded-[8px] overflow-hidden`}
+        classProp={`w-full text-xl h-full ${darkMode ? 'bg-stone-700/95 dark-text' : 'light-text bg-stone-200/65'} rounded-[8px] overflow-hidden`}
         divider={false}
       >
         <button onClick={() => filterClick('All Products')} className={`text-base w-full text-start border-transparent border-2 ${filter === 'All Products' ? '' : 'opacity-60'}`}>
@@ -186,9 +187,9 @@ const ProductCards = () => {
               </div>
               </Link>
             </div>
-            <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
-              <div className="me-auto lg:text-sm text-start">{product.name}</div>
-              <div className="ms-auto lg:text-sm">{currFormat.format(Number(product.price))}</div>
+            <div className={`flex flex-col w-full p-2 text-xs gap-1 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
+              <div className="lg:text-sm text-start">{product.name}</div>
+              <div className="text-start">{currFormat.format(Number(product.price))}</div>
             </div>
           </div>
           </FadeInImage>

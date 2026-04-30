@@ -14,7 +14,7 @@ const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
     const [openPref, setOpenPref] = useState<boolean>(false);
     const [features, setFeatures] = useState<boolean>(false);
-    const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
+    //const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
     const { consent } = useMetaPixel();
     const { darkMode } = DarkMode();
 
@@ -87,7 +87,7 @@ const Footer = () => {
             </div>
         </div>
 
-        <footer className={`pt-20 relative w-screen grid-cols-8 ${darkMode ? "bg-stone-800/90" : "bg-white"} text-base text-black transition transition-all duration-300 h-fit`}>
+        <footer className={`rounded-[8px] pt-20 relative w-screen grid-cols-8 ${darkMode ? "bg-stone-700/95" : "bg-stone-300/80"} text-base text-black transition transition-all duration-300 h-fit`}>
             <div className="col-span-8 p-4 flex flex-col items-center justify-center">
                 {/* Email subscription list! */}
                 <div className={`flex w-fit justify-center items-center min-h-fit pt-8 ${darkMode ? "text-white" : ""}`} id="newsletter">
@@ -136,14 +136,22 @@ const Footer = () => {
             </div>
             
             <div className={`col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm mb-4 ${darkMode ? 'dark-text' : 'light-text'}`}>
-                <Link href={'/privacy-policy'} className={`link-button`}>Privacy Policy</Link>
-                <Link href={'/terms-of-service'} className="link-button">Terms of Service</Link>
-                <Link href={'/about/faq'} className="link-button">FAQ</Link>
-                <Link href={'/contact-us'} className="link-button">Contact Us</Link>
-                <button className="" onClick={() => { setOpenPref(true) }}>
+                <button id="button" className="link-button">
+                    <Link href={'/privacy-policy'}>Privacy Policy</Link>
+                </button>
+                <button id="button" className="link-button">
+                    <Link href={'/terms-of-service'}>Terms of Service</Link>
+                </button>
+                <button id="button" className="link-button">
+                    <Link href={'/about/faq'}>FAQ</Link>
+                </button>
+                <button id="button" className="link-button">
+                    <Link href={'/contact-us'}>Contact Us</Link>
+                </button>
+                <button id="button" className="link-button" onClick={() => { setOpenPref(true) }}>
                     Privacy Preferences
                 </button>
-                <button className="" onClick={() => { setFeatures(true) }}>
+                <button id="button" className="link-button" onClick={() => { setFeatures(true) }}>
                     Experimental Features
                 </button>
             </div>

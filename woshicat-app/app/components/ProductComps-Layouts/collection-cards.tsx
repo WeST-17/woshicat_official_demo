@@ -108,7 +108,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
         additional="w-full h-full"
       />
     </div>
-    <section className={`w-full relative ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'}`}>
+    <section className={`w-full min-h-[80vh] relative ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'}`}>
       <div className={`pt-4 relative grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}>
         {products.map((product) => (
           // Render each product item
@@ -143,9 +143,9 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
               </div>
               </Link>
             </div>
-            <div className={`flex w-full p-2 text-xs gap-2 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
-              <div className="me-auto lg:text-sm text-start">{product.title}</div>
-              <div className="ms-auto lg:text-sm">{currFormat.format(product.price)}</div>
+            <div className={`flex flex-col w-full p-2 text-xs gap-1 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
+              <div className="lg:text-sm text-start">{product.title}</div>
+              <div className="text-start">{currFormat.format(product.price)}</div>
             </div>
           </div>
         </FadeInImage>

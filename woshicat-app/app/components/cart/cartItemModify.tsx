@@ -99,20 +99,20 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
   
   return (
     <div className="flex max-md:flex-col items-center justify-center w-fit h-full">
-      <div className={`flex justify-center ${darkMode ? 'text-stone-200' : 'text-black'}`}>
+      <div className={`gap-1 flex justify-center ${darkMode ? 'text-stone-200' : 'text-black'}`}>
         <button
           onClick={handleDecrement}
-          className={`flex justify-center items-center h-6 w-6 transition duration-300 rounded-l-md ${itemQuantLoad === false ? 'opacity-100 hover:bg-black/25' : 'opacity-10 pointer-events-none'}`}
+          className={`flex justify-center items-center h-8 w-8 transition duration-300 rounded-l-md ${itemQuantLoad === false ? `'opacity-100' ${darkMode ? 'hover:bg-white/25' : ' hover:bg-black/25'}` : 'opacity-10 pointer-events-none'}`}
           disabled={itemQuantLoad === true}
         >
           -
         </button>
-        <span className="text-sm w-6 h-6 flex justify-center items-center border-[0.5px] rounded-sm">
+        <span className="text-sm w-8 h-8 p-1 flex justify-center items-center border-[0.5px] rounded-sm">
           {itemQuantLoad === false ? quantity : <div className='loader-item-change'/>}
         </span>
         <button
           onClick={handleIncrement}
-          className={`flex justify-center items-center h-6 w-6 transition duration-300 rounded-r-md ${!checkInventory() && itemQuantLoad === false ? 'opacity-100 hover:bg-black/25' : 'opacity-40 pointer-events-none'}`}
+          className={`flex justify-center items-center h-8 w-8 transition duration-300 rounded-r-md ${!checkInventory() && itemQuantLoad === false ? `'opacity-100' ${darkMode ? 'hover:bg-white/25' : ' hover:bg-black/25'}` : 'opacity-40 pointer-events-none'}`}
           disabled={itemQuantLoad === true || checkInventory()}
         >
           +
@@ -120,7 +120,7 @@ const QuantityAdjuster: React.FC<QuantityAdjusterProps> = ({ variantId, initialQ
       </div>
       <button
         onClick={handleDeleteItem}
-        className={`flex flex-col justify-center items-center hover:bg-stone-200/35 transition duration-300 text-[0.5rem] h-10 w-10 lg:h-12 lg:w-12 max-lg:mt-2 rounded-md ${itemQuantLoad === false ? 'opacity-100' : 'opacity-50'} ${darkMode ? 'text-stone-200' : 'text-black'}`}
+        className={`flex flex-col justify-center items-center hover:bg-stone-200/35 transition duration-300 text-[0.5rem] h-10 w-10 lg:h-12 lg:w-12 max-lg:mt-2 rounded-md ${itemQuantLoad === false ? `'opacity-100' ${darkMode ? 'hover:bg-white/25' : ' hover:bg-black/25'}` : 'opacity-40'} ${darkMode ? 'text-stone-200' : 'text-black'}`}
         disabled={itemQuantLoad === true}
       >
         <Image

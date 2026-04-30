@@ -76,12 +76,17 @@ body {
 }
 
 .light-text > * {
-  color: #1c1917;
+  color: #2e2e2d;
 }
 
-.light-text > button:hover, p:hover {
-  color: black;
-  transition: color 0.25s
+.light-text > button:hover, p:hover, .link-button:hover {
+  color: #516497;
+  transition: color 0.15s
+}
+
+.light-text.menu-text {
+  color: #516497;
+  transition: color 0.25s;
 }
 
 .dark-text > * {
@@ -90,7 +95,17 @@ body {
 
 .dark-text > button:hover, p:hover, .link-button:hover {
   color: #a8a29e;
-  transition: color 0.25s
+  transition: color 0.15s;
+}
+
+.dark-text.menu-text {
+  color: #CD000A;
+  transition: color 0.15s;
+}
+
+@keyframes buttonFlow {
+  0% {transform: translateY(80);}
+  100% {transform: translateY(-80);}
 }
 
 .notice-feature {
@@ -129,7 +144,7 @@ body {
   z-index: 1000;
 }
 
-.menu_btn .line {
+.menu_btn .line.light {
   width: 23px;
   height: 2px;
   background-color: #292524;
@@ -137,8 +152,20 @@ body {
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
-.menu_btn:hover .line{
+.menu_btn .line.dark {
+  width: 23px;
+  height: 2px;
+  background-color: lightgray;
+  transform-origin: left;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.menu_btn:hover .line.light{
   background-color: black;
+}
+
+.menu_btn:hover .line.dark{
+  background-color: white;
 }
 
 .menu_btn .middle_line {
@@ -164,17 +191,16 @@ body {
   position: absolute;
   top: 0px;
   left: 0;
-  width: 0;
-  height: 0;
+  height: 100vh;
+  width: 100vw;
   opacity: 0;
-  background-color: #f5f5f4;
-  transition: width 0.8s, height 0.8s, opacity 0.9s; /* Add transition property */
+  transform: translateX(-100vw);
+  transition: transform 0.5s, opacity 0.3s; /* Add transition property */
   transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .menu-container.open-menu {
-  height: 90vh;
-  width: 90vw;
+  transform: translateX(0);
   opacity: 1;
   overscroll-behavior: hidden;
 }
@@ -183,37 +209,37 @@ body {
   position: absolute;
   top: 0;
   right: 0;
-  width: 0;
-  height: 0;
+  width: 100vw;
+  height: 95vh;
   opacity: 0;
-  background-color: white;
-  transition: height 0.35s, width 0.35s, opacity 0.5s; 
+  transform: translateX(100vw);
+  transition: transform 0.5s, opacity 0.3s; 
   transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .cart-container.open-cart {
-  width: 100vw;
-  height: 90vh;
+  transform: translateX(0);
   opacity: 1;
 }
 
 @media screen and (min-width: 1024px) {
   .cart-container {
     position: absolute;
-    top: 20px;
+    top: 0;
     right: 0;
-    width: 0;
-    height: 0;
+    width: 680px;
+    height: 100vh;
     opacity: 0;
-    background-color: white;
-    transition: height 0.35s, width 0.35s, opacity 0.5s; 
+    transform: translateX(680px);
+    background-color: transparent;
+    transition: transform 0.8s, opacity 0.5s; 
     transition-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
   }
 
   .cart-container.open-cart {
     opacity: 1;
-    width: 680px;
-    height: 95vh;
+    transform: translateX(0);
+    
   }
 }
 
@@ -432,11 +458,6 @@ body {
 
 @keyframes fadeInContainer {
   to { opacity: 1; }
-}
-
-button:hover {
-  opacity: 75%;
-  transition-duration: 250ms;
 }
 
 .carousels > * {

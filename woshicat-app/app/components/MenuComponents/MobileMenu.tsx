@@ -3,6 +3,7 @@ import NavLinks from "../transitions-navigation/nav-links";
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
+import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
 
 // mobile menu and general cart menu
 const MobileMenu = () => {
@@ -10,6 +11,7 @@ const MobileMenu = () => {
     const menuBtnRef = useRef<HTMLDivElement>(null);
     const menuContainerRef = useRef<HTMLDivElement>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
+    const { darkMode } = DarkMode();
     
     const closeMenu = () => {
         // Close the menu
@@ -48,31 +50,32 @@ const MobileMenu = () => {
         <>
         <div className={`bg-black/70 z-0 fixed left-0 top-0 w-screen h-screen transition-all duration-500 ease-in-out ${openMenu ? '' : 'opacity-0 pointer-events-none overflow-hidden'}`} ref={overlayRef} onClick={closeMenu}/>
         <div className="flex flex-col-reverse z-100">
-            <div className={`menu_btn transition transition-all duration-500 ${openMenu ? 'open-btn translate-y-8 translate-x-6' : ''}`} ref={menuBtnRef}>
-                <span className='line top_line rounded-md'></span>
-                <span className='line middle_line rounded-md'></span>
-                <span className='line bottom_line rounded-md'></span>
+            <div className={`menu_btn transition transition-all duration-500 ${openMenu ? 'open-btn' : ''}`} ref={menuBtnRef}>
+                <span className={`line top_line rounded-md ${darkMode ? 'dark' : 'light'}`}></span>
+                <span className={`line middle_line rounded-md ${darkMode ? 'dark' : 'light'}`}></span>
+                <span className={`line bottom_line rounded-md ${darkMode ? 'dark' : 'light'}`}></span>
             </div>
-            <div className={`menu-container pt-20 my-8 mx-2 overflow-hidden flex flex-col rounded-lg ${openMenu ? 'open-menu' : ''}`} ref={menuContainerRef}>
-                <div onClick={() => { setTimeout(() => { setMenuOpen(false)}, 150) }}>
+            <div className={`menu-container overflow-hidden flex flex-col rounded-[12px] overflow-hidden ${openMenu ? 'open-menu' : ''} ${darkMode ? 'bg-stone-900/95' : 'bg-white/85'}`} ref={menuContainerRef}>
+                <div className="gap-2 w-full h-full flex flex-col justify-center items-center" onClick={() => { setTimeout(() => { setMenuOpen(false)}, 150) }}>
                     <NavLinks closeMenu={closeMenu} />
-                </div>
-                <div className="w-full flex justify-center mt-8"> 
                     {/* Social Media */}
-                    <div className='flex text-sm text-stone-500'>
-                        <div className="text-start rounded-md hover:text-black transition duration-300 p-1">
-                        <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-1">
+                    <div className={`flex text-sm opacity-40 hover:opacity-70 transition-opacity duration-250 ${darkMode ? 'text-stone-400' : 'text-stone-600'}`}>
+                        <div className="text-start transition duration-300 p-1">
+                        <Link href='https://instagram.com/woshicatofficial' target='_blank' className="flex justify-center items-center gap-3">
                             <Image 
                                 src={'/logo/instagram-brands-solid.svg'}
                                 alt={'Instagram - WoShi Cat Official!'}
-                                className="text-black"
+                                className={`${darkMode ? "invert" : "light-text"}`}
                                 width={20}
                                 height={20}
                             />
-                            @woshicatofficial
+                            <p className="text-base">@woshicatofficial</p>
                         </Link>
                         </div>
                     </div>
+                </div>
+                <div className="w-full flex justify-center"> 
+                    
                 </div>
             </div>
         </div>

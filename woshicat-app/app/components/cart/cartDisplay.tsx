@@ -84,11 +84,11 @@ const CartShow = () => {
     return (
         <>
             <div
-                className={`overflow-hidden inset-0 absolute w-[100vw] h-[100vh] z-[2999] flex justify-end items-center transition-opacity duration-500 bg-black/50 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`overflow-hidden inset-0 absolute w-[100vw] h-[100vh] z-[2999] flex justify-end items-center transition-opacity duration-500 ${cartOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={toggle}
             />
             {/* Button to Open Cart */}
-            <button onClick={toggle} className={`cart_btn flex items-center justify-center text-xl absolute right-0 top-0 z-3000`}>
+            <button onClick={toggle} className={`cart_btn flex items-center justify-center text-xl absolute right-0 top-0 ${cartOpen ?'z-2006' : 'z-2005'}`}>
                 <Image
                     src={'/icons/Shopping_Cart_Yoyo.png'}
                     alt={'Yoyo pushing a shoppping cart'}
@@ -107,46 +107,48 @@ const CartShow = () => {
             
             {/* Cart Modal (Always Rendered) */}
             <div
-                className={`relative z-[3002] cart-container overscroll-none overflow-hidden rounded-lg ${cartOpen ? 'open-cart' : ''}`}
+                className={`relative z-[3002] cart-container overscroll-none overflow-hidden rounded-l-[12px] bg-stone-900 ${cartOpen ? 'open-cart' : ''} `}
                 onClick={(e) => e.stopPropagation()}
                 ref={cartContainerRef}
             >
                 
-                <div className={`sticky top-0 w-full h-16 flex justify-center items-center ${darkMode ? 'bg-stone-900 text-stone-200' : 'bg-white'} duration-800 ${cartOpen ? 'opacity-100' : 'opacity-0'}`}>
-                    
-                    <Link href={"/cart"} className={`me-auto top-3 p-4 text-2xl font-medium`} onClick={toggle}>
-                        <p>{`Shopping Cart`}</p>
-                    </Link>
+                <div className={`sticky top-0 w-full h-16 flex justify-center items-center ${darkMode ? 'bg-stone-900 text-stone-200' : 'bg-white'}`}>
+                    <button //href={"/cart"} 
+                    className={`me-auto top-3 p-4 text-2xl font-medium `} onClick={toggle}>
+                        <p className={`transition duration-350 ${cartOpen ? 'opacity-100' : 'opacity-0'}`}>{`Shopping Cart`}</p>
+                    </button>
                     <button onClick={toggle} className={`ms-auto my-4 mx-4 text-stone-400 rounded-lg overflow-hidden ${darkMode ? 'text-stone-200' : 'hover:bg-black/15'}`}>
                         <div className="w-12 h-8 flex justify-center items-center relative transition duration-300 text-lg">
                             <p> {`close`}</p>
                         </div>
                     </button>
+                    <span className={`rounded-full absolute bottom-0 left-5 h-[0.5px] ${!darkMode ? 'bg-black/40' : 'bg-stone-200/40'} w-[95%]`} />
                 </div>
                 
-                <div className={`w-full h-full flex flex-col justify-start p-1 touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain ${darkMode ? 'text-stone-200 bg-stone-900' : 'bg-transparent'}`}>
+                <div className={`w-full h-full flex flex-col justify-start px-2 touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain ${darkMode ? 'text-stone-200 bg-stone-900' : 'bg-white'}`}>
                 {cartItems.length > 0 ? (
-                    <>
+                    <div className="w-full h-full rounded-[8px]">
                         {cartItems.map((item: any, i) => {
                             return (
-                            <div key={`b_${i}`} className={`fade-in h-32 lg:h-24 rounded-sm cart-item p-2 gap-2 transition duration-500 flex items-center justify-start w-full bg-transparent ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''} ${darkMode ? 'text-stone-200' : ''}`}>
+                            <div key={`b_${i}`} className={`fade-in h-32 lg:h-28 rounded-[8px] cart-item gap-1 transition duration-500 flex items-center justify-start w-full bg-transparent ${item.quantity <= 0 ? 'opacity-70 pointer-events-none' : ''} ${cartOpen ? 'show ': ''} ${darkMode ? 'text-stone-200' : ''}`}>
                                 <div
-                                    className={`flex justify-center h-full w-full gap-1 overflow-hidden`}
+                                    className={`flex justify-center h-full w-full gap-1 overflow-hidden p-2`}
                                 >
-                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className="h-full aspect-square flex justify-center items-center">
+                                <Link href={`https://woshicat.com/collections/${item.collection}/${item.handle}`} className={`h-full w-full flex justify-center items-center gap-1 hover:brightness-105 hover:bg-stone-400/15 transition-all duration-250 p-2 rounded-[8px]`}>
                                     <img
                                         src={item.imageUrl}
                                         alt={item.handle}
-                                        className="h-2/3 lg:h-full object-cover aspect-square rounded-lg"
+                                        className="h-full object-cover aspect-square rounded-lg"
                                     />
+                                
+                                    <div className="ms-auto w-full p-1 gap-1 flex flex-col justify-center h-full">
+                                        <h2 className='h-fit w-full text-xs md:text-sm'>{item.title}</h2>
+                                        <h3 className="text-xs font-thin mb-1 opacity-80">
+                                            {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
+                                        </h3>
+                                        <p className='text-xs font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
+                                    </div>
                                 </Link>
-                                <div className="ms-auto w-full p-1 gap-1 flex flex-col justify-center h-full">
-                                    <h2 className='h-fit w-full text-xs md:text-sm'>{item.title}</h2>
-                                    <h3 className="text-xs font-thin mb-1 opacity-80">
-                                        {item.variantTitle !== "Default Title" && (<>{item.variantTitle}</>)}
-                                    </h3>
-                                    <p className='text-xs font-thin'>{`${currFormat.format(Number(item.price))}`}</p>
-                                </div>
                                 <QuantityAdjuster
                                     variantId={item.variantId}
                                     initialQuantity={item.quantity}
@@ -158,7 +160,7 @@ const CartShow = () => {
                             </div>
                         )})}
                        
-                    </>
+                    </div>
                     
                     ) : cartItemsLoading ? (
                         <div className="object-contain relative w-full overflow-hidden flex justify-center items-center">
@@ -170,16 +172,20 @@ const CartShow = () => {
                             <p className={`scale-[1.5] ${darkMode ? 'bg-stone-900 text-stone-200' : 'bg-white'}`}>{`o( ・∇・)o`}</p>
                         </div>
                         </> 
-                    )}
+                    )
+                }
                     
                 </div>
-                <div className={`h-40 flex flex-col w-full sticky bottom-0 rounded-t-[8px] p-2 ${darkMode ? 'bg-white/20 text-stone-200' : 'bg-white/75'}`}>
+                <div className={`h-fit flex flex-col w-full sticky bottom-0 rounded-t-[8px] p-2 ${darkMode ? 'bg-white/20 text-stone-200' : 'bg-stone-200/75'}`}>
                     <div className="h-full flex flex-col w-full justify-end items-center p-2 gap-1">
                         <div className="w-full flex justify-end items-center text-xl me-2">
                             <p className={`text-xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                         </div>
                         <div className="w-full flex flex-col items-center justify-end gap-4">
-                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`px-4 py-2 font-thin rounded-md w-full ${cartItems.length <= 0 ? 'bg-black/10' : 'bg-black/60 hover:bg-black transition duration-200'} ${darkMode ? 'text-stone-200' : 'text-stone-900'}`}>Checkout</button>
+                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`overflow-hidden relative px-4 py-2 h-12 font-thin rounded-full w-full ${cartItems.length <= 0 ? `bg-black/10` : 'bg-black/60 hover:bg-black transition duration-200'} ${darkMode ? 'dark-text' : 'light-text'}`}>
+                                <p className="z-1 absolute left-0 top-0 h-full w-full text-center flex items-center justify-center">Checkout</p>
+                                {/* <span className="absolute bottom-0 left-0 w-full h-full checkout-hover"/> */}
+                            </button>
                         </div>
                     </div>
                     <div className="rounded-lg h-16 px-2 w-full flex flex-col items-end justify-center gap-2">
