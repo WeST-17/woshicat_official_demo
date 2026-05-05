@@ -79,7 +79,7 @@ body {
   color: #2e2e2d;
 }
 
-.light-text > button:hover, p:hover, .link-button:hover {
+.light-text > button:hover, .light-text > .link-button:hover, .light-text > p:hover {
   color: #516497;
   transition: color 0.15s
 }
@@ -93,14 +93,22 @@ body {
   color: #e7e5e4;
 }
 
-.dark-text > button:hover, p:hover, .link-button:hover {
-  color: #a8a29e;
-  transition: color 0.15s;
+.dark-text > button:hover, .dark-text > .link-button:hover, .dark-text > p:hover  {
+  color: #F89870;
+  transition: color 0.25s;
 }
 
 .dark-text.menu-text {
   color: #CD000A;
-  transition: color 0.15s;
+  transition: color 0.25s;
+}
+
+.dark-text .link-select {
+  color:#f87171;
+}
+
+.light-text .link-select {
+  color: #0284c7;
 }
 
 @keyframes buttonFlow {

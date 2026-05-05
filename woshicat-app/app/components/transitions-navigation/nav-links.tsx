@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { getCollectionNamesHelper } from "@/app/server_actions/action";
 import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
+import { useCart } from "../cart/cartContext";
 
 interface NavLinkProps {
   closeMenu?: () => void;
@@ -19,6 +20,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
   const pathname = usePathname();
   const parentPath = removeAfterFirstSlash(pathname);
   const { darkMode } = DarkMode();
+  const { currentLink } = useCart();
 
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [collections, setCollections] = useState<{ name: string; href: string; }[]>([]);
@@ -82,7 +84,7 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
             onMouseEnter={() => link.subLinks && handleMouseEnter(link.name)}
             onMouseLeave={handleMouseLeave}
             className={clsx(
-              `flex h-full w-3/4 max-lg:mx-auto lg:w-32 items-center justify-center text-center transition duration-450 ease-in-out relative px-2 max-lg:rounded-lg ${parentPath === link.href ? 'text-red-800' : `${darkMode  ? 'dark-text' : 'light-text'} opacity-80`}`
+              `flex h-full w-3/4 max-lg:mx-auto lg:w-32 items-center justify-center text-center transition duration-450 ease-in-out relative px-2 max-lg:rounded-lg ${parentPath === link.href ? `${darkMode ? 'text-red-400' : 'text-sky-600'}` : `${darkMode  ? 'dark-text' : 'light-text'} opacity-80`}`
             )}
           >
             <p className="block max-lg:text-lg text-base">{link.name}</p>
@@ -94,20 +96,22 @@ const NavLinks: React.FC<NavLinkProps> = ({ closeMenu }) => {
               `absolute right-0 w-2/4 lg:w-48 top-full text-sm z-10 text-end opacity-0 transition-all duration-350 rounded-[8px] ${darkMode ? "bg-stone-600/95 dark-text" : "bg-stone-200/95 light-text"} ${dropdownOpen === link.name ? 'opacity-100 menu-text visible' : 'invisible'}`
             )}
           >
-            {link.subLinks?.map((subLink) => (
+            {link.subLinks?.map((subLink, index: number) => (
               <Link
-                key={subLink.name}
+                key={index}
                 href={subLink.href}
                 passHref={true}
-                onMouseEnter={() => link.subLinks && handleMouseEnter(link.name)}
+                onMouseEnter={() => { link.subLinks && handleMouseEnter(link.name) }}
                 onMouseLeave={handleMouseLeave}
                 className={clsx(
-                  'block p-3 text-black/70 hover:text-red-800 transition duration-350 rounded-lg',
+                  `block p-3 text-black/70 transition duration-350 rounded-lg ${darkMode  ? 'dark-text' : 'light-text'} opacity-80`
                   
                 )}
-                onClick={closeMenu}
+                onClick={() => { 
+                  closeMenu
+                }}
               >
-                <p className="flex justify-start w-full text-start items-center text-sm">{subLink.name}</p>
+                <p className={`flex justify-start w-full text-start items-center text-sm ${subLink.href === currentLink ? "link-select" : ''}`}>{subLink.name}</p>
               </Link>
             ))}
           </div>

@@ -4,6 +4,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { getCart } from '@/app/server_actions/action';
 import colors from '../colors';
+import { usePathname } from 'next/navigation';
 
 interface CartContextType {
   cartOpen: boolean;
@@ -23,6 +24,8 @@ interface CartContextType {
   setItemAdded: React.Dispatch<React.SetStateAction<boolean>>;
   currentItem: {'name': string, 'quantity': number} | null;
   setCurrentItem: React.Dispatch<React.SetStateAction<{'name': string, 'quantity': number} | null>>;
+  currentLink: string;
+  setCurrentLink: React.Dispatch<React.SetStateAction<string>>;
 }
 
 interface CartItems {
@@ -48,8 +51,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [itemAdded, setItemAdded] = useState<boolean>(false);
   const [currentItem, setCurrentItem] = useState<{'name': string, 'quantity': number} | null>(null);
   const colorList = colors;
+  const pathname = usePathname();
+  const [currentLink, setCurrentLink] = useState<string>('');
   
-  
+  useEffect(() => {
+    setCurrentLink(pathname);
+    return () => {};
+  }, [pathname])
+
   useEffect(() => {
     const fetchCartItems = async () => {
         setCartItemsLoading(true);
@@ -59,7 +68,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setCartUpdated(false); // Reset cartUpdated after fetching
     };
 
-    fetchCartItems(); 
+    fetchCartItems();
 
     return () => { console.log("unmount / cleanup") };
   }, [cartUpdated]);
@@ -73,10 +82,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => { console.log("unmount / cleanup") };
   }, [cartOpen]);
 
-  
 
   return (
-    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress, colorList, itemAdded, setItemAdded, currentItem, setCurrentItem }}>
+    <CartContext.Provider value={{ cartOpen, setCartOpen, cartUpdated, setCartUpdated, cartItems, setCart, cartItemsLoading, setCartItemsLoading, cartTotal, setCartTotal, progress, setProgress, colorList, itemAdded, setItemAdded, currentItem, setCurrentItem, currentLink, setCurrentLink }}>
       {children}
     </CartContext.Provider>
   );

@@ -12,7 +12,7 @@ export default function ApparelLayout({
     const { darkMode } = DarkMode();
 
     return ( 
-      <section className={`flex justify-center ${darkMode ? "bg-stone-900/95 dark-text" : "bg-white/95 light-text"}`}>
+      <section className={`flex justify-center min-w-full min-h-full ${darkMode ? "bg-stone-900/95 dark-text" : "bg-white/95 light-text"}`}>
         <Suspense 
           fallback={<Loader />}
         >

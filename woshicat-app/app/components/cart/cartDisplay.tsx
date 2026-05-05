@@ -14,7 +14,7 @@ import { DarkMode } from "../toggles/Dark_Mode/darkModeContext";
 
 
 const CartShow = () => {
-    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress } = useCart();
+    const { cartOpen, setCartOpen, cartItemsLoading, cartItems, cartTotal, setCartTotal, progress, setCurrentLink } = useCart();
     const { checkoutClick, setCheckoutClick } = useMetaPixel();
     const cartContainerRef = useRef<HTMLDivElement>(null);
     const { darkMode } = DarkMode();
@@ -47,6 +47,7 @@ const CartShow = () => {
         };
 
         if (checkoutUrl && cartItems.length > 0) {
+            setCurrentLink('/');
             window.location.href = checkoutUrl;
         } else {
             console.log("Cart, not cart. Noodles, not noodles...")
@@ -125,7 +126,7 @@ const CartShow = () => {
                     <span className={`rounded-full absolute bottom-0 left-5 h-[0.5px] ${!darkMode ? 'bg-black/40' : 'bg-stone-200/40'} w-[95%]`} />
                 </div>
                 
-                <div className={`w-full h-full flex flex-col justify-start px-2 touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain ${darkMode ? 'text-stone-200 bg-stone-900' : 'bg-white'}`}>
+                <div className={`w-full h-full flex flex-col justify-start px-2 touch-pan-y overflow-auto ${cartItems.length <= 3 ? "overflow-y-none" : "overflow-y-scroll"} overscroll-contain ${darkMode ? 'text-stone-200 bg-stone-900/95' : 'bg-white/95'}`}>
                 {cartItems.length > 0 ? (
                     <div className="w-full h-full rounded-[8px]">
                         {cartItems.map((item: any, i) => {
@@ -182,7 +183,7 @@ const CartShow = () => {
                             <p className={`text-xl transition duration-300 ${cartItemsLoading ? 'opacity-30' : ''}`}>{`Subtotal: ${currFormat.format(Number(cartTotal))}`}</p>
                         </div>
                         <div className="w-full flex flex-col items-center justify-end gap-4">
-                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`overflow-hidden relative px-4 py-2 h-12 font-thin rounded-full w-full ${cartItems.length <= 0 ? `bg-black/10` : 'bg-black/60 hover:bg-black transition duration-200'} ${darkMode ? 'dark-text' : 'light-text'}`}>
+                            <button onClick={checkout} disabled={cartItems.length <= 0} className={`overflow-hidden relative px-4 py-2 h-12 font-thin rounded-full w-full ${cartItems.length <= 0 ? `bg-black/10` : 'bg-black/60 hover:bg-black transition duration-200'} ${darkMode ? 'dark-text' : 'text-stone-100'}`}>
                                 <p className="z-1 absolute left-0 top-0 h-full w-full text-center flex items-center justify-center">Checkout</p>
                                 {/* <span className="absolute bottom-0 left-0 w-full h-full checkout-hover"/> */}
                             </button>

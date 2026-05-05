@@ -64,6 +64,7 @@ const ProductCards = () => {
 
   useEffect(() => {
     if (scrollPos > 65 && hasNextPage === true) getNextPage();
+    return () => {};
   }, [scrollPos]);
   
   useEffect(() => {
@@ -93,7 +94,7 @@ const ProductCards = () => {
     };
     fetchData();
     console.log('Products Gallery loaded.');
-    
+    return () => {};
   }, []);
 
   if (error) {
@@ -187,7 +188,7 @@ const ProductCards = () => {
               </div>
               </Link>
             </div>
-            <div className={`flex flex-col w-full p-2 text-xs gap-1 ${!product.available ? 'text-stone-500' : 'text-black'}`}>
+            <div className={`flex flex-col w-full p-2 text-xs gap-1 ${!product.available ? `${darkMode ? "dark-text" : 'light-text'} opacity-75` : `${darkMode ? "dark-text" : "light-text"}`}`}>
               <div className="lg:text-sm text-start">{product.name}</div>
               <div className="text-start">{currFormat.format(Number(product.price))}</div>
             </div>

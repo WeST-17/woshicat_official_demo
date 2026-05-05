@@ -42,13 +42,13 @@ const About = () => {
           </video> 
         </div>
 
-        <div className={`relative flex justify-start h-fit w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2 ${darkMode ? 'dark-text' : 'light-text'}`}>
+        <div className={`relative flex justify-start h-fit w-full ms-auto lg:w-1/2 lg:mx-auto flex-col p-4 gap-2 ${darkMode ? 'text-white' : 'text-black'}`}>
           
           <div className="flex flex-col items-start justify-start gap-3">
             <h1 className="text-xl lg:text-3xl font-bold">{`WoShi Cat:`}</h1>
             <h1 className="text-xl lg:text-3xl">{`What's beyond the cycle?`}</h1>
           </div>
-          <section className="h-full flex flex-col justify-center items-center gap-2 text-black text-lg lg:text-base">
+          <section className="h-full flex flex-col justify-center items-center gap-2 text-lg lg:text-base">
             <p>
               {`WoShi Cat (我是貓) was founded as an exploration into the pocket where Taiwanese-inspired streetwear, frustration with the cyclical nature of corporate life, and a love of cats can intertwine. "Wǒ shì," or “I am" in Mandarin, is more than a self-introduction; it encompasses limitless multifaceted identities that can exist in tandem, whether professional or personal. No one is confined to playing only one role in life—not even a cat.`}
             </p>

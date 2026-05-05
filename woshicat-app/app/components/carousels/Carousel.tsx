@@ -20,6 +20,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
     const windowSize = useWindowDimensions();
     const [touchPosition, setTouchPosition] = useState<any>(null);
     const [childCount, setChildCount] = useState<number>(0);
+    const [showCarouselArrows, setCarouselArrows] = useState<boolean | null>(null);
     const { darkMode } = DarkMode();
     
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -110,8 +111,14 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
             }, 8000);
             return () => clearTimeout(timeout);
         }   
+        return () => {};
         
-    }, [childCount, currIndex])
+    }, [childCount, currIndex]);
+
+    useEffect(() => {
+        setCarouselArrows(childRef.current?.childNodes.length! > 2);
+        return () => {};
+    }, [childCount])
 
     if (windowSize.width === undefined) {
         
@@ -151,7 +158,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
         </section>
         <div className={`relative w-full overflow-hidden rounded-lg`}>
             <div className="w-full flex relative items-center">
-                <button className={`absolute left-0 h-1/2 z-100 bg-white px-4 rounded-md opacity-40 hover:opacity-90 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
+                <button className={`absolute left-0 h-1/2 z-100 bg-white px-4 rounded-md opacity-40 hover:opacity-90 transition duration-500 ${showCarouselArrows ? '' : 'hidden'} ${childCount <= numPerSlide ? 'lg:hidden' : ''}`} onClick={prev}>
                     <Image src={'/icons/caret-left-solid.svg'} alt={'left arrow'} width={15} height={1}/>
                 </button>
                 <div className="relative overflow-hidden w-full h-full touch-x-none">
@@ -170,7 +177,7 @@ const ScrollingCarousel: React.FC<CarouselComponentProps> = ({ children, addClas
                     </div>
 
                 </div>
-                <button className={`absolute h-1/2 right-0 z-100 bg-white rounded-md px-4 opacity-40 hover:opacity-90 transition duration-500 ${childCount > (2) ? '' : 'hidden'} ${childCount <= numPerSlide ? 'md:hidden' : ''}`} onClick={next} >
+                <button className={`absolute h-1/2 right-0 z-100 bg-white rounded-md px-4 opacity-40 hover:opacity-90 transition duration-500 ${showCarouselArrows ? '' : 'hidden'} ${childCount <= numPerSlide ? 'md:hidden' : ''}`} onClick={next} >
                     <Image src={'/icons/caret-right-solid.svg'} alt={'right arrow'} width={15} height={1}/>
                 </button>
             </div>

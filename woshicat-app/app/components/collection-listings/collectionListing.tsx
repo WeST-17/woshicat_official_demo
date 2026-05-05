@@ -6,6 +6,7 @@ import Image from "next/image";
 import { getCollectionInfoHelper } from "@/app/server_actions/action";
 import Loader from "../transitions-navigation/LoadingScreen";
 import ScrollingCarousel from "../carousels/Carousel";
+import { useCart } from "../cart/cartContext";
 
 interface DisplayProps {
   addClass: string,
@@ -16,6 +17,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
   const [collectionList, setCollectionList] = useState<any[]>([]);
   const [error, setError] = useState<any>(null);
   const [loading, setLoading] = useState<boolean | null>(null);
+  const { setCurrentLink } = useCart(); 
 
   useEffect(() => {
   
@@ -39,7 +41,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
   return (
     <>
       { loading && (
-        <div className="object-contain relative w-full overflow-hidden flex justify-center items-end">
+        <div className="object-contain relative w-full h-full overflow-hidden flex justify-center items-end">
           <Loader />
         </div>
       )}
@@ -47,7 +49,7 @@ const CollectionListing: React.FC<DisplayProps> = ({ addClass }) => {
       { !loading && !error && (
         <ScrollingCarousel addClass="" numPerSlide={3} mobileSlide={1}>
           { collectionList.map((collection) => (
-              <section className={`mx-auto px-0.5 ${addClass}`} key={collection.handle}>
+              <section className={`mx-auto px-0.5 ${addClass}`} key={collection.handle} onClick={() => setCurrentLink(`/collections/${collection.handle}`)}>
                 <Square
                 link={`/collections/${collection.handle}`}
                 collectionName={`${collection.title}`}

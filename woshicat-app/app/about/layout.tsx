@@ -2,14 +2,12 @@
 import { Suspense } from "react";
 import TransitionSlide from "@/app/components/transitions-navigation/transitionWipe";
 import LoadingScreen from "@/app/components/transitions-navigation/loading";
-import { DarkMode } from "../components/toggles/Dark_Mode/darkModeContext";
 
 export default function ApparelLayout({
     children,
   }: {
     children: React.ReactNode
   }) {
-    const { darkMode } = DarkMode();
     return ( 
       <section className={`flex w-full h-fit justify-center items-center`}>
         <Suspense fallback={

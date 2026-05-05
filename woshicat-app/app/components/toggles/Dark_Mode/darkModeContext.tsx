@@ -11,9 +11,16 @@ const DarkModeContext = createContext<DarkModeType | undefined>(undefined);
 export const DarkModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
 
+  const userColorPref = () => {
+    if (!window) return;
+    console.log(window.matchMedia('(prefers-color-scheme: dark)'));
+    return window.matchMedia('(prefers-color-scheme: dark)');
+  };
+
   useEffect(() => {
     const userDisplay = localStorage.getItem('dark-mode');
-    if (userDisplay === 'true') {
+    
+    if (userDisplay === 'true' && userColorPref()) {
         setDarkMode(true);
     } 
 

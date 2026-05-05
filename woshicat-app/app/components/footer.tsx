@@ -9,6 +9,7 @@ import { useMetaPixel } from "./MetaPixel/PixelContext";
 import ToggleButton from "./toggles/templateToggle";
 import { DarkMode } from "./toggles/Dark_Mode/darkModeContext";
 import DarkModeToggle from "./toggles/Dark_Mode/darkModeToggle";
+import { useCart } from "./cart/cartContext";
 
 const Footer = () => {
     const [clicked, setClicked] = useState<boolean>(false);
@@ -17,6 +18,7 @@ const Footer = () => {
     //const [newsletterPopUp, setNewsletterPopUp] = useState<boolean | null>(null);
     const { consent } = useMetaPixel();
     const { darkMode } = DarkMode();
+    const { setCurrentLink } = useCart();
 
     const nClicked = () => {
         setClicked(true);
@@ -136,18 +138,19 @@ const Footer = () => {
             </div>
             
             <div className={`col-span-8 flex max-md:flex-col gap-2 md:gap-4 justify-center text-center text-sm mb-4 ${darkMode ? 'dark-text' : 'light-text'}`}>
-                <button id="button" className="link-button">
+                <button id="button" className="link-button" onClick={() => setCurrentLink('/privacy-policy')}>
                     <Link href={'/privacy-policy'}>Privacy Policy</Link>
                 </button>
-                <button id="button" className="link-button">
+                <button id="button" className="link-button" onClick={() => setCurrentLink('/terms-of-service')}>
                     <Link href={'/terms-of-service'}>Terms of Service</Link>
                 </button>
-                <button id="button" className="link-button">
+                <button id="button" className="link-button" onClick={() => setCurrentLink('/about/faq')}>
                     <Link href={'/about/faq'}>FAQ</Link>
                 </button>
-                <button id="button" className="link-button">
+                <button id="button" className="link-button" onClick={() => setCurrentLink('/contact-us')}>
                     <Link href={'/contact-us'}>Contact Us</Link>
                 </button>
+                
                 <button id="button" className="link-button" onClick={() => { setOpenPref(true) }}>
                     Privacy Preferences
                 </button>
