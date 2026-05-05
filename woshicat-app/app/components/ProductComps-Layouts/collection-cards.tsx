@@ -107,7 +107,7 @@ const CollectionCards: React.FC<CollectionType> = ({ collectionHandle }) => {
         additional="w-full h-full"
       />
     </div>
-    <section className={`w-full min-h-screen h-[120vh] relative ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'}`}>
+    <section className={`w-full min-h-[120vh] h-fit relative ${darkMode ? 'bg-stone-900/95 dark-text' : 'light-text bg-white/95'}`}>
       <div className={`pt-4 relative grid grid-cols-2 w-full md:w-[90vw] mx-1 mx-auto lg:grid-cols-5 gap-1 fade-in ${!loading ? 'show' : ''} `}>
         {products.map((product) => (
           // Render each product item
