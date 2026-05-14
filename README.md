@@ -4,7 +4,7 @@ WoShi Cat Demo GitHub repo! Welcome to my Github page! This project was built us
 
 WoShi Cat is an apparel brand inspired by Asian American identity, and cats! We aim to design pieces that reflect our own personal goals and challenges.
 
-------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------
 
 Yoyo and his friends are new post grad cats who have just entered the workforce. Faced with a whole new set of challenges different from their college party days, he finds his systematic and routine days to be a bore. His newest challenge: A Salary Cat in a human world.
 
